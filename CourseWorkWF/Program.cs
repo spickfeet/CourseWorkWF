@@ -14,6 +14,7 @@ namespace CourseWorkWF
         [STAThread]
         static void Main()
         {
+            //AssortmentList assortmentList = new AssortmentList(new List<Product>());
             ApplicationConfiguration.Initialize();
             Application.Run(new User());
         }

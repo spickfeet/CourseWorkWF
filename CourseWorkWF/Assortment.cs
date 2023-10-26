@@ -13,8 +13,8 @@ namespace CourseWorkWF
     public partial class Assortment : Form
     {
         private Form _prevForm;
-
-        public Assortment(Form prev)
+        private AssortmentList _assortment;
+        public Assortment(Form prev, AssortmentList assortment)
         {
             _prevForm = prev;
             _prevForm.Hide();
@@ -26,6 +26,16 @@ namespace CourseWorkWF
         private void OnClosed(object? sender, FormClosedEventArgs e)
         {
             _prevForm.Visible = true;
+        }
+
+        private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
+        {
+            AddAssortment addAssortment = new AddAssortment();
+            addAssortment.Show();
+        }
+
+        private void ListBoxAssortment_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

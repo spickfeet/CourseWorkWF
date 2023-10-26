@@ -29,15 +29,6 @@ namespace CWTest
         {
             Calculator.DiscountUse(MoneyAmount, Discount);
         }
-        public void RemuveProductsInAssortment(List<Product> productInAssortment)
-        {
-            foreach (Product productInList in ProductsList)
-            {
-                productInAssortment.Remove(productInList);
-
-            }
-        }
-
         override public double ChangeMoneyInCashRegister(double moneyInCashRegister)
         {
             return Calculator.Addition(moneyInCashRegister, MoneyAmount);
