@@ -1,25 +1,27 @@
-﻿using System;
+﻿using CourseWorkWF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 
-namespace CourseWorkWF
+namespace CWTest
 {
     public class Buy : Transaction
     {
+        private List<Product> _productsList;
         private int _buyID;
         private int _discount;
+        public List<Product> ProductsList { get { return _productsList; } set { _productsList = value; } }
         public int BuyID { get { return _buyID; } set { _buyID = value; } }
         public int Discount { get { return _discount; } set { _discount = value; } }
-        public Buy(TransactionMetod transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList, int buyID, int discount)
-            : base(transactionMetod, moneyAmount, cashierrName, productsList)
+        public Buy(TransactionMethod transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList, int buyID, int discount)
+            : base(transactionMetod, moneyAmount, cashierrName)
         {
-            TransactionMetod = transactionMetod;
+            ProductsList = productsList;
+            TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;
             СashierrName = cashierrName;
-            ProductsList = productsList;
             BuyID = buyID;
             Discount = discount;
         }
@@ -36,10 +38,10 @@ namespace CourseWorkWF
             }
         }
 
-        public double addIncome(double income)
+        override public double ChangeMoneyInCashRegister(double moneyInCashRegister)
         {
-            Calculator.Addition(income, MoneyAmount);
-            return income;
+            return Calculator.Addition(moneyInCashRegister, MoneyAmount);
         }
+
     }
 }

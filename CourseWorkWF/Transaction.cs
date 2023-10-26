@@ -8,22 +8,20 @@ using static CourseWorkWF.Program;
 
 namespace CourseWorkWF
 {
-    public class Transaction
+    public abstract class Transaction
     {
-        private TransactionMetod _transactionMetod; 
+        private TransactionMethod _transactionMethod;
         private double _moneyAmount;
-        private string _cashierrName;
-        static private List<Product> _productsList;
-        public TransactionMetod TransactionMetod { get { return _transactionMetod; } set { _transactionMetod = value; } }
+        private string _cashierName;  
+        public TransactionMethod TransactionMethod { get { return _transactionMethod; } set { _transactionMethod = value; } }
         public double MoneyAmount { get { return _moneyAmount; } set { _moneyAmount = value; } }
-        public string СashierrName { get { return _cashierrName; } set { _cashierrName = value; } }
-        static public List<Product> ProductsList { get { return _productsList; } set { _productsList = value; } }
-        public Transaction(TransactionMetod transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList)
+        public string СashierrName { get { return _cashierName; } set { _cashierName = value; } }
+        public Transaction(TransactionMethod transactionMetod, double moneyAmount, string cashierrName)
         {
-            TransactionMetod = transactionMetod;
+            TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;
             СashierrName = cashierrName;
-            ProductsList = productsList;
         }
+        public abstract double ChangeMoneyInCashRegister(double moneyInCashRegister);
     }
 }

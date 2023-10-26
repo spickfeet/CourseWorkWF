@@ -1,6 +1,6 @@
 namespace CourseWorkWF
 {
-    public enum TransactionMetod
+    public enum TransactionMethod
     {
         Card,
         Cash,
@@ -15,7 +15,7 @@ namespace CourseWorkWF
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new User());
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using CourseWorkWF;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace CourseWorkWF
 {
@@ -12,18 +12,18 @@ namespace CourseWorkWF
     {
         private string _reasonRefound;
         public string ReasonRefound { get { return _reasonRefound; } set { _reasonRefound = value; } }
-        public Refund(TransactionMetod transactionMetod, double moneyAmount, int operationID, string cashierrName, List<Product> productsList, string reasonRefound)
-         : base(transactionMetod, moneyAmount, cashierrName, productsList)
+        public Refund(TransactionMethod transactionMetod, double moneyAmount, string cashierrName, string reasonRefound)
+         : base(transactionMetod, moneyAmount, cashierrName)
         {
-            TransactionMetod = transactionMetod;
+            TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;
             СashierrName = cashierrName;
-            ProductsList = productsList;
             ReasonRefound = reasonRefound;
         }
-        public double DiffBank(double income)
+        override public double ChangeMoneyInCashRegister(double moneyInCashRegister)
         {
-            return Calculator.Difference(income, MoneyAmount);
+            return Calculator.Difference(moneyInCashRegister, MoneyAmount);
         }
     }
+
 }
