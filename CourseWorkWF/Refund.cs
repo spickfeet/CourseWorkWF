@@ -12,7 +12,7 @@ namespace CourseWorkWF
     {
         private string _reasonRefound;
         public string ReasonRefound { get { return _reasonRefound; } set { _reasonRefound = value; } }
-        public Refund(TransactionMethod transactionMetod, double moneyAmount, string cashierrName, string reasonRefound)
+        public Refund(string transactionMetod, double moneyAmount, string cashierrName, string reasonRefound)
          : base(transactionMetod, moneyAmount, cashierrName)
         {
             TransactionMethod = transactionMetod;
@@ -20,9 +20,9 @@ namespace CourseWorkWF
             СashierrName = cashierrName;
             ReasonRefound = reasonRefound;
         }
-        override public double ChangeMoneyInCashRegister(double moneyInCashRegister)
+        override public double ChangeRevenue(double revenue)
         {
-            return Calculator.Difference(moneyInCashRegister, MoneyAmount);
+            return Calculator.Difference(revenue, MoneyAmount);
         }
     }
 

@@ -106,7 +106,7 @@
         private Button ButtonAddProductInAssortment;
         private Button ButtonRemoveProductInAssortment;
         private Label LabelAssortment;
-        private ListBox ListBoxAssortment;
         private Button ButtonLoadAssortment;
+        public ListBox ListBoxAssortment;
     }
 }

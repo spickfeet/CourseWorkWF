@@ -28,25 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Admin = new Button();
+            ButtonAdmin = new Button();
+            ButtonCashier = new Button();
             SuspendLayout();
             // 
-            // Admin
+            // ButtonAdmin
             // 
-            Admin.Location = new Point(476, 171);
-            Admin.Name = "Admin";
-            Admin.Size = new Size(94, 29);
-            Admin.TabIndex = 0;
-            Admin.Text = "Админ";
-            Admin.UseVisualStyleBackColor = true;
-            Admin.Click += Admin_Click;
+            ButtonAdmin.Location = new Point(416, 128);
+            ButtonAdmin.Margin = new Padding(3, 2, 3, 2);
+            ButtonAdmin.Name = "ButtonAdmin";
+            ButtonAdmin.Size = new Size(148, 96);
+            ButtonAdmin.TabIndex = 0;
+            ButtonAdmin.Text = "Админ";
+            ButtonAdmin.UseVisualStyleBackColor = true;
+            ButtonAdmin.Click += ButtonAdmin_Click;
+            // 
+            // ButtonCashier
+            // 
+            ButtonCashier.Location = new Point(210, 132);
+            ButtonCashier.Name = "ButtonCashier";
+            ButtonCashier.Size = new Size(137, 92);
+            ButtonCashier.TabIndex = 1;
+            ButtonCashier.Text = "Кассир";
+            ButtonCashier.UseVisualStyleBackColor = true;
+            ButtonCashier.Click += ButtonCashier_Click;
             // 
             // User
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(Admin);
+            ClientSize = new Size(700, 338);
+            Controls.Add(ButtonCashier);
+            Controls.Add(ButtonAdmin);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "User";
             Text = "User";
             ResumeLayout(false);
@@ -54,6 +68,7 @@
 
         #endregion
 
-        private Button Admin;
+        private Button ButtonAdmin;
+        private Button ButtonCashier;
     }
 }

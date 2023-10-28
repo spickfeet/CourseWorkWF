@@ -1,3 +1,5 @@
+using CourseWorkWF.Forms;
+
 namespace CourseWorkWF
 {
     public partial class User : Form
@@ -8,10 +10,16 @@ namespace CourseWorkWF
             InitializeComponent();
         }
 
-        private void Admin_Click(object sender, EventArgs e)
+        private void ButtonAdmin_Click(object sender, EventArgs e)
         {
-            Assortment assortment = new Assortment(this, _assortment);
+            Assortment assortment = new Assortment(this);
             assortment.ShowDialog();
+        }
+
+        private void ButtonCashier_Click(object sender, EventArgs e)
+        {
+            CashierARM cashierARM = new CashierARM(this);
+            cashierARM.ShowDialog();
         }
     }
 }

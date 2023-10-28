@@ -10,28 +10,21 @@ namespace CWTest
     public class Buy : Transaction
     {
         private List<Product> _productsList;
-        private int _buyID;
-        private int _discount;
+        private static int _buyID = 0;
         public List<Product> ProductsList { get { return _productsList; } set { _productsList = value; } }
         public int BuyID { get { return _buyID; } set { _buyID = value; } }
-        public int Discount { get { return _discount; } set { _discount = value; } }
-        public Buy(TransactionMethod transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList, int buyID, int discount)
+        public Buy(string transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList)
             : base(transactionMetod, moneyAmount, cashierrName)
         {
-            ProductsList = productsList;
-            TransactionMethod = transactionMetod;
-            MoneyAmount = moneyAmount;
+            ProductsList = productsList; 
+            TransactionMethod = transactionMetod; //
+            MoneyAmount = moneyAmount; //
             СashierrName = cashierrName;
-            BuyID = buyID;
-            Discount = discount;
+            BuyID += 1; 
         }
-        public void DiscountHave()
+        override public double ChangeRevenue(double revenue)
         {
-            Calculator.DiscountUse(MoneyAmount, Discount);
-        }
-        override public double ChangeMoneyInCashRegister(double moneyInCashRegister)
-        {
-            return Calculator.Addition(moneyInCashRegister, MoneyAmount);
+            return Calculator.Addition(revenue, MoneyAmount);
         }
 
     }

@@ -20,15 +20,6 @@ namespace CourseWorkWF
         {
             return num1 * num2;
         }
-        static public double AdditionPrice(List<Product> products)
-        {
-            double result = 0;
-            foreach (Product product in products)
-            {
-                result += product.Price;
-            }
-            return result;
-        }
         static public double DiscountUse(double priceBuy, int discountPercent)
         {
             return (priceBuy - (priceBuy / 100) * discountPercent);

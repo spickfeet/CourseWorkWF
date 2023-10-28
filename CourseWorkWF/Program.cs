@@ -1,11 +1,5 @@
 namespace CourseWorkWF
 {
-    public enum TransactionMethod
-    {
-        Card,
-        Cash,
-        SBP
-    }
     internal static class Program
     {
         /// <summary>

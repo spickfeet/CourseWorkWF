@@ -13,8 +13,7 @@ namespace CourseWorkWF
     public partial class Assortment : Form
     {
         private Form _prevForm;
-        private AssortmentList _assortment;
-        public Assortment(Form prev, AssortmentList assortment)
+        public Assortment(Form prev)
         {
             _prevForm = prev;
             _prevForm.Hide();
