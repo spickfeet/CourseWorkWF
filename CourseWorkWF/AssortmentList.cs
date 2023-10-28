@@ -11,16 +11,16 @@ namespace CourseWorkWF
     {
         private static AssortmentList? _instance = null;
 
-        private List<Product> _productsAssortment/* = new()*/;
+        private List<Product> _productsAssortment;
         public List<Product> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
-        private AssortmentList(List<Product> productsAssortment)
+        private AssortmentList()
         {
-            ProductsAssortment = productsAssortment;
+            ProductsAssortment = new List<Product>();
         }
-        public static AssortmentList Instance(List<Product> productsAssortment) // Можно убрать параметры тк _productsAssortment = new()
+        public static AssortmentList Instance() // Можно убрать параметры тк _productsAssortment = new()
         {
             if (_instance == null)
-                _instance = new AssortmentList(productsAssortment);
+                _instance = new AssortmentList();
             return _instance;
         }
 

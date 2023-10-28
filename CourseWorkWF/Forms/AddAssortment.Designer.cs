@@ -30,13 +30,13 @@
         {
             ButtonAddProductInAssortment = new Button();
             TextBoxProductID = new TextBox();
-            DateTimePickerExDate = new DateTimePicker();
             LabelProductID = new Label();
             LabelProductName = new Label();
             TextBoxProductName = new TextBox();
             LableProductPrice = new Label();
             TextBoxProductPrice = new TextBox();
-            LabelExDate = new Label();
+            LabelAmount = new Label();
+            TextBoxAmount = new TextBox();
             SuspendLayout();
             // 
             // ButtonAddProductInAssortment
@@ -55,13 +55,6 @@
             TextBoxProductID.Name = "TextBoxProductID";
             TextBoxProductID.Size = new Size(145, 23);
             TextBoxProductID.TabIndex = 1;
-            // 
-            // DateTimePickerExDate
-            // 
-            DateTimePickerExDate.Location = new Point(12, 165);
-            DateTimePickerExDate.Name = "DateTimePickerExDate";
-            DateTimePickerExDate.Size = new Size(145, 23);
-            DateTimePickerExDate.TabIndex = 2;
             // 
             // LabelProductID
             // 
@@ -104,27 +97,34 @@
             TextBoxProductPrice.Size = new Size(145, 23);
             TextBoxProductPrice.TabIndex = 6;
             // 
-            // LabelExDate
+            // LabelAmount
             // 
-            LabelExDate.AutoSize = true;
-            LabelExDate.Location = new Point(12, 144);
-            LabelExDate.Name = "LabelExDate";
-            LabelExDate.Size = new Size(88, 15);
-            LabelExDate.TabIndex = 8;
-            LabelExDate.Text = "Срок годности";
+            LabelAmount.AutoSize = true;
+            LabelAmount.Location = new Point(12, 144);
+            LabelAmount.Name = "LabelAmount";
+            LabelAmount.Size = new Size(72, 15);
+            LabelAmount.TabIndex = 8;
+            LabelAmount.Text = "Количество";
+            // 
+            // TextBoxAmount
+            // 
+            TextBoxAmount.Location = new Point(12, 165);
+            TextBoxAmount.Name = "TextBoxAmount";
+            TextBoxAmount.Size = new Size(145, 23);
+            TextBoxAmount.TabIndex = 9;
             // 
             // AddAssortment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(304, 209);
-            Controls.Add(LabelExDate);
+            Controls.Add(TextBoxAmount);
+            Controls.Add(LabelAmount);
             Controls.Add(LableProductPrice);
             Controls.Add(TextBoxProductPrice);
             Controls.Add(LabelProductName);
             Controls.Add(TextBoxProductName);
             Controls.Add(LabelProductID);
-            Controls.Add(DateTimePickerExDate);
             Controls.Add(TextBoxProductID);
             Controls.Add(ButtonAddProductInAssortment);
             Name = "AddAssortment";
@@ -137,12 +137,12 @@
 
         private Button ButtonAddProductInAssortment;
         private TextBox TextBoxProductID;
-        private DateTimePicker DateTimePickerExDate;
         private Label LabelProductID;
         private Label LabelProductName;
         private TextBox TextBoxProductName;
         private Label LableProductPrice;
         private TextBox TextBoxProductPrice;
-        private Label LabelExDate;
+        private Label LabelAmount;
+        private TextBox TextBoxAmount;
     }
 }

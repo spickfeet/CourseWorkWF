@@ -19,8 +19,9 @@ namespace CourseWorkWF
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            Product product = new Product(Int32.Parse(TextBoxProductID.Text), TextBoxProductName.Text, Double.Parse(TextBoxProductPrice.Text),DateTimePickerExDate.Value);
-            AssortmentList.Instance(new List<Product>()).AddProductInAssortment(product);
+            Product product = new Product(Int32.Parse(TextBoxProductID.Text), TextBoxProductName.Text, Double.Parse(TextBoxProductPrice.Text));
+            for (int i = 0; i < Int32.Parse(TextBoxAmount.Text); i++)
+                AssortmentList.Instance().AddProductInAssortment(product);
             Close();
         }
     }

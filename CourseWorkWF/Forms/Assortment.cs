@@ -31,21 +31,35 @@ namespace CourseWorkWF
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
             AddAssortment addAssortment = new AddAssortment();
-            addAssortment.Show();
-        }
-
-        private void ListBoxAssortment_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            addAssortment.ShowDialog();
         }
 
         private void ButtonLoadAssortment_Click(object sender, EventArgs e)
         {
             ListBoxAssortment.Items.Clear();
-            foreach (Product product in AssortmentList.Instance(new List<Product>()).ProductsAssortment)
+            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
             {
                 ListBoxAssortment.Items.Add(product.Name);
             }
 
+        }
+
+        private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
+        {
+            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
+            {
+                if (product.Name == (string)ListBoxAssortment.SelectedItem)
+                {
+                    AssortmentList.Instance().RemoveProductInAssortment(product);
+                    break;
+                }
+
+            }
+            ListBoxAssortment.Items.Clear();
+            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
+            {
+                ListBoxAssortment.Items.Add(product.Name);
+            }
         }
     }
 }
