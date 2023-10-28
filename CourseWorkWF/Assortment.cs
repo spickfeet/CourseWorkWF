@@ -37,5 +37,15 @@ namespace CourseWorkWF
         private void ListBoxAssortment_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void ButtonLoadAssortment_Click(object sender, EventArgs e)
+        {
+            ListBoxAssortment.Items.Clear();
+            foreach (Product product in AssortmentList.Instance(new List<Product>()).ProductsAssortment)
+            {
+                ListBoxAssortment.Items.Add(product.Name);
+            }
+
+        }
     }
 }

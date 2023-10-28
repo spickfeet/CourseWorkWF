@@ -9,19 +9,19 @@ namespace CourseWorkWF
 {
     public class AssortmentList
     {
-        private static AssortmentList? instance = null;
+        private static AssortmentList? _instance = null;
 
-        private List<Product> _productsAssortment;
+        private List<Product> _productsAssortment/* = new()*/;
         public List<Product> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
         private AssortmentList(List<Product> productsAssortment)
         {
             ProductsAssortment = productsAssortment;
-            instance = this;
         }
-        public static AssortmentList Instance(List<Product> productsAssortment)
+        public static AssortmentList Instance(List<Product> productsAssortment) // Можно убрать параметры тк _productsAssortment = new()
         {
-            instance = new AssortmentList(productsAssortment);
-            return instance;
+            if (_instance == null)
+                _instance = new AssortmentList(productsAssortment);
+            return _instance;
         }
 
         public void AddProductInAssortment(Product product)
