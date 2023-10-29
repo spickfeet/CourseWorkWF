@@ -19,10 +19,33 @@ namespace CourseWorkWF
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            Product product = new Product(Int32.Parse(TextBoxProductID.Text), TextBoxProductName.Text, Double.Parse(TextBoxProductPrice.Text));
-            for (int i = 0; i < Int32.Parse(TextBoxAmount.Text); i++)
+            // Поиск дубликата
+            foreach (Product productInAssortment in AssortmentList.Instance().ProductsAssortment)
+            {
+                if (NumericUpDownProductID.Value == productInAssortment.ProductID)
+                {
+                    for (int i = 0; i < NumericUpDownAmount.Value; i++)
+                        AssortmentList.Instance().AddProductInAssortment(productInAssortment);
+                    Close();
+                    return;
+                }
+            }
+            Product product = new Product((int)NumericUpDownProductID.Value, TextBoxProductName.Text, (double)NumericUpDownProductPrice.Value);
+            for (int i = 0; i < NumericUpDownAmount.Value; i++)
                 AssortmentList.Instance().AddProductInAssortment(product);
             Close();
+        }
+
+        private void NumericUpDownProductID_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
+            {
+                if (product.ProductID == NumericUpDownProductID.Value)
+                {
+                    TextBoxProductName.Text = product.Name;
+                    NumericUpDownProductPrice.Value = (decimal)product.Price;
+                }
+            }
         }
     }
 }

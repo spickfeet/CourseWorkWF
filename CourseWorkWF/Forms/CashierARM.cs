@@ -34,14 +34,14 @@ namespace CourseWorkWF.Forms
         {
             foreach (Product product in AssortmentList.Instance().ProductsAssortment) // Обход ассортимента 
             {
-                if (product.ProductID == int.Parse(TextBoxProductID.Text)) // поиск по ID
+                if (product.ProductID == NumericUpDownProductID.Value) // поиск по ID
                 {
                     _buyProductsList.Add(product); // Добавление продукта в список покупаемых продуктов
                     AssortmentList.Instance().ProductsAssortment.Remove(product); // удаление продукта из ассортимента
-                    TextBoxProductID.Clear();
+                    NumericUpDownProductID.Value = 0;
                     TextBoxPrice.Text = Convert.ToString(double.Parse(TextBoxPrice.Text) + product.Price); // подсчет цены
 
-                    // Dключаем возможность установить скидку и метод оплаты 
+                    // Включаем возможность установить скидку и метод оплаты 
                     ComboBoxDiscount.SelectedIndex = 0;
                     ComboBoxDiscount.Enabled = true;
                     ComboBoxTransactionMethod.Enabled = true;
@@ -55,9 +55,9 @@ namespace CourseWorkWF.Forms
             }
         }
 
-        private void ButtonSell_Click(object sender, EventArgs e)
+        private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
-            Buy buy = new Buy(ComboBoxTransactionMethod.Text, double.Parse(TextBoxPrice.Text), TextBoxCashierName.Text,
+            Buy buy = new Buy(ComboBoxTransactionMethod.Text, double.Parse(TextBoxPrice.Text), numericUpDownCashierName.Text,
                 _buyProductsList, int.Parse(ComboBoxDiscount.Text));
             TextBoxRevenue.Text = Convert.ToString(double.Parse(TextBoxRevenue.Text) + buy.MoneyAmount); // Увеличение выручки
 
@@ -72,10 +72,11 @@ namespace CourseWorkWF.Forms
             _buyProductsList.Clear(); // Отчистка списка купленных продуктов
         }
 
-        private void СomboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
             TextBoxPrice.Text = Convert.ToString(Math.Round(double.Parse(TextBoxPrice.Text) - (double.Parse(TextBoxPrice.Text) / 100) * int.Parse(ComboBoxDiscount.Text), 2)); // Применение скидки
             if (ComboBoxDiscount.SelectedIndex != 0) ButtonCancelDiscount.Enabled = true;
+            ComboBoxDiscount.Enabled = false;
         }
 
         private void ButtonCancelDiscount_Click(object sender, EventArgs e)
@@ -84,6 +85,7 @@ namespace CourseWorkWF.Forms
             {
                 TextBoxPrice.Text = Convert.ToString(Math.Round(double.Parse(TextBoxPrice.Text) / (100 - int.Parse(ComboBoxDiscount.Text)) * 100, 2)); // Отмена скидки
                 ComboBoxDiscount.SelectedIndex = 0;
+                ComboBoxDiscount.Enabled = true;
                 ButtonCancelDiscount.Enabled = false;
             }
         }
@@ -94,27 +96,22 @@ namespace CourseWorkWF.Forms
             if (ComboBoxTransactionMethod.SelectedIndex == 0)
             {
                 LabelCash.Visible = true;
-                TextBoxCash.Visible = true;
+                NumericUpDownCash.Visible = true;
                 LabelMoneyChangeBuyer.Visible = true;
                 TextBoxMoneyChangeBuyer.Visible = true;
             }
             else
             {
                 LabelCash.Visible = false;
-                TextBoxCash.Visible = false;
+                NumericUpDownCash.Visible = false;
                 LabelMoneyChangeBuyer.Visible = false;
                 TextBoxMoneyChangeBuyer.Visible = false;
             }
         }
 
-        private void TextBoxCash_TextChanged(object sender, EventArgs e)
+        private void NumericUpDownCash_ValueChanged(object sender, EventArgs e)
         {
-            if (double.Parse(TextBoxCash.Text) > double.Parse(TextBoxPrice.Text))
-                TextBoxMoneyChangeBuyer.Text = Convert.ToString(Math.Round(double.Parse(TextBoxCash.Text) - double.Parse(TextBoxPrice.Text), 2));
-        }
-
-        private void NumericUpDownProductID_ValueChanged(object sender, EventArgs e)
-        {
+            TextBoxMoneyChangeBuyer.Text = Convert.ToString(Math.Round(NumericUpDownCash.Value - decimal.Parse(TextBoxPrice.Text), 2));
         }
     }
 }

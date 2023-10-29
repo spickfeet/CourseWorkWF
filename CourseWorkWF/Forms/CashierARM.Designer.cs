@@ -35,20 +35,20 @@
             ComboBoxTransactionMethod = new ComboBox();
             ListBoxBuyProducts = new ListBox();
             LabelProductID = new Label();
-            TextBoxProductID = new TextBox();
-            TextBoxCashierName = new TextBox();
+            numericUpDownCashierName = new TextBox();
             LabelCashierName = new Label();
             ButtonAddProduct = new Button();
             ButtonSell = new Button();
             TextBoxRevenue = new TextBox();
             LabelRevenue = new Label();
             ButtonCancelDiscount = new Button();
-            TextBoxCash = new TextBox();
             TextBoxMoneyChangeBuyer = new TextBox();
             LabelCash = new Label();
             LabelMoneyChangeBuyer = new Label();
             NumericUpDownProductID = new NumericUpDown();
+            NumericUpDownCash = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericUpDownCash).BeginInit();
             SuspendLayout();
             // 
             // TextBoxPrice
@@ -71,7 +71,7 @@
             ComboBoxDiscount.Size = new Size(121, 23);
             ComboBoxDiscount.TabIndex = 1;
             ComboBoxDiscount.UseWaitCursor = true;
-            ComboBoxDiscount.SelectedIndexChanged += СomboBoxDiscount_SelectedIndexChanged;
+            ComboBoxDiscount.SelectedIndexChanged += ComboBoxDiscount_SelectedIndexChanged;
             // 
             // LabelDiscount
             // 
@@ -122,21 +122,14 @@
             LabelProductID.TabIndex = 6;
             LabelProductID.Text = "ID товара";
             // 
-            // TextBoxProductID
+            // numericUpDownCashierName
             // 
-            TextBoxProductID.Location = new Point(597, 27);
-            TextBoxProductID.Name = "TextBoxProductID";
-            TextBoxProductID.Size = new Size(100, 23);
-            TextBoxProductID.TabIndex = 7;
-            // 
-            // TextBoxCashierName
-            // 
-            TextBoxCashierName.Location = new Point(12, 415);
-            TextBoxCashierName.Name = "TextBoxCashierName";
-            TextBoxCashierName.ReadOnly = true;
-            TextBoxCashierName.Size = new Size(220, 23);
-            TextBoxCashierName.TabIndex = 8;
-            TextBoxCashierName.Text = "Елена Васильевна";
+            numericUpDownCashierName.Location = new Point(12, 415);
+            numericUpDownCashierName.Name = "numericUpDownCashierName";
+            numericUpDownCashierName.ReadOnly = true;
+            numericUpDownCashierName.Size = new Size(220, 23);
+            numericUpDownCashierName.TabIndex = 8;
+            numericUpDownCashierName.Text = "Елена Васильевна";
             // 
             // LabelCashierName
             // 
@@ -198,15 +191,6 @@
             ButtonCancelDiscount.UseVisualStyleBackColor = true;
             ButtonCancelDiscount.Click += ButtonCancelDiscount_Click;
             // 
-            // TextBoxCash
-            // 
-            TextBoxCash.Location = new Point(139, 248);
-            TextBoxCash.Name = "TextBoxCash";
-            TextBoxCash.Size = new Size(100, 23);
-            TextBoxCash.TabIndex = 16;
-            TextBoxCash.Visible = false;
-            TextBoxCash.TextChanged += TextBoxCash_TextChanged;
-            // 
             // TextBoxMoneyChangeBuyer
             // 
             TextBoxMoneyChangeBuyer.Location = new Point(139, 292);
@@ -238,30 +222,39 @@
             // 
             // NumericUpDownProductID
             // 
-            NumericUpDownProductID.Location = new Point(373, 120);
+            NumericUpDownProductID.Location = new Point(597, 27);
+            NumericUpDownProductID.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             NumericUpDownProductID.Name = "NumericUpDownProductID";
-            NumericUpDownProductID.Size = new Size(88, 23);
+            NumericUpDownProductID.Size = new Size(100, 23);
             NumericUpDownProductID.TabIndex = 20;
-            NumericUpDownProductID.ValueChanged += NumericUpDownProductID_ValueChanged;
+            // 
+            // NumericUpDownCash
+            // 
+            NumericUpDownCash.Location = new Point(140, 248);
+            NumericUpDownCash.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            NumericUpDownCash.Name = "NumericUpDownCash";
+            NumericUpDownCash.Size = new Size(99, 23);
+            NumericUpDownCash.TabIndex = 21;
+            NumericUpDownCash.Visible = false;
+            NumericUpDownCash.ValueChanged += NumericUpDownCash_ValueChanged;
             // 
             // CashierARM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(NumericUpDownCash);
             Controls.Add(NumericUpDownProductID);
             Controls.Add(LabelMoneyChangeBuyer);
             Controls.Add(LabelCash);
             Controls.Add(TextBoxMoneyChangeBuyer);
-            Controls.Add(TextBoxCash);
             Controls.Add(ButtonCancelDiscount);
             Controls.Add(LabelRevenue);
             Controls.Add(TextBoxRevenue);
             Controls.Add(ButtonSell);
             Controls.Add(ButtonAddProduct);
             Controls.Add(LabelCashierName);
-            Controls.Add(TextBoxCashierName);
-            Controls.Add(TextBoxProductID);
+            Controls.Add(numericUpDownCashierName);
             Controls.Add(LabelProductID);
             Controls.Add(ListBoxBuyProducts);
             Controls.Add(LabelPayMethod);
@@ -272,6 +265,7 @@
             Name = "CashierARM";
             Text = "CashierARM";
             ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericUpDownCash).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -285,18 +279,17 @@
         private ComboBox ComboBoxTransactionMethod;
         private ListBox ListBoxBuyProducts;
         private Label LabelProductID;
-        private TextBox TextBoxProductID;
-        private TextBox TextBoxCashierName;
+        private TextBox numericUpDownCashierName;
         private Label LabelCashierName;
         private Button ButtonAddProduct;
         private Button ButtonSell;
         private TextBox TextBoxRevenue;
         private Label LabelRevenue;
         private Button ButtonCancelDiscount;
-        private TextBox TextBoxCash;
         private TextBox TextBoxMoneyChangeBuyer;
         private Label LabelCash;
         private Label LabelMoneyChangeBuyer;
         private NumericUpDown NumericUpDownProductID;
+        private NumericUpDown NumericUpDownCash;
     }
 }

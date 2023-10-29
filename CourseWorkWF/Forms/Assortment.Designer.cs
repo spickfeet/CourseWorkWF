@@ -81,7 +81,7 @@
             ButtonLoadAssortment.Name = "ButtonLoadAssortment";
             ButtonLoadAssortment.Size = new Size(117, 52);
             ButtonLoadAssortment.TabIndex = 4;
-            ButtonLoadAssortment.Text = "Загрузить ассортимент";
+            ButtonLoadAssortment.Text = "Обновить ассортимент";
             ButtonLoadAssortment.UseVisualStyleBackColor = true;
             ButtonLoadAssortment.Click += ButtonLoadAssortment_Click;
             // 
