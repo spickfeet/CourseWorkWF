@@ -45,8 +45,10 @@ namespace CourseWorkWF.Forms
                     ComboBoxDiscount.SelectedIndex = 0;
                     ComboBoxDiscount.Enabled = true;
                     ComboBoxTransactionMethod.Enabled = true;
+                    ErrorProviderAddProductByID.Clear();
                     break;
                 }
+                ErrorProviderAddProductByID.SetError(NumericUpDownProductID, "В магазине нет продукта с таким ID");
             }
             ListBoxBuyProducts.Items.Clear();
             foreach (Product product in _buyProductsList)

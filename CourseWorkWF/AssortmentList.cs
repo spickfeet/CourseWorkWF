@@ -32,13 +32,5 @@ namespace CourseWorkWF
         {
             ProductsAssortment.Remove(product);
         }
-        public void RemoveProductsInAssortment(List<Product> productList)
-        {
-            foreach (Product buyProduct in productList)
-            {
-                ProductsAssortment.Remove(buyProduct);
-
-            }
-        }
     }
 }

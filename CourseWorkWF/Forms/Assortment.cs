@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseWorkWF.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,20 +53,8 @@ namespace CourseWorkWF
 
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
-            {
-                if (product.Name == (string)ListBoxAssortment.SelectedItem)
-                {
-                    AssortmentList.Instance().RemoveProductInAssortment(product);
-                    break;
-                }
-
-            }
-            ListBoxAssortment.Items.Clear();
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
-            {
-                ListBoxAssortment.Items.Add(product.Name);
-            }
+            RemoveAssortment removeAssortment = new RemoveAssortment(); 
+            removeAssortment.ShowDialog();
         }
     }
 }

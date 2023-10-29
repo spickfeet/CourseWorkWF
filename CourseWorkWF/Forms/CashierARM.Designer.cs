@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             TextBoxPrice = new TextBox();
             ComboBoxDiscount = new ComboBox();
             LabelDiscount = new Label();
@@ -47,8 +48,10 @@
             LabelMoneyChangeBuyer = new Label();
             NumericUpDownProductID = new NumericUpDown();
             NumericUpDownCash = new NumericUpDown();
+            ErrorProviderAddProductByID = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericUpDownCash).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ErrorProviderAddProductByID).BeginInit();
             SuspendLayout();
             // 
             // TextBoxPrice
@@ -238,6 +241,11 @@
             NumericUpDownCash.Visible = false;
             NumericUpDownCash.ValueChanged += NumericUpDownCash_ValueChanged;
             // 
+            // ErrorProviderAddProductByID
+            // 
+            ErrorProviderAddProductByID.ContainerControl = this;
+            ErrorProviderAddProductByID.RightToLeft = true;
+            // 
             // CashierARM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,6 +274,7 @@
             Text = "CashierARM";
             ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumericUpDownCash).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ErrorProviderAddProductByID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -291,5 +300,6 @@
         private Label LabelMoneyChangeBuyer;
         private NumericUpDown NumericUpDownProductID;
         private NumericUpDown NumericUpDownCash;
+        private ErrorProvider ErrorProviderAddProductByID;
     }
 }
