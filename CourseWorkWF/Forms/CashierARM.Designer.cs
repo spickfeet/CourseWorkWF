@@ -40,8 +40,15 @@
             LabelCashierName = new Label();
             ButtonAddProduct = new Button();
             ButtonSell = new Button();
-            ButtonDiscountUse = new Button();
             TextBoxRevenue = new TextBox();
+            LabelRevenue = new Label();
+            ButtonCancelDiscount = new Button();
+            TextBoxCash = new TextBox();
+            TextBoxMoneyChangeBuyer = new TextBox();
+            LabelCash = new Label();
+            LabelMoneyChangeBuyer = new Label();
+            NumericUpDownProductID = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).BeginInit();
             SuspendLayout();
             // 
             // TextBoxPrice
@@ -56,9 +63,10 @@
             // ComboBoxDiscount
             // 
             ComboBoxDiscount.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxDiscount.Enabled = false;
             ComboBoxDiscount.FormattingEnabled = true;
             ComboBoxDiscount.Items.AddRange(new object[] { "0", "5 ", "10 ", "15 ", "20 ", "25 " });
-            ComboBoxDiscount.Location = new Point(12, 261);
+            ComboBoxDiscount.Location = new Point(12, 196);
             ComboBoxDiscount.Name = "ComboBoxDiscount";
             ComboBoxDiscount.Size = new Size(121, 23);
             ComboBoxDiscount.TabIndex = 1;
@@ -68,7 +76,7 @@
             // LabelDiscount
             // 
             LabelDiscount.AutoSize = true;
-            LabelDiscount.Location = new Point(12, 243);
+            LabelDiscount.Location = new Point(12, 178);
             LabelDiscount.Name = "LabelDiscount";
             LabelDiscount.Size = new Size(46, 15);
             LabelDiscount.TabIndex = 2;
@@ -77,7 +85,7 @@
             // LabelPayMethod
             // 
             LabelPayMethod.AutoSize = true;
-            LabelPayMethod.Location = new Point(139, 243);
+            LabelPayMethod.Location = new Point(139, 178);
             LabelPayMethod.Name = "LabelPayMethod";
             LabelPayMethod.Size = new Size(93, 15);
             LabelPayMethod.TabIndex = 4;
@@ -86,13 +94,15 @@
             // ComboBoxTransactionMethod
             // 
             ComboBoxTransactionMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxTransactionMethod.Enabled = false;
             ComboBoxTransactionMethod.FormattingEnabled = true;
             ComboBoxTransactionMethod.Items.AddRange(new object[] { "Наличные", "Карта" });
-            ComboBoxTransactionMethod.Location = new Point(139, 261);
+            ComboBoxTransactionMethod.Location = new Point(139, 196);
             ComboBoxTransactionMethod.Name = "ComboBoxTransactionMethod";
             ComboBoxTransactionMethod.Size = new Size(121, 23);
             ComboBoxTransactionMethod.TabIndex = 3;
             ComboBoxTransactionMethod.UseWaitCursor = true;
+            ComboBoxTransactionMethod.SelectedIndexChanged += ComboBoxTransactionMethod_SelectedIndexChanged;
             // 
             // ListBoxBuyProducts
             // 
@@ -149,6 +159,7 @@
             // 
             // ButtonSell
             // 
+            ButtonSell.Enabled = false;
             ButtonSell.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ButtonSell.Location = new Point(597, 320);
             ButtonSell.Name = "ButtonSell";
@@ -158,31 +169,94 @@
             ButtonSell.UseVisualStyleBackColor = true;
             ButtonSell.Click += ButtonSell_Click;
             // 
-            // ButtonDiscountUse
-            // 
-            ButtonDiscountUse.Location = new Point(12, 291);
-            ButtonDiscountUse.Name = "ButtonDiscountUse";
-            ButtonDiscountUse.Size = new Size(121, 50);
-            ButtonDiscountUse.TabIndex = 12;
-            ButtonDiscountUse.Text = "Применит скидку";
-            ButtonDiscountUse.UseVisualStyleBackColor = true;
-            // 
             // TextBoxRevenue
             // 
-            TextBoxRevenue.Location = new Point(71, 56);
+            TextBoxRevenue.Location = new Point(115, 9);
             TextBoxRevenue.Name = "TextBoxRevenue";
             TextBoxRevenue.ReadOnly = true;
             TextBoxRevenue.Size = new Size(100, 23);
             TextBoxRevenue.TabIndex = 13;
             TextBoxRevenue.Text = "0";
             // 
+            // LabelRevenue
+            // 
+            LabelRevenue.AutoSize = true;
+            LabelRevenue.Location = new Point(12, 12);
+            LabelRevenue.Name = "LabelRevenue";
+            LabelRevenue.Size = new Size(97, 15);
+            LabelRevenue.TabIndex = 14;
+            LabelRevenue.Text = "Выручка за день";
+            // 
+            // ButtonCancelDiscount
+            // 
+            ButtonCancelDiscount.Enabled = false;
+            ButtonCancelDiscount.Location = new Point(12, 225);
+            ButtonCancelDiscount.Name = "ButtonCancelDiscount";
+            ButtonCancelDiscount.Size = new Size(121, 46);
+            ButtonCancelDiscount.TabIndex = 15;
+            ButtonCancelDiscount.Text = "Отменит скидку";
+            ButtonCancelDiscount.UseVisualStyleBackColor = true;
+            ButtonCancelDiscount.Click += ButtonCancelDiscount_Click;
+            // 
+            // TextBoxCash
+            // 
+            TextBoxCash.Location = new Point(139, 248);
+            TextBoxCash.Name = "TextBoxCash";
+            TextBoxCash.Size = new Size(100, 23);
+            TextBoxCash.TabIndex = 16;
+            TextBoxCash.Visible = false;
+            TextBoxCash.TextChanged += TextBoxCash_TextChanged;
+            // 
+            // TextBoxMoneyChangeBuyer
+            // 
+            TextBoxMoneyChangeBuyer.Location = new Point(139, 292);
+            TextBoxMoneyChangeBuyer.Name = "TextBoxMoneyChangeBuyer";
+            TextBoxMoneyChangeBuyer.ReadOnly = true;
+            TextBoxMoneyChangeBuyer.Size = new Size(100, 23);
+            TextBoxMoneyChangeBuyer.TabIndex = 17;
+            TextBoxMoneyChangeBuyer.Visible = false;
+            // 
+            // LabelCash
+            // 
+            LabelCash.AutoSize = true;
+            LabelCash.Location = new Point(139, 230);
+            LabelCash.Name = "LabelCash";
+            LabelCash.Size = new Size(65, 15);
+            LabelCash.TabIndex = 18;
+            LabelCash.Text = "Наличные";
+            LabelCash.Visible = false;
+            // 
+            // LabelMoneyChangeBuyer
+            // 
+            LabelMoneyChangeBuyer.AutoSize = true;
+            LabelMoneyChangeBuyer.Location = new Point(139, 274);
+            LabelMoneyChangeBuyer.Name = "LabelMoneyChangeBuyer";
+            LabelMoneyChangeBuyer.Size = new Size(40, 15);
+            LabelMoneyChangeBuyer.TabIndex = 19;
+            LabelMoneyChangeBuyer.Text = "Сдача";
+            LabelMoneyChangeBuyer.Visible = false;
+            // 
+            // NumericUpDownProductID
+            // 
+            NumericUpDownProductID.Location = new Point(373, 120);
+            NumericUpDownProductID.Name = "NumericUpDownProductID";
+            NumericUpDownProductID.Size = new Size(88, 23);
+            NumericUpDownProductID.TabIndex = 20;
+            NumericUpDownProductID.ValueChanged += NumericUpDownProductID_ValueChanged;
+            // 
             // CashierARM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(NumericUpDownProductID);
+            Controls.Add(LabelMoneyChangeBuyer);
+            Controls.Add(LabelCash);
+            Controls.Add(TextBoxMoneyChangeBuyer);
+            Controls.Add(TextBoxCash);
+            Controls.Add(ButtonCancelDiscount);
+            Controls.Add(LabelRevenue);
             Controls.Add(TextBoxRevenue);
-            Controls.Add(ButtonDiscountUse);
             Controls.Add(ButtonSell);
             Controls.Add(ButtonAddProduct);
             Controls.Add(LabelCashierName);
@@ -197,6 +271,7 @@
             Controls.Add(TextBoxPrice);
             Name = "CashierARM";
             Text = "CashierARM";
+            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -215,7 +290,13 @@
         private Label LabelCashierName;
         private Button ButtonAddProduct;
         private Button ButtonSell;
-        private Button ButtonDiscountUse;
         private TextBox TextBoxRevenue;
+        private Label LabelRevenue;
+        private Button ButtonCancelDiscount;
+        private TextBox TextBoxCash;
+        private TextBox TextBoxMoneyChangeBuyer;
+        private Label LabelCash;
+        private Label LabelMoneyChangeBuyer;
+        private NumericUpDown NumericUpDownProductID;
     }
 }
