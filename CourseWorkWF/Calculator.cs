@@ -20,9 +20,5 @@ namespace CourseWorkWF
         {
             return num1 * num2;
         }
-        static public double DiscountUse(double priceBuy, int discountPercent)
-        {
-            return (priceBuy - (priceBuy / 100) * discountPercent);
-        }
     }
 }

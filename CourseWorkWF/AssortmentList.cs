@@ -31,7 +31,7 @@ namespace CourseWorkWF
         public void RemoveProductsInAssortment(Product product, int amount)
         {
             int index = ProductsAssortment.IndexOf(product);
-            if (ProductsAssortment[index].Amount >= amount) ProductsAssortment[index].Amount -= amount;
+            if (ProductsAssortment[index].Amount > amount) ProductsAssortment[index].Amount -= amount;
             else ProductsAssortment.Remove(product);
         }
     }

@@ -37,16 +37,20 @@ namespace CourseWorkWF.Forms
 
                 if (product.ProductID == NumericUpDownProductID.Value) // поиск по ID
                 {
+                    ErrorProviderAddProductByID.Clear();
                     if (product.Amount < NumericUpDownAmount.Value)
                     {
                         ErrorProviderAmount.SetError(NumericUpDownAmount, "В базе нет столько товаров");
                         return;
                     }
-                    product.Amount = (int)NumericUpDownProductID.Value;
-                    _buyProductsList.Add(product); // Добавление продукта в список покупаемых продуктов
+                    ErrorProviderAmount.Clear();
+
+                    Product temp = new Product(product); // создаем копию product
                     AssortmentList.Instance().RemoveProductsInAssortment(product, (int)NumericUpDownAmount.Value); // удаление продукта из ассортимента 
+                    temp.Amount = (int)NumericUpDownAmount.Value;
+                    _buyProductsList.Add(temp); // Добавление продукта в список покупаемых продуктов
                     NumericUpDownProductID.Value = 0;
-                    TextBoxPrice.Text = Convert.ToString(double.Parse(TextBoxPrice.Text) + product.Price); // подсчет цены
+                    TextBoxPrice.Text = Convert.ToString(double.Parse(TextBoxPrice.Text) + product.Price * (double)NumericUpDownAmount.Value); // подсчет цены
 
                     // Включаем возможность установить скидку и метод оплаты 
                     ComboBoxDiscount.SelectedIndex = 0;
@@ -57,10 +61,12 @@ namespace CourseWorkWF.Forms
                 }
                 ErrorProviderAddProductByID.SetError(NumericUpDownProductID, "В магазине нет продукта с таким ID");
             }
-            ListBoxBuyProducts.Items.Clear();
-            foreach (Product product in _buyProductsList)
+            ListViewBuyProducts.Items.Clear();
+            for (int i = 0; i < _buyProductsList.Count; i++)
             {
-                ListBoxBuyProducts.Items.Add(product.Name);
+                ListViewBuyProducts.Items.Add(_buyProductsList[i].Name);
+                ListViewBuyProducts.Items[i].SubItems.Add(_buyProductsList[i].ProductID.ToString());
+                ListViewBuyProducts.Items[i].SubItems.Add(_buyProductsList[i].Amount.ToString());
             }
         }
 
@@ -76,7 +82,7 @@ namespace CourseWorkWF.Forms
 
             TextBoxPrice.Text = "0"; // зануление цены стоимости продуктов
 
-            ListBoxBuyProducts.Items.Clear(); // Отчистка ListBox
+            ListViewBuyProducts.Items.Clear(); // Отчистка ListBox
 
             _buyProductsList.Clear(); // Отчистка списка купленных продуктов
         }

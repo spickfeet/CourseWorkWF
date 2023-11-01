@@ -23,5 +23,12 @@ namespace CourseWorkWF
             Price = price;
             Amount = _amount;
         }
+        public Product(Product product)
+        {
+            ProductID = product.ProductID;
+            Name = product.Name;
+            Price = product.Price;
+            Amount = product.Amount;
+        }
     }
 }
