@@ -30,16 +30,20 @@
         {
             ButtonAddProductInAssortment = new Button();
             ButtonRemoveProductInAssortment = new Button();
-            ListBoxAssortment = new ListBox();
             LabelAssortment = new Label();
             ButtonLoadAssortment = new Button();
+            ListViewAssortment = new ListView();
+            ColumnHeaderProductName = new ColumnHeader();
+            ColumnHeaderProductID = new ColumnHeader();
+            ColumnHeaderAmount = new ColumnHeader();
             SuspendLayout();
             // 
             // ButtonAddProductInAssortment
             // 
-            ButtonAddProductInAssortment.Location = new Point(15, 39);
+            ButtonAddProductInAssortment.Location = new Point(17, 52);
+            ButtonAddProductInAssortment.Margin = new Padding(3, 4, 3, 4);
             ButtonAddProductInAssortment.Name = "ButtonAddProductInAssortment";
-            ButtonAddProductInAssortment.Size = new Size(169, 68);
+            ButtonAddProductInAssortment.Size = new Size(193, 91);
             ButtonAddProductInAssortment.TabIndex = 0;
             ButtonAddProductInAssortment.Text = "Добавить";
             ButtonAddProductInAssortment.UseVisualStyleBackColor = true;
@@ -47,54 +51,71 @@
             // 
             // ButtonRemoveProductInAssortment
             // 
-            ButtonRemoveProductInAssortment.Location = new Point(190, 39);
+            ButtonRemoveProductInAssortment.Location = new Point(217, 52);
+            ButtonRemoveProductInAssortment.Margin = new Padding(3, 4, 3, 4);
             ButtonRemoveProductInAssortment.Name = "ButtonRemoveProductInAssortment";
-            ButtonRemoveProductInAssortment.Size = new Size(169, 68);
+            ButtonRemoveProductInAssortment.Size = new Size(193, 91);
             ButtonRemoveProductInAssortment.TabIndex = 1;
             ButtonRemoveProductInAssortment.Text = "Удалить";
             ButtonRemoveProductInAssortment.UseVisualStyleBackColor = true;
             ButtonRemoveProductInAssortment.Click += ButtonRemoveProductInAssortment_Click;
             // 
-            // ListBoxAssortment
-            // 
-            ListBoxAssortment.FormattingEnabled = true;
-            ListBoxAssortment.ItemHeight = 15;
-            ListBoxAssortment.Location = new Point(365, 39);
-            ListBoxAssortment.Name = "ListBoxAssortment";
-            ListBoxAssortment.Size = new Size(245, 439);
-            ListBoxAssortment.TabIndex = 2;
-            // 
             // LabelAssortment
             // 
             LabelAssortment.AutoSize = true;
             LabelAssortment.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            LabelAssortment.Location = new Point(365, -1);
+            LabelAssortment.Location = new Point(417, -1);
             LabelAssortment.Name = "LabelAssortment";
-            LabelAssortment.Size = new Size(177, 37);
+            LabelAssortment.Size = new Size(224, 46);
             LabelAssortment.TabIndex = 3;
             LabelAssortment.Text = "Ассортимент";
             // 
             // ButtonLoadAssortment
             // 
-            ButtonLoadAssortment.Location = new Point(242, 424);
-            ButtonLoadAssortment.Margin = new Padding(3, 2, 3, 2);
+            ButtonLoadAssortment.Location = new Point(277, 565);
             ButtonLoadAssortment.Name = "ButtonLoadAssortment";
-            ButtonLoadAssortment.Size = new Size(117, 52);
+            ButtonLoadAssortment.Size = new Size(134, 69);
             ButtonLoadAssortment.TabIndex = 4;
             ButtonLoadAssortment.Text = "Обновить ассортимент";
             ButtonLoadAssortment.UseVisualStyleBackColor = true;
             ButtonLoadAssortment.Click += ButtonLoadAssortment_Click;
             // 
+            // ListViewAssortment
+            // 
+            ListViewAssortment.Columns.AddRange(new ColumnHeader[] { ColumnHeaderProductName, ColumnHeaderProductID, ColumnHeaderAmount });
+            ListViewAssortment.Location = new Point(427, 52);
+            ListViewAssortment.Name = "ListViewAssortment";
+            ListViewAssortment.Size = new Size(363, 582);
+            ListViewAssortment.TabIndex = 5;
+            ListViewAssortment.UseCompatibleStateImageBehavior = false;
+            ListViewAssortment.View = View.Details;
+            // 
+            // ColumnHeaderProductName
+            // 
+            ColumnHeaderProductName.Text = "Название";
+            ColumnHeaderProductName.Width = 120;
+            // 
+            // ColumnHeaderProductID
+            // 
+            ColumnHeaderProductID.Text = "ID";
+            ColumnHeaderProductID.Width = 120;
+            // 
+            // ColumnHeaderAmount
+            // 
+            ColumnHeaderAmount.Text = "Количество";
+            ColumnHeaderAmount.Width = 120;
+            // 
             // Assortment
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(630, 512);
+            ClientSize = new Size(810, 646);
+            Controls.Add(ListViewAssortment);
             Controls.Add(ButtonLoadAssortment);
             Controls.Add(LabelAssortment);
-            Controls.Add(ListBoxAssortment);
             Controls.Add(ButtonRemoveProductInAssortment);
             Controls.Add(ButtonAddProductInAssortment);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Assortment";
             Text = "Assortment";
             ResumeLayout(false);
@@ -107,6 +128,9 @@
         private Button ButtonRemoveProductInAssortment;
         private Label LabelAssortment;
         private Button ButtonLoadAssortment;
-        public ListBox ListBoxAssortment;
+        private ListView ListViewAssortment;
+        private ColumnHeader ColumnHeaderProductName;
+        private ColumnHeader ColumnHeaderProductID;
+        private ColumnHeader ColumnHeaderAmount;
     }
 }

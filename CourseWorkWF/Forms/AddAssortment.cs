@@ -15,24 +15,23 @@ namespace CourseWorkWF
         public AddAssortment()
         {
             InitializeComponent();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            // Поиск дубликата
-            foreach (Product productInAssortment in AssortmentList.Instance().ProductsAssortment)
+            DialogResult = DialogResult.OK;
+            for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
             {
-                if (NumericUpDownProductID.Value == productInAssortment.ProductID)
+                if (AssortmentList.Instance().ProductsAssortment[i].ProductID == NumericUpDownProductID.Value)
                 {
-                    for (int i = 0; i < NumericUpDownAmount.Value; i++)
-                        AssortmentList.Instance().AddProductInAssortment(productInAssortment);
+                    AssortmentList.Instance().ProductsAssortment[i].Amount += (int)NumericUpDownAmount.Value;
                     Close();
                     return;
                 }
             }
-            Product product = new Product((int)NumericUpDownProductID.Value, TextBoxProductName.Text, (double)NumericUpDownProductPrice.Value);
-            for (int i = 0; i < NumericUpDownAmount.Value; i++)
-                AssortmentList.Instance().AddProductInAssortment(product);
+            Product product = new Product((int)NumericUpDownProductID.Value, TextBoxProductName.Text, (double)NumericUpDownProductPrice.Value, (int)NumericUpDownAmount.Value);
+            AssortmentList.Instance().AddProductInAssortment(product);
             Close();
         }
 

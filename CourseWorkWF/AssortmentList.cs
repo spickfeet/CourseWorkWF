@@ -28,9 +28,11 @@ namespace CourseWorkWF
         {
             ProductsAssortment.Add(product);
         }
-        public void RemoveProductInAssortment(Product product)
+        public void RemoveProductsInAssortment(Product product, int amount)
         {
-            ProductsAssortment.Remove(product);
+            int index = ProductsAssortment.IndexOf(product);
+            if (ProductsAssortment[index].Amount >= amount) ProductsAssortment[index].Amount -= amount;
+            else ProductsAssortment.Remove(product);
         }
     }
 }

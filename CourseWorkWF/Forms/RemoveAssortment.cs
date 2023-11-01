@@ -15,6 +15,7 @@ namespace CourseWorkWF.Forms
         public RemoveAssortment()
         {
             InitializeComponent();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
@@ -23,7 +24,8 @@ namespace CourseWorkWF.Forms
             {
                 if (product.ProductID == NumericUpDownProductID.Value)
                 {
-                    AssortmentList.Instance().RemoveProductInAssortment(product);
+                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)NumericUpDownAmount.Value);
+                    DialogResult = DialogResult.OK;
                     Close();
                     return;
                 }

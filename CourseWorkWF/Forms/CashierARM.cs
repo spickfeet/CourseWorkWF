@@ -34,10 +34,17 @@ namespace CourseWorkWF.Forms
         {
             foreach (Product product in AssortmentList.Instance().ProductsAssortment) // Обход ассортимента 
             {
+
                 if (product.ProductID == NumericUpDownProductID.Value) // поиск по ID
                 {
+                    if (product.Amount < NumericUpDownAmount.Value)
+                    {
+                        ErrorProviderAmount.SetError(NumericUpDownAmount, "В базе нет столько товаров");
+                        return;
+                    }
+                    product.Amount = (int)NumericUpDownProductID.Value;
                     _buyProductsList.Add(product); // Добавление продукта в список покупаемых продуктов
-                    AssortmentList.Instance().ProductsAssortment.Remove(product); // удаление продукта из ассортимента
+                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)NumericUpDownAmount.Value); // удаление продукта из ассортимента 
                     NumericUpDownProductID.Value = 0;
                     TextBoxPrice.Text = Convert.ToString(double.Parse(TextBoxPrice.Text) + product.Price); // подсчет цены
 

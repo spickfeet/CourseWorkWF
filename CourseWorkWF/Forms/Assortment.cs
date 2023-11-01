@@ -13,7 +13,6 @@ namespace CourseWorkWF
 {
     public partial class Assortment : Form
     {
-        private List<Product> _AssortmentlistView;
         private Form _prevForm;
         public Assortment(Form prev)
         {
@@ -32,29 +31,29 @@ namespace CourseWorkWF
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
             AddAssortment addAssortment = new AddAssortment();
-            addAssortment.ShowDialog();
+            if (addAssortment.ShowDialog() == DialogResult.OK) UpdateList();
         }
 
         private void ButtonLoadAssortment_Click(object sender, EventArgs e)
         {
-            ListBoxAssortment.Items.Clear();
-            int count = 0;
-            _AssortmentlistView = AssortmentList.Instance().ProductsAssortment.Distinct().ToList();
-            foreach (Product productView in _AssortmentlistView) // проходимся по списку без дубликатов
-            {
-                foreach (Product productInAssortment in AssortmentList.Instance().ProductsAssortment) // проходимся по всему ассортименту 
-                {
-                    if (productView == productInAssortment) count++;
-                }
-                ListBoxAssortment.Items.Add(productView.Name + "    " + count + " Шт.");
-                count = 0;
-            }
+            UpdateList();
         }
 
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
-            RemoveAssortment removeAssortment = new RemoveAssortment(); 
-            removeAssortment.ShowDialog();
+            RemoveAssortment removeAssortment = new RemoveAssortment();
+            if( removeAssortment.ShowDialog() == DialogResult.OK ) UpdateList();
+        }
+
+        private void UpdateList()
+        {
+            ListViewAssortment.Items.Clear();
+            for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
+            {
+                ListViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Name);
+                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].ProductID.ToString());
+                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
+            }
         }
     }
 }
