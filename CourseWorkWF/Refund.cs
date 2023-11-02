@@ -22,7 +22,7 @@ namespace CourseWorkWF
         }
         override public double ChangeRevenue(double revenue)
         {
-            return Calculator.Difference(revenue, MoneyAmount);
+            return revenue - MoneyAmount;
         }
     }
 

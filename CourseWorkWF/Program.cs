@@ -9,7 +9,7 @@ namespace CourseWorkWF
         static void Main()
         {
             List<Product> products = new List<Product>();
-            Product product1 = new Product(110011, "Сок добрый 1Л", 99, 5);
+            Product product1 = new Product(110011, "Сок добрый 1Л", 99, 100);
             Product product2 = new Product(119901, "Сыр", 105, 5);
             Product product3 = new Product(133301, "Молоко 1Л", 79, 5);
             Product product4 = new Product(197801, "Чипсы", 56, 7);

@@ -42,7 +42,7 @@ namespace CourseWorkWF
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
             RemoveAssortment removeAssortment = new RemoveAssortment();
-            if( removeAssortment.ShowDialog() == DialogResult.OK ) UpdateList();
+            if (removeAssortment.ShowDialog() == DialogResult.OK) UpdateList();
         }
 
         private void UpdateList()
@@ -52,6 +52,7 @@ namespace CourseWorkWF
             {
                 ListViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Name);
                 ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].ProductID.ToString());
+                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Price.ToString());
                 ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
             }
         }

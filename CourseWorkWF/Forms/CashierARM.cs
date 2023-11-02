@@ -14,8 +14,8 @@ namespace CourseWorkWF.Forms
 {
     public partial class CashierARM : Form
     {
+        private BuyList _buyList = new BuyList();
         private Form _prevForm;
-        private List<Product> _buyProductsList = new();
         public CashierARM(Form prev)
         {
             _prevForm = prev;
@@ -37,19 +37,30 @@ namespace CourseWorkWF.Forms
 
                 if (product.ProductID == NumericUpDownProductID.Value) // поиск по ID
                 {
-                    ErrorProviderAddProductByID.Clear();
-                    if (product.Amount < NumericUpDownAmount.Value)
+                    ErrorProviderAddProductByID.Clear(); // Убираем ошибки связанные с ID продукта
+
+                    if (product.Amount < NumericUpDownAmount.Value) // Проверяем колличество товара
                     {
                         ErrorProviderAmount.SetError(NumericUpDownAmount, "В базе нет столько товаров");
                         return;
                     }
-                    ErrorProviderAmount.Clear();
+                    for (int i = 0; i < _buyList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
+                    {
+                        if (_buyList.BuyProductList[i].ProductID == product.ProductID)
+                        {
+                            if ((product.Amount - _buyList.BuyProductList[i].Amount - NumericUpDownAmount.Value) < 0)
+                            {
+                                ErrorProviderAmount.SetError(NumericUpDownAmount, "В базе нет столько товаров");
+                                return;
+                            }
+                        }
+                    }
+                    ErrorProviderAmount.Clear(); // Убираем ошибки связанные с количеством продукта
 
-                    Product temp = new Product(product); // создаем копию product
-                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)NumericUpDownAmount.Value); // удаление продукта из ассортимента 
-                    temp.Amount = (int)NumericUpDownAmount.Value;
-                    _buyProductsList.Add(temp); // Добавление продукта в список покупаемых продуктов
-                    NumericUpDownProductID.Value = 0;
+                    _buyList.AddProducts(product, (int)NumericUpDownAmount.Value); // Добавляем продукты в список покупок
+
+
+                    NumericUpDownProductID.Value = 1;
                     TextBoxPrice.Text = Convert.ToString(double.Parse(TextBoxPrice.Text) + product.Price * (double)NumericUpDownAmount.Value); // подсчет цены
 
                     // Включаем возможность установить скидку и метод оплаты 
@@ -62,19 +73,22 @@ namespace CourseWorkWF.Forms
                 ErrorProviderAddProductByID.SetError(NumericUpDownProductID, "В магазине нет продукта с таким ID");
             }
             ListViewBuyProducts.Items.Clear();
-            for (int i = 0; i < _buyProductsList.Count; i++)
+            for (int i = 0; i < _buyList.BuyProductList.Count; i++)
             {
-                ListViewBuyProducts.Items.Add(_buyProductsList[i].Name);
-                ListViewBuyProducts.Items[i].SubItems.Add(_buyProductsList[i].ProductID.ToString());
-                ListViewBuyProducts.Items[i].SubItems.Add(_buyProductsList[i].Amount.ToString());
+                ListViewBuyProducts.Items.Add(_buyList.BuyProductList[i].Name);
+                ListViewBuyProducts.Items[i].SubItems.Add(_buyList.BuyProductList[i].ProductID.ToString());
+                ListViewBuyProducts.Items[i].SubItems.Add(_buyList.BuyProductList[i].Amount.ToString());
             }
         }
 
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
             Buy buy = new Buy(ComboBoxTransactionMethod.Text, double.Parse(TextBoxPrice.Text), numericUpDownCashierName.Text,
-                _buyProductsList, int.Parse(ComboBoxDiscount.Text));
+                _buyList.BuyProductList, int.Parse(ComboBoxDiscount.Text));
             TextBoxRevenue.Text = Convert.ToString(double.Parse(TextBoxRevenue.Text) + buy.MoneyAmount); // Увеличение выручки
+
+            AssortmentList.Instance().RemoveProductsListInAssortment(_buyList.BuyProductList);
+
 
             ComboBoxTransactionMethod.SelectedIndex = -1; // Сброс метода транзакции
 
@@ -84,7 +98,7 @@ namespace CourseWorkWF.Forms
 
             ListViewBuyProducts.Items.Clear(); // Отчистка ListBox
 
-            _buyProductsList.Clear(); // Отчистка списка купленных продуктов
+            _buyList.BuyProductList.Clear(); // Отчистка списка купленных продуктов
         }
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +141,12 @@ namespace CourseWorkWF.Forms
         private void NumericUpDownCash_ValueChanged(object sender, EventArgs e)
         {
             TextBoxMoneyChangeBuyer.Text = Convert.ToString(Math.Round(NumericUpDownCash.Value - decimal.Parse(TextBoxPrice.Text), 2));
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            _buyList.BuyProductList.Clear();
+            ListViewBuyProducts.Items.Clear();
         }
     }
 }

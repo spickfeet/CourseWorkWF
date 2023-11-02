@@ -53,8 +53,10 @@
             ListViewBuyProducts = new ListView();
             ColumnHeaderName = new ColumnHeader();
             ColumnHeaderID = new ColumnHeader();
+            ColumnHeaderPrice = new ColumnHeader();
             ColumnHeaderAmount = new ColumnHeader();
             ErrorProviderAmount = new ErrorProvider(components);
+            ButtonCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericUpDownCash).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ErrorProviderAddProductByID).BeginInit();
@@ -118,7 +120,7 @@
             // LabelProductID
             // 
             LabelProductID.AutoSize = true;
-            LabelProductID.Location = new Point(597, 9);
+            LabelProductID.Location = new Point(695, 9);
             LabelProductID.Name = "LabelProductID";
             LabelProductID.Size = new Size(58, 15);
             LabelProductID.TabIndex = 6;
@@ -144,7 +146,7 @@
             // 
             // ButtonAddProduct
             // 
-            ButtonAddProduct.Location = new Point(703, 27);
+            ButtonAddProduct.Location = new Point(801, 27);
             ButtonAddProduct.Name = "ButtonAddProduct";
             ButtonAddProduct.Size = new Size(85, 62);
             ButtonAddProduct.TabIndex = 10;
@@ -158,7 +160,7 @@
             ButtonSell.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ButtonSell.Location = new Point(482, 389);
             ButtonSell.Name = "ButtonSell";
-            ButtonSell.Size = new Size(306, 49);
+            ButtonSell.Size = new Size(405, 49);
             ButtonSell.TabIndex = 11;
             ButtonSell.Text = "ПРОДАТЬ";
             ButtonSell.UseVisualStyleBackColor = true;
@@ -224,11 +226,12 @@
             // 
             // NumericUpDownProductID
             // 
-            NumericUpDownProductID.Location = new Point(597, 27);
+            NumericUpDownProductID.Location = new Point(695, 27);
             NumericUpDownProductID.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             NumericUpDownProductID.Name = "NumericUpDownProductID";
             NumericUpDownProductID.Size = new Size(100, 23);
             NumericUpDownProductID.TabIndex = 20;
+            NumericUpDownProductID.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // NumericUpDownCash
             // 
@@ -248,7 +251,7 @@
             // LabelAmount
             // 
             LabelAmount.AutoSize = true;
-            LabelAmount.Location = new Point(597, 50);
+            LabelAmount.Location = new Point(695, 50);
             LabelAmount.Name = "LabelAmount";
             LabelAmount.Size = new Size(72, 15);
             LabelAmount.TabIndex = 22;
@@ -256,7 +259,7 @@
             // 
             // NumericUpDownAmount
             // 
-            NumericUpDownAmount.Location = new Point(597, 68);
+            NumericUpDownAmount.Location = new Point(695, 68);
             NumericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             NumericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             NumericUpDownAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -267,11 +270,11 @@
             // 
             // ListViewBuyProducts
             // 
-            ListViewBuyProducts.Columns.AddRange(new ColumnHeader[] { ColumnHeaderName, ColumnHeaderID, ColumnHeaderAmount });
-            ListViewBuyProducts.Location = new Point(483, 101);
+            ListViewBuyProducts.Columns.AddRange(new ColumnHeader[] { ColumnHeaderName, ColumnHeaderID, ColumnHeaderPrice, ColumnHeaderAmount });
+            ListViewBuyProducts.Location = new Point(482, 101);
             ListViewBuyProducts.Margin = new Padding(3, 2, 3, 2);
             ListViewBuyProducts.Name = "ListViewBuyProducts";
-            ListViewBuyProducts.Size = new Size(305, 254);
+            ListViewBuyProducts.Size = new Size(404, 254);
             ListViewBuyProducts.TabIndex = 24;
             ListViewBuyProducts.UseCompatibleStateImageBehavior = false;
             ListViewBuyProducts.View = View.Details;
@@ -286,6 +289,11 @@
             ColumnHeaderID.Text = "ID";
             ColumnHeaderID.Width = 100;
             // 
+            // ColumnHeaderPrice
+            // 
+            ColumnHeaderPrice.Text = "Цена 1 ед.";
+            ColumnHeaderPrice.Width = 100;
+            // 
             // ColumnHeaderAmount
             // 
             ColumnHeaderAmount.Text = "Количество";
@@ -296,11 +304,22 @@
             ErrorProviderAmount.ContainerControl = this;
             ErrorProviderAmount.RightToLeft = true;
             // 
+            // ButtonCancel
+            // 
+            ButtonCancel.Location = new Point(12, 50);
+            ButtonCancel.Name = "ButtonCancel";
+            ButtonCancel.Size = new Size(97, 53);
+            ButtonCancel.TabIndex = 25;
+            ButtonCancel.Text = "Отмена";
+            ButtonCancel.UseVisualStyleBackColor = true;
+            ButtonCancel.Click += ButtonCancel_Click;
+            // 
             // CashierARM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 450);
+            ClientSize = new Size(898, 450);
+            Controls.Add(ButtonCancel);
             Controls.Add(ListViewBuyProducts);
             Controls.Add(NumericUpDownAmount);
             Controls.Add(LabelAmount);
@@ -361,5 +380,7 @@
         private ColumnHeader ColumnHeaderID;
         private ColumnHeader ColumnHeaderAmount;
         private ErrorProvider ErrorProviderAmount;
+        private Button ButtonCancel;
+        private ColumnHeader ColumnHeaderPrice;
     }
 }

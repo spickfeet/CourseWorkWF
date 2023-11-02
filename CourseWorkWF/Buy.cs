@@ -27,7 +27,7 @@ namespace CWTest
         }
         override public double ChangeRevenue(double revenue)
         {
-            return Calculator.Addition(revenue, MoneyAmount);
+            return revenue + MoneyAmount;
         }
 
     }

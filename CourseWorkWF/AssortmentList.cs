@@ -30,9 +30,18 @@ namespace CourseWorkWF
         }
         public void RemoveProductsInAssortment(Product product, int amount)
         {
-            int index = ProductsAssortment.IndexOf(product);
+            int index = ProductsAssortment.FindIndex(0, ProductsAssortment.Count,x => x.ProductID == product.ProductID);
             if (ProductsAssortment[index].Amount > amount) ProductsAssortment[index].Amount -= amount;
-            else ProductsAssortment.Remove(product);
+            else ProductsAssortment.Remove(ProductsAssortment[index]);
+        }
+
+        public void RemoveProductsListInAssortment(List<Product> products)
+        {
+            foreach (Product product in products)
+            {
+                RemoveProductsInAssortment(product, product.Amount);
+            }
+
         }
     }
 }
