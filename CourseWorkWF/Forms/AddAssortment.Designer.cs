@@ -28,132 +28,139 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ButtonAddProductInAssortment = new Button();
-            LabelProductID = new Label();
-            LabelProductName = new Label();
-            TextBoxProductName = new TextBox();
-            LableProductPrice = new Label();
-            LabelAmount = new Label();
-            NumericUpDownProductID = new NumericUpDown();
-            NumericUpDownProductPrice = new NumericUpDown();
-            NumericUpDownAmount = new NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductPrice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownAmount).BeginInit();
+            buttonAddProductInAssortment = new Button();
+            labelProductID = new Label();
+            labelProductName = new Label();
+            textBoxProductName = new TextBox();
+            lableProductPrice = new Label();
+            labelAmount = new Label();
+            numericUpDownProductID = new NumericUpDown();
+            numericUpDownProductPrice = new NumericUpDown();
+            numericUpDownAmount = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             SuspendLayout();
             // 
-            // ButtonAddProductInAssortment
+            // buttonAddProductInAssortment
             // 
-            ButtonAddProductInAssortment.Location = new Point(188, 24);
-            ButtonAddProductInAssortment.Name = "ButtonAddProductInAssortment";
-            ButtonAddProductInAssortment.Size = new Size(104, 70);
-            ButtonAddProductInAssortment.TabIndex = 0;
-            ButtonAddProductInAssortment.Text = "Добавить";
-            ButtonAddProductInAssortment.UseVisualStyleBackColor = true;
-            ButtonAddProductInAssortment.Click += AddProductInAssortmentButton_Click;
+            buttonAddProductInAssortment.Location = new Point(215, 32);
+            buttonAddProductInAssortment.Margin = new Padding(3, 4, 3, 4);
+            buttonAddProductInAssortment.Name = "buttonAddProductInAssortment";
+            buttonAddProductInAssortment.Size = new Size(119, 93);
+            buttonAddProductInAssortment.TabIndex = 0;
+            buttonAddProductInAssortment.Text = "Добавить";
+            buttonAddProductInAssortment.UseVisualStyleBackColor = true;
+            buttonAddProductInAssortment.Click += AddProductInAssortmentButton_Click;
             // 
-            // LabelProductID
+            // labelProductID
             // 
-            LabelProductID.AutoSize = true;
-            LabelProductID.Location = new Point(12, 6);
-            LabelProductID.Name = "LabelProductID";
-            LabelProductID.Size = new Size(71, 15);
-            LabelProductID.TabIndex = 3;
-            LabelProductID.Text = "ID продукта";
+            labelProductID.AutoSize = true;
+            labelProductID.Location = new Point(14, 8);
+            labelProductID.Name = "labelProductID";
+            labelProductID.Size = new Size(91, 20);
+            labelProductID.TabIndex = 3;
+            labelProductID.Text = "ID продукта";
             // 
-            // LabelProductName
+            // labelProductName
             // 
-            LabelProductName.AutoSize = true;
-            LabelProductName.Location = new Point(12, 50);
-            LabelProductName.Name = "LabelProductName";
-            LabelProductName.Size = new Size(59, 15);
-            LabelProductName.TabIndex = 5;
-            LabelProductName.Text = "Название";
+            labelProductName.AutoSize = true;
+            labelProductName.Location = new Point(14, 67);
+            labelProductName.Name = "labelProductName";
+            labelProductName.Size = new Size(77, 20);
+            labelProductName.TabIndex = 5;
+            labelProductName.Text = "Название";
             // 
-            // TextBoxProductName
+            // textBoxProductName
             // 
-            TextBoxProductName.Location = new Point(12, 71);
-            TextBoxProductName.Name = "TextBoxProductName";
-            TextBoxProductName.Size = new Size(145, 23);
-            TextBoxProductName.TabIndex = 4;
+            textBoxProductName.Location = new Point(14, 95);
+            textBoxProductName.Margin = new Padding(3, 4, 3, 4);
+            textBoxProductName.Name = "textBoxProductName";
+            textBoxProductName.Size = new Size(165, 27);
+            textBoxProductName.TabIndex = 4;
             // 
-            // LableProductPrice
+            // lableProductPrice
             // 
-            LableProductPrice.AutoSize = true;
-            LableProductPrice.Location = new Point(12, 97);
-            LableProductPrice.Name = "LableProductPrice";
-            LableProductPrice.Size = new Size(35, 15);
-            LableProductPrice.TabIndex = 7;
-            LableProductPrice.Text = "Цена";
+            lableProductPrice.AutoSize = true;
+            lableProductPrice.Location = new Point(14, 129);
+            lableProductPrice.Name = "lableProductPrice";
+            lableProductPrice.Size = new Size(45, 20);
+            lableProductPrice.TabIndex = 7;
+            lableProductPrice.Text = "Цена";
             // 
-            // LabelAmount
+            // labelAmount
             // 
-            LabelAmount.AutoSize = true;
-            LabelAmount.Location = new Point(12, 144);
-            LabelAmount.Name = "LabelAmount";
-            LabelAmount.Size = new Size(72, 15);
-            LabelAmount.TabIndex = 8;
-            LabelAmount.Text = "Количество";
+            labelAmount.AutoSize = true;
+            labelAmount.Location = new Point(14, 192);
+            labelAmount.Name = "labelAmount";
+            labelAmount.Size = new Size(90, 20);
+            labelAmount.TabIndex = 8;
+            labelAmount.Text = "Количество";
             // 
-            // NumericUpDownProductID
+            // numericUpDownProductID
             // 
-            NumericUpDownProductID.Location = new Point(12, 24);
-            NumericUpDownProductID.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
-            NumericUpDownProductID.Name = "NumericUpDownProductID";
-            NumericUpDownProductID.Size = new Size(145, 23);
-            NumericUpDownProductID.TabIndex = 10;
-            NumericUpDownProductID.ValueChanged += NumericUpDownProductID_ValueChanged;
+            numericUpDownProductID.Location = new Point(14, 32);
+            numericUpDownProductID.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownProductID.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
+            numericUpDownProductID.Name = "numericUpDownProductID";
+            numericUpDownProductID.Size = new Size(166, 27);
+            numericUpDownProductID.TabIndex = 10;
+            numericUpDownProductID.ValueChanged += NumericUpDownProductID_ValueChanged;
             // 
-            // NumericUpDownProductPrice
+            // numericUpDownProductPrice
             // 
-            NumericUpDownProductPrice.DecimalPlaces = 2;
-            NumericUpDownProductPrice.Location = new Point(12, 118);
-            NumericUpDownProductPrice.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
-            NumericUpDownProductPrice.Name = "NumericUpDownProductPrice";
-            NumericUpDownProductPrice.Size = new Size(145, 23);
-            NumericUpDownProductPrice.TabIndex = 11;
+            numericUpDownProductPrice.DecimalPlaces = 2;
+            numericUpDownProductPrice.Location = new Point(14, 157);
+            numericUpDownProductPrice.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownProductPrice.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownProductPrice.Name = "numericUpDownProductPrice";
+            numericUpDownProductPrice.Size = new Size(166, 27);
+            numericUpDownProductPrice.TabIndex = 11;
             // 
-            // NumericUpDownAmount
+            // numericUpDownAmount
             // 
-            NumericUpDownAmount.Location = new Point(12, 162);
-            NumericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
-            NumericUpDownAmount.Name = "NumericUpDownAmount";
-            NumericUpDownAmount.Size = new Size(145, 23);
-            NumericUpDownAmount.TabIndex = 12;
+            numericUpDownAmount.Location = new Point(14, 216);
+            numericUpDownAmount.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownAmount.Name = "numericUpDownAmount";
+            numericUpDownAmount.Size = new Size(166, 27);
+            numericUpDownAmount.TabIndex = 12;
             // 
             // AddAssortment
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(304, 209);
-            Controls.Add(NumericUpDownAmount);
-            Controls.Add(NumericUpDownProductPrice);
-            Controls.Add(NumericUpDownProductID);
-            Controls.Add(LabelAmount);
-            Controls.Add(LableProductPrice);
-            Controls.Add(LabelProductName);
-            Controls.Add(TextBoxProductName);
-            Controls.Add(LabelProductID);
-            Controls.Add(ButtonAddProductInAssortment);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(347, 279);
+            Controls.Add(numericUpDownAmount);
+            Controls.Add(numericUpDownProductPrice);
+            Controls.Add(numericUpDownProductID);
+            Controls.Add(labelAmount);
+            Controls.Add(lableProductPrice);
+            Controls.Add(labelProductName);
+            Controls.Add(textBoxProductName);
+            Controls.Add(labelProductID);
+            Controls.Add(buttonAddProductInAssortment);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AddAssortment";
             Text = "AddAssortment";
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductID).EndInit();
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownProductPrice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)NumericUpDownAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button ButtonAddProductInAssortment;
-        private Label LabelProductID;
-        private Label LabelProductName;
-        private TextBox TextBoxProductName;
-        private Label LableProductPrice;
-        private Label LabelAmount;
-        private NumericUpDown NumericUpDownProductID;
-        private NumericUpDown NumericUpDownProductPrice;
-        private NumericUpDown NumericUpDownAmount;
+        private Button buttonAddProductInAssortment;
+        private Label labelProductID;
+        private Label labelProductName;
+        private TextBox textBoxProductName;
+        private Label lableProductPrice;
+        private Label labelAmount;
+        private NumericUpDown numericUpDownProductID;
+        private NumericUpDown numericUpDownProductPrice;
+        private NumericUpDown numericUpDownAmount;
     }
 }

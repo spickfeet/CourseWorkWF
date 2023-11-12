@@ -47,13 +47,13 @@ namespace CourseWorkWF
 
         private void UpdateList()
         {
-            ListViewAssortment.Items.Clear();
+            listViewAssortment.Items.Clear();
             for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
             {
-                ListViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Name);
-                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].ProductID.ToString());
-                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Price.ToString());
-                ListViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
+                listViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Name);
+                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].ProductID.ToString());
+                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Price.ToString());
+                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
             }
         }
     }

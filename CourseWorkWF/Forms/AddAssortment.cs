@@ -23,14 +23,14 @@ namespace CourseWorkWF
             DialogResult = DialogResult.OK;
             for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
             {
-                if (AssortmentList.Instance().ProductsAssortment[i].ProductID == NumericUpDownProductID.Value)
+                if (AssortmentList.Instance().ProductsAssortment[i].ProductID == numericUpDownProductID.Value)
                 {
-                    AssortmentList.Instance().ProductsAssortment[i].Amount += (int)NumericUpDownAmount.Value;
+                    AssortmentList.Instance().ProductsAssortment[i].Amount += (int)numericUpDownAmount.Value;
                     Close();
                     return;
                 }
             }
-            Product product = new Product((int)NumericUpDownProductID.Value, TextBoxProductName.Text, (double)NumericUpDownProductPrice.Value, (int)NumericUpDownAmount.Value);
+            Product product = new Product((int)numericUpDownProductID.Value, textBoxProductName.Text, (double)numericUpDownProductPrice.Value, (int)numericUpDownAmount.Value);
             AssortmentList.Instance().AddProductInAssortment(product);
             Close();
         }
@@ -39,10 +39,10 @@ namespace CourseWorkWF
         {
             foreach (Product product in AssortmentList.Instance().ProductsAssortment)
             {
-                if (product.ProductID == NumericUpDownProductID.Value)
+                if (product.ProductID == numericUpDownProductID.Value)
                 {
-                    TextBoxProductName.Text = product.Name;
-                    NumericUpDownProductPrice.Value = (decimal)product.Price;
+                    textBoxProductName.Text = product.Name;
+                    numericUpDownProductPrice.Value = (decimal)product.Price;
                 }
             }
         }

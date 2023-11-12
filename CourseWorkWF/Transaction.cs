@@ -8,7 +8,7 @@ using static CourseWorkWF.Program;
 
 namespace CourseWorkWF
 {
-    public abstract class Transaction
+    public abstract class ProductsMove
     {
         private string _transactionMethod;
         private double _moneyAmount;
@@ -16,7 +16,7 @@ namespace CourseWorkWF
         public string TransactionMethod { get { return _transactionMethod; } set { _transactionMethod = value; } }
         public double MoneyAmount { get { return _moneyAmount; } set { _moneyAmount = value; } }
         public string СashierrName { get { return _cashierName; } set { _cashierName = value; } }
-        public Transaction(string transactionMetod, double moneyAmount, string cashierrName)
+        public ProductsMove(string transactionMetod, double moneyAmount, string cashierrName)
         {
             TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;

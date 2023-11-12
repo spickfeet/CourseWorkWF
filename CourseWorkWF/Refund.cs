@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF
 {
-    public class Refund : Transaction
+    public class Refund : ProductsMove
     {
         private string _reasonRefound;
         public string ReasonRefound { get { return _reasonRefound; } set { _reasonRefound = value; } }

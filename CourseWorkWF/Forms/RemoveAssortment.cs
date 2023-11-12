@@ -22,15 +22,15 @@ namespace CourseWorkWF.Forms
         {
             foreach (Product product in AssortmentList.Instance().ProductsAssortment)
             {
-                if (product.ProductID == NumericUpDownProductID.Value)
+                if (product.ProductID == numericUpDownProductID.Value)
                 {
-                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)NumericUpDownAmount.Value);
+                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)numericUpDownAmount.Value);
                     DialogResult = DialogResult.OK;
                     Close();
                     return;
                 }
             }
-            ErrorProviderProductID.SetError(NumericUpDownProductID, "Нет продукта с таким ID");
+            ErrorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
         }
     }
 }

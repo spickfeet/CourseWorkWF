@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CWTest
 {
-    public class Buy : Transaction
+    public class Buy : ProductsMove
     {
         private List<Product> _productsList;
         private static int _buyID = 0;
