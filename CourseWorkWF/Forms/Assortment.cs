@@ -8,7 +8,6 @@
             _prevForm = prev;
             _prevForm.Hide();
             InitializeComponent();
-
             FormClosed += OnClosed;
         }
 
@@ -32,7 +31,8 @@
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
             RemoveAssortment removeAssortment = new RemoveAssortment();
-            if (removeAssortment.ShowDialog() == DialogResult.OK) UpdateList();
+            removeAssortment.ShowDialog();
+            UpdateList();
         }
 
         private void UpdateList()
@@ -46,6 +46,5 @@
                 listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
             }
         }
-
     }
 }

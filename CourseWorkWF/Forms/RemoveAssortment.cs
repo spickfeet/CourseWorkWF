@@ -1,26 +1,42 @@
 ﻿namespace CourseWorkWF
 {
-    public partial class RemoveAssortment : Form
+    public partial class RemoveAssortment : Form, IRemoveAssortmentFormView
     {
         public RemoveAssortment()
         {
             InitializeComponent();
-            DialogResult = DialogResult.Cancel;
+            PresenterRemoveAssortment presenterRemoveAssortment = new PresenterRemoveAssortment(this);
+            presenterRemoveAssortment.ErrorEvent += Error;
+            presenterRemoveAssortment.CloseEvent += Closed;
         }
 
+        int IRemoveAssortmentFormView.Amount
+        {
+            get { return (int)numericUpDownAmount.Value; }
+            set { numericUpDownAmount.Value = value; }
+        }
+        int IRemoveAssortmentFormView.ProductID
+        {
+            get { return (int)numericUpDownProductID.Value; }
+            set { numericUpDownProductID.Value = value; }
+        }
+
+
+        public event EventHandler? RemoveProductEvent;
+
+
+        public void Closed(object sender, EventArgs e)
+        {
+            Close();
+        }
+        public void Error(object sender, EventArgs e)
+        {
+            errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
+        }
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
-            {
-                if (product.ProductID == numericUpDownProductID.Value)
-                {
-                    AssortmentList.Instance().RemoveProductsInAssortment(product, (int)numericUpDownAmount.Value);
-                    DialogResult = DialogResult.OK;
-                    Close();
-                    return;
-                }
-            }
-            ErrorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
+            errorProviderProductID.Clear();
+            RemoveProductEvent.Invoke(sender, e);
         }
     }
 }

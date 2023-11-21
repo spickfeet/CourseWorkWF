@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    internal class PresenterAddAsortment
+    public class PresenterAddAsortment
     {
         private IAddAssortmentFormView _view;
 

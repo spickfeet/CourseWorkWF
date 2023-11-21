@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CourseWorkWF
+﻿namespace CourseWorkWF
 {
     public class Buy : ProductsMove
     {
@@ -14,7 +8,7 @@ namespace CourseWorkWF
         public List<Product> ProductsList { get { return _productsList; } set { _productsList = value; } }
         public int BuyID { get { return _buyID; } set { _buyID = value; } }
         public int Discount { get { return _discount; } set { _discount = value; } }
-        public Buy(string transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList, int discount)
+        public Buy(string transactionMetod, decimal moneyAmount, string cashierrName, List<Product> productsList, int discount)
             : base(transactionMetod, moneyAmount, cashierrName)
         {
             ProductsList = productsList;
@@ -24,7 +18,7 @@ namespace CourseWorkWF
             BuyID += 1;
             Discount = discount; //
         }
-        override public double ChangeRevenue(double revenue)
+        override public decimal ChangeRevenue(decimal revenue)
         {
             return revenue + MoneyAmount;
         }

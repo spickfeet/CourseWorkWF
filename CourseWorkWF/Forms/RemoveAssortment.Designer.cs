@@ -32,29 +32,27 @@
             numericUpDownProductID = new NumericUpDown();
             buttonRemoveProduct = new Button();
             labelProductID = new Label();
-            ErrorProviderProductID = new ErrorProvider(components);
+            errorProviderProductID = new ErrorProvider(components);
             numericUpDownAmount = new NumericUpDown();
             labelAmount = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderProductID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             SuspendLayout();
             // 
             // numericUpDownProductID
             // 
-            numericUpDownProductID.Location = new Point(12, 40);
-            numericUpDownProductID.Margin = new Padding(3, 4, 3, 4);
+            numericUpDownProductID.Location = new Point(10, 30);
             numericUpDownProductID.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
             numericUpDownProductID.Name = "numericUpDownProductID";
-            numericUpDownProductID.Size = new Size(137, 27);
+            numericUpDownProductID.Size = new Size(120, 23);
             numericUpDownProductID.TabIndex = 0;
             // 
             // buttonRemoveProduct
             // 
-            buttonRemoveProduct.Location = new Point(192, 16);
-            buttonRemoveProduct.Margin = new Padding(3, 4, 3, 4);
+            buttonRemoveProduct.Location = new Point(168, 12);
             buttonRemoveProduct.Name = "buttonRemoveProduct";
-            buttonRemoveProduct.Size = new Size(110, 71);
+            buttonRemoveProduct.Size = new Size(96, 53);
             buttonRemoveProduct.TabIndex = 1;
             buttonRemoveProduct.Text = "Удалить";
             buttonRemoveProduct.UseVisualStyleBackColor = true;
@@ -64,49 +62,49 @@
             // 
             labelProductID.AutoSize = true;
             labelProductID.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            labelProductID.Location = new Point(11, 16);
+            labelProductID.Location = new Point(10, 12);
             labelProductID.Name = "labelProductID";
-            labelProductID.Size = new Size(91, 20);
+            labelProductID.Size = new Size(71, 15);
             labelProductID.TabIndex = 2;
             labelProductID.Text = "ID продукта";
             // 
-            // ErrorProviderProductID
+            // errorProviderProductID
             // 
-            ErrorProviderProductID.ContainerControl = this;
+            errorProviderProductID.ContainerControl = this;
             // 
             // numericUpDownAmount
             // 
-            numericUpDownAmount.Location = new Point(14, 94);
+            numericUpDownAmount.Location = new Point(12, 70);
+            numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
-            numericUpDownAmount.Size = new Size(137, 27);
+            numericUpDownAmount.Size = new Size(120, 23);
             numericUpDownAmount.TabIndex = 3;
             // 
             // labelAmount
             // 
             labelAmount.AutoSize = true;
-            labelAmount.Location = new Point(12, 71);
+            labelAmount.Location = new Point(10, 53);
             labelAmount.Name = "labelAmount";
-            labelAmount.Size = new Size(90, 20);
+            labelAmount.Size = new Size(72, 15);
             labelAmount.TabIndex = 4;
             labelAmount.Text = "Количество";
             // 
             // RemoveAssortment
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(315, 187);
+            ClientSize = new Size(276, 140);
             Controls.Add(labelAmount);
             Controls.Add(numericUpDownAmount);
             Controls.Add(labelProductID);
             Controls.Add(buttonRemoveProduct);
             Controls.Add(numericUpDownProductID);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "RemoveAssortment";
             Text = "RemoveAssortment";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderProductID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -117,7 +115,7 @@
         private NumericUpDown numericUpDownProductID;
         private Button buttonRemoveProduct;
         private Label labelProductID;
-        private ErrorProvider ErrorProviderProductID;
+        private ErrorProvider errorProviderProductID;
         private NumericUpDown numericUpDownAmount;
         private Label labelAmount;
     }
