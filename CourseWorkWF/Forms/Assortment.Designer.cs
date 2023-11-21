@@ -41,10 +41,9 @@
             // 
             // buttonAddProductInAssortment
             // 
-            buttonAddProductInAssortment.Location = new Point(17, 52);
-            buttonAddProductInAssortment.Margin = new Padding(3, 4, 3, 4);
+            buttonAddProductInAssortment.Location = new Point(15, 39);
             buttonAddProductInAssortment.Name = "buttonAddProductInAssortment";
-            buttonAddProductInAssortment.Size = new Size(193, 91);
+            buttonAddProductInAssortment.Size = new Size(169, 68);
             buttonAddProductInAssortment.TabIndex = 0;
             buttonAddProductInAssortment.Text = "Добавить";
             buttonAddProductInAssortment.UseVisualStyleBackColor = true;
@@ -52,10 +51,9 @@
             // 
             // buttonRemoveProductInAssortment
             // 
-            buttonRemoveProductInAssortment.Location = new Point(217, 52);
-            buttonRemoveProductInAssortment.Margin = new Padding(3, 4, 3, 4);
+            buttonRemoveProductInAssortment.Location = new Point(190, 39);
             buttonRemoveProductInAssortment.Name = "buttonRemoveProductInAssortment";
-            buttonRemoveProductInAssortment.Size = new Size(193, 91);
+            buttonRemoveProductInAssortment.Size = new Size(169, 68);
             buttonRemoveProductInAssortment.TabIndex = 1;
             buttonRemoveProductInAssortment.Text = "Удалить";
             buttonRemoveProductInAssortment.UseVisualStyleBackColor = true;
@@ -65,17 +63,18 @@
             // 
             labelAssortment.AutoSize = true;
             labelAssortment.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            labelAssortment.Location = new Point(417, -1);
+            labelAssortment.Location = new Point(365, -1);
             labelAssortment.Name = "labelAssortment";
-            labelAssortment.Size = new Size(224, 46);
+            labelAssortment.Size = new Size(177, 37);
             labelAssortment.TabIndex = 3;
             labelAssortment.Text = "Ассортимент";
             // 
             // buttonLoadAssortment
             // 
-            buttonLoadAssortment.Location = new Point(277, 565);
+            buttonLoadAssortment.Location = new Point(242, 424);
+            buttonLoadAssortment.Margin = new Padding(3, 2, 3, 2);
             buttonLoadAssortment.Name = "buttonLoadAssortment";
-            buttonLoadAssortment.Size = new Size(134, 69);
+            buttonLoadAssortment.Size = new Size(117, 52);
             buttonLoadAssortment.TabIndex = 4;
             buttonLoadAssortment.Text = "Обновить ассортимент";
             buttonLoadAssortment.UseVisualStyleBackColor = true;
@@ -84,9 +83,10 @@
             // listViewAssortment
             // 
             listViewAssortment.Columns.AddRange(new ColumnHeader[] { ColumnHeaderProductName, ColumnHeaderProductID, ColumnHeaderPrice, ColumnHeaderAmount });
-            listViewAssortment.Location = new Point(427, 52);
+            listViewAssortment.Location = new Point(374, 39);
+            listViewAssortment.Margin = new Padding(3, 2, 3, 2);
             listViewAssortment.Name = "listViewAssortment";
-            listViewAssortment.Size = new Size(363, 583);
+            listViewAssortment.Size = new Size(318, 438);
             listViewAssortment.TabIndex = 5;
             listViewAssortment.UseCompatibleStateImageBehavior = false;
             listViewAssortment.View = View.Details;
@@ -111,16 +111,15 @@
             // 
             // Assortment
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(810, 645);
+            ClientSize = new Size(709, 484);
             Controls.Add(listViewAssortment);
             Controls.Add(buttonLoadAssortment);
             Controls.Add(labelAssortment);
             Controls.Add(buttonRemoveProductInAssortment);
             Controls.Add(buttonAddProductInAssortment);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Assortment";
             Text = "Assortment";
             ResumeLayout(false);

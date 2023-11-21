@@ -1,5 +1,4 @@
-﻿using CourseWorkWF;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace CourseWorkWF
         {
             TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;
-            СashierrName = cashierrName;
+            СashierName = cashierrName;
             ReasonRefound = reasonRefound;
         }
         override public double ChangeRevenue(double revenue)

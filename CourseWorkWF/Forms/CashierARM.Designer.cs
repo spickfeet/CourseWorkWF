@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF.Forms
+﻿namespace CourseWorkWF
 {
     partial class CashierARM
     {

@@ -1,11 +1,10 @@
-﻿using CourseWorkWF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CWTest
+namespace CourseWorkWF
 {
     public class Buy : ProductsMove
     {
@@ -18,11 +17,11 @@ namespace CWTest
         public Buy(string transactionMetod, double moneyAmount, string cashierrName, List<Product> productsList, int discount)
             : base(transactionMetod, moneyAmount, cashierrName)
         {
-            ProductsList = productsList; 
+            ProductsList = productsList;
             TransactionMethod = transactionMetod; //
             MoneyAmount = moneyAmount; //
-            СashierrName = cashierrName;
-            BuyID += 1; 
+            СashierName = cashierrName;
+            BuyID += 1;
             Discount = discount; //
         }
         override public double ChangeRevenue(double revenue)

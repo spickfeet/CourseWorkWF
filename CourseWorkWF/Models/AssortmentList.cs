@@ -24,7 +24,7 @@ namespace CourseWorkWF
             return _instance;
         }
 
-        public void AddProductInAssortment(int productID, string name, double price, int amount)
+        public void AddProducts(int productID, string name, decimal price, int amount)
         {
             for (int i = 0; i < ProductsAssortment.Count; i++)
             {
@@ -39,7 +39,7 @@ namespace CourseWorkWF
         }
         public void RemoveProductsInAssortment(Product product, int amount)
         {
-            int index = ProductsAssortment.FindIndex(0, ProductsAssortment.Count,x => x.ProductID == product.ProductID);
+            int index = ProductsAssortment.FindIndex(0, ProductsAssortment.Count, x => x.ProductID == product.ProductID);
             if (ProductsAssortment[index].Amount > amount) ProductsAssortment[index].Amount -= amount;
             else ProductsAssortment.Remove(ProductsAssortment[index]);
         }

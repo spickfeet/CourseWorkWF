@@ -1,15 +1,4 @@
-﻿using CourseWorkWF.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CourseWorkWF
+﻿namespace CourseWorkWF
 {
     public partial class Assortment : Form
     {
@@ -31,7 +20,8 @@ namespace CourseWorkWF
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
             AddAssortment addAssortment = new AddAssortment();
-            if (addAssortment.ShowDialog() == DialogResult.OK) UpdateList();
+            addAssortment.ShowDialog();
+            UpdateList();
         }
 
         private void ButtonLoadAssortment_Click(object sender, EventArgs e)
@@ -56,5 +46,6 @@ namespace CourseWorkWF
                 listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
             }
         }
+
     }
 }

@@ -10,33 +10,47 @@ using System.Windows.Forms;
 
 namespace CourseWorkWF
 {
-    public partial class AddAssortment : Form
+    public partial class AddAssortment : Form, IAddAssortmentFormView
     {
         public AddAssortment()
         {
             InitializeComponent();
-            new PresenterAddAsortment(this);
-            DialogResult = DialogResult.Cancel;
+            _ = new PresenterAddAsortment(this);
         }
-        public event EventHandler addAssortmentEvent;
+
+        int IAddAssortmentFormView.ProductID 
+        { 
+            get { return (int)numericUpDownProductID.Value; }
+            set { numericUpDownProductID.Value = value; }
+        }
+        decimal IAddAssortmentFormView.Price
+        {
+            get { return numericUpDownProductPrice.Value; }
+            set { numericUpDownProductPrice.Value = value; }
+        }
+        int IAddAssortmentFormView.Amount
+        {
+            get { return (int)numericUpDownAmount.Value; }
+            set { numericUpDownAmount.Value = value; }
+        }
+        string IAddAssortmentFormView.ProductName
+        {
+            get { return textBoxProductName.Text; }
+            set { textBoxProductName.Text = value; }
+        }
+
+        public event EventHandler? AddProductEvent; // событие добавление продукта
+        public event EventHandler? AutocompleteEvent; // событие автозаполнение
+
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            addAssortmentEvent.Invoke(sender, e);
-            AssortmentList.Instance().AddProductInAssortment((int)numericUpDownProductID.Value, textBoxProductName.Text, (double)numericUpDownProductPrice.Value, (int)numericUpDownAmount.Value);
+            AddProductEvent?.Invoke(sender, e );
             Close();
         }
 
         private void NumericUpDownProductID_ValueChanged(object sender, EventArgs e)
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
-            {
-                if (product.ProductID == numericUpDownProductID.Value)
-                {
-                    textBoxProductName.Text = product.Name;
-                    numericUpDownProductPrice.Value = (decimal)product.Price;
-                }
-            }
+            AutocompleteEvent?.Invoke(this, e );
         }
     }
 }

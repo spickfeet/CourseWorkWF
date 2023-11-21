@@ -1,16 +1,4 @@
-﻿using CWTest;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace CourseWorkWF.Forms
+﻿namespace CourseWorkWF
 {
     public partial class CashierARM : Form
     {
@@ -61,7 +49,7 @@ namespace CourseWorkWF.Forms
 
 
                     numericUpDownProductID.Value = 1;
-                    textBoxPrice.Text = Convert.ToString(double.Parse(textBoxPrice.Text) + product.Price * (double)numericUpDownAmount.Value); // подсчет цены
+                    textBoxPrice.Text = Convert.ToString(decimal.Parse(textBoxPrice.Text) + product.Price * numericUpDownAmount.Value); // подсчет цены
 
                     // Включаем возможность установить скидку и метод оплаты 
                     comboBoxDiscount.SelectedIndex = 0;
