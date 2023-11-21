@@ -1,5 +1,3 @@
-
-
 namespace CourseWorkWF
 {
     public partial class User : Form

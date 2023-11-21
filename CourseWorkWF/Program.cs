@@ -1,5 +1,3 @@
-using CourseWorkWF;
-
 namespace CourseWorkWF
 {
     internal static class Program

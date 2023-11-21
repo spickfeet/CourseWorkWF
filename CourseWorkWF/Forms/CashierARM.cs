@@ -71,9 +71,9 @@
 
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
-            Buy buy = new Buy(comboBoxTransactionMethod.Text, double.Parse(textBoxPrice.Text), textBoxCashierName.Text,
+            Buy buy = new Buy(comboBoxTransactionMethod.Text, decimal.Parse(textBoxPrice.Text), textBoxCashierName.Text,
                 _buyList.BuyProductList, int.Parse(comboBoxDiscount.Text));
-            textBoxRevenue.Text = Convert.ToString(double.Parse(textBoxRevenue.Text) + buy.MoneyAmount); // Увеличение выручки
+            textBoxRevenue.Text = Convert.ToString(decimal.Parse(textBoxRevenue.Text) + buy.MoneyAmount); // Увеличение выручки
 
             AssortmentList.Instance().RemoveProductsListInAssortment(_buyList.BuyProductList);
 
@@ -91,7 +91,7 @@
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxPrice.Text = Convert.ToString(Math.Round(double.Parse(textBoxPrice.Text) - (double.Parse(textBoxPrice.Text) / 100) * int.Parse(comboBoxDiscount.Text), 2)); // Применение скидки
+            textBoxPrice.Text = Convert.ToString(Math.Round(decimal.Parse(textBoxPrice.Text) - (decimal.Parse(textBoxPrice.Text) / 100) * int.Parse(comboBoxDiscount.Text), 2)); // Применение скидки
             if (comboBoxDiscount.SelectedIndex != 0) buttonCancelDiscount.Enabled = true;
             comboBoxDiscount.Enabled = false;
         }
@@ -100,7 +100,7 @@
         {
             if (comboBoxDiscount.Text != "0")
             {
-                textBoxPrice.Text = Convert.ToString(Math.Round(double.Parse(textBoxPrice.Text) / (100 - int.Parse(comboBoxDiscount.Text)) * 100, 2)); // Отмена скидки
+                textBoxPrice.Text = Convert.ToString(Math.Round(decimal.Parse(textBoxPrice.Text) / (100 - int.Parse(comboBoxDiscount.Text)) * 100, 2)); // Отмена скидки
                 comboBoxDiscount.SelectedIndex = 0;
                 comboBoxDiscount.Enabled = true;
                 buttonCancelDiscount.Enabled = false;
