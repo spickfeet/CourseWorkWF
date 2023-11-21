@@ -24,8 +24,17 @@ namespace CourseWorkWF
             return _instance;
         }
 
-        public void AddProductInAssortment(Product product)
+        public void AddProductInAssortment(int productID, string name, double price, int amount)
         {
+            for (int i = 0; i < ProductsAssortment.Count; i++)
+            {
+                if (ProductsAssortment[i].ProductID == productID)
+                {
+                    ProductsAssortment[i].Amount += amount;
+                    return;
+                }
+            }
+            Product product = new Product(productID, name, price, amount);
             ProductsAssortment.Add(product);
         }
         public void RemoveProductsInAssortment(Product product, int amount)

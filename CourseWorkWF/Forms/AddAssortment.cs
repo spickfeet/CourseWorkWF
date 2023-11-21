@@ -15,23 +15,15 @@ namespace CourseWorkWF
         public AddAssortment()
         {
             InitializeComponent();
+            new PresenterAddAsortment(this);
             DialogResult = DialogResult.Cancel;
         }
-
+        public event EventHandler addAssortmentEvent;
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
-            {
-                if (AssortmentList.Instance().ProductsAssortment[i].ProductID == numericUpDownProductID.Value)
-                {
-                    AssortmentList.Instance().ProductsAssortment[i].Amount += (int)numericUpDownAmount.Value;
-                    Close();
-                    return;
-                }
-            }
-            Product product = new Product((int)numericUpDownProductID.Value, textBoxProductName.Text, (double)numericUpDownProductPrice.Value, (int)numericUpDownAmount.Value);
-            AssortmentList.Instance().AddProductInAssortment(product);
+            addAssortmentEvent.Invoke(sender, e);
+            AssortmentList.Instance().AddProductInAssortment((int)numericUpDownProductID.Value, textBoxProductName.Text, (double)numericUpDownProductPrice.Value, (int)numericUpDownAmount.Value);
             Close();
         }
 
