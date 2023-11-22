@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    partial class CashierARM
+    partial class Sell
     {
         /// <summary>
         /// Required designer variable.
@@ -47,7 +47,7 @@
             labelMoneyChangeBuyer = new Label();
             numericUpDownProductID = new NumericUpDown();
             numericUpDownCash = new NumericUpDown();
-            ErrorProviderAddProductByID = new ErrorProvider(components);
+            errorProviderProductID = new ErrorProvider(components);
             labelAmount = new Label();
             numericUpDownAmount = new NumericUpDown();
             listViewBuyProducts = new ListView();
@@ -55,13 +55,13 @@
             ColumnHeaderID = new ColumnHeader();
             ColumnHeaderPrice = new ColumnHeader();
             ColumnHeaderAmount = new ColumnHeader();
-            ErrorProviderAmount = new ErrorProvider(components);
+            errorProviderAmount = new ErrorProvider(components);
             buttonCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderAddProductByID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderAmount).BeginInit();
             SuspendLayout();
             // 
             // textBoxPrice
@@ -255,10 +255,10 @@
             numericUpDownCash.Visible = false;
             numericUpDownCash.ValueChanged += NumericUpDownCash_ValueChanged;
             // 
-            // ErrorProviderAddProductByID
+            // errorProviderProductID
             // 
-            ErrorProviderAddProductByID.ContainerControl = this;
-            ErrorProviderAddProductByID.RightToLeft = true;
+            errorProviderProductID.ContainerControl = this;
+            errorProviderProductID.RightToLeft = true;
             // 
             // labelAmount
             // 
@@ -309,10 +309,10 @@
             ColumnHeaderAmount.Text = "Количество";
             ColumnHeaderAmount.Width = 100;
             // 
-            // ErrorProviderAmount
+            // errorProviderAmount
             // 
-            ErrorProviderAmount.ContainerControl = this;
-            ErrorProviderAmount.RightToLeft = true;
+            errorProviderAmount.ContainerControl = this;
+            errorProviderAmount.RightToLeft = true;
             // 
             // buttonCancel
             // 
@@ -325,7 +325,7 @@
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += ButtonCancel_Click;
             // 
-            // CashierARM
+            // Sell
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -354,13 +354,13 @@
             Controls.Add(comboBoxDiscount);
             Controls.Add(textBoxPrice);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "CashierARM";
+            Name = "Sell";
             Text = "CashierARM";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderAddProductByID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ErrorProviderAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderAmount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -385,14 +385,14 @@
         private Label labelMoneyChangeBuyer;
         private NumericUpDown numericUpDownProductID;
         private NumericUpDown numericUpDownCash;
-        private ErrorProvider ErrorProviderAddProductByID;
+        private ErrorProvider errorProviderProductID;
         private Label labelAmount;
         private NumericUpDown numericUpDownAmount;
         private ListView listViewBuyProducts;
         private ColumnHeader ColumnHeaderName;
         private ColumnHeader ColumnHeaderID;
         private ColumnHeader ColumnHeaderAmount;
-        private ErrorProvider ErrorProviderAmount;
+        private ErrorProvider errorProviderAmount;
         private Button buttonCancel;
         private ColumnHeader ColumnHeaderPrice;
     }

@@ -16,7 +16,7 @@ namespace CourseWorkWF
 
         private void ButtonCashier_Click(object sender, EventArgs e)
         {
-            CashierARM cashierARM = new CashierARM(this);
+            Sell cashierARM = new Sell(this);
             cashierARM.ShowDialog();
         }
     }

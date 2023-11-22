@@ -1,9 +1,9 @@
 ﻿namespace CourseWorkWF
 {
-    public class BuyList
+    public class BuyProductsList
     {
-        private List<Product> _buyProductList = new();
-        public List<Product> BuyProductList { get { return _buyProductList; } set { _buyProductList = value; } }
+        private List<Product> _buyProductsList = new();
+        public List<Product> BuyProductList { get { return _buyProductsList; } set { _buyProductsList = value; } }
         public void AddProducts(Product product, int amount)
         {
             Product Buyproduct = new Product(product);

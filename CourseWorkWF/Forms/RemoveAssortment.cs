@@ -36,7 +36,7 @@
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
-            RemoveProductEvent.Invoke(sender, e);
+            RemoveProductEvent?.Invoke(sender, e);
         }
     }
 }
