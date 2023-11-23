@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF.Presenters
+﻿namespace CourseWorkWF
 {
     public class SellPresenter
     {
@@ -10,8 +10,15 @@
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
             _view.DiscountEvent += DiscountUse;
+            _view.CancelDiscountEvent += CancelDiscount;
+            _view.CashEvent += GetMoneyChangeBuyer;
+            _view.CancelBuyProductsEvent += CancelBuyProducts;
         }
 
+        private void CancelBuyProducts(object? sender, EventArgs e)
+        {
+            _buyProductsList.BuyProductList.Clear();
+        }
 
         public event EventHandler? AmountErrorEvent;
         public event EventHandler? ProductIDErrorEvent;
@@ -20,6 +27,15 @@
         public BuyProductsList GetBuyProductsList()
         {
             return _buyProductsList;
+        }
+        private void GetMoneyChangeBuyer(object? sender, EventArgs e)
+        {
+            _view.MoneyChangeBuyer = Math.Round(_view.Cash - _view.Price, 2);
+        }
+
+        private void CancelDiscount(object? sender, EventArgs e)
+        {
+            _view.Price = Math.Round(_view.Price / (100 - _view.Discount) * 100, 2); // Отмена скидки
         }
 
         private void DiscountUse(object? sender, EventArgs e)
@@ -35,7 +51,7 @@
                 {
                     if (product.Amount < _view.Amount) // Проверяем колличество товара
                     {
-                        AmountErrorEvent?.Invoke(sender, e);
+                        AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
                     }
                     for (int i = 0; i < _buyProductsList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
@@ -44,7 +60,7 @@
                         {
                             if ((product.Amount - _buyProductsList.BuyProductList[i].Amount - _view.Amount) < 0)
                             {
-                                AmountErrorEvent?.Invoke(sender, e);
+                                AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                                 return;
                             }
                         }
@@ -54,7 +70,7 @@
                     return;
                 }
             }
-            ProductIDErrorEvent?.Invoke(sender, e);
+            ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
         }
         private void SellOut(object? sender, EventArgs e)
         {

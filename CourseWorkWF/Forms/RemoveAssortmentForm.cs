@@ -7,7 +7,7 @@
             InitializeComponent();
             RemoveAssortmentPresenter presenterRemoveAssortment = new RemoveAssortmentPresenter(this);
             presenterRemoveAssortment.ErrorEvent += Error;
-            presenterRemoveAssortment.CloseEvent += Closed;
+            presenterRemoveAssortment.CloseEvent += CloseForm;
         }
 
         int IRemoveAssortmentFormView.Amount
@@ -25,7 +25,7 @@
         public event EventHandler? RemoveProductEvent;
 
 
-        public void Closed(object sender, EventArgs e)
+        public void CloseForm(object sender, EventArgs e)
         {
             Close();
         }

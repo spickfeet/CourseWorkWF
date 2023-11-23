@@ -12,11 +12,10 @@ namespace CourseWorkWF
 {
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
-        private AddAsortmentPresenter _presenter;
         public AddAssortmentForm()
         {
             InitializeComponent();
-            _presenter = new AddAsortmentPresenter(this);
+            _ = new AddAsortmentPresenter(this);
         }
 
         int IAddAssortmentFormView.ProductID 
@@ -45,7 +44,7 @@ namespace CourseWorkWF
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            _presenter.AddProductInAssortment();
+            AddProductEvent?.Invoke(this, EventArgs.Empty );
             Close();
         }
 

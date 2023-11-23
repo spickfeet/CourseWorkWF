@@ -1,7 +1,4 @@
-﻿using CourseWorkWF.Presenters;
-using System.Windows.Forms;
-
-namespace CourseWorkWF
+﻿namespace CourseWorkWF
 {
     public partial class SellForm : Form, ISell
     {
@@ -72,6 +69,9 @@ namespace CourseWorkWF
         public event EventHandler? SellEvent;
         public event EventHandler? DiscountEvent;
         public event EventHandler? CashEvent;
+        public event EventHandler? CancelDiscountEvent;
+        public event EventHandler? CancelBuyProductsEvent;
+
         private void OnClosed(object? sender, FormClosedEventArgs e)
         {
             _prevForm.Visible = true;
@@ -90,7 +90,7 @@ namespace CourseWorkWF
         {
             errorProviderProductID.Clear();
             errorProviderAmount.Clear();
-            AddProductEvent?.Invoke(sender, e);
+            AddProductEvent?.Invoke(this, EventArgs.Empty);
             numericUpDownProductID.Value = 1;
 
             if(_presenter.GetBuyProductsList().BuyProductList != null) // проверяем пустой ли список продуктов
@@ -112,7 +112,7 @@ namespace CourseWorkWF
 
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
-            SellEvent?.Invoke(sender, e);
+            SellEvent?.Invoke(this, EventArgs.Empty);
 
             comboBoxTransactionMethod.SelectedIndex = -1; // Сброс метода транзакции
             comboBoxDiscount.SelectedIndex = 0; // Сброс скидки
@@ -124,7 +124,7 @@ namespace CourseWorkWF
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DiscountEvent?.Invoke(sender, e);
+            DiscountEvent?.Invoke(this, EventArgs.Empty);
 
             buttonCancelDiscount.Enabled = true;
             comboBoxDiscount.Enabled = false;
@@ -134,7 +134,8 @@ namespace CourseWorkWF
         {
             if (comboBoxDiscount.Text != "0")
             {
-                textBoxPrice.Text = Convert.ToString(Math.Round(decimal.Parse(textBoxPrice.Text) / (100 - int.Parse(comboBoxDiscount.Text)) * 100, 2)); // Отмена скидки
+                CancelDiscountEvent?.Invoke(this, EventArgs.Empty);
+
                 comboBoxDiscount.SelectedIndex = 0;
                 comboBoxDiscount.Enabled = true;
                 buttonCancelDiscount.Enabled = false;
@@ -162,12 +163,12 @@ namespace CourseWorkWF
 
         private void NumericUpDownCash_ValueChanged(object sender, EventArgs e)
         {
-            textBoxMoneyChangeBuyer.Text = Convert.ToString(Math.Round(numericUpDownCash.Value - decimal.Parse(textBoxPrice.Text), 2));
+            CashEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            _presenter.GetBuyProductsList().BuyProductList.Clear();
+            CancelBuyProductsEvent?.Invoke(this, EventArgs.Empty);
             listViewBuyProducts.Items.Clear();
         }
     }

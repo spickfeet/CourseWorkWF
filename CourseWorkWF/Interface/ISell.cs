@@ -14,6 +14,8 @@
         event EventHandler? AddProductEvent;
         event EventHandler? SellEvent;
         event EventHandler? DiscountEvent;
+        event EventHandler? CancelDiscountEvent;
+        event EventHandler? CancelBuyProductsEvent;
         event EventHandler? CashEvent;
     }
 }
