@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    partial class Sell
+    partial class SellForm
     {
         /// <summary>
         /// Required designer variable.

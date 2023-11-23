@@ -1,11 +1,11 @@
 ﻿namespace CourseWorkWF
 {
-    public partial class RemoveAssortment : Form, IRemoveAssortmentFormView
+    public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {
-        public RemoveAssortment()
+        public RemoveAssortmentForm()
         {
             InitializeComponent();
-            PresenterRemoveAssortment presenterRemoveAssortment = new PresenterRemoveAssortment(this);
+            RemoveAssortmentPresenter presenterRemoveAssortment = new RemoveAssortmentPresenter(this);
             presenterRemoveAssortment.ErrorEvent += Error;
             presenterRemoveAssortment.CloseEvent += Closed;
         }

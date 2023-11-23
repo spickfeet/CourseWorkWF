@@ -1,20 +1,31 @@
 ﻿namespace CourseWorkWF.Presenters
 {
-    public class PresenterSell
+    public class SellPresenter
     {
         private ISell _view;
-        private BuyProductsList _buyList;
-        public PresenterSell(ISell view, BuyProductsList buyList)
+        private BuyProductsList _buyProductsList = new();
+        public SellPresenter(ISell view)
         {
             _view = view;
-            _buyList = buyList;
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
+            _view.DiscountEvent += DiscountUse;
         }
 
 
         public event EventHandler? AmountErrorEvent;
         public event EventHandler? ProductIDErrorEvent;
+
+
+        public BuyProductsList GetBuyProductsList()
+        {
+            return _buyProductsList;
+        }
+
+        private void DiscountUse(object? sender, EventArgs e)
+        {
+            _view.Price = Math.Round(_view.Price - _view.Price / 100 * _view.Discount, 2); // Применение скидки
+        }
 
         private void AddProduct(object? sender, EventArgs e)
         {
@@ -27,18 +38,18 @@
                         AmountErrorEvent?.Invoke(sender, e);
                         return;
                     }
-                    for (int i = 0; i < _buyList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
+                    for (int i = 0; i < _buyProductsList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
                     {
-                        if (_buyList.BuyProductList[i].ProductID == product.ProductID)
+                        if (_buyProductsList.BuyProductList[i].ProductID == product.ProductID)
                         {
-                            if ((product.Amount - _buyList.BuyProductList[i].Amount - _view.Amount) < 0)
+                            if ((product.Amount - _buyProductsList.BuyProductList[i].Amount - _view.Amount) < 0)
                             {
                                 AmountErrorEvent?.Invoke(sender, e);
                                 return;
                             }
                         }
                     }
-                    _buyList.AddProducts(product, _view.Amount); // Добавляем продукты в список покупок
+                    _buyProductsList.AddProducts(product, _view.Amount); // Добавляем продукты в список покупок
                     _view.Price += product.Price * _view.Amount; // подсчет цены
                     return;
                 }
@@ -48,12 +59,12 @@
         private void SellOut(object? sender, EventArgs e)
         {
             Buy buy = new Buy(_view.TransactionMethod, _view.Price, _view.CashierName,
-                _buyList.BuyProductList, _view.Discount);
+                _buyProductsList.BuyProductList, _view.Discount);
 
             _view.Revenue += buy.MoneyAmount; // Увеличение выручки
 
-            AssortmentList.Instance().RemoveProductsListInAssortment(_buyList.BuyProductList);
-            _buyList.BuyProductList.Clear(); // Отчистка списка купленных продуктов
+            AssortmentList.Instance().RemoveProductsListInAssortment(_buyProductsList.BuyProductList);
+            _buyProductsList.BuyProductList.Clear(); // Отчистка списка купленных продуктов
         }
     }
 }

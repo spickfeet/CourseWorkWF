@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    partial class User
+    partial class UserForm
     {
         /// <summary>
         ///  Required designer variable.

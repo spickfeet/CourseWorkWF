@@ -1,9 +1,9 @@
 ﻿namespace CourseWorkWF
 {
-    public partial class Assortment : Form
+    public partial class AssortmentForm : Form
     {
         private Form _prevForm;
-        public Assortment(Form prev)
+        public AssortmentForm(Form prev)
         {
             _prevForm = prev;
             _prevForm.Hide();
@@ -18,7 +18,7 @@
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            AddAssortment addAssortment = new AddAssortment();
+            AddAssortmentForm addAssortment = new AddAssortmentForm();
             addAssortment.ShowDialog();
             UpdateList();
         }
@@ -30,7 +30,7 @@
 
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
-            RemoveAssortment removeAssortment = new RemoveAssortment();
+            RemoveAssortmentForm removeAssortment = new RemoveAssortmentForm();
             removeAssortment.ShowDialog();
             UpdateList();
         }

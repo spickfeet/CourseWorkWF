@@ -13,7 +13,6 @@
         decimal Price { get; set; }
         event EventHandler? AddProductEvent;
         event EventHandler? SellEvent;
-        event EventHandler? RevenueEvent;
         event EventHandler? DiscountEvent;
         event EventHandler? CashEvent;
     }

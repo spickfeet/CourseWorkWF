@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    partial class RemoveAssortment
+    partial class RemoveAssortmentForm
     {
         /// <summary>
         /// Required designer variable.

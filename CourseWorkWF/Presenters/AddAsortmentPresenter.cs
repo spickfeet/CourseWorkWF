@@ -1,16 +1,16 @@
 ﻿namespace CourseWorkWF
 {
-    public class PresenterAddAsortment
+    public class AddAsortmentPresenter
     {
         private IAddAssortmentFormView _view;
 
-        public PresenterAddAsortment(IAddAssortmentFormView view)
+        public AddAsortmentPresenter(IAddAssortmentFormView view)
         {
             _view = view;
-            _view.AddProductEvent += AddProductInAssortment;
+            //_view.AddProductEvent += AddProductInAssortment;
             _view.AutocompleteEvent += Autocomplete;
         }
-        public void AddProductInAssortment(object sender, EventArgs e)
+        public void AddProductInAssortment()
         {
             AssortmentList.Instance().AddProducts(_view.ProductID, _view.ProductName, _view.Price, _view.Amount);
         }

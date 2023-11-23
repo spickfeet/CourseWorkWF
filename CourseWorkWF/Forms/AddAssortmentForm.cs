@@ -10,12 +10,13 @@ using System.Windows.Forms;
 
 namespace CourseWorkWF
 {
-    public partial class AddAssortment : Form, IAddAssortmentFormView
+    public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
-        public AddAssortment()
+        private AddAsortmentPresenter _presenter;
+        public AddAssortmentForm()
         {
             InitializeComponent();
-            _ = new PresenterAddAsortment(this);
+            _presenter = new AddAsortmentPresenter(this);
         }
 
         int IAddAssortmentFormView.ProductID 
@@ -44,7 +45,7 @@ namespace CourseWorkWF
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            AddProductEvent?.Invoke(sender, e );
+            _presenter.AddProductInAssortment();
             Close();
         }
 

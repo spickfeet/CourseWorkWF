@@ -24,7 +24,7 @@ namespace CourseWorkWF
 
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new User());
+            Application.Run(new UserForm());
         }
     }
 }

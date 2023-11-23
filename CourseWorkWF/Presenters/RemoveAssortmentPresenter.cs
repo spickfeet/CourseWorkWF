@@ -1,9 +1,9 @@
 ﻿namespace CourseWorkWF
 {
-    public class PresenterRemoveAssortment
+    public class RemoveAssortmentPresenter
     {
         private IRemoveAssortmentFormView _view;
-        public PresenterRemoveAssortment(IRemoveAssortmentFormView view)
+        public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
         {
             _view = view;
             _view.RemoveProductEvent += RemoveProduct;

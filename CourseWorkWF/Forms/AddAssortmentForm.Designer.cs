@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    partial class AddAssortment
+    partial class AddAssortmentForm
     {
         /// <summary>
         /// Required designer variable.

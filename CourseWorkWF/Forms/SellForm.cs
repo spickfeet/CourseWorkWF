@@ -3,24 +3,10 @@ using System.Windows.Forms;
 
 namespace CourseWorkWF
 {
-    public partial class Sell : Form, ISell
+    public partial class SellForm : Form, ISell
     {
-        private BuyProductsList _buyList = new BuyProductsList();
         private Form _prevForm;
-
-
-        public Sell(Form prev)
-        {
-            _prevForm = prev;
-            _prevForm.Hide();
-            InitializeComponent();
-            PresenterSell presenterSell = new PresenterSell(this, _buyList);
-
-            FormClosed += OnClosed;
-
-            presenterSell.AmountErrorEvent += AmountErrorSet;
-            presenterSell.ProductIDErrorEvent += ProductIDErrorSet;
-        }
+        private SellPresenter _presenter;
 
 
         decimal ISell.Revenue
@@ -68,10 +54,22 @@ namespace CourseWorkWF
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
+        public SellForm(Form prev)
+        {
+            _prevForm = prev;
+            _prevForm.Hide();
+            InitializeComponent();
+            _presenter = new(this);
+
+            FormClosed += OnClosed;
+
+            _presenter.AmountErrorEvent += AmountErrorSet;
+            _presenter.ProductIDErrorEvent += ProductIDErrorSet;
+        }
+
 
         public event EventHandler? AddProductEvent;
         public event EventHandler? SellEvent;
-        public event EventHandler? RevenueEvent;
         public event EventHandler? DiscountEvent;
         public event EventHandler? CashEvent;
         private void OnClosed(object? sender, FormClosedEventArgs e)
@@ -94,18 +92,21 @@ namespace CourseWorkWF
             errorProviderAmount.Clear();
             AddProductEvent?.Invoke(sender, e);
             numericUpDownProductID.Value = 1;
-            if(errorProviderAmount == null && errorProviderProductID == null) 
+
+            if(_presenter.GetBuyProductsList().BuyProductList != null) // проверяем пустой ли список продуктов
             {
                 comboBoxDiscount.Enabled = true;
                 comboBoxTransactionMethod.Enabled = true;
             }
-            
+
+            // Вывод в listViewBuyProducts
             listViewBuyProducts.Items.Clear();
-            for (int i = 0; i < _buyList.BuyProductList.Count; i++)
-            {
-                listViewBuyProducts.Items.Add(_buyList.BuyProductList[i].Name);
-                listViewBuyProducts.Items[i].SubItems.Add(_buyList.BuyProductList[i].ProductID.ToString());
-                listViewBuyProducts.Items[i].SubItems.Add(_buyList.BuyProductList[i].Amount.ToString());
+            for (int i = 0; i < _presenter.GetBuyProductsList().BuyProductList.Count; i++)
+            {   
+                listViewBuyProducts.Items.Add(_presenter.GetBuyProductsList().BuyProductList[i].Name);
+                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].ProductID.ToString());
+                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Price.ToString());
+                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Amount.ToString());
             }
         }
 
@@ -123,12 +124,9 @@ namespace CourseWorkWF
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxPrice.Text = Convert.ToString(Math.Round(decimal.Parse(textBoxPrice.Text) - (decimal.Parse(textBoxPrice.Text) / 100) * int.Parse(comboBoxDiscount.Text), 2)); // Применение скидки
-            if(comboBoxDiscount.Text == "0") 
-            {
-                buttonCancelDiscount.Enabled = true;
-                return;
-            }
+            DiscountEvent?.Invoke(sender, e);
+
+            buttonCancelDiscount.Enabled = true;
             comboBoxDiscount.Enabled = false;
         }
 
@@ -169,7 +167,7 @@ namespace CourseWorkWF
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            _buyList.BuyProductList.Clear();
+            _presenter.GetBuyProductsList().BuyProductList.Clear();
             listViewBuyProducts.Items.Clear();
         }
     }
