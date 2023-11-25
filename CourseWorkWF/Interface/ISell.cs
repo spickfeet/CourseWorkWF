@@ -9,7 +9,7 @@
         decimal MoneyChangeBuyer { get; set; }
         string CashierName { get; set; }
         int ProductID { get; set; }
-        int Amount { get; set; }
+        decimal Amount { get; set; }
         decimal Price { get; set; }
         event EventHandler? AddProductEvent;
         event EventHandler? SellEvent;

@@ -41,7 +41,7 @@
             get { return (int)numericUpDownProductID.Value; }
             set { numericUpDownAmount.Value = value; }
         }
-        int ISell.Amount
+        decimal ISell.Amount
         {
             get { return (int)numericUpDownAmount.Value; }
             set { numericUpDownAmount.Value = value; }
