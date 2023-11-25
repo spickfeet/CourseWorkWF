@@ -38,12 +38,14 @@
         private void UpdateList()
         {
             listViewAssortment.Items.Clear();
-            for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
+            int column = 0;
+            foreach (KeyValuePair<int, ProductCollectionItem> productCollectionItem in AssortmentDictionary.Instance().ProductsAssortment)
             {
-                listViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name);
-                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name.ToString());
-                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name.ToString());
-                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
+                listViewAssortment.Items.Add(productCollectionItem.Value.Product.Name);
+                listViewAssortment.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
+                listViewAssortment.Items[column].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
+                listViewAssortment.Items[column].SubItems.Add(productCollectionItem.Value.Amount.ToString());
+                column++;
             }
         }
     }

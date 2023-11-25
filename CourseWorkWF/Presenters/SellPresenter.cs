@@ -3,7 +3,7 @@
     public class SellPresenter
     {
         private ISell _view;
-        private BuyProductsList _buyProductsList = new();
+        private BuyProductsDictionary _buyProducts = new();
         public SellPresenter(ISell view)
         {
             _view = view;
@@ -15,18 +15,18 @@
             _view.CancelBuyProductsEvent += CancelBuyProducts;
         }
 
-        private void CancelBuyProducts(object? sender, EventArgs e)
-        {
-            _buyProductsList.BuyProductList.Clear();
-        }
 
         public event EventHandler? AmountErrorEvent;
         public event EventHandler? ProductIDErrorEvent;
 
-
-        public BuyProductsList GetBuyProductsList()
+        private void CancelBuyProducts(object? sender, EventArgs e)
         {
-            return _buyProductsList;
+            _buyProducts.BuyProductDictionary.Clear();
+        }
+
+        public BuyProductsDictionary GetBuyProductsList()
+        {
+            return _buyProducts;
         }
         private void GetMoneyChangeBuyer(object? sender, EventArgs e)
         {
@@ -45,42 +45,37 @@
 
         private void AddProduct(object? sender, EventArgs e)
         {
-            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment) // Обход ассортимента 
+            if(AssortmentDictionary.Instance().ProductsAssortment.ContainsKey(_view.ProductID) == true)
             {
-                if (productListItem.Product.ProductID == _view.ProductID) // поиск по ID
+                if (AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Amount < _view.Amount)
                 {
-                    if (productListItem.Amount < _view.Amount) // Проверяем колличество товара
+                    AmountErrorEvent?.Invoke(this, EventArgs.Empty);
+                    return;
+                }
+                if(_buyProducts.BuyProductDictionary.ContainsKey(_view.ProductID) == true)
+                {
+                    if ((AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Amount - _buyProducts.BuyProductDictionary[_view.ProductID].Amount - _view.Amount) < 0)
                     {
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
                     }
-                    for (int i = 0; i < _buyProductsList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
-                    {
-                        if (_buyProductsList.BuyProductList[i].Product.ProductID == productListItem.Product.ProductID)
-                        {
-                            if ((productListItem.Amount - _buyProductsList.BuyProductList[i].Amount - _view.Amount) < 0)
-                            {
-                                AmountErrorEvent?.Invoke(this, EventArgs.Empty);
-                                return;
-                            }
-                        }
-                    }
-                    _buyProductsList.AddProducts(productListItem.Product, _view.Amount); // Добавляем продукты в список покупок
-                    _view.Price += productListItem.Product.Price * _view.Amount; // подсчет цены
-                    return;
                 }
+                
+                _buyProducts.AddProducts(_view.ProductID, new ProductCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount)); // Добавляем продукты в список покупок
+                _view.Price += AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
+                return;
             }
             ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
         }
         private void SellOut(object? sender, EventArgs e)
         {
             Buy buy = new Buy(_view.TransactionMethod, _view.Price, _view.CashierName,
-                _buyProductsList, _view.Discount);
+                _buyProducts, _view.Discount);
 
             _view.Revenue += buy.MoneyAmount; // Увеличение выручки
 
-            AssortmentList.Instance().RemoveProductsListInAssortment(_buyProductsList.BuyProductList);
-            _buyProductsList.BuyProductList.Clear(); // Отчистка списка купленных продуктов
+            AssortmentDictionary.Instance().RemoveProductsListInAssortment(_buyProducts.BuyProductDictionary);
+            _buyProducts.BuyProductDictionary.Clear(); // Отчистка списка купленных продуктов
         }
     }
 }

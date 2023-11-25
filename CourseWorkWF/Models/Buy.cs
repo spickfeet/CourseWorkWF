@@ -2,10 +2,10 @@
 {
     public class Buy : ProductsMove
     {
-        private BuyProductsList _productsList;
+        private BuyProductsDictionary _productsList;
         private static int _buyID = 0;
         private int _discountPercent;
-        public BuyProductsList ProductsList 
+        public BuyProductsDictionary ProductsList 
         { 
             get { return _productsList; }
             set { if (value == null) throw new ArgumentNullException("Попытка сделать список пустым"); _productsList = value; }
@@ -20,7 +20,7 @@
             get { return _discountPercent; }
             set { if (value < 0 || value > 100) throw new AccessViolationException("Попытка задать скидку выходящую за рамки от 0 до 100"); _discountPercent = value; } 
         }
-        public Buy(string transactionMetod, decimal moneyAmount, string cashierrName, BuyProductsList productsList, int discount)
+        public Buy(string transactionMetod, decimal moneyAmount, string cashierrName, BuyProductsDictionary productsList, int discount)
             : base(transactionMetod, moneyAmount, cashierrName)
         {
             ProductsList = productsList;

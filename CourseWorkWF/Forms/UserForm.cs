@@ -2,7 +2,7 @@ namespace CourseWorkWF
 {
     public partial class UserForm : Form
     {
-        private AssortmentList _assortment;
+        private AssortmentDictionary _assortment;
         public UserForm()
         {
             InitializeComponent();

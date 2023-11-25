@@ -8,18 +8,18 @@ namespace CourseWorkWF
         [STAThread]
         static void Main()
         {
-            List<ProductListItem> products = new List<ProductListItem>();
-            IProduct product1 = new Product(110011, "Сок добрый 1Л", 99);
-            IProduct product2 = new Product(119901, "Сыр", 105);
-            IProduct product3 = new Product(133301, "Молоко 1Л", 79);
-            IProduct product4 = new Product(197801, "Чипсы", 56);
-            IProduct product5 = new Product(219901, "Шоколад", 105);
-            products.Add(new ProductListItem(product1,100));
-            products.Add(new ProductListItem(product2, 900));
-            products.Add(new ProductListItem(product3, 80));
-            products.Add(new ProductListItem(product4, 70));
-            products.Add(new ProductListItem(product5, 60));
-            AssortmentList.Instance().ProductsAssortment = products;
+            Dictionary<int, ProductCollectionItem> products = new Dictionary<int, ProductCollectionItem>();
+            IProduct product1 = new Product("Сок добрый 1Л", 99);
+            IProduct product2 = new Product("Сыр", 105);
+            IProduct product3 = new Product("Молоко 1Л", 79);
+            IProduct product4 = new Product("Чипсы", 56);
+            IProduct product5 = new Product("Шоколад", 105);
+            products[110011] = new ProductCollectionItem(product1, 100);
+            products[119901] = new ProductCollectionItem(product2, 90);
+            products[133301] = new ProductCollectionItem(product3, 80);
+            products[197801] = new ProductCollectionItem(product4, 70);
+            products[219901] = new ProductCollectionItem(product5, 60);
+            AssortmentDictionary.Instance().ProductsAssortment = products;
 
 
             ApplicationConfiguration.Initialize();

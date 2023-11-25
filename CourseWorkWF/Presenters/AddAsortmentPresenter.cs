@@ -12,17 +12,14 @@
         }
         public void AddProductInAssortment(object sender, EventArgs e)
         {
-            AssortmentList.Instance().AddProducts(_view.ProductID, _view.ProductName, _view.Price, _view.Amount);
+            AssortmentDictionary.Instance().AddProducts(_view.ProductID, _view.ProductName, _view.Price, _view.Amount);
         }
         public void Autocomplete(object sender, EventArgs e)
         {
-            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment)
+            if(AssortmentDictionary.Instance().ProductsAssortment.ContainsKey(_view.ProductID) == true)
             {
-                if (productListItem.Product.ProductID == _view.ProductID)
-                {
-                    _view.ProductName = productListItem.Product.Name;
-                    _view.Price = productListItem.Product.Price;
-                }
+                _view.ProductName = AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Name;
+                _view.Price = AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price;
             }
         }
     }

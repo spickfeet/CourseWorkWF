@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF
 {
-    public class ProductListItem
+    public class ProductCollectionItem
     {
         private IProduct _product;
         private decimal _amount;
@@ -14,10 +14,15 @@
             get { return _amount; }
             set { if (value < 0) throw new AccessViolationException("Количество продукта не может быть отрицательно"); _amount = value; }
         }
-        public ProductListItem(IProduct product, decimal amount)
+        public ProductCollectionItem(IProduct product, decimal amount)
         {
             Product = product;
             Amount = amount;
-        }   
+        }
+        public ProductCollectionItem(ProductCollectionItem productCollectionItem)
+        {
+            Product = productCollectionItem.Product;
+            Amount = productCollectionItem.Amount;
+        }
     }
 }

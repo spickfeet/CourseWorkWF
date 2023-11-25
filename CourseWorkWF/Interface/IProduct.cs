@@ -8,7 +8,6 @@ namespace CourseWorkWF
 {
     public interface IProduct
     {
-        public int ProductID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
     }

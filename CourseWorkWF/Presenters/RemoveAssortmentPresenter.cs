@@ -9,13 +9,10 @@
         }
         public bool RemoveProduct() 
         {
-            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment)
+            if(AssortmentDictionary.Instance().ProductsAssortment.ContainsKey(_view.ProductID) == true)
             {
-                if (productListItem.Product.ProductID == _view.ProductID)
-                {
-                    AssortmentList.Instance().RemoveProductsInAssortment(productListItem.Product, _view.Amount);
-                    return true;
-                }
+                AssortmentDictionary.Instance().RemoveProductsInAssortment(_view.ProductID, _view.Amount);
+                return true;
             }
             return false;
         }

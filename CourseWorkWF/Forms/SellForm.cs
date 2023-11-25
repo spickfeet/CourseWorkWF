@@ -93,20 +93,22 @@
             AddProductEvent?.Invoke(this, EventArgs.Empty);
             numericUpDownProductID.Value = 1;
 
-            if(_presenter.GetBuyProductsList().BuyProductList != null) // проверяем пустой ли список продуктов
+            if (_presenter.GetBuyProductsList().BuyProductDictionary.Count != 0) // проверяем пустой ли список продуктов
             {
                 comboBoxDiscount.Enabled = true;
-                comboBoxTransactionMethod.Enabled = true;
+                buttonCancel.Enabled = true;
             }
 
             // Вывод в listViewBuyProducts
             listViewBuyProducts.Items.Clear();
-            for (int i = 0; i < _presenter.GetBuyProductsList().BuyProductList.Count; i++)
-            {   
-                listViewBuyProducts.Items.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name);
-                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name.ToString());
-                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name.ToString());
-                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Amount.ToString());
+            int column = 0;
+            foreach (KeyValuePair<int, ProductCollectionItem> productCollectionItem in _presenter.GetBuyProductsList().BuyProductDictionary)
+            {
+                listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.Name.ToString());
+                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
+                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
+                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Amount.ToString());
+                column++;
             }
         }
 
@@ -124,10 +126,13 @@
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBoxTransactionMethod.Enabled = true;
             DiscountEvent?.Invoke(this, EventArgs.Empty);
-
-            buttonCancelDiscount.Enabled = true;
-            comboBoxDiscount.Enabled = false;
+            if (comboBoxDiscount.SelectedIndex != 0)
+            {
+                buttonCancelDiscount.Enabled = true;
+                comboBoxDiscount.Enabled = false;
+            }
         }
 
         private void ButtonCancelDiscount_Click(object sender, EventArgs e)
@@ -143,21 +148,30 @@
         }
 
         private void ComboBoxTransactionMethod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            buttonSell.Enabled = true;
-            if (comboBoxTransactionMethod.SelectedIndex == 0)
+        {           
+            if (comboBoxTransactionMethod.SelectedIndex == 1)
             {
                 labelCash.Visible = true;
                 numericUpDownCash.Visible = true;
                 labelMoneyChangeBuyer.Visible = true;
                 textBoxMoneyChangeBuyer.Visible = true;
+                buttonSell.Enabled = true;
             }
-            else
+            if (comboBoxTransactionMethod.SelectedIndex == 2)
             {
                 labelCash.Visible = false;
                 numericUpDownCash.Visible = false;
                 labelMoneyChangeBuyer.Visible = false;
                 textBoxMoneyChangeBuyer.Visible = false;
+                buttonSell.Enabled = true;
+            }
+            if (comboBoxTransactionMethod.SelectedIndex == 0)
+            {
+                labelCash.Visible = false;
+                numericUpDownCash.Visible = false;
+                labelMoneyChangeBuyer.Visible = false;
+                textBoxMoneyChangeBuyer.Visible = false;
+                buttonSell.Enabled = false;
             }
         }
 
@@ -170,6 +184,21 @@
         {
             CancelBuyProductsEvent?.Invoke(this, EventArgs.Empty);
             listViewBuyProducts.Items.Clear();
+
+            textBoxPrice.Text = "0";
+            comboBoxDiscount.SelectedIndex = 0;
+            comboBoxDiscount.Enabled = false;
+            comboBoxTransactionMethod.SelectedIndex = 0;
+            comboBoxTransactionMethod.Enabled = false;
+            buttonSell.Enabled = false;
+            buttonCancel.Enabled = false;
+
+            labelCash.Visible = false;
+            numericUpDownCash.Value = 0;
+            numericUpDownCash.Visible = false;
+            labelMoneyChangeBuyer.Visible = false;
+            textBoxMoneyChangeBuyer.Text = "0";
+            textBoxMoneyChangeBuyer.Visible = false;
         }
     }
 }
