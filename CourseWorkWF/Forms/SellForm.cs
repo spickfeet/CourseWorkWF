@@ -144,6 +144,10 @@
                 comboBoxDiscount.SelectedIndex = 0;
                 comboBoxDiscount.Enabled = true;
                 buttonCancelDiscount.Enabled = false;
+
+                comboBoxTransactionMethod.SelectedIndex = 0;
+                numericUpDownCash.Value = 0;
+                textBoxMoneyChangeBuyer.Text = "0";
             }
         }
 
