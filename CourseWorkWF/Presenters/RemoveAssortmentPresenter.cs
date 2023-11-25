@@ -6,23 +6,18 @@
         public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
         {
             _view = view;
-            _view.RemoveProductEvent += RemoveProduct;
         }
-
-        public event EventHandler? ErrorEvent;
-        public event EventHandler? CloseEvent;
-        public void RemoveProduct(object sender, EventArgs e) 
+        public bool RemoveProduct() 
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
+            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment)
             {
-                if (product.ProductID == _view.ProductID)
+                if (productListItem.Product.ProductID == _view.ProductID)
                 {
-                    AssortmentList.Instance().RemoveProductsInAssortment(product, _view.Amount);
-                    CloseEvent?.Invoke(sender, e);
-                    return;
+                    AssortmentList.Instance().RemoveProductsInAssortment(productListItem.Product, _view.Amount);
+                    return true;
                 }
             }
-            ErrorEvent?.Invoke(sender, e);
+            return false;
         }
     }
 }

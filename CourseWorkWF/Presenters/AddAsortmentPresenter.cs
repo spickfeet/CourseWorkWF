@@ -16,12 +16,12 @@
         }
         public void Autocomplete(object sender, EventArgs e)
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment)
+            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment)
             {
-                if (product.ProductID == _view.ProductID)
+                if (productListItem.Product.ProductID == _view.ProductID)
                 {
-                    _view.ProductName = product.Name;
-                    _view.Price = product.Price;
+                    _view.ProductName = productListItem.Product.Name;
+                    _view.Price = productListItem.Product.Price;
                 }
             }
         }

@@ -103,9 +103,9 @@
             listViewBuyProducts.Items.Clear();
             for (int i = 0; i < _presenter.GetBuyProductsList().BuyProductList.Count; i++)
             {   
-                listViewBuyProducts.Items.Add(_presenter.GetBuyProductsList().BuyProductList[i].Name);
-                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].ProductID.ToString());
-                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Price.ToString());
+                listViewBuyProducts.Items.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name);
+                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name.ToString());
+                listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Product.Name.ToString());
                 listViewBuyProducts.Items[i].SubItems.Add(_presenter.GetBuyProductsList().BuyProductList[i].Amount.ToString());
             }
         }

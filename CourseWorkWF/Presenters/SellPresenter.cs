@@ -45,28 +45,28 @@
 
         private void AddProduct(object? sender, EventArgs e)
         {
-            foreach (Product product in AssortmentList.Instance().ProductsAssortment) // Обход ассортимента 
+            foreach (ProductListItem productListItem in AssortmentList.Instance().ProductsAssortment) // Обход ассортимента 
             {
-                if (product.ProductID == _view.ProductID) // поиск по ID
+                if (productListItem.Product.ProductID == _view.ProductID) // поиск по ID
                 {
-                    if (product.Amount < _view.Amount) // Проверяем колличество товара
+                    if (productListItem.Amount < _view.Amount) // Проверяем колличество товара
                     {
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
                     }
                     for (int i = 0; i < _buyProductsList.BuyProductList.Count; i++) // Проверяем колличество товара при условии, что список покупок не пуст
                     {
-                        if (_buyProductsList.BuyProductList[i].ProductID == product.ProductID)
+                        if (_buyProductsList.BuyProductList[i].Product.ProductID == productListItem.Product.ProductID)
                         {
-                            if ((product.Amount - _buyProductsList.BuyProductList[i].Amount - _view.Amount) < 0)
+                            if ((productListItem.Amount - _buyProductsList.BuyProductList[i].Amount - _view.Amount) < 0)
                             {
                                 AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                                 return;
                             }
                         }
                     }
-                    _buyProductsList.AddProducts(product, _view.Amount); // Добавляем продукты в список покупок
-                    _view.Price += product.Price * _view.Amount; // подсчет цены
+                    _buyProductsList.AddProducts(productListItem.Product, _view.Amount); // Добавляем продукты в список покупок
+                    _view.Price += productListItem.Product.Price * _view.Amount; // подсчет цены
                     return;
                 }
             }
@@ -75,7 +75,7 @@
         private void SellOut(object? sender, EventArgs e)
         {
             Buy buy = new Buy(_view.TransactionMethod, _view.Price, _view.CashierName,
-                _buyProductsList.BuyProductList, _view.Discount);
+                _buyProductsList, _view.Discount);
 
             _view.Revenue += buy.MoneyAmount; // Увеличение выручки
 

@@ -2,21 +2,33 @@
 {
     public class Buy : ProductsMove
     {
-        private List<Product> _productsList;
+        private BuyProductsList _productsList;
         private static int _buyID = 0;
-        private int _discount;
-        public List<Product> ProductsList { get { return _productsList; } set { _productsList = value; } }
-        public int BuyID { get { return _buyID; } set { _buyID = value; } }
-        public int Discount { get { return _discount; } set { _discount = value; } }
-        public Buy(string transactionMetod, decimal moneyAmount, string cashierrName, List<Product> productsList, int discount)
+        private int _discountPercent;
+        public BuyProductsList ProductsList 
+        { 
+            get { return _productsList; }
+            set { if (value == null) throw new ArgumentNullException("Попытка сделать список пустым"); _productsList = value; }
+        }
+        public int BuyID 
+        { 
+            get { return _buyID; }
+            set { if (value < 0) throw new AccessViolationException("Попытка задать отрицательное ID покупки"); _buyID = value; } 
+        }
+        public int Discount 
+        {
+            get { return _discountPercent; }
+            set { if (value < 0 || value > 100) throw new AccessViolationException("Попытка задать скидку выходящую за рамки от 0 до 100"); _discountPercent = value; } 
+        }
+        public Buy(string transactionMetod, decimal moneyAmount, string cashierrName, BuyProductsList productsList, int discount)
             : base(transactionMetod, moneyAmount, cashierrName)
         {
             ProductsList = productsList;
-            TransactionMethod = transactionMetod; //
-            MoneyAmount = moneyAmount; //
+            TransactionMethod = transactionMetod;
+            MoneyAmount = moneyAmount;
             СashierName = cashierrName;
             BuyID += 1;
-            Discount = discount; //
+            Discount = discount;
         }
         override public decimal ChangeRevenue(decimal revenue)
         {

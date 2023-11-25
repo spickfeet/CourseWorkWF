@@ -2,12 +2,11 @@
 {
     public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {
+        private RemoveAssortmentPresenter _presenter;
         public RemoveAssortmentForm()
         {
             InitializeComponent();
-            RemoveAssortmentPresenter presenterRemoveAssortment = new RemoveAssortmentPresenter(this);
-            presenterRemoveAssortment.ErrorEvent += Error;
-            presenterRemoveAssortment.CloseEvent += CloseForm;
+             _presenter = new RemoveAssortmentPresenter(this);
         }
 
         int IRemoveAssortmentFormView.Amount
@@ -20,23 +19,12 @@
             get { return (int)numericUpDownProductID.Value; }
             set { numericUpDownProductID.Value = value; }
         }
-
-
-        public event EventHandler? RemoveProductEvent;
-
-
-        public void CloseForm(object sender, EventArgs e)
-        {
-            Close();
-        }
-        public void Error(object sender, EventArgs e)
-        {
-            errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
-        }
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
-            RemoveProductEvent?.Invoke(sender, e);
+            if(_presenter.RemoveProduct() == true)
+                Close();
+            else errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
         }
     }
 }

@@ -40,9 +40,9 @@
             listViewAssortment.Items.Clear();
             for (int i = 0; i < AssortmentList.Instance().ProductsAssortment.Count; i++)
             {
-                listViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Name);
-                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].ProductID.ToString());
-                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Price.ToString());
+                listViewAssortment.Items.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name);
+                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name.ToString());
+                listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Product.Name.ToString());
                 listViewAssortment.Items[i].SubItems.Add(AssortmentList.Instance().ProductsAssortment[i].Amount.ToString());
             }
         }
