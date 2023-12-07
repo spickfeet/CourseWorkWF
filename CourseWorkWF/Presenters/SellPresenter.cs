@@ -64,10 +64,13 @@ namespace CourseWorkWF.Presenters
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
                     }
+                    _buyProducts[_view.ProductID].Amount += _view.Amount;
+                    _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount;
+                    return;
                 }
                 
                 _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount); // Добавляем продукты в список покупок
-                _view.Price += AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
+                _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }
             ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
