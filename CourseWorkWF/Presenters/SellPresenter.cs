@@ -1,13 +1,15 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Views;
 
 namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
-        private ISell _view;
-        private Dictionary<int,ProductCollectionItem> _buyProducts = new();
-        public SellPresenter(ISell view)
+        private ISellFormView _view;
+        private Dictionary<int,ProductsCollectionItem> _buyProducts = new();
+        public SellPresenter(ISellFormView view)
         {
             _view = view;
             _view.AddProductEvent += AddProduct;
@@ -27,7 +29,7 @@ namespace CourseWorkWF.Presenters
             _buyProducts.Clear();
         }
 
-        public Dictionary<int, ProductCollectionItem> GetBuyProductsList()
+        public Dictionary<int, ProductsCollectionItem> GetBuyProductsList()
         {
             return _buyProducts;
         }
@@ -64,7 +66,7 @@ namespace CourseWorkWF.Presenters
                     }
                 }
                 
-                _buyProducts[_view.ProductID] = new ProductCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount); // Добавляем продукты в список покупок
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount); // Добавляем продукты в список покупок
                 _view.Price += AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }
@@ -72,9 +74,14 @@ namespace CourseWorkWF.Presenters
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            Sell buy = new Sell(_buyProducts, _view.TransactionMethod, _view.Price, _view.CashierName, _view.Discount);
+            List<ProductsCollectionItem> products = new List<ProductsCollectionItem>();
+            foreach(var item in _buyProducts) 
+            {
+                products.Add(item.Value);
+            }
+            Sell sell = new Sell(1, products, _view.Price, _view.OperationMethod);
 
-            _view.Revenue += buy.MoneyAmount; // Увеличение выручки
+            Program.revenue.ChangeRevenue(sell); // Увеличение выручки
 
             AssortmentDictionary.Instance().RemoveProductsListInAssortment(_buyProducts);
             _buyProducts.Clear(); // Отчистка списка купленных продуктов

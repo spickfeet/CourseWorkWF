@@ -1,4 +1,4 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ModelInterface;
 using System.Collections.Generic;
 
 namespace CourseWorkWF.Models
@@ -7,11 +7,11 @@ namespace CourseWorkWF.Models
     {
         private static AssortmentDictionary? _instance = null;
 
-        private Dictionary<int, ProductCollectionItem> _productsAssortment;
-        public Dictionary<int, ProductCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
+        private Dictionary<int, ProductsCollectionItem> _productsAssortment;
+        public Dictionary<int, ProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
         private AssortmentDictionary()
         {
-            ProductsAssortment = new Dictionary<int, ProductCollectionItem>();
+            ProductsAssortment = new Dictionary<int, ProductsCollectionItem>();
         }
         public static AssortmentDictionary Instance() // Можно убрать параметры тк _productsAssortment = new()
         {
@@ -28,7 +28,7 @@ namespace CourseWorkWF.Models
                 ProductsAssortment[productID].Amount += amount;
                 return;
             }
-            ProductsAssortment[productID] = new ProductCollectionItem(product, amount);
+            ProductsAssortment[productID] = new ProductsCollectionItem(product, amount);
         }
         public void RemoveProductsInAssortment(int productID, decimal amount)
         {
@@ -40,9 +40,9 @@ namespace CourseWorkWF.Models
             }
         }
 
-        public void RemoveProductsListInAssortment(Dictionary<int, ProductCollectionItem> products)
+        public void RemoveProductsListInAssortment(Dictionary<int, ProductsCollectionItem> products)
         {
-            foreach (KeyValuePair<int, ProductCollectionItem> product in products)
+            foreach (KeyValuePair<int, ProductsCollectionItem> product in products)
             {
                 RemoveProductsInAssortment(product.Key, product.Value.Amount);
             }

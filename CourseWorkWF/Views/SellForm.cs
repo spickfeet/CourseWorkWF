@@ -1,56 +1,48 @@
-﻿using CourseWorkWF.Interface;
-using CourseWorkWF.Models;
+﻿using CourseWorkWF.Models;
+using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
 
 namespace CourseWorkWF.Views
 {
-    public partial class SellForm : Form, ISell
+    public partial class SellForm : Form, ISellFormView
     {
         private Form _prevForm;
         private SellPresenter _presenter;
-
-
-        decimal ISell.Revenue
-        {
-            get { return decimal.Parse(textBoxRevenue.Text); }
-            set { textBoxRevenue.Text = value.ToString(); }
-        }
-        int ISell.Discount
+        int ISellFormView.Discount
         {
             get { return int.Parse(comboBoxDiscount.Text); }
-            set { comboBoxDiscount.Text = value.ToString(); }
         }
-        string ISell.TransactionMethod
+        OperationMethod ISellFormView.OperationMethod
         {
-            get { return comboBoxTransactionMethod.Text; }
-            set { comboBoxTransactionMethod.Text = value; }
+            get
+            {
+                if (comboBoxOperationMethod.Text == "Наличные") return OperationMethod.Card;
+                if (comboBoxOperationMethod.Text == "Карта") return OperationMethod.Cash;
+                throw new Exception("Не выбран способ оплаты");
+            }
         }
-        decimal ISell.Cash
+        decimal ISellFormView.Cash
         {
             get { return numericUpDownCash.Value; }
-            set { numericUpDownCash.Value = value; }
         }
-        decimal ISell.MoneyChangeBuyer
+        decimal ISellFormView.MoneyChangeBuyer
         {
             get { return decimal.Parse(textBoxMoneyChangeBuyer.Text); }
             set { textBoxMoneyChangeBuyer.Text = value.ToString(); }
         }
-        string ISell.CashierName
+        string ISellFormView.CashierName
         {
             get { return textBoxCashierName.Text; }
-            set { textBoxCashierName.Text = value; }
         }
-        int ISell.ProductID
+        int ISellFormView.ProductID
         {
             get { return (int)numericUpDownProductID.Value; }
-            set { numericUpDownAmount.Value = value; }
         }
-        decimal ISell.Amount
+        decimal ISellFormView.Amount
         {
             get { return (int)numericUpDownAmount.Value; }
-            set { numericUpDownAmount.Value = value; }
         }
-        decimal ISell.Price
+        decimal ISellFormView.Price
         {
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
@@ -61,6 +53,7 @@ namespace CourseWorkWF.Views
             _prevForm.Hide();
             InitializeComponent();
             _presenter = new(this);
+            textBoxRevenue.Text = Convert.ToString(Program.revenue.Revenue);
 
             FormClosed += OnClosed;
 
@@ -106,7 +99,7 @@ namespace CourseWorkWF.Views
             // Вывод в listViewBuyProducts
             listViewBuyProducts.Items.Clear();
             int column = 0;
-            foreach (KeyValuePair<int, ProductCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
+            foreach (KeyValuePair<int, ProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.Name.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
@@ -119,18 +112,19 @@ namespace CourseWorkWF.Views
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
             SellEvent?.Invoke(this, EventArgs.Empty);
+            textBoxRevenue.Text = Convert.ToString(Program.revenue.Revenue);
 
-            comboBoxTransactionMethod.SelectedIndex = -1; // Сброс метода транзакции
+            comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
             comboBoxDiscount.SelectedIndex = 0; // Сброс скидки
             textBoxPrice.Text = "0"; // зануление цены стоимости продуктов
             listViewBuyProducts.Items.Clear(); // Отчистка ListView
             comboBoxDiscount.Enabled = false;
-            comboBoxTransactionMethod.Enabled = false;
+            comboBoxOperationMethod.Enabled = false;
         }
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxTransactionMethod.Enabled = true;
+            comboBoxOperationMethod.Enabled = true;
             DiscountEvent?.Invoke(this, EventArgs.Empty);
             if (comboBoxDiscount.SelectedIndex != 0)
             {
@@ -149,15 +143,15 @@ namespace CourseWorkWF.Views
                 comboBoxDiscount.Enabled = true;
                 buttonCancelDiscount.Enabled = false;
 
-                comboBoxTransactionMethod.SelectedIndex = 0;
+                comboBoxOperationMethod.SelectedIndex = 0;
                 numericUpDownCash.Value = 0;
                 textBoxMoneyChangeBuyer.Text = "0";
             }
         }
 
         private void ComboBoxTransactionMethod_SelectedIndexChanged(object sender, EventArgs e)
-        {           
-            if (comboBoxTransactionMethod.SelectedIndex == 1)
+        {
+            if (comboBoxOperationMethod.SelectedIndex == 1)
             {
                 labelCash.Visible = true;
                 numericUpDownCash.Visible = true;
@@ -165,7 +159,7 @@ namespace CourseWorkWF.Views
                 textBoxMoneyChangeBuyer.Visible = true;
                 buttonSell.Enabled = true;
             }
-            if (comboBoxTransactionMethod.SelectedIndex == 2)
+            if (comboBoxOperationMethod.SelectedIndex == 2)
             {
                 labelCash.Visible = false;
                 numericUpDownCash.Visible = false;
@@ -173,7 +167,7 @@ namespace CourseWorkWF.Views
                 textBoxMoneyChangeBuyer.Visible = false;
                 buttonSell.Enabled = true;
             }
-            if (comboBoxTransactionMethod.SelectedIndex == 0)
+            if (comboBoxOperationMethod.SelectedIndex == 0)
             {
                 labelCash.Visible = false;
                 numericUpDownCash.Visible = false;
@@ -196,8 +190,8 @@ namespace CourseWorkWF.Views
             textBoxPrice.Text = "0";
             comboBoxDiscount.SelectedIndex = 0;
             comboBoxDiscount.Enabled = false;
-            comboBoxTransactionMethod.SelectedIndex = 0;
-            comboBoxTransactionMethod.Enabled = false;
+            comboBoxOperationMethod.SelectedIndex = 0;
+            comboBoxOperationMethod.Enabled = false;
             buttonSell.Enabled = false;
             buttonCancel.Enabled = false;
 

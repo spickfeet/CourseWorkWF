@@ -1,15 +1,16 @@
-﻿namespace CourseWorkWF.Interface
+﻿using CourseWorkWF.Views;
+
+namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface ISell
+    public interface ISellFormView
     {
-        decimal Revenue { get; set; }
-        int Discount { get; set; }
-        string TransactionMethod { get; set; }
-        decimal Cash { get; set; }
+        int Discount { get; }
+        OperationMethod OperationMethod { get; }
+        decimal Cash { get; }
         decimal MoneyChangeBuyer { get; set; }
-        string CashierName { get; set; }
-        int ProductID { get; set; }
-        decimal Amount { get; set; }
+        string CashierName { get; }
+        int ProductID { get; }
+        decimal Amount { get; }
         decimal Price { get; set; }
         event EventHandler? AddProductEvent;
         event EventHandler? SellEvent;

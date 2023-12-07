@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF.Interface
+﻿namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface IRemoveAssortmentFormView
     {

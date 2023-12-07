@@ -1,4 +1,4 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
 using System;
 using System.Collections.Generic;

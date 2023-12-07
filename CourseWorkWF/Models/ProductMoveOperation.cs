@@ -1,14 +1,14 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ModelInterface;
 
 namespace CourseWorkWF.Models
 {
     public abstract class ProductsMoveOperation: IRevenueChanger
     {
-        private Dictionary<int, ProductCollectionItem> _productsList;
+        private Dictionary<int, ProductsCollectionItem> _productsList;
         private string _transactionMethod;
         private decimal _moneyAmount;
         private string _cashierName;
-        public Dictionary<int, ProductCollectionItem> ProductsList
+        public Dictionary<int, ProductsCollectionItem> ProductsList
         {
             get { return _productsList; }
             set 
@@ -36,7 +36,7 @@ namespace CourseWorkWF.Models
             get { return _cashierName; } 
             set { _cashierName = value; } 
         }
-        public ProductsMoveOperation(Dictionary<int, ProductCollectionItem> _productsList, string transactionMetod, decimal moneyAmount, string cashierrName)
+        public ProductsMoveOperation(Dictionary<int, ProductsCollectionItem> _productsList, string transactionMetod, decimal moneyAmount, string cashierrName)
         {
             TransactionMethod = transactionMetod;
             MoneyAmount = moneyAmount;

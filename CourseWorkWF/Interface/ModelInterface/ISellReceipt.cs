@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseWorkWF.Interface
+namespace CourseWorkWF.Interface.ModelInterface
 {
-    public interface IRevenueChanger
+    public interface ISellReceipt
     {
-        public decimal ChangeRevenue(decimal revenue);
+
     }
 }

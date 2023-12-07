@@ -1,8 +1,8 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ModelInterface;
 
 namespace CourseWorkWF.Models
 {
-    public class ProductCollectionItem
+    public class ProductsCollectionItem
     {
         private IProduct _product;
         private decimal _amount;
@@ -16,7 +16,7 @@ namespace CourseWorkWF.Models
             get { return _amount; }
             set { if (value < 0) throw new AccessViolationException("Количество продукта не может быть отрицательным"); _amount = value; }
         }
-        public ProductCollectionItem(IProduct product, decimal amount)
+        public ProductsCollectionItem(IProduct product, decimal amount)
         {
             Product = product;
             Amount = amount;

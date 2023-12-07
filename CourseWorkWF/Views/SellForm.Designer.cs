@@ -33,7 +33,7 @@
             comboBoxDiscount = new ComboBox();
             labelDiscount = new Label();
             labelPayMethod = new Label();
-            comboBoxTransactionMethod = new ComboBox();
+            comboBoxOperationMethod = new ComboBox();
             labelProductID = new Label();
             textBoxCashierName = new TextBox();
             labelCashierName = new Label();
@@ -104,18 +104,18 @@
             labelPayMethod.TabIndex = 4;
             labelPayMethod.Text = "Способ оплаты";
             // 
-            // comboBoxTransactionMethod
+            // comboBoxOperationMethod
             // 
-            comboBoxTransactionMethod.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxTransactionMethod.Enabled = false;
-            comboBoxTransactionMethod.FormattingEnabled = true;
-            comboBoxTransactionMethod.Items.AddRange(new object[] { "", "Наличные", "Карта" });
-            comboBoxTransactionMethod.Location = new Point(139, 196);
-            comboBoxTransactionMethod.Name = "comboBoxTransactionMethod";
-            comboBoxTransactionMethod.Size = new Size(121, 23);
-            comboBoxTransactionMethod.TabIndex = 3;
-            comboBoxTransactionMethod.UseWaitCursor = true;
-            comboBoxTransactionMethod.SelectedIndexChanged += ComboBoxTransactionMethod_SelectedIndexChanged;
+            comboBoxOperationMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOperationMethod.Enabled = false;
+            comboBoxOperationMethod.FormattingEnabled = true;
+            comboBoxOperationMethod.Items.AddRange(new object[] { "", "Наличные", "Карта" });
+            comboBoxOperationMethod.Location = new Point(139, 196);
+            comboBoxOperationMethod.Name = "comboBoxOperationMethod";
+            comboBoxOperationMethod.Size = new Size(121, 23);
+            comboBoxOperationMethod.TabIndex = 3;
+            comboBoxOperationMethod.UseWaitCursor = true;
+            comboBoxOperationMethod.SelectedIndexChanged += ComboBoxTransactionMethod_SelectedIndexChanged;
             // 
             // labelProductID
             // 
@@ -340,7 +340,7 @@
             Controls.Add(textBoxCashierName);
             Controls.Add(labelProductID);
             Controls.Add(labelPayMethod);
-            Controls.Add(comboBoxTransactionMethod);
+            Controls.Add(comboBoxOperationMethod);
             Controls.Add(labelDiscount);
             Controls.Add(comboBoxDiscount);
             Controls.Add(textBoxPrice);
@@ -361,7 +361,7 @@
         private ComboBox comboBoxDiscount;
         private Label labelDiscount;
         private Label labelPayMethod;
-        private ComboBox comboBoxTransactionMethod;
+        private ComboBox comboBoxOperationMethod;
         private Label labelProductID;
         private TextBox textBoxCashierName;
         private Label labelCashierName;

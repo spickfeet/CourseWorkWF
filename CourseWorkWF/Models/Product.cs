@@ -1,4 +1,4 @@
-﻿using CourseWorkWF.Interface;
+﻿using CourseWorkWF.Interface.ModelInterface;
 
 namespace CourseWorkWF.Models
 {
