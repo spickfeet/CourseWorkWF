@@ -11,7 +11,15 @@ namespace CourseWorkWF.Models
         public Dictionary<int, ProductCollectionItem> ProductsList
         {
             get { return _productsList; }
-            set { if (value == null) throw new ArgumentNullException("Попытка сделать список пустым"); _productsList = value; }
+            set 
+            {
+                if (value == null) throw new ArgumentNullException("Попытка сделать список null");
+                _productsList = new();
+                foreach (var item in value)
+                {
+                    _productsList[item.Key] = item.Value;
+                }
+            }
         }
         public string TransactionMethod 
         {

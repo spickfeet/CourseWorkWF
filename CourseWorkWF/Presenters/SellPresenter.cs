@@ -6,7 +6,7 @@ namespace CourseWorkWF.Presenters
     public class SellPresenter
     {
         private ISell _view;
-        private BuyProductsDictionary _buyProducts = new();
+        private Dictionary<int,ProductCollectionItem> _buyProducts = new();
         public SellPresenter(ISell view)
         {
             _view = view;
@@ -24,10 +24,10 @@ namespace CourseWorkWF.Presenters
 
         private void CancelBuyProducts(object? sender, EventArgs e)
         {
-            _buyProducts.BuyProductDictionary.Clear();
+            _buyProducts.Clear();
         }
 
-        public BuyProductsDictionary GetBuyProductsList()
+        public Dictionary<int, ProductCollectionItem> GetBuyProductsList()
         {
             return _buyProducts;
         }
@@ -55,16 +55,16 @@ namespace CourseWorkWF.Presenters
                     AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                     return;
                 }
-                if(_buyProducts.BuyProductDictionary.ContainsKey(_view.ProductID) == true)
+                if(_buyProducts.ContainsKey(_view.ProductID) == true)
                 {
-                    if ((AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Amount - _buyProducts.BuyProductDictionary[_view.ProductID].Amount - _view.Amount) < 0)
+                    if ((AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Amount - _buyProducts[_view.ProductID].Amount - _view.Amount) < 0)
                     {
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
                     }
                 }
                 
-                _buyProducts.AddProducts(_view.ProductID, new ProductCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount)); // Добавляем продукты в список покупок
+                _buyProducts[_view.ProductID] = new ProductCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount); // Добавляем продукты в список покупок
                 _view.Price += AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }
@@ -72,12 +72,12 @@ namespace CourseWorkWF.Presenters
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            Sell buy = new Sell(_buyProducts.BuyProductDictionary, _view.TransactionMethod, _view.Price, _view.CashierName, _view.Discount);
+            Sell buy = new Sell(_buyProducts, _view.TransactionMethod, _view.Price, _view.CashierName, _view.Discount);
 
             _view.Revenue += buy.MoneyAmount; // Увеличение выручки
 
-            AssortmentDictionary.Instance().RemoveProductsListInAssortment(_buyProducts.BuyProductDictionary);
-            _buyProducts.BuyProductDictionary.Clear(); // Отчистка списка купленных продуктов
+            AssortmentDictionary.Instance().RemoveProductsListInAssortment(_buyProducts);
+            _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }
     }
 }

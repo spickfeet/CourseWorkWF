@@ -97,7 +97,7 @@ namespace CourseWorkWF.Views
             AddProductEvent?.Invoke(this, EventArgs.Empty);
             numericUpDownProductID.Value = 1;
 
-            if (_presenter.GetBuyProductsList().BuyProductDictionary.Count != 0) // проверяем пустой ли список продуктов
+            if (_presenter.GetBuyProductsList().Count != 0) // проверяем пустой ли список продуктов
             {
                 comboBoxDiscount.Enabled = true;
                 buttonCancel.Enabled = true;
@@ -106,7 +106,7 @@ namespace CourseWorkWF.Views
             // Вывод в listViewBuyProducts
             listViewBuyProducts.Items.Clear();
             int column = 0;
-            foreach (KeyValuePair<int, ProductCollectionItem> productCollectionItem in _presenter.GetBuyProductsList().BuyProductDictionary)
+            foreach (KeyValuePair<int, ProductCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.Name.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
