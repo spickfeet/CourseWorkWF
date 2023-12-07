@@ -1,4 +1,7 @@
-﻿namespace CourseWorkWF
+﻿using CourseWorkWF.Interface;
+using CourseWorkWF.Models;
+
+namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
@@ -69,8 +72,7 @@
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            Buy buy = new Buy(_view.TransactionMethod, _view.Price, _view.CashierName,
-                _buyProducts, _view.Discount);
+            Sell buy = new Sell(_buyProducts.BuyProductDictionary, _view.TransactionMethod, _view.Price, _view.CashierName, _view.Discount);
 
             _view.Revenue += buy.MoneyAmount; // Увеличение выручки
 

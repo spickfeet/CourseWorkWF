@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CourseWorkWF.Interface;
+using CourseWorkWF.Presenters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CourseWorkWF
+namespace CourseWorkWF.Views
 {
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {

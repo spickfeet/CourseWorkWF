@@ -1,4 +1,7 @@
-﻿namespace CourseWorkWF
+﻿using CourseWorkWF.Interface;
+using CourseWorkWF.Models;
+
+namespace CourseWorkWF.Presenters
 {
     public class AddAsortmentPresenter
     {

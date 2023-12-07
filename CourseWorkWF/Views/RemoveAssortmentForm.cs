@@ -1,4 +1,7 @@
-﻿namespace CourseWorkWF
+﻿using CourseWorkWF.Interface;
+using CourseWorkWF.Presenters;
+
+namespace CourseWorkWF.Views
 {
     public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {

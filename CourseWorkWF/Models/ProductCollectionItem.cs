@@ -1,4 +1,6 @@
-﻿namespace CourseWorkWF
+﻿using CourseWorkWF.Interface;
+
+namespace CourseWorkWF.Models
 {
     public class ProductCollectionItem
     {
@@ -18,11 +20,6 @@
         {
             Product = product;
             Amount = amount;
-        }
-        public ProductCollectionItem(ProductCollectionItem productCollectionItem)
-        {
-            Product = productCollectionItem.Product;
-            Amount = productCollectionItem.Amount;
         }
     }
 }

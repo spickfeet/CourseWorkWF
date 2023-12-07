@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF
+﻿namespace CourseWorkWF.Interface
 {
     public interface IAddAssortmentFormView
     {

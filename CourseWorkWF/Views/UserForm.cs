@@ -1,4 +1,6 @@
-namespace CourseWorkWF
+using CourseWorkWF.Models;
+
+namespace CourseWorkWF.Views
 {
     public partial class UserForm : Form
     {

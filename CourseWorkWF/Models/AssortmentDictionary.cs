@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CourseWorkWF.Interface;
+using System.Collections.Generic;
 
-namespace CourseWorkWF
+namespace CourseWorkWF.Models
 {
     public class AssortmentDictionary
     {
@@ -21,7 +22,7 @@ namespace CourseWorkWF
 
         public void AddProducts(int productID, string name, decimal price, int amount)
         {
-            IProduct product = new Product(name, price);
+            IProduct product = new Product(name, price, productID);
             if (ProductsAssortment.ContainsKey(productID) == true)
             {
                 ProductsAssortment[productID].Amount += amount;

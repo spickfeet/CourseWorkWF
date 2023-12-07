@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF
+﻿namespace CourseWorkWF.Views
 {
     partial class AddAssortmentForm
     {

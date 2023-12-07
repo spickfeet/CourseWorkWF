@@ -1,4 +1,4 @@
-﻿namespace CourseWorkWF
+﻿namespace CourseWorkWF.Models
 {
     public class BuyProductsDictionary
     {

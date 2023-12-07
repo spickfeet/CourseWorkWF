@@ -1,4 +1,8 @@
-﻿namespace CourseWorkWF
+﻿using CourseWorkWF.Interface;
+using CourseWorkWF.Models;
+using CourseWorkWF.Presenters;
+
+namespace CourseWorkWF.Views
 {
     public partial class SellForm : Form, ISell
     {

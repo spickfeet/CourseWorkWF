@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface
 {
-    public interface IProduct
+    public interface IRevenueChanger
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        public decimal ChangeRevenue(decimal revenue);
     }
 }
