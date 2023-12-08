@@ -25,7 +25,11 @@ namespace CourseWorkWF.Models
         public string? Patronymic { get; set; }
         public FullName(string name, string surname, string? patronymic) 
         {
+            Name = name;
+            Surname = surname;
+            Patronymic = patronymic;
+
 
         }
-    }
+}
 }
