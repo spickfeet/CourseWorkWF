@@ -22,7 +22,7 @@ namespace CourseWorkWF.Models
         public string Reason 
         {
             get { return _reason; }
-            set { if (value == null || value == "") throw new ArgumentNullException("Причина возврата не может быть пустой"); _reason = value; }
+            set { if (value == null || value == "") throw new Exception("Причина возврата не может быть пустой"); _reason = value; }
         }
 
         public Refund(int refundID, IEnumerable<ProductsCollectionItem> products, decimal moneyAmount, OperationMethod payMethod, string reason)
