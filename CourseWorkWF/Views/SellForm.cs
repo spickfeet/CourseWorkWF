@@ -16,8 +16,8 @@ namespace CourseWorkWF.Views
         {
             get
             {
-                if (comboBoxOperationMethod.Text == "Наличные") return OperationMethod.Card;
-                if (comboBoxOperationMethod.Text == "Карта") return OperationMethod.Cash;
+                if (comboBoxOperationMethod.Text == "Карта") return OperationMethod.Card;
+                if (comboBoxOperationMethod.Text == "НаличныеКарта") return OperationMethod.Cash;
                 throw new Exception("Не выбран способ оплаты");
             }
         }

@@ -22,13 +22,12 @@ namespace CourseWorkWF.Models
 
         public void AddProducts(int productID, string name, decimal price, int amount)
         {
-            IProduct product = new Product(name, price, productID);
             if (ProductsAssortment.ContainsKey(productID) == true)
             {
                 ProductsAssortment[productID].Amount += amount;
                 return;
             }
-            ProductsAssortment[productID] = new ProductsCollectionItem(product, amount);
+            ProductsAssortment[productID] = new ProductsCollectionItem(name, price, productID, amount);
         }
         public void RemoveProductsInAssortment(int productID, decimal amount)
         {

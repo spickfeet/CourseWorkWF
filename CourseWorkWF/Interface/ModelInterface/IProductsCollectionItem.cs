@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ModelInterface
 {
-    public interface IProduct
+    public interface IProductsCollectionItem
     {
-        public int ProductID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        IProduct Product { get; set; }
+        decimal Amount { get; set; }
     }
 }

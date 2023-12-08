@@ -69,7 +69,9 @@ namespace CourseWorkWF.Presenters
                     return;
                 }
                 
-                _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product,_view.Amount); // Добавляем продукты в список покупок
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Name, 
+                    AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price, 
+                    AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.ProductID, _view.Amount); // Добавляем продукты в список покупок
                 _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }

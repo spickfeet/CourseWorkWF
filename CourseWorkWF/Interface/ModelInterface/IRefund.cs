@@ -11,7 +11,7 @@ namespace CourseWorkWF.Interface.ModelInterface
     {
         IMoneyOperation MoneyOperation { get; set; }
         int RefundID { get; set; }
-        IEnumerable<ProductsCollectionItem> Products { get; set; }
+        IEnumerable<IProductsCollectionItem> Products { get; set; }
         string Reason { get; set; } 
     }
 }

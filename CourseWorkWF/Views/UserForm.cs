@@ -4,7 +4,6 @@ namespace CourseWorkWF.Views
 {
     public partial class UserForm : Form
     {
-        private AssortmentDictionary _assortment;
         public UserForm()
         {
             InitializeComponent();

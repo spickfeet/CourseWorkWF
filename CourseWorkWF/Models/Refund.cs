@@ -7,14 +7,14 @@ namespace CourseWorkWF.Models
     {
         private string _reason;
         private int _refundID;
-        private IEnumerable<ProductsCollectionItem> _products;
+        private IEnumerable<IProductsCollectionItem> _products;
         public IMoneyOperation MoneyOperation { get; set; }
         public int RefundID
         {
             get { return _refundID; }
             set { if (value < 0) throw new AccessViolationException("Попытка задать отрицательное ID возврата"); _refundID = value; }
         }
-        public IEnumerable<ProductsCollectionItem> Products
+        public IEnumerable<IProductsCollectionItem> Products
         {
             get { return _products; }
             set { if (value == null) throw new ArgumentNullException("Колекция продуктов не может быть null"); _products = value; }
