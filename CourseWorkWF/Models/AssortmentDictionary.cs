@@ -7,11 +7,11 @@ namespace CourseWorkWF.Models
     {
         private static AssortmentDictionary? _instance = null;
 
-        private Dictionary<int, ProductsCollectionItem> _productsAssortment;
-        public Dictionary<int, ProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
+        private Dictionary<int, IProductsCollectionItem> _productsAssortment;
+        public Dictionary<int, IProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
         private AssortmentDictionary()
         {
-            ProductsAssortment = new Dictionary<int, ProductsCollectionItem>();
+            ProductsAssortment = new Dictionary<int, IProductsCollectionItem>();
         }
         public static AssortmentDictionary Instance() // Можно убрать параметры тк _productsAssortment = new()
         {
@@ -39,9 +39,9 @@ namespace CourseWorkWF.Models
             }
         }
 
-        public void RemoveProductsListInAssortment(Dictionary<int, ProductsCollectionItem> products)
+        public void RemoveProductsListInAssortment(Dictionary<int, IProductsCollectionItem> products)
         {
-            foreach (KeyValuePair<int, ProductsCollectionItem> product in products)
+            foreach (KeyValuePair<int, IProductsCollectionItem> product in products)
             {
                 RemoveProductsInAssortment(product.Key, product.Value.Amount);
             }

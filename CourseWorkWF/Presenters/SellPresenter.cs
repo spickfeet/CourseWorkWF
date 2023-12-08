@@ -8,7 +8,7 @@ namespace CourseWorkWF.Presenters
     public class SellPresenter
     {
         private ISellFormView _view;
-        private Dictionary<int,ProductsCollectionItem> _buyProducts = new();
+        private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
         public SellPresenter(ISellFormView view)
         {
             _view = view;
@@ -79,7 +79,7 @@ namespace CourseWorkWF.Presenters
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            List<ProductsCollectionItem> products = new List<ProductsCollectionItem>();
+            List<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
             foreach(var item in _buyProducts) 
             {
                 products.Add(item.Value);
