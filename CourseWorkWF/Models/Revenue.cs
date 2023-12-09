@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Models
 {
-    public class Proceeds : IRevenue
+    public class Revenue : IRevenue
     {
-        public decimal Revenue { get; set; }
-        public Proceeds(decimal revenue)
+        public decimal Proceeds { get; set; }
+        public Revenue(decimal poceeds)
         {
-            Revenue = revenue;
+            Proceeds = poceeds;
         }
         public void ChangeRevenue(IRevenueChanger revenueChenger)
         {
-            Revenue = revenueChenger.ChangeRevenue(Revenue);
+            Proceeds = revenueChenger.ChangeRevenue(Proceeds);
         }
     }
 }

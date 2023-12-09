@@ -1,4 +1,5 @@
-﻿using CourseWorkWF.Models;
+﻿using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Models;
 
 namespace CourseWorkWF.Views
 {
@@ -41,7 +42,7 @@ namespace CourseWorkWF.Views
         {
             listViewAssortment.Items.Clear();
             int column = 0;
-            foreach (KeyValuePair<int, ProductsCollectionItem> productCollectionItem in AssortmentDictionary.Instance().ProductsAssortment)
+            foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in AssortmentDictionary.Instance().ProductsAssortment)
             {
                 listViewAssortment.Items.Add(productCollectionItem.Value.Product.Name);
                 listViewAssortment.Items[column].SubItems.Add(productCollectionItem.Key.ToString());

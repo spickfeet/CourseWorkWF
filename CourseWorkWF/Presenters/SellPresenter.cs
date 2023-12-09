@@ -29,7 +29,7 @@ namespace CourseWorkWF.Presenters
             _buyProducts.Clear();
         }
 
-        public Dictionary<int, ProductsCollectionItem> GetBuyProductsList()
+        public Dictionary<int, IProductsCollectionItem> GetBuyProductsList()
         {
             return _buyProducts;
         }
@@ -69,9 +69,7 @@ namespace CourseWorkWF.Presenters
                     return;
                 }
                 
-                _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Name, 
-                    AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.Price, 
-                    AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product.ProductID, _view.Amount); // Добавляем продукты в список покупок
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(AssortmentDictionary.Instance().ProductsAssortment[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
                 _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }
@@ -87,8 +85,10 @@ namespace CourseWorkWF.Presenters
             Sell sell = new Sell(1, products, _view.Price, _view.OperationMethod);
 
             Program.revenue.ChangeRevenue(sell); // Увеличение выручки
-
-            AssortmentDictionary.Instance().RemoveProductsListInAssortment(_buyProducts);
+            foreach(IProductsCollectionItem item in products)
+            {
+                AssortmentDictionary.Instance().RemoveProducts(item.Product.ProductID, item.Amount);
+            }
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }
     }

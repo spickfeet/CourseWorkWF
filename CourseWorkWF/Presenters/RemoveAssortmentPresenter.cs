@@ -14,7 +14,7 @@ namespace CourseWorkWF.Presenters
         {
             if(AssortmentDictionary.Instance().ProductsAssortment.ContainsKey(_view.ProductID) == true)
             {
-                AssortmentDictionary.Instance().RemoveProductsInAssortment(_view.ProductID, _view.Amount);
+                AssortmentDictionary.Instance().RemoveProducts(_view.ProductID, _view.Amount);
                 return true;
             }
             return false;

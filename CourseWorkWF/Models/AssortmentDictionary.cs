@@ -1,17 +1,29 @@
-﻿using CourseWorkWF.Interface.ModelInterface;
+﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesIterface;
+using CourseWorkWF.Interface.ModelInterface;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace CourseWorkWF.Models
 {
-    public class AssortmentDictionary
+    public class AssortmentDictionary: IAssortment
     {
+        private IAssortmentDataBase _assortmentDataBase;
         private static AssortmentDictionary? _instance = null;
 
-        private Dictionary<int, IProductsCollectionItem> _productsAssortment;
-        public Dictionary<int, IProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
+        private IDictionary<int, IProductsCollectionItem> _productsAssortment;
+        public IDictionary<int, IProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
         private AssortmentDictionary()
         {
-            ProductsAssortment = new Dictionary<int, IProductsCollectionItem>();
+            _assortmentDataBase = new AssortmentDataBase();
+            if(_assortmentDataBase.Load() == null)
+            {
+                ProductsAssortment = new Dictionary<int, IProductsCollectionItem>();
+            }
+            else
+                ProductsAssortment = _assortmentDataBase.Load();
         }
         public static AssortmentDictionary Instance() // Можно убрать параметры тк _productsAssortment = new()
         {
@@ -22,30 +34,13 @@ namespace CourseWorkWF.Models
 
         public void AddProducts(int productID, string name, decimal price, int amount)
         {
-            if (ProductsAssortment.ContainsKey(productID) == true)
-            {
-                ProductsAssortment[productID].Amount += amount;
-                return;
-            }
-            ProductsAssortment[productID] = new ProductsCollectionItem(name, price, productID, amount);
+            _assortmentDataBase.Add(new ProductsCollectionItem(new Product(name, price, amount), amount));
+            ProductsAssortment = _assortmentDataBase.Load();
         }
-        public void RemoveProductsInAssortment(int productID, decimal amount)
+        public void RemoveProducts(int productID, decimal amount)
         {
-            if (ProductsAssortment.ContainsKey(productID) == true)
-            {
-                if (ProductsAssortment[productID].Amount > amount)
-                    ProductsAssortment[productID].Amount -= amount;
-                else ProductsAssortment.Remove(productID);
-            }
-        }
-
-        public void RemoveProductsListInAssortment(Dictionary<int, IProductsCollectionItem> products)
-        {
-            foreach (KeyValuePair<int, IProductsCollectionItem> product in products)
-            {
-                RemoveProductsInAssortment(product.Key, product.Value.Amount);
-            }
-
+            _assortmentDataBase.Delete(productID, amount);
+            ProductsAssortment = _assortmentDataBase.Load();
         }
     }
 }

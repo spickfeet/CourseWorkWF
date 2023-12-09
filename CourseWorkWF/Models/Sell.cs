@@ -21,7 +21,7 @@ namespace CourseWorkWF.Models
 
         public IMoneyOperation MoneyOperation { get; set; }
 
-        public Sell(int sellID, IEnumerable<ProductsCollectionItem> products, decimal price, OperationMethod payMethod)
+        public Sell(int sellID, IList<IProductsCollectionItem> products, decimal price, OperationMethod payMethod)
         {
             SellID = sellID;
             Products = products;

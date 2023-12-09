@@ -16,9 +16,9 @@ namespace CourseWorkWF.Models
             get { return _amount; }
             set { if (value < 0) throw new AccessViolationException("Количество продукта не может быть отрицательным"); _amount = value; }
         }
-        public ProductsCollectionItem(string productName, decimal price, int productID, decimal amount)
+        public ProductsCollectionItem(IProduct product, decimal amount)
         {
-            Product = new Product(productName, price, productID);
+            Product = product;
             Amount = amount;
         }
     }

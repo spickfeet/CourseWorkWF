@@ -1,6 +1,7 @@
 ﻿using CourseWorkWF.Models;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Interface.ModelInterface;
 
 namespace CourseWorkWF.Views
 {
@@ -53,7 +54,7 @@ namespace CourseWorkWF.Views
             _prevForm.Hide();
             InitializeComponent();
             _presenter = new(this);
-            textBoxRevenue.Text = Convert.ToString(Program.revenue.Revenue);
+            textBoxRevenue.Text = Convert.ToString(Program.revenue.Proceeds);
 
             FormClosed += OnClosed;
 
@@ -99,7 +100,7 @@ namespace CourseWorkWF.Views
             // Вывод в listViewBuyProducts
             listViewBuyProducts.Items.Clear();
             int column = 0;
-            foreach (KeyValuePair<int, ProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
+            foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.Name.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
@@ -112,7 +113,7 @@ namespace CourseWorkWF.Views
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
             SellEvent?.Invoke(this, EventArgs.Empty);
-            textBoxRevenue.Text = Convert.ToString(Program.revenue.Revenue);
+            textBoxRevenue.Text = Convert.ToString(Program.revenue.Proceeds);
 
             comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
             comboBoxDiscount.SelectedIndex = 0; // Сброс скидки
