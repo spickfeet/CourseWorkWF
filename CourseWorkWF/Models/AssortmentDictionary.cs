@@ -12,6 +12,7 @@ namespace CourseWorkWF.Models
     {
         private IAssortmentDataBase _assortmentDataBase;
         private IDictionary<int, IProductsCollectionItem> _productsAssortment;
+        public IAssortmentDataBase AssortmentDataBase { get { return _assortmentDataBase; } }
         public IDictionary<int, IProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
         public AssortmentDictionary()
         {

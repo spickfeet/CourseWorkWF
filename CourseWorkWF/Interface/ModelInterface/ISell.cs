@@ -6,7 +6,7 @@ namespace CourseWorkWF.Interface.ModelInterface
     public interface ISell 
     {
         int SellID { get; set; }
-        IEnumerable<IProductsCollectionItem> Products { get; set; }
+        IList<IProductsCollectionItem> Products { get; set; }
         IMoneyOperation MoneyOperation { get; set; }
     }
 }
