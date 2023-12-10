@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Models.Enums;
 
 namespace CourseWorkWF.Views
 {

@@ -1,4 +1,5 @@
 ﻿using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Models.Enums;
 using CourseWorkWF.Views;
 
 namespace CourseWorkWF.Models
@@ -22,7 +23,7 @@ namespace CourseWorkWF.Models
         public string Reason 
         {
             get { return _reason; }
-            set { if (value == null || value == "") throw new Exception("Причина возврата не может быть пустой"); _reason = value; }
+            set { if (value == null || value == "") throw new ArgumentException("Причина возврата не может быть пустой"); _reason = value; }
         }
 
         public Refund(int refundID, IEnumerable<ProductsCollectionItem> products, decimal moneyAmount, OperationMethod payMethod, string reason)

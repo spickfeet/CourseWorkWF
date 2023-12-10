@@ -1,4 +1,5 @@
 ﻿using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Models.Enums;
 using CourseWorkWF.Views;
 
 namespace CourseWorkWF.Models

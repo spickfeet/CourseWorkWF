@@ -1,13 +1,9 @@
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Models;
+using System.Security.Policy;
 
 namespace CourseWorkWF.Views
 {
-    public enum OperationMethod
-    {
-        Cash,
-        Card
-    }
     internal static class Program
     {
         public static IRevenue revenue = new Revenue(0);
@@ -30,7 +26,6 @@ namespace CourseWorkWF.Views
             products[133301] = new ProductsCollectionItem(product3, 80);
             products[197801] = new ProductsCollectionItem(product4, 70);
             products[219901] = new ProductsCollectionItem(product5, 60);
-
             ApplicationConfiguration.Initialize();
             
             Application.Run(new UserForm());

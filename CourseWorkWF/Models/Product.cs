@@ -10,7 +10,7 @@ namespace CourseWorkWF.Models
         public string Name 
         {
             get { return _productName; } 
-            set { if (value == null || value == "") throw new Exception("Имя продукта не может быть пустое"); _productName = value; } 
+            set { if (value == null || value == "") throw new ArgumentException("Имя продукта не может быть пустое"); _productName = value; } 
         }
         public decimal Price 
         { 

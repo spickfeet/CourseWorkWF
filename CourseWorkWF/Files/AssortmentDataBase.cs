@@ -17,7 +17,7 @@ namespace CourseWorkWF.Files
 
         public void Add(IProductsCollectionItem productsCollectionItem)
         {
-            if (productsCollectionItem == null) throw new Exception("Передан пустой объект");
+            if (productsCollectionItem == null) throw new ArgumentException("Передан пустой объект");
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var assortment = File.Exists("Assortment.json") ? 
                 JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) : 
@@ -47,7 +47,7 @@ namespace CourseWorkWF.Files
                 
             File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment, Formatting.Indented, settings));
         }
-        public IDictionary<int, IProductsCollectionItem>? Load()
+        public IDictionary<int, IProductsCollectionItem> Load()
         {
             if (File.Exists("Assortment.json"))
             {
@@ -55,8 +55,8 @@ namespace CourseWorkWF.Files
                 var assortment = JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings);
                 return assortment;
             }
-            else 
-            { 
+            else
+            {
                 return new Dictionary<int, IProductsCollectionItem>();
             }
         }
