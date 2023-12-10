@@ -9,6 +9,6 @@ namespace CourseWorkWF.Interface.ModelInterface
     public interface IDiscount
     {
         decimal Discount { get; set; }
-        decimal UseDiscount(int price);
+        decimal UseDiscount(decimal price);
     }
 }
