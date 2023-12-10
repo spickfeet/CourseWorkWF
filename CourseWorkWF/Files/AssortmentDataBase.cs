@@ -57,12 +57,8 @@ namespace CourseWorkWF.Files
             }
             else 
             { 
-                return null;
+                return new Dictionary<int, IProductsCollectionItem>();
             }
-            //var assortment = File.Exists("Assortment.json") ?
-            //    JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json")) :
-            //    throw new Exception("Файл не существует");
-            //return assortment;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace CourseWorkWF.Presenters
 {
     public class RemoveAssortmentPresenter
     {
+        private AssortmentDictionary assortment = new();
         private IRemoveAssortmentFormView _view;
         public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
         {
@@ -12,9 +13,9 @@ namespace CourseWorkWF.Presenters
         }
         public bool RemoveProduct() 
         {
-            if(AssortmentDictionary.Instance().ProductsAssortment.ContainsKey(_view.ProductID) == true)
+            if(assortment.ProductsAssortment.ContainsKey(_view.ProductID) == true)
             {
-                AssortmentDictionary.Instance().RemoveProducts(_view.ProductID, _view.Amount);
+                assortment.RemoveProducts(_view.ProductID, _view.Amount);
                 return true;
             }
             return false;

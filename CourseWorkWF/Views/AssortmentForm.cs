@@ -1,16 +1,19 @@
 ﻿using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Presenters;
 
 namespace CourseWorkWF.Views
 {
     public partial class AssortmentForm : Form
     {
         private Form _prevForm;
+        private AssortmentPresenter _presenter;
         public AssortmentForm(Form prev)
         {
             _prevForm = prev;
             _prevForm.Hide();
             InitializeComponent();
+            _presenter = new AssortmentPresenter();
             FormClosed += OnClosed;
         }
 
@@ -40,9 +43,10 @@ namespace CourseWorkWF.Views
 
         private void UpdateList()
         {
+            _presenter.UpdateAssortment();
             listViewAssortment.Items.Clear();
             int column = 0;
-            foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in AssortmentDictionary.Instance().ProductsAssortment)
+            foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetAssortment())
             {
                 listViewAssortment.Items.Add(productCollectionItem.Value.Product.Name);
                 listViewAssortment.Items[column].SubItems.Add(productCollectionItem.Key.ToString());

@@ -11,35 +11,26 @@ namespace CourseWorkWF.Models
     public class AssortmentDictionary: IAssortment
     {
         private IAssortmentDataBase _assortmentDataBase;
-        private static AssortmentDictionary? _instance = null;
-
         private IDictionary<int, IProductsCollectionItem> _productsAssortment;
         public IDictionary<int, IProductsCollectionItem> ProductsAssortment { get { return _productsAssortment; } set { _productsAssortment = value; } }
-        private AssortmentDictionary()
+        public AssortmentDictionary()
         {
             _assortmentDataBase = new AssortmentDataBase();
-            if(_assortmentDataBase.Load() == null)
-            {
-                ProductsAssortment = new Dictionary<int, IProductsCollectionItem>();
-            }
-            else
-                ProductsAssortment = _assortmentDataBase.Load();
+            UpdateAssortment();
         }
-        public static AssortmentDictionary Instance() // Можно убрать параметры тк _productsAssortment = new()
-        {
-            if (_instance == null)
-                _instance = new AssortmentDictionary();
-            return _instance;
-        }
-
         public void AddProducts(int productID, string name, decimal price, int amount)
         {
-            _assortmentDataBase.Add(new ProductsCollectionItem(new Product(name, price, amount), amount));
-            ProductsAssortment = _assortmentDataBase.Load();
+            _assortmentDataBase.Add(new ProductsCollectionItem(new Product(name, price, productID), amount));
+            UpdateAssortment();
         }
         public void RemoveProducts(int productID, decimal amount)
         {
             _assortmentDataBase.Delete(productID, amount);
+            UpdateAssortment();
+        }
+
+        public void UpdateAssortment()
+        {
             ProductsAssortment = _assortmentDataBase.Load();
         }
     }

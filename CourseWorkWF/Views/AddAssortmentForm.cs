@@ -17,7 +17,7 @@ namespace CourseWorkWF.Views
         public AddAssortmentForm()
         {
             InitializeComponent();
-            _ = new AddAsortmentPresenter(this);
+            _ = new AddAssortmentPresenter(this);
         }
 
         int IAddAssortmentFormView.ProductID 

@@ -12,6 +12,7 @@ namespace CourseWorkWF.Interface.ModelInterface
         IDictionary<int, IProductsCollectionItem> ProductsAssortment { get; set; }
         void AddProducts(int productID, string name, decimal price, int amount);
         void RemoveProducts(int productID, decimal amount);
+        void UpdateAssortment();
 
     }
 }
