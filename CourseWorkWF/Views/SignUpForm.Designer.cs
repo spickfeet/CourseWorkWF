@@ -214,10 +214,12 @@
             // errorProviderLogin
             // 
             errorProviderLogin.ContainerControl = this;
+            errorProviderLogin.RightToLeft = true;
             // 
             // errorProviderPassword
             // 
             errorProviderPassword.ContainerControl = this;
+            errorProviderPassword.RightToLeft = true;
             // 
             // errorProviderName
             // 
@@ -230,6 +232,7 @@
             // errorProviderJobTitle
             // 
             errorProviderJobTitle.ContainerControl = this;
+            errorProviderJobTitle.RightToLeft = true;
             // 
             // errorProviderPatronymic
             // 

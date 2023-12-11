@@ -29,7 +29,7 @@ namespace CourseWorkWF.Views
             products[219901] = new ProductsCollectionItem(product5, 60);
             ApplicationConfiguration.Initialize();
             
-            Application.Run(new SignUpForm(null));
+            Application.Run(new LogInForm());
         }
     }
 }

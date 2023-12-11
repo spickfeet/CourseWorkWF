@@ -50,7 +50,7 @@ namespace Inf_Bez
         {
             _presenter = new(this);
             _prevForm = prev;
-            // _prevForm.Hide();
+            _prevForm.Hide();
             FormClosed += OnClosed;
             _presenter.LoginBusyErrorEvent += LoginBusy;
             _presenter.OnlyOneOwnerErrorEvent += OnlyOneOwner;
@@ -92,27 +92,31 @@ namespace Inf_Bez
             {
                 errorProviderLogin.SetError(textBoxLogin, "Логин не может быть пустым");
                 _haveError = true;
-            } // Пустой логин
+            } // пустой логин
             if (string.IsNullOrEmpty(textBoxPassword.Text))
             {
-                errorProviderPassword.SetError(textBoxLogin, "Пароль не может быть пустым");
+                errorProviderPassword.SetError(textBoxPassword, "Пароль не может быть пустым");
                 _haveError = true;
-            } // Пустой пароль
+            } // пустой пароль
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                errorProviderName.SetError(textBoxLogin, "Имя не может быть пустым");
+                errorProviderName.SetError(textBoxName, "Имя не может быть пустым");
                 _haveError = true;
-            } // Пустое имя
+            } // пустое имя
             if (string.IsNullOrEmpty(textBoxSurname.Text))
             {
-                errorProviderSurname.SetError(textBoxLogin, "Фамилия не может быть пустой");
+                errorProviderSurname.SetError(textBoxSurname, "Фамилия не может быть пустой");
                 _haveError = true;
-            } // Пустое имя
-
+            } // пустая фамилия
+            if (comboBoxJobTitle.SelectedIndex == -1)
+            {
+                errorProviderJobTitle.SetError(comboBoxJobTitle, "Выберите должность");
+                _haveError = true;
+            } // не выбрана должность
             if (_haveError == false)
             {
-                _presenter.SignUp();
-                Close();
+                if (_presenter.SignUp())
+                    Close();
             }
         }
 

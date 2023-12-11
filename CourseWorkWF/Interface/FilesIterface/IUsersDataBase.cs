@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.FilesIterface
 {
-    internal interface IUserDataBase
+    internal interface IUsersDataBase
     {
         void Add(IUser user);
         void Delete(string login);

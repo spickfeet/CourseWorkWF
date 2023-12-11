@@ -15,37 +15,38 @@ namespace CourseWorkWF.Presenters
 {
     public class SignUpPresenter
     {
-        private IUserDataBase _userDataBase;
+        private IUsersDataBase _userData;
         private ISignUpFormView _view;
         public event EventHandler? LoginBusyErrorEvent;
         public event EventHandler? OnlyOneOwnerErrorEvent;
         public SignUpPresenter(ISignUpFormView view ) 
         { 
             _view = view;
-            _userDataBase = new UserDataBase();
+            _userData = new UsersDataBase();
         }
-        public void SignUp()
+        public bool SignUp()
             {
-                IList<IUser> users = _userDataBase.Load();
+                IList<IUser> users = _userData.Load();
 
                 foreach(var item in users) 
                 { 
                     if(item.Login == _view.Login)
                     {
                         LoginBusyErrorEvent?.Invoke(this,EventArgs.Empty); 
-                        return;
+                        return false;
                     }
                     if (_view.Post == JobTitle.Owner)
                     {
                         if(item.Post == _view.Post)
                         {
                             OnlyOneOwnerErrorEvent?.Invoke(this, EventArgs.Empty);
-                            return;
+                            return false;
                         }
                     }
                 }
             IUser user = new User(_view.Login, _view.Password, new FullName(_view.Name, _view.Surname, _view.Patronymic), _view.Post);
-            _userDataBase.Add(user);
+            _userData.Add(user);
+            return true;
         }
     }
 }

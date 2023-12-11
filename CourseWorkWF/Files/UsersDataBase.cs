@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class UserDataBase : IUserDataBase
+    public class UsersDataBase : IUsersDataBase
     {
         public void Add(IUser user)
         {

@@ -1,3 +1,6 @@
+using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Presenters;
+using CourseWorkWF.Views;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
@@ -5,41 +8,36 @@ using System.Text;
 
 namespace Inf_Bez
 {
-    public partial class LogInForm : Form
+    public partial class LogInForm : Form , ILogInFormView
     {
+        private LogInPresenter _presenter;
         public LogInForm()
         {
+            _presenter = new(this);
             InitializeComponent();
             labelError.Visible = false;
             textBoxPassword.UseSystemPasswordChar = true;
         }
 
-        private void buttonLogIn_Click(object sender, EventArgs e)
+        string ILogInFormView.Login
         {
-        //    labelError.Visible = false;
-        //    var users = File.Exists("Users.json")
-        //        ? JsonConvert.DeserializeObject<List<User>>(File.ReadAllText("Users.json"))
-        //        : throw new Exception("Users.json не найден");
-
-        //    if (users == null)
-        //    {
-        //        labelError.Visible = true;
-        //        return;
-        //    }
-
-        //    foreach (var user in users)
-        //    {
-        //        if (user.Login == textBoxLogin.Text && user.Password == User.ConvertToHashCode(textBoxPassword.Text))
-        //        {
-        //            FileForm fileForm = new FileForm(this, user);
-        //            fileForm.ShowDialog();
-        //            return;
-        //        }
-        //    }
-        //    labelError.Visible = true;
+            get { return textBoxLogin.Text; }
+        }
+        string ILogInFormView.Password
+        {
+            get { return textBoxPassword.Text; }
         }
 
-        private void checkBoxPasswordView_CheckedChanged(object sender, EventArgs e)
+        private void buttonLogIn_Click(object sender, EventArgs e)
+        {
+            if(_presenter.LogIn() == true)
+            {
+                UserForm usermenu = new UserForm(this);
+                usermenu.ShowDialog();
+            }
+        }
+
+        private void CheckBoxPasswordView_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxPasswordView.Checked)
             {
@@ -53,7 +51,7 @@ namespace Inf_Bez
 
         private void labelSignUp_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm(null);
+            SignUpForm signUpForm = new SignUpForm(this);
             signUpForm.ShowDialog();
         }
     }

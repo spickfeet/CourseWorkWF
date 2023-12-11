@@ -89,7 +89,7 @@
             checkBoxPasswordView.Size = new Size(15, 14);
             checkBoxPasswordView.TabIndex = 5;
             checkBoxPasswordView.UseVisualStyleBackColor = true;
-            checkBoxPasswordView.CheckedChanged += checkBoxPasswordView_CheckedChanged;
+            checkBoxPasswordView.CheckedChanged += CheckBoxPasswordView_CheckedChanged;
             // 
             // labelTitleLogIn
             // 
