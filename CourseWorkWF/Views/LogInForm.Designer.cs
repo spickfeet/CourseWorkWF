@@ -66,7 +66,7 @@
             buttonLogIn.TabIndex = 3;
             buttonLogIn.Text = "Войти";
             buttonLogIn.UseVisualStyleBackColor = true;
-            buttonLogIn.Click += buttonLogIn_Click;
+            buttonLogIn.Click += ButtonLogIn_Click;
             // 
             // labelError
             // 
@@ -110,7 +110,7 @@
             labelSignUp.Size = new Size(117, 15);
             labelSignUp.TabIndex = 6;
             labelSignUp.Text = "зарегистрироваться";
-            labelSignUp.Click += labelSignUp_Click;
+            labelSignUp.Click += LabelSignUp_Click;
             // 
             // labelPassword
             // 

@@ -28,13 +28,16 @@ namespace Inf_Bez
             get { return textBoxPassword.Text; }
         }
 
-        private void buttonLogIn_Click(object sender, EventArgs e)
+        private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            if(_presenter.LogIn() == true)
+            labelError.Visible = false;
+            if (_presenter.LogIn() == true)
             {
                 UserForm usermenu = new UserForm(this);
                 usermenu.ShowDialog();
             }
+            labelError.Visible = true;
+            
         }
 
         private void CheckBoxPasswordView_CheckedChanged(object sender, EventArgs e)
@@ -49,9 +52,9 @@ namespace Inf_Bez
             }
         }
 
-        private void labelSignUp_Click(object sender, EventArgs e)
+        private void LabelSignUp_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm(this);
+            SignUpForm signUpForm = new(this);
             signUpForm.ShowDialog();
         }
     }
