@@ -27,6 +27,7 @@ namespace CourseWorkWF.Files
                     throw new Exception("Пользователь с таким логином существует");
                 }
             }
+            users.Add(user);
             File.WriteAllText("Users.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
         }
 

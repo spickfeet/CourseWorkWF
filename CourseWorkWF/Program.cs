@@ -1,5 +1,6 @@
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Models;
+using Inf_Bez;
 using System.Security.Policy;
 
 namespace CourseWorkWF.Views
@@ -28,7 +29,7 @@ namespace CourseWorkWF.Views
             products[219901] = new ProductsCollectionItem(product5, 60);
             ApplicationConfiguration.Initialize();
             
-            Application.Run(new UserForm());
+            Application.Run(new SignUpForm(null));
         }
     }
 }

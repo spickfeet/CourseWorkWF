@@ -16,27 +16,27 @@ namespace Inf_Bez
 
         private void buttonLogIn_Click(object sender, EventArgs e)
         {
-            labelError.Visible = false;
-            var users = File.Exists("Users.json")
-                ? JsonConvert.DeserializeObject<List<User>>(File.ReadAllText("Users.json"))
-                : throw new Exception("Users.json не найден");
+        //    labelError.Visible = false;
+        //    var users = File.Exists("Users.json")
+        //        ? JsonConvert.DeserializeObject<List<User>>(File.ReadAllText("Users.json"))
+        //        : throw new Exception("Users.json не найден");
 
-            if (users == null)
-            {
-                labelError.Visible = true;
-                return;
-            }
+        //    if (users == null)
+        //    {
+        //        labelError.Visible = true;
+        //        return;
+        //    }
 
-            foreach (var user in users)
-            {
-                if (user.Login == textBoxLogin.Text && user.Password == User.ConvertToHashCode(textBoxPassword.Text))
-                {
-                    FileForm fileForm = new FileForm(this, user);
-                    fileForm.ShowDialog();
-                    return;
-                }
-            }
-            labelError.Visible = true;
+        //    foreach (var user in users)
+        //    {
+        //        if (user.Login == textBoxLogin.Text && user.Password == User.ConvertToHashCode(textBoxPassword.Text))
+        //        {
+        //            FileForm fileForm = new FileForm(this, user);
+        //            fileForm.ShowDialog();
+        //            return;
+        //        }
+        //    }
+        //    labelError.Visible = true;
         }
 
         private void checkBoxPasswordView_CheckedChanged(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace Inf_Bez
 
         private void labelSignUp_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm(this);
+            SignUpForm signUpForm = new SignUpForm(null);
             signUpForm.ShowDialog();
         }
     }

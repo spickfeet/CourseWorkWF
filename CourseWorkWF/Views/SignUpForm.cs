@@ -1,20 +1,77 @@
+using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Models.Enums;
+using CourseWorkWF.Presenters;
 using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
 
 namespace Inf_Bez
 {
-    public partial class SignUpForm : Form
+    public partial class SignUpForm : Form, ISignUpFormView
     {
+        private SignUpPresenter _presenter;
         private Form _prevForm;
+        private bool _haveError;
+
+        string ISignUpFormView.Login
+        {
+            get { return textBoxLogin.Text; }
+        }
+        string ISignUpFormView.Password
+        {
+            get { return textBoxPassword.Text; }
+        }
+        JobTitle ISignUpFormView.Post
+        {
+            get
+            {
+                if (comboBoxJobTitle.Text == "Владелец")
+                    return JobTitle.Owner;
+                if (comboBoxJobTitle.Text == "Админ")
+                    return JobTitle.Admin;
+                if (comboBoxJobTitle.Text == "Кассир")
+                    return JobTitle.Cashier;
+                throw new ArgumentException("Нет такой должности");
+            }
+        }
+        string ISignUpFormView.Name
+        {
+            get { return textBoxName.Text; }
+        }
+        string ISignUpFormView.Surname
+        {
+            get { return textBoxSurname.Text; }
+        }
+        string? ISignUpFormView.Patronymic
+        {
+            get { return textBoxPatronymic.Text; }
+        }
 
         public SignUpForm(Form prev)
         {
+            _presenter = new(this);
             _prevForm = prev;
-            _prevForm.Hide();
+            // _prevForm.Hide();
             FormClosed += OnClosed;
+            _presenter.LoginBusyErrorEvent += LoginBusy;
+            _presenter.OnlyOneOwnerErrorEvent += OnlyOneOwner;
             InitializeComponent();
-            labelError.Visible = false;
             textBoxPassword.UseSystemPasswordChar = true;
+        }
+
+        private void OnlyOneOwner(object? sender, EventArgs e)
+        {
+            errorProviderJobTitle.SetError(comboBoxJobTitle, "Владелец может быть только 1");
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (int)Keys.Space)
+                e.KeyChar = '\0';
+        }
+
+        private void LoginBusy(object? sender, EventArgs e)
+        {
+            errorProviderLogin.SetError(textBoxLogin, "Логин занят");
         }
 
         private void OnClosed(object? sender, FormClosedEventArgs e)
@@ -22,50 +79,44 @@ namespace Inf_Bez
             _prevForm.Visible = true;
         }
 
-        private void buttonSignUp_Click(object sender, EventArgs e)
+        private void ButtonSignUp_Click(object sender, EventArgs e)
         {
-            labelError.Visible = false;
-
-            User userForRegistration = new User(textBoxLogin.Text, User.ConvertToHashCode(textBoxPassword.Text), GetId());
-
-            if (!userForRegistration.IsCorrectData())
+            errorProviderLogin.Clear();
+            errorProviderJobTitle.Clear();
+            errorProviderName.Clear();
+            errorProviderPassword.Clear();
+            errorProviderPatronymic.Clear();
+            errorProviderSurname.Clear();
+            _haveError = false;
+            if (string.IsNullOrEmpty(textBoxLogin.Text))
             {
-                labelError.Text = "Пустые данные пользователя";
-                labelError.Visible = true;
-                return;
-            }
-            else
+                errorProviderLogin.SetError(textBoxLogin, "Логин не может быть пустым");
+                _haveError = true;
+            } // Пустой логин
+            if (string.IsNullOrEmpty(textBoxPassword.Text))
             {
-                labelError.Text = "Такой пользователь уже существует";
-            }
-
-            var usersData = File.Exists("Users.json")
-                ? JsonConvert.DeserializeObject<List<User>>(File.ReadAllText("Users.json"))
-                : null;
-
-            if (usersData != null)
+                errorProviderPassword.SetError(textBoxLogin, "Пароль не может быть пустым");
+                _haveError = true;
+            } // Пустой пароль
+            if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                foreach (var user in usersData)
-                {
-                    if (userForRegistration.Login == user.Login)
-                    {
-                        labelError.Visible = true;
-                        return;
-                    }
-                }
-            }
-            else
+                errorProviderName.SetError(textBoxLogin, "Имя не может быть пустым");
+                _haveError = true;
+            } // Пустое имя
+            if (string.IsNullOrEmpty(textBoxSurname.Text))
             {
-                usersData = new List<User>();
+                errorProviderSurname.SetError(textBoxLogin, "Фамилия не может быть пустой");
+                _haveError = true;
+            } // Пустое имя
+
+            if (_haveError == false)
+            {
+                _presenter.SignUp();
+                Close();
             }
-
-            usersData.Add(userForRegistration);
-            File.WriteAllText("Users.json", JsonConvert.SerializeObject(usersData,Formatting.Indented));
-            Close();
-
         }
 
-        private void checkBoxPasswordView_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxPasswordView_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxPasswordView.Checked)
             {
@@ -75,18 +126,6 @@ namespace Inf_Bez
             {
                 textBoxPassword.UseSystemPasswordChar = true;
             }
-        }
-
-        private HashSet<int> GetId()
-        {
-            char[] separators = { ' ', ',' };
-            var text = textBoxId.Text.Split(separators);
-            HashSet<int> ids = new HashSet<int>();
-            foreach (var item in text)
-            {
-                if (int.TryParse(item, out int i)) ids.Add(i);
-            }
-            return ids;
         }
     }
 }
