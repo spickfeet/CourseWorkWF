@@ -82,7 +82,7 @@ namespace CourseWorkWF.Views
 
         private void AmountErrorSet(object? sender, EventArgs e)
         {
-            errorProviderAmount.SetError(numericUpDownAmount, "В ассортементе нет столько продуктов");
+            errorProviderAmount.SetError(numericUpDownAmount, "В ассортименте нет столько продуктов");
         }
 
         private void ButtonAddProduct_Click(object sender, EventArgs e) // Нажатие кнопки добавить

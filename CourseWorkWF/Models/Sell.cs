@@ -17,7 +17,7 @@ namespace CourseWorkWF.Models
         public IList<IProductsCollectionItem> Products 
         { 
             get { return _products; }
-            set { if (value == null) throw new ArgumentNullException("Колекция продуктов не может быть null"); _products = value; }
+            set { if (value == null) throw new ArgumentNullException("Коллекция продуктов не может быть null"); _products = value; }
         }
 
         public IMoneyOperation MoneyOperation { get; set; }
@@ -29,7 +29,7 @@ namespace CourseWorkWF.Models
             MoneyOperation = new MoneyOperation(price, payMethod);
         }
         public decimal ChangeRevenue(decimal revenue)
-        {
+        {   
             return revenue + MoneyOperation.MoneyAmount;
         }
 
