@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseWorkWF.Interface.FilesIterface
+namespace CourseWorkWF.Interface.FilesInterface
 {
     public interface IAssortmentDataBase
     {

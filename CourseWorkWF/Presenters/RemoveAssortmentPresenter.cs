@@ -1,5 +1,5 @@
 ﻿using CourseWorkWF.Files;
-using CourseWorkWF.Interface.FilesIterface;
+using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 
