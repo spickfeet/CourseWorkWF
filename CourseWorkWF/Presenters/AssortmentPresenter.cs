@@ -1,4 +1,6 @@
-﻿using CourseWorkWF.Interface.ModelInterface;
+﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesIterface;
+using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Models;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,14 @@ namespace CourseWorkWF.Presenters
 {
     public class AssortmentPresenter
     {
-        private AssortmentDictionary _assortment = new();
-        public void UpdateAssortment()
+        private IAssortmentDataBase _assortment;
+        public AssortmentPresenter()
         {
-            _assortment.UpdateAssortment();
+            _assortment = new AssortmentDataBase();
         }
         public IDictionary<int,IProductsCollectionItem> GetAssortment()
         {
-            return _assortment.ProductsAssortment;
+            return _assortment.Load();
         }
     }
 }

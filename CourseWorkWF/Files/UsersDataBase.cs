@@ -54,8 +54,8 @@ namespace CourseWorkWF.Files
             if (File.Exists("Users.json"))
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-                var assortment = JsonConvert.DeserializeObject<IList<IUser>>(File.ReadAllText("Users.json"), settings);
-                return assortment;
+                var users = JsonConvert.DeserializeObject<IList<IUser>>(File.ReadAllText("Users.json"), settings);
+                return users;
             }
             else
             {

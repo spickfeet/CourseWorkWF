@@ -1,4 +1,6 @@
-﻿using CourseWorkWF.Interface.ModelInterface;
+﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesIterface;
+using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Views;
@@ -7,11 +9,12 @@ namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
-        AssortmentDictionary assortment = new();
+        private IAssortmentDataBase _assortment;
         private ISellFormView _view;
         private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
         public SellPresenter(ISellFormView view)
         {
+            _assortment = new AssortmentDataBase();
             _view = view;
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
@@ -51,16 +54,16 @@ namespace CourseWorkWF.Presenters
 
         private void AddProduct(object? sender, EventArgs e)
         {
-            if(assortment.ProductsAssortment.ContainsKey(_view.ProductID) == true)
+            if(_assortment.Load().ContainsKey(_view.ProductID) == true)
             {
-                if (assortment.ProductsAssortment[_view.ProductID].Amount < _view.Amount)
+                if (_assortment.Load()[_view.ProductID].Amount < _view.Amount)
                 {
                     AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                     return;
                 }
                 if(_buyProducts.ContainsKey(_view.ProductID) == true)
                 {
-                    if ((assortment.ProductsAssortment[_view.ProductID].Amount - _buyProducts[_view.ProductID].Amount - _view.Amount) < 0)
+                    if ((_assortment.Load()[_view.ProductID].Amount - _buyProducts[_view.ProductID].Amount - _view.Amount) < 0)
                     {
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
@@ -70,7 +73,7 @@ namespace CourseWorkWF.Presenters
                     return;
                 }
                 
-                _buyProducts[_view.ProductID] = new ProductsCollectionItem(assortment.ProductsAssortment[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment.Load()[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
                 _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
                 return;
             }
@@ -88,7 +91,7 @@ namespace CourseWorkWF.Presenters
             Program.revenue.ChangeRevenue(sell); // Увеличение выручки
             foreach(IProductsCollectionItem item in products)
             {
-                assortment.RemoveProducts(item.Product.ProductID, item.Amount);
+                _assortment.Delete(item.Product.ProductID, item.Amount);
             }
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }

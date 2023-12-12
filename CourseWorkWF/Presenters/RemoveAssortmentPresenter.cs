@@ -1,21 +1,24 @@
-﻿using CourseWorkWF.Interface.ViewInterface;
+﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesIterface;
+using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 
 namespace CourseWorkWF.Presenters
 {
     public class RemoveAssortmentPresenter
     {
-        private AssortmentDictionary assortment = new();
+        private IAssortmentDataBase _assortment;
         private IRemoveAssortmentFormView _view;
         public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
         {
+            _assortment = new AssortmentDataBase();
             _view = view;
         }
         public bool RemoveProduct() 
         {
-            if(assortment.ProductsAssortment.ContainsKey(_view.ProductID) == true)
+            if(_assortment.Load().ContainsKey(_view.ProductID) == true)
             {
-                assortment.RemoveProducts(_view.ProductID, _view.Amount);
+                _assortment.Delete(_view.ProductID, _view.Amount);
                 return true;
             }
             return false;

@@ -21,7 +21,7 @@ namespace CourseWorkWF.Presenters
             _view = view;
         }
 
-        public bool LogIn()
+        public IUser? LogIn()
         {
             IList<IUser> users = _userData.Load();
 
@@ -29,10 +29,10 @@ namespace CourseWorkWF.Presenters
             {
                 if (user.Login == _view.Login && user.Password == _view.Password)
                 {
-                    return true;
+                    return user;
                 }
             }
-            return false;
+            return null;
         }
     }
 }

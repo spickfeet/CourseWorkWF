@@ -10,7 +10,11 @@ namespace CourseWorkWF.Models
     public class DiscountPercent : IDiscount
     {
         private decimal _discount;
-        public decimal Discount { get { return _discount; } set { if (value < 0 || value > 100) throw new AccessViolationException("Скидка должна быть в диапазоне от 0 до 100"); _discount = value; } }
+        public decimal Discount 
+        { 
+            get { return _discount; } 
+            set { if (value < 0 || value > 100) throw new AccessViolationException("Скидка должна быть в диапазоне от 0 до 100"); _discount = value; } 
+        }
 
         public decimal UseDiscount(decimal price)
         {

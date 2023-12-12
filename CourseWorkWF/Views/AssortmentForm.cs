@@ -43,7 +43,6 @@ namespace CourseWorkWF.Views
 
         private void UpdateList()
         {
-            _presenter.UpdateAssortment();
             listViewAssortment.Items.Clear();
             int column = 0;
             foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetAssortment())
