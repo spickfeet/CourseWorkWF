@@ -68,7 +68,7 @@
             buttonChangeJobTitle.Text = "Изменить должность";
             buttonChangeJobTitle.UseVisualStyleBackColor = true;
             buttonChangeJobTitle.Visible = false;
-            buttonChangeJobTitle.Click += buttonChangeJobTitle_Click;
+            buttonChangeJobTitle.Click += ButtonChangeJobTitle_Click;
             // 
             // buttonRemoveEmployee
             // 
@@ -79,7 +79,7 @@
             buttonRemoveEmployee.Text = "Удалить сотрудника";
             buttonRemoveEmployee.UseVisualStyleBackColor = true;
             buttonRemoveEmployee.Visible = false;
-            buttonRemoveEmployee.Click += buttonRemoveEmployee_Click;
+            buttonRemoveEmployee.Click += ButtonRemoveEmployee_Click;
             // 
             // buttonRefund
             // 
@@ -90,7 +90,7 @@
             buttonRefund.Text = "Вернуть деньги";
             buttonRefund.UseVisualStyleBackColor = true;
             buttonRefund.Visible = false;
-            buttonRefund.Click += buttonRefund_Click;
+            buttonRefund.Click += ButtonRefund_Click;
             // 
             // buttonHistoryComingsAndGoings
             // 
@@ -101,7 +101,7 @@
             buttonHistoryComingsAndGoings.Text = "История прихода и ухода";
             buttonHistoryComingsAndGoings.UseVisualStyleBackColor = true;
             buttonHistoryComingsAndGoings.Visible = false;
-            buttonHistoryComingsAndGoings.Click += buttonHistoryComingsAndGoings_Click;
+            buttonHistoryComingsAndGoings.Click += ButtonHistoryComingsAndGoings_Click;
             // 
             // MainMenuForm
             // 

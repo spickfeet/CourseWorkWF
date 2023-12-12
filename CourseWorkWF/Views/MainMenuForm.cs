@@ -67,22 +67,22 @@ namespace CourseWorkWF.Views
             sellForm.ShowDialog();
         }
 
-        private void buttonRefund_Click(object sender, EventArgs e)
+        private void ButtonRefund_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonHistoryComingsAndGoings_Click(object sender, EventArgs e)
+        private void ButtonHistoryComingsAndGoings_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonRemoveEmployee_Click(object sender, EventArgs e)
+        private void ButtonRemoveEmployee_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonChangeJobTitle_Click(object sender, EventArgs e)
+        private void ButtonChangeJobTitle_Click(object sender, EventArgs e)
         {
 
         }
