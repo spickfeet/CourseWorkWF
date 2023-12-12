@@ -1,4 +1,5 @@
 ﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.FilesIterface;
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
@@ -9,11 +10,13 @@ namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
+        private ISellDataBase _sellData;
         private IAssortmentDataBase _assortment;
         private ISellFormView _view;
         private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
         public SellPresenter(ISellFormView view)
         {
+            _sellData = new SellDataBase();
             _assortment = new AssortmentDataBase();
             _view = view;
             _view.AddProductEvent += AddProduct;
@@ -87,7 +90,7 @@ namespace CourseWorkWF.Presenters
                 products.Add(item.Value);
             }
             Sell sell = new Sell(1, products, _view.Price, _view.OperationMethod);
-
+            _sellData.Add(sell);
             Program.revenue.ChangeRevenue(sell); // Увеличение выручки
             foreach(IProductsCollectionItem item in products)
             {
