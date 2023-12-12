@@ -53,7 +53,7 @@ namespace CourseWorkWF.Views
 
         private void OnClosed(object? sender, FormClosedEventArgs e)
         {
-            _prevForm.Visible = true;
+            Application.Exit();
         }
         private void ButtonAdmin_Click(object sender, EventArgs e)
         {
