@@ -30,9 +30,9 @@ namespace Inf_Bez
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            labelError.Visible = false;
             if (_presenter.LogIn() != null)
             {
+                labelError.Visible = false;
                 MainMenuForm mainMenu = new MainMenuForm(this, new MainMenuPresenter(_presenter.LogIn()));
                 mainMenu.ShowDialog();
             }
