@@ -19,7 +19,7 @@ namespace CourseWorkWF.Views
             get
             {
                 if (comboBoxOperationMethod.Text == "Карта") return OperationMethod.Card;
-                if (comboBoxOperationMethod.Text == "НаличныеКарта") return OperationMethod.Cash;
+                if (comboBoxOperationMethod.Text == "Наличные") return OperationMethod.Cash;
                 throw new Exception("Не выбран способ оплаты");
             }
         }
@@ -49,12 +49,12 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
-        public SellForm(Form prev)
+        public SellForm(Form prev,IUser user)
         {
             _prevForm = prev;
             _prevForm.Hide();
             InitializeComponent();
-            _presenter = new(this);
+            _presenter = new(this, user);
             textBoxRevenue.Text = Convert.ToString(Program.revenue.Proceeds);
 
             FormClosed += OnClosed;

@@ -6,14 +6,7 @@ namespace CourseWorkWF.Models
 {
     public class Sell : ISell, IRevenueChanger
     {
-        private int _sellID;
         private IList<IProductsCollectionItem> _products;
-        public int SellID
-        { 
-            get { return _sellID; }
-            set { if (value < 0) throw new AccessViolationException("Попытка задать отрицательное ID покупки"); _sellID = value; } 
-        }
-
         public IList<IProductsCollectionItem> Products 
         { 
             get { return _products; }
@@ -22,11 +15,10 @@ namespace CourseWorkWF.Models
 
         public IMoneyOperation MoneyOperation { get; set; }
 
-        public Sell(int sellID, IList<IProductsCollectionItem> products, decimal price, OperationMethod payMethod)
+        public Sell(IList<IProductsCollectionItem> products, IMoneyOperation moneyOperation)
         {
-            SellID = sellID;
             Products = products;
-            MoneyOperation = new MoneyOperation(price, payMethod);
+            MoneyOperation = moneyOperation;
         }
         public decimal ChangeRevenue(decimal revenue)
         {   

@@ -63,7 +63,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            SellForm sellForm = new SellForm(this);
+            SellForm sellForm = new SellForm(this,_presenter.GetUser());
             sellForm.ShowDialog();
         }
 

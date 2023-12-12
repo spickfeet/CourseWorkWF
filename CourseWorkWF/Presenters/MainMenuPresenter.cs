@@ -20,7 +20,10 @@ namespace CourseWorkWF.Presenters
         {
             _user = user;
         }
-
+        public IUser GetUser()
+        {
+            return _user;
+        }
         public void GiveOpportunities()
         {
             if (_user == null) throw new ArgumentException("Пользователь не может быть null");

@@ -4,19 +4,24 @@ using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Views;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
+        private IDictionary<int,IProductsCollectionItem> _assortment;
         private ISellDataBase _sellData;
-        private IAssortmentDataBase _assortment;
+        private IAssortmentDataBase _assortmentDataBase;
         private ISellFormView _view;
+        private IUser _user;
         private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
-        public SellPresenter(ISellFormView view)
+        public SellPresenter(ISellFormView view,IUser user)
         {
-            _sellData = new SellDataBase();
-            _assortment = new AssortmentDataBase();
+            _sellData = new SellInfoDataBase();
+            _assortmentDataBase = new AssortmentDataBase();
+            _assortment = _assortmentDataBase.Load();
+            _user = user;
             _view = view;
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
@@ -56,16 +61,16 @@ namespace CourseWorkWF.Presenters
 
         private void AddProduct(object? sender, EventArgs e)
         {
-            if(_assortment.Load().ContainsKey(_view.ProductID) == true)
+            if (_assortment.ContainsKey(_view.ProductID) == true)
             {
-                if (_assortment.Load()[_view.ProductID].Amount < _view.Amount)
+                if (_assortment[_view.ProductID].Amount < _view.Amount)
                 {
                     AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                     return;
                 }
                 if(_buyProducts.ContainsKey(_view.ProductID) == true)
                 {
-                    if ((_assortment.Load()[_view.ProductID].Amount - _buyProducts[_view.ProductID].Amount - _view.Amount) < 0)
+                    if ((_assortment[_view.ProductID].Amount - _buyProducts[_view.ProductID].Amount - _view.Amount) < 0)
                     {
                         AmountErrorEvent?.Invoke(this, EventArgs.Empty);
                         return;
@@ -75,26 +80,38 @@ namespace CourseWorkWF.Presenters
                     return;
                 }
                 
-                _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment.Load()[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
-                _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount; // подсчет цены
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
+                decimal priceBuf = 0;
+                foreach (var item in _buyProducts)
+                {
+                    _view.Price = priceBuf + item.Value.Product.Price * item.Value.Amount;
+                    priceBuf = item.Value.Product.Price * item.Value.Amount;
+                }
                 return;
             }
             ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            List<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
+            IList<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
             foreach(var item in _buyProducts) 
             {
                 products.Add(item.Value);
             }
-            Sell sell = new Sell(1, products, _view.Price, _view.OperationMethod);
-            _sellData.Add(sell);
+
+            Sell sell = new Sell(products, new MoneyOperation(_view.Price, _view.OperationMethod));
+            int num = _sellData.Load().Count + 1;
+
+            ISellInfo sellInfo = new SellInfo(num, sell, _user,DateTime.Now);
+            _sellData.Add(sellInfo);
+
             Program.revenue.ChangeRevenue(sell); // Увеличение выручки
+           
             foreach(IProductsCollectionItem item in products)
             {
-                _assortment.Delete(item.Product.ProductID, item.Amount);
+                _assortmentDataBase.Delete(item.Product.ProductID, item.Amount);
             }
+            _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }
     }
