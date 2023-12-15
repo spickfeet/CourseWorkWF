@@ -49,7 +49,7 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
-        public SellForm(Form prev,IUser user)
+        public SellForm(Form prev,IEmployee user)
         {
             _prevForm = prev;
             _prevForm.Hide();

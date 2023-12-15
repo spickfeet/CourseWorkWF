@@ -14,9 +14,9 @@ namespace CourseWorkWF.Presenters
         private ISellDataBase _sellData;
         private IAssortmentDataBase _assortmentDataBase;
         private ISellFormView _view;
-        private IUser _user;
+        private IEmployee _user;
         private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
-        public SellPresenter(ISellFormView view,IUser user)
+        public SellPresenter(ISellFormView view,IEmployee user)
         {
             _sellData = new SellInfoDataBase();
             _assortmentDataBase = new AssortmentDataBase();

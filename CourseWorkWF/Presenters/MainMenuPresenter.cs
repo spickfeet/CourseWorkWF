@@ -11,7 +11,8 @@ namespace CourseWorkWF.Presenters
 {
     public class MainMenuPresenter
     {
-        private IUser _user;
+        private readonly IUser _user;
+        public IUser User { get { return _user; } }
 
         public event EventHandler? OwnerUserEvent;
         public event EventHandler? AdminUserEvent;
@@ -19,10 +20,6 @@ namespace CourseWorkWF.Presenters
         public MainMenuPresenter(IUser user)
         {
             _user = user;
-        }
-        public IUser GetUser()
-        {
-            return _user;
         }
         public void GiveOpportunities()
         {
