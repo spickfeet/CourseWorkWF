@@ -10,8 +10,7 @@ namespace CourseWorkWF.Interface.ModelInterface
     public interface IRefund
     {
         IMoneyOperation MoneyOperation { get; set; }
-        int RefundID { get; set; }
-        IEnumerable<IProductsCollectionItem> Products { get; set; }
+        IDictionary<int, IProductsCollectionItem> Products { get; set; }
         string Reason { get; set; } 
     }
 }

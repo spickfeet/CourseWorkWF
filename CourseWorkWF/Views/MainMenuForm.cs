@@ -5,7 +5,7 @@ using CourseWorkWF.Presenters;
 
 namespace CourseWorkWF.Views
 {
-    public partial class MainMenuForm : Form, IMainMenuFormView
+    public partial class MainMenuForm : Form
     {
         private Form _prevForm;
         private MainMenuPresenter _presenter;
@@ -69,7 +69,8 @@ namespace CourseWorkWF.Views
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
-
+            RefundForm refundForm = new RefundForm(_presenter.User);
+            refundForm.ShowDialog();
         }
 
         private void ButtonHistoryComingsAndGoings_Click(object sender, EventArgs e)

@@ -104,7 +104,7 @@
             // 
             labelTitleSignUp.AutoSize = true;
             labelTitleSignUp.Font = new Font("Segoe UI", 21F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTitleSignUp.Location = new Point(140, 27);
+            labelTitleSignUp.Location = new Point(151, 9);
             labelTitleSignUp.Name = "labelTitleSignUp";
             labelTitleSignUp.Size = new Size(176, 38);
             labelTitleSignUp.TabIndex = 2;

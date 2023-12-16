@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.FilesInterface
 {
-    public interface ISellDataBase
+    internal interface IRefundInfoDataBase
     {
-        void Add(ISellInfo sell);
-        IDictionary<int,ISellInfo> Load();
+        void Add(IRefundInfo sell);
+        IDictionary<int, IRefundInfo> Load();
     }
 }

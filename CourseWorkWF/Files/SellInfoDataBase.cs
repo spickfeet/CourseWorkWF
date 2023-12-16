@@ -17,23 +17,23 @@ namespace CourseWorkWF.Files
             if (sellInfo == null) throw new ArgumentException("Передан пустой объект");
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var salesInfo = File.Exists("SelesInfo.json") ?
-                JsonConvert.DeserializeObject<IList<ISellInfo>>(File.ReadAllText("SelesInfo.json"), settings) :
-                new List<ISellInfo>();
-            salesInfo.Add(sellInfo);
+                JsonConvert.DeserializeObject<IDictionary<int, ISellInfo>>(File.ReadAllText("SelesInfo.json"), settings) :
+                new Dictionary<int, ISellInfo>();
+            salesInfo[sellInfo.OperationNumber] = sellInfo;
             File.WriteAllText("SelesInfo.json", JsonConvert.SerializeObject(salesInfo, Formatting.Indented, settings));
         }
 
-        public IList<ISellInfo> Load()
+        public IDictionary<int, ISellInfo> Load()
         {
             if (File.Exists("SelesInfo.json"))
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-                var salesInfo = JsonConvert.DeserializeObject<IList<ISellInfo>>(File.ReadAllText("SelesInfo.json"), settings);
+                var salesInfo = JsonConvert.DeserializeObject<IDictionary<int, ISellInfo>>(File.ReadAllText("SelesInfo.json"), settings);
                 return salesInfo;
             }
             else
             {
-                return new List<ISellInfo>();
+                return new Dictionary<int, ISellInfo>();
             }
         }
     }

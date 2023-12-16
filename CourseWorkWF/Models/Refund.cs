@@ -7,30 +7,28 @@ namespace CourseWorkWF.Models
     public class Refund : IRefund,IRevenueChanger
     {
         private string _reason;
-        private int _refundID;
-        private IEnumerable<IProductsCollectionItem> _products;
-        public IMoneyOperation MoneyOperation { get; set; }
-        public int RefundID
+        private IDictionary<int, IProductsCollectionItem> _products;
+        private IMoneyOperation _moneyOperation;
+        public IMoneyOperation MoneyOperation 
         {
-            get { return _refundID; }
-            set { if (value < 0) throw new AccessViolationException("Попытка задать отрицательное ID возврата"); _refundID = value; }
+            get { return _moneyOperation; }
+            set { if (value == null) throw new ArgumentNullException("MoneyOperation не может быть null"); _moneyOperation = value; }
         }
-        public IEnumerable<IProductsCollectionItem> Products
+        public IDictionary<int, IProductsCollectionItem> Products
         {
             get { return _products; }
-            set { if (value == null) throw new ArgumentNullException("Колекция продуктов не может быть null"); _products = value; }
+            set { if (value == null) throw new ArgumentNullException("Products не может быть null"); _products = value; }
         }
         public string Reason 
         {
             get { return _reason; }
-            set { if (value == null || value == "") throw new ArgumentException("Причина возврата не может быть пустой"); _reason = value; }
+            set { if (value == null || value == "") throw new ArgumentException("Reason не может быть пустой"); _reason = value; }
         }
 
-        public Refund(int refundID, IEnumerable<ProductsCollectionItem> products, decimal moneyAmount, OperationMethod payMethod, string reason)
+        public Refund(IDictionary<int, IProductsCollectionItem> products, IMoneyOperation moneyOperation, string reason)
         {
-            RefundID = refundID;
             Products = products;
-            MoneyOperation = new MoneyOperation(moneyAmount, payMethod);
+            MoneyOperation = moneyOperation;
             Reason = reason;
         }
         public decimal ChangeRevenue(decimal revenue)

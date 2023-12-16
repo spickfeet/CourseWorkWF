@@ -28,219 +28,397 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             listViewSeles = new ListView();
+            columnHeaderNumber = new ColumnHeader();
+            columnHeaderPrice = new ColumnHeader();
+            columnHeaderDate = new ColumnHeader();
             richTextBoxSellInfo = new RichTextBox();
-            dateTimePicker1 = new DateTimePicker();
+            dateTimePickerToDate = new DateTimePicker();
             buttonFind = new Button();
             buttonInfo = new Button();
-            richTextBoxReson = new RichTextBox();
-            listView1 = new ListView();
+            richTextBoxReason = new RichTextBox();
+            listViewRefundList = new ListView();
+            columnHeaderRefundProductID = new ColumnHeader();
+            columnHeaderRefundProductName = new ColumnHeader();
+            columnHeadercolumnHeaderRefundProductUnitPrice = new ColumnHeader();
+            columnHeaderRefundAmount = new ColumnHeader();
             labelSeles = new Label();
             labelSellInfo = new Label();
-            labelReson = new Label();
+            labelReason = new Label();
             labelProductsRefundList = new Label();
             buttonRefund = new Button();
-            numericUpDown1 = new NumericUpDown();
-            labelNumer = new Label();
-            numericUpDown2 = new NumericUpDown();
+            labelReceiptNumber = new Label();
             buttonAddProductRefundList = new Button();
-            labelProductID = new Label();
-            comboBox1 = new ComboBox();
+            comboBoxOperationMethod = new ComboBox();
             labelOperationMethod = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            dateTimePickerFromDate = new DateTimePicker();
+            labelFromDate = new Label();
+            labelToDate = new Label();
+            checkBoxFindByDate = new CheckBox();
+            textBoxReceiptNumber = new TextBox();
+            errorProviderNumber = new ErrorProvider(components);
+            listViewBuyList = new ListView();
+            columnHeaderProductID = new ColumnHeader();
+            columnHeaderProductName = new ColumnHeader();
+            columnHeaderProductUnitPrice = new ColumnHeader();
+            columnHeaderAmount = new ColumnHeader();
+            labelBuyList = new Label();
+            labelProductID = new Label();
+            textBoxProductID = new TextBox();
+            numericUpDownAmount = new NumericUpDown();
+            labelAmount = new Label();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNumber).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             SuspendLayout();
             // 
             // listViewSeles
             // 
-            listViewSeles.Location = new Point(198, 32);
+            listViewSeles.Columns.AddRange(new ColumnHeader[] { columnHeaderNumber, columnHeaderPrice, columnHeaderDate });
+            listViewSeles.Location = new Point(173, 24);
+            listViewSeles.Margin = new Padding(3, 2, 3, 2);
+            listViewSeles.MultiSelect = false;
             listViewSeles.Name = "listViewSeles";
-            listViewSeles.Size = new Size(191, 234);
+            listViewSeles.Size = new Size(245, 176);
             listViewSeles.TabIndex = 1;
             listViewSeles.UseCompatibleStateImageBehavior = false;
+            listViewSeles.View = View.Details;
+            // 
+            // columnHeaderNumber
+            // 
+            columnHeaderNumber.Text = "Номер";
+            // 
+            // columnHeaderPrice
+            // 
+            columnHeaderPrice.Text = "Цена";
+            columnHeaderPrice.Width = 100;
+            // 
+            // columnHeaderDate
+            // 
+            columnHeaderDate.Text = "Дата";
+            columnHeaderDate.Width = 160;
             // 
             // richTextBoxSellInfo
             // 
-            richTextBoxSellInfo.Location = new Point(395, 32);
+            richTextBoxSellInfo.Location = new Point(424, 25);
+            richTextBoxSellInfo.Margin = new Padding(3, 2, 3, 2);
             richTextBoxSellInfo.Name = "richTextBoxSellInfo";
-            richTextBoxSellInfo.Size = new Size(190, 234);
+            richTextBoxSellInfo.Size = new Size(206, 176);
             richTextBoxSellInfo.TabIndex = 2;
             richTextBoxSellInfo.Text = "";
             // 
-            // dateTimePicker1
+            // dateTimePickerToDate
             // 
-            dateTimePicker1.Location = new Point(12, 65);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(178, 27);
-            dateTimePicker1.TabIndex = 3;
+            dateTimePickerToDate.Location = new Point(10, 135);
+            dateTimePickerToDate.Margin = new Padding(3, 2, 3, 2);
+            dateTimePickerToDate.Name = "dateTimePickerToDate";
+            dateTimePickerToDate.Size = new Size(156, 23);
+            dateTimePickerToDate.TabIndex = 3;
+            dateTimePickerToDate.Visible = false;
             // 
             // buttonFind
             // 
-            buttonFind.Location = new Point(12, 98);
+            buttonFind.Location = new Point(10, 74);
+            buttonFind.Margin = new Padding(3, 2, 3, 2);
             buttonFind.Name = "buttonFind";
-            buttonFind.Size = new Size(178, 29);
+            buttonFind.Size = new Size(156, 22);
             buttonFind.TabIndex = 4;
             buttonFind.Text = "Найти чек";
             buttonFind.UseVisualStyleBackColor = true;
+            buttonFind.Click += ButtonFind_Click;
             // 
             // buttonInfo
             // 
-            buttonInfo.Location = new Point(198, 272);
+            buttonInfo.Location = new Point(173, 204);
+            buttonInfo.Margin = new Padding(3, 2, 3, 2);
             buttonInfo.Name = "buttonInfo";
-            buttonInfo.Size = new Size(191, 63);
+            buttonInfo.Size = new Size(283, 47);
             buttonInfo.TabIndex = 5;
             buttonInfo.Text = "Получить информацию о чеке";
             buttonInfo.UseVisualStyleBackColor = true;
+            buttonInfo.Click += buttonInfo_Click;
             // 
-            // richTextBoxReson
+            // richTextBoxReason
             // 
-            richTextBoxReson.Location = new Point(812, 32);
-            richTextBoxReson.Name = "richTextBoxReson";
-            richTextBoxReson.Size = new Size(191, 234);
-            richTextBoxReson.TabIndex = 6;
-            richTextBoxReson.Text = "";
+            richTextBoxReason.Location = new Point(1254, 24);
+            richTextBoxReason.Margin = new Padding(3, 2, 3, 2);
+            richTextBoxReason.Name = "richTextBoxReason";
+            richTextBoxReason.Size = new Size(168, 176);
+            richTextBoxReason.TabIndex = 6;
+            richTextBoxReason.Text = "";
             // 
-            // listView1
+            // listViewRefundList
             // 
-            listView1.Location = new Point(591, 32);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(215, 234);
-            listView1.TabIndex = 8;
-            listView1.UseCompatibleStateImageBehavior = false;
+            listViewRefundList.Columns.AddRange(new ColumnHeader[] { columnHeaderRefundProductID, columnHeaderRefundProductName, columnHeadercolumnHeaderRefundProductUnitPrice, columnHeaderRefundAmount });
+            listViewRefundList.Location = new Point(1005, 25);
+            listViewRefundList.Margin = new Padding(3, 2, 3, 2);
+            listViewRefundList.Name = "listViewRefundList";
+            listViewRefundList.Size = new Size(243, 176);
+            listViewRefundList.TabIndex = 8;
+            listViewRefundList.UseCompatibleStateImageBehavior = false;
+            listViewRefundList.View = View.Details;
+            // 
+            // columnHeaderRefundProductID
+            // 
+            columnHeaderRefundProductID.Text = "ID";
+            // 
+            // columnHeaderRefundProductName
+            // 
+            columnHeaderRefundProductName.Text = "Товар";
+            // 
+            // columnHeadercolumnHeaderRefundProductUnitPrice
+            // 
+            columnHeadercolumnHeaderRefundProductUnitPrice.Text = "Цена за еденицу";
+            // 
+            // columnHeaderRefundAmount
+            // 
+            columnHeaderRefundAmount.Text = "Колличество";
             // 
             // labelSeles
             // 
             labelSeles.AutoSize = true;
-            labelSeles.Location = new Point(198, 9);
+            labelSeles.Location = new Point(173, 7);
             labelSeles.Name = "labelSeles";
-            labelSeles.Size = new Size(126, 20);
+            labelSeles.Size = new Size(99, 15);
             labelSeles.TabIndex = 9;
             labelSeles.Text = "История продаж";
             // 
             // labelSellInfo
             // 
             labelSellInfo.AutoSize = true;
-            labelSellInfo.Location = new Point(395, 9);
+            labelSellInfo.Location = new Point(462, 6);
             labelSellInfo.Name = "labelSellInfo";
-            labelSellInfo.Size = new Size(181, 20);
+            labelSellInfo.Size = new Size(142, 15);
             labelSellInfo.TabIndex = 10;
             labelSellInfo.Text = "Информация о продаже";
             // 
-            // labelReson
+            // labelReason
             // 
-            labelReson.AutoSize = true;
-            labelReson.Location = new Point(812, 9);
-            labelReson.Name = "labelReson";
-            labelReson.Size = new Size(139, 20);
-            labelReson.TabIndex = 11;
-            labelReson.Text = "Причина возврата";
+            labelReason.AutoSize = true;
+            labelReason.Location = new Point(1254, 7);
+            labelReason.Name = "labelReason";
+            labelReason.Size = new Size(108, 15);
+            labelReason.TabIndex = 11;
+            labelReason.Text = "Причина возврата";
             // 
             // labelProductsRefundList
             // 
             labelProductsRefundList.AutoSize = true;
-            labelProductsRefundList.Location = new Point(591, 9);
+            labelProductsRefundList.Location = new Point(1005, 7);
             labelProductsRefundList.Name = "labelProductsRefundList";
-            labelProductsRefundList.Size = new Size(215, 20);
+            labelProductsRefundList.Size = new Size(168, 15);
             labelProductsRefundList.TabIndex = 13;
             labelProductsRefundList.Text = "Список товаров для возврата";
             // 
             // buttonRefund
             // 
-            buttonRefund.Location = new Point(812, 329);
+            buttonRefund.Location = new Point(1254, 247);
+            buttonRefund.Margin = new Padding(3, 2, 3, 2);
             buttonRefund.Name = "buttonRefund";
-            buttonRefund.Size = new Size(191, 63);
+            buttonRefund.Size = new Size(167, 47);
             buttonRefund.TabIndex = 14;
             buttonRefund.Text = "Вернуть деньги";
             buttonRefund.UseVisualStyleBackColor = true;
             buttonRefund.Click += buttonRefund_Click;
             // 
-            // numericUpDown1
+            // labelReceiptNumber
             // 
-            numericUpDown1.Location = new Point(12, 32);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(178, 27);
-            numericUpDown1.TabIndex = 15;
-            // 
-            // labelNumer
-            // 
-            labelNumer.AutoSize = true;
-            labelNumer.Location = new Point(12, 9);
-            labelNumer.Name = "labelNumer";
-            labelNumer.Size = new Size(92, 20);
-            labelNumer.TabIndex = 16;
-            labelNumer.Text = "Номер чека";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(591, 296);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(215, 27);
-            numericUpDown2.TabIndex = 17;
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
+            labelReceiptNumber.AutoSize = true;
+            labelReceiptNumber.Location = new Point(10, 7);
+            labelReceiptNumber.Name = "labelReceiptNumber";
+            labelReceiptNumber.Size = new Size(73, 15);
+            labelReceiptNumber.TabIndex = 16;
+            labelReceiptNumber.Text = "Номер чека";
             // 
             // buttonAddProductRefundList
             // 
-            buttonAddProductRefundList.Location = new Point(591, 329);
+            buttonAddProductRefundList.Location = new Point(636, 289);
+            buttonAddProductRefundList.Margin = new Padding(3, 2, 3, 2);
             buttonAddProductRefundList.Name = "buttonAddProductRefundList";
-            buttonAddProductRefundList.Size = new Size(215, 63);
+            buttonAddProductRefundList.Size = new Size(188, 47);
             buttonAddProductRefundList.TabIndex = 18;
             buttonAddProductRefundList.Text = "Добавить продукт в список для возврата";
             buttonAddProductRefundList.UseVisualStyleBackColor = true;
+            buttonAddProductRefundList.Click += buttonAddProductRefundList_Click;
             // 
-            // labelProductID
+            // comboBoxOperationMethod
             // 
-            labelProductID.AutoSize = true;
-            labelProductID.Location = new Point(591, 272);
-            labelProductID.Name = "labelProductID";
-            labelProductID.Size = new Size(95, 20);
-            labelProductID.TabIndex = 19;
-            labelProductID.Text = "ID продукта ";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(812, 295);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(191, 28);
-            comboBox1.TabIndex = 20;
+            comboBoxOperationMethod.FormattingEnabled = true;
+            comboBoxOperationMethod.Items.AddRange(new object[] { "Карта", "Наличные" });
+            comboBoxOperationMethod.Location = new Point(1254, 221);
+            comboBoxOperationMethod.Margin = new Padding(3, 2, 3, 2);
+            comboBoxOperationMethod.Name = "comboBoxOperationMethod";
+            comboBoxOperationMethod.Size = new Size(168, 23);
+            comboBoxOperationMethod.TabIndex = 20;
             // 
             // labelOperationMethod
             // 
             labelOperationMethod.AutoSize = true;
-            labelOperationMethod.Location = new Point(808, 272);
+            labelOperationMethod.Location = new Point(1251, 204);
             labelOperationMethod.Name = "labelOperationMethod";
-            labelOperationMethod.Size = new Size(171, 20);
+            labelOperationMethod.Size = new Size(133, 15);
             labelOperationMethod.TabIndex = 21;
             labelOperationMethod.Text = "Способ возврата денег";
             // 
+            // dateTimePickerFromDate
+            // 
+            dateTimePickerFromDate.Location = new Point(10, 92);
+            dateTimePickerFromDate.Name = "dateTimePickerFromDate";
+            dateTimePickerFromDate.Size = new Size(156, 23);
+            dateTimePickerFromDate.TabIndex = 22;
+            dateTimePickerFromDate.Visible = false;
+            // 
+            // labelFromDate
+            // 
+            labelFromDate.AutoSize = true;
+            labelFromDate.Location = new Point(10, 74);
+            labelFromDate.Name = "labelFromDate";
+            labelFromDate.Size = new Size(51, 15);
+            labelFromDate.TabIndex = 23;
+            labelFromDate.Text = "С какго ";
+            labelFromDate.Visible = false;
+            // 
+            // labelToDate
+            // 
+            labelToDate.AutoSize = true;
+            labelToDate.Location = new Point(10, 118);
+            labelToDate.Name = "labelToDate";
+            labelToDate.Size = new Size(57, 15);
+            labelToDate.TabIndex = 24;
+            labelToDate.Text = "По какое";
+            labelToDate.Visible = false;
+            // 
+            // checkBoxFindByDate
+            // 
+            checkBoxFindByDate.AutoSize = true;
+            checkBoxFindByDate.Location = new Point(10, 52);
+            checkBoxFindByDate.Name = "checkBoxFindByDate";
+            checkBoxFindByDate.Size = new Size(103, 19);
+            checkBoxFindByDate.TabIndex = 25;
+            checkBoxFindByDate.Text = "Найти по дате";
+            checkBoxFindByDate.UseVisualStyleBackColor = true;
+            checkBoxFindByDate.CheckedChanged += CheckBoxFindByDate_CheckedChanged;
+            // 
+            // textBoxReceiptNumber
+            // 
+            textBoxReceiptNumber.Location = new Point(10, 25);
+            textBoxReceiptNumber.Name = "textBoxReceiptNumber";
+            textBoxReceiptNumber.Size = new Size(156, 23);
+            textBoxReceiptNumber.TabIndex = 27;
+            textBoxReceiptNumber.KeyPress += textBoxNumerical_KeyPressNotNumber;
+            // 
+            // errorProviderNumber
+            // 
+            errorProviderNumber.ContainerControl = this;
+            // 
+            // listViewBuyList
+            // 
+            listViewBuyList.Columns.AddRange(new ColumnHeader[] { columnHeaderProductID, columnHeaderProductName, columnHeaderProductUnitPrice, columnHeaderAmount });
+            listViewBuyList.Location = new Point(636, 24);
+            listViewBuyList.Name = "listViewBuyList";
+            listViewBuyList.Size = new Size(363, 176);
+            listViewBuyList.TabIndex = 28;
+            listViewBuyList.UseCompatibleStateImageBehavior = false;
+            listViewBuyList.View = View.Details;
+            // 
+            // columnHeaderProductID
+            // 
+            columnHeaderProductID.Text = "ID";
+            columnHeaderProductID.Width = 80;
+            // 
+            // columnHeaderProductName
+            // 
+            columnHeaderProductName.Text = "Товар";
+            columnHeaderProductName.Width = 100;
+            // 
+            // columnHeaderProductUnitPrice
+            // 
+            columnHeaderProductUnitPrice.Text = "Цена за еденицу";
+            columnHeaderProductUnitPrice.Width = 120;
+            // 
+            // columnHeaderAmount
+            // 
+            columnHeaderAmount.Text = "Колличество";
+            // 
+            // labelBuyList
+            // 
+            labelBuyList.AutoSize = true;
+            labelBuyList.Location = new Point(636, 6);
+            labelBuyList.Name = "labelBuyList";
+            labelBuyList.Size = new Size(97, 15);
+            labelBuyList.TabIndex = 29;
+            labelBuyList.Text = "Список покупок";
+            // 
+            // labelProductID
+            // 
+            labelProductID.AutoSize = true;
+            labelProductID.Location = new Point(636, 200);
+            labelProductID.Name = "labelProductID";
+            labelProductID.Size = new Size(74, 15);
+            labelProductID.TabIndex = 19;
+            labelProductID.Text = "ID продукта ";
+            // 
+            // textBoxProductID
+            // 
+            textBoxProductID.Location = new Point(636, 217);
+            textBoxProductID.Name = "textBoxProductID";
+            textBoxProductID.Size = new Size(189, 23);
+            textBoxProductID.TabIndex = 26;
+            textBoxProductID.KeyPress += textBoxNumerical_KeyPressNotNumber;
+            // 
+            // numericUpDownAmount
+            // 
+            numericUpDownAmount.Location = new Point(636, 261);
+            numericUpDownAmount.Name = "numericUpDownAmount";
+            numericUpDownAmount.Size = new Size(188, 23);
+            numericUpDownAmount.TabIndex = 30;
+            // 
+            // labelAmount
+            // 
+            labelAmount.AutoSize = true;
+            labelAmount.Location = new Point(636, 243);
+            labelAmount.Name = "labelAmount";
+            labelAmount.Size = new Size(79, 15);
+            labelAmount.TabIndex = 31;
+            labelAmount.Text = "Колличество";
+            // 
             // RefundForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1023, 502);
+            ClientSize = new Size(1432, 411);
+            Controls.Add(labelAmount);
+            Controls.Add(numericUpDownAmount);
+            Controls.Add(labelBuyList);
+            Controls.Add(listViewBuyList);
+            Controls.Add(textBoxReceiptNumber);
+            Controls.Add(textBoxProductID);
+            Controls.Add(checkBoxFindByDate);
+            Controls.Add(labelToDate);
+            Controls.Add(labelFromDate);
+            Controls.Add(dateTimePickerFromDate);
             Controls.Add(labelOperationMethod);
-            Controls.Add(comboBox1);
+            Controls.Add(comboBoxOperationMethod);
             Controls.Add(labelProductID);
             Controls.Add(buttonAddProductRefundList);
-            Controls.Add(numericUpDown2);
-            Controls.Add(labelNumer);
-            Controls.Add(numericUpDown1);
+            Controls.Add(labelReceiptNumber);
             Controls.Add(buttonRefund);
             Controls.Add(labelProductsRefundList);
-            Controls.Add(labelReson);
+            Controls.Add(labelReason);
             Controls.Add(labelSellInfo);
             Controls.Add(labelSeles);
-            Controls.Add(listView1);
-            Controls.Add(richTextBoxReson);
+            Controls.Add(listViewRefundList);
+            Controls.Add(richTextBoxReason);
             Controls.Add(buttonInfo);
             Controls.Add(buttonFind);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dateTimePickerToDate);
             Controls.Add(richTextBoxSellInfo);
             Controls.Add(listViewSeles);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "RefundForm";
             Text = "RefundForm";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNumber).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,22 +426,42 @@
         #endregion
         private ListView listViewSeles;
         private RichTextBox richTextBoxSellInfo;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePickerToDate;
         private Button buttonFind;
         private Button buttonInfo;
-        private RichTextBox richTextBoxReson;
-        private ListView listView1;
+        private RichTextBox richTextBoxReason;
+        private ListView listViewRefundList;
         private Label labelSeles;
         private Label labelSellInfo;
-        private Label labelReson;
+        private Label labelReason;
         private Label labelProductsRefundList;
         private Button buttonRefund;
-        private NumericUpDown numericUpDown1;
-        private Label labelNumer;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericUpDownAmount;
+        private Label labelReceiptNumber;
         private Button buttonAddProductRefundList;
-        private Label labelProductID;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxOperationMethod;
         private Label labelOperationMethod;
+        private DateTimePicker dateTimePickerFromDate;
+        private Label labelFromDate;
+        private Label labelToDate;
+        private CheckBox checkBoxFindByDate;
+        private TextBox textBoxReceiptNumber;
+        private ColumnHeader columnHeaderNumber;
+        private ColumnHeader columnHeaderPrice;
+        private ColumnHeader columnHeaderDate;
+        private ErrorProvider errorProviderNumber;
+        private ListView listViewBuyList;
+        private Label labelBuyList;
+        private TextBox textBoxProductID;
+        private Label labelProductID;
+        private ColumnHeader columnHeaderProductName;
+        private ColumnHeader columnHeaderAmount;
+        private ColumnHeader columnHeaderProductID;
+        private ColumnHeader columnHeaderProductUnitPrice;
+        private Label labelAmount;
+        private ColumnHeader columnHeaderRefundProductID;
+        private ColumnHeader columnHeaderRefundProductName;
+        private ColumnHeader columnHeadercolumnHeaderRefundProductUnitPrice;
+        private ColumnHeader columnHeaderRefundAmount;
     }
 }

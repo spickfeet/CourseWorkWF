@@ -11,14 +11,16 @@ namespace CourseWorkWF.Presenters
     public class SellPresenter
     {
         private IDictionary<int,IProductsCollectionItem> _assortment;
-        private ISellDataBase _sellData;
+        private ISellDataBase _sellInfoData;
+        private IRefundInfoDataBase _refundInfo;
         private IAssortmentDataBase _assortmentDataBase;
         private ISellFormView _view;
         private IEmployee _user;
         private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
         public SellPresenter(ISellFormView view,IEmployee user)
         {
-            _sellData = new SellInfoDataBase();
+            _refundInfo = new RefundInfoDataBase();
+            _sellInfoData = new SellInfoDataBase();
             _assortmentDataBase = new AssortmentDataBase();
             _assortment = _assortmentDataBase.Load();
             _user = user;
@@ -93,23 +95,19 @@ namespace CourseWorkWF.Presenters
         }
         private void SellOut(object? sender, EventArgs e)
         {
-            IList<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
-            foreach(var item in _buyProducts) 
-            {
-                products.Add(item.Value);
-            }
+            Sell sell = new Sell(_buyProducts, new MoneyOperation(_view.Price, _view.OperationMethod));
 
-            Sell sell = new Sell(products, new MoneyOperation(_view.Price, _view.OperationMethod));
-            int num = _sellData.Load().Count + 1;
+            int number = _sellInfoData.Load().Count + _refundInfo.Load().Count + 1;
 
-            ISellInfo sellInfo = new SellInfo(num, sell, _user,DateTime.Now);
-            _sellData.Add(sellInfo);
+            ISellInfo sellInfo = new SellInfo(number, sell, _user,DateTime.Now);
+
+            _sellInfoData.Add(sellInfo);
 
             Program.revenue.ChangeRevenue(sell); // Увеличение выручки
            
-            foreach(IProductsCollectionItem item in products)
+            foreach(var item in _buyProducts)
             {
-                _assortmentDataBase.Delete(item.Product.ProductID, item.Amount);
+                _assortmentDataBase.Delete(item.Value.Product.ProductID, item.Value.Amount);
             }
             _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
