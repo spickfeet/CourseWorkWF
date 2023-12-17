@@ -16,9 +16,10 @@ namespace CourseWorkWF.Presenters
         private IAssortmentDataBase _assortmentDataBase;
         private ISellFormView _view;
         private IEmployee _user;
-        private Dictionary<int,IProductsCollectionItem> _buyProducts = new();
+        private IDictionary<int, IProductsCollectionItem> _buyProducts;
         public SellPresenter(ISellFormView view,IEmployee user)
         {
+            _buyProducts = new Dictionary<int,IProductsCollectionItem>();
             _refundInfo = new RefundInfoDataBase();
             _sellInfoData = new SellInfoDataBase();
             _assortmentDataBase = new AssortmentDataBase();
@@ -42,7 +43,7 @@ namespace CourseWorkWF.Presenters
             _buyProducts.Clear();
         }
 
-        public Dictionary<int, IProductsCollectionItem> GetBuyProductsList()
+        public IDictionary<int, IProductsCollectionItem> GetBuyProductsList()
         {
             return _buyProducts;
         }

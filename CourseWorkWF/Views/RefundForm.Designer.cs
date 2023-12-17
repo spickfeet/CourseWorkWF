@@ -68,8 +68,19 @@
             textBoxProductID = new TextBox();
             numericUpDownAmount = new NumericUpDown();
             labelAmount = new Label();
+            errorProviderAmount = new ErrorProvider(components);
+            errorProviderProductID = new ErrorProvider(components);
+            errorProviderSellInfo = new ErrorProvider(components);
+            errorProviderReason = new ErrorProvider(components);
+            errorProviderOperationMethod = new ErrorProvider(components);
+            buttonCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProviderNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderSellInfo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderReason).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderOperationMethod).BeginInit();
             SuspendLayout();
             // 
             // listViewSeles
@@ -103,6 +114,7 @@
             richTextBoxSellInfo.Location = new Point(424, 25);
             richTextBoxSellInfo.Margin = new Padding(3, 2, 3, 2);
             richTextBoxSellInfo.Name = "richTextBoxSellInfo";
+            richTextBoxSellInfo.ReadOnly = true;
             richTextBoxSellInfo.Size = new Size(206, 176);
             richTextBoxSellInfo.TabIndex = 2;
             richTextBoxSellInfo.Text = "";
@@ -132,11 +144,11 @@
             buttonInfo.Location = new Point(173, 204);
             buttonInfo.Margin = new Padding(3, 2, 3, 2);
             buttonInfo.Name = "buttonInfo";
-            buttonInfo.Size = new Size(283, 47);
+            buttonInfo.Size = new Size(245, 47);
             buttonInfo.TabIndex = 5;
             buttonInfo.Text = "Получить информацию о чеке";
             buttonInfo.UseVisualStyleBackColor = true;
-            buttonInfo.Click += buttonInfo_Click;
+            buttonInfo.Click += ButtonInfo_Click;
             // 
             // richTextBoxReason
             // 
@@ -186,7 +198,7 @@
             // labelSellInfo
             // 
             labelSellInfo.AutoSize = true;
-            labelSellInfo.Location = new Point(462, 6);
+            labelSellInfo.Location = new Point(424, 8);
             labelSellInfo.Name = "labelSellInfo";
             labelSellInfo.Size = new Size(142, 15);
             labelSellInfo.TabIndex = 10;
@@ -204,7 +216,7 @@
             // labelProductsRefundList
             // 
             labelProductsRefundList.AutoSize = true;
-            labelProductsRefundList.Location = new Point(1005, 7);
+            labelProductsRefundList.Location = new Point(1005, 8);
             labelProductsRefundList.Name = "labelProductsRefundList";
             labelProductsRefundList.Size = new Size(168, 15);
             labelProductsRefundList.TabIndex = 13;
@@ -219,7 +231,7 @@
             buttonRefund.TabIndex = 14;
             buttonRefund.Text = "Вернуть деньги";
             buttonRefund.UseVisualStyleBackColor = true;
-            buttonRefund.Click += buttonRefund_Click;
+            buttonRefund.Click += ButtonRefund_Click;
             // 
             // labelReceiptNumber
             // 
@@ -239,10 +251,11 @@
             buttonAddProductRefundList.TabIndex = 18;
             buttonAddProductRefundList.Text = "Добавить продукт в список для возврата";
             buttonAddProductRefundList.UseVisualStyleBackColor = true;
-            buttonAddProductRefundList.Click += buttonAddProductRefundList_Click;
+            buttonAddProductRefundList.Click += ButtonAddProductRefundList_Click;
             // 
             // comboBoxOperationMethod
             // 
+            comboBoxOperationMethod.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxOperationMethod.FormattingEnabled = true;
             comboBoxOperationMethod.Items.AddRange(new object[] { "Карта", "Наличные" });
             comboBoxOperationMethod.Location = new Point(1254, 221);
@@ -305,7 +318,7 @@
             textBoxReceiptNumber.Name = "textBoxReceiptNumber";
             textBoxReceiptNumber.Size = new Size(156, 23);
             textBoxReceiptNumber.TabIndex = 27;
-            textBoxReceiptNumber.KeyPress += textBoxNumerical_KeyPressNotNumber;
+            textBoxReceiptNumber.KeyPress += TextBoxNumerical_KeyPressNotNumber;
             // 
             // errorProviderNumber
             // 
@@ -364,14 +377,17 @@
             textBoxProductID.Name = "textBoxProductID";
             textBoxProductID.Size = new Size(189, 23);
             textBoxProductID.TabIndex = 26;
-            textBoxProductID.KeyPress += textBoxNumerical_KeyPressNotNumber;
+            textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
             // 
             // numericUpDownAmount
             // 
             numericUpDownAmount.Location = new Point(636, 261);
+            numericUpDownAmount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            numericUpDownAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
             numericUpDownAmount.Size = new Size(188, 23);
             numericUpDownAmount.TabIndex = 30;
+            numericUpDownAmount.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // labelAmount
             // 
@@ -382,11 +398,45 @@
             labelAmount.TabIndex = 31;
             labelAmount.Text = "Колличество";
             // 
+            // errorProviderAmount
+            // 
+            errorProviderAmount.ContainerControl = this;
+            // 
+            // errorProviderProductID
+            // 
+            errorProviderProductID.ContainerControl = this;
+            // 
+            // errorProviderSellInfo
+            // 
+            errorProviderSellInfo.ContainerControl = this;
+            // 
+            // errorProviderReason
+            // 
+            errorProviderReason.ContainerControl = this;
+            errorProviderReason.RightToLeft = true;
+            // 
+            // errorProviderOperationMethod
+            // 
+            errorProviderOperationMethod.ContainerControl = this;
+            errorProviderOperationMethod.RightToLeft = true;
+            // 
+            // buttonCancel
+            // 
+            buttonCancel.Location = new Point(12, 328);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(165, 71);
+            buttonCancel.TabIndex = 32;
+            buttonCancel.Text = "Отмена";
+            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Click += buttonCancel_Click;
+            // 
             // RefundForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1432, 411);
+            Controls.Add(buttonCancel);
             Controls.Add(labelAmount);
             Controls.Add(numericUpDownAmount);
             Controls.Add(labelBuyList);
@@ -419,6 +469,11 @@
             Text = "RefundForm";
             ((System.ComponentModel.ISupportInitialize)errorProviderNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderSellInfo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderReason).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderOperationMethod).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -463,5 +518,11 @@
         private ColumnHeader columnHeaderRefundProductName;
         private ColumnHeader columnHeadercolumnHeaderRefundProductUnitPrice;
         private ColumnHeader columnHeaderRefundAmount;
+        private ErrorProvider errorProviderAmount;
+        private ErrorProvider errorProviderProductID;
+        private ErrorProvider errorProviderSellInfo;
+        private ErrorProvider errorProviderReason;
+        private ErrorProvider errorProviderOperationMethod;
+        private Button buttonCancel;
     }
 }

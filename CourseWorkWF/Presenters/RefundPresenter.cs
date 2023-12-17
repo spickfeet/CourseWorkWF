@@ -19,17 +19,24 @@ namespace CourseWorkWF.Presenters
         private IDictionary<int, IProductsCollectionItem> _productsRefund;
         private IRefundInfoDataBase _refundInfoData;
         private ISellDataBase _sellInfoData;
+        private ISellInfo? _sellInfo;
         private IEmployee _employee;
-        private int _receiptSellNumber = 0;
+        private int _receiptSellNumber;
+        private bool _haveError;
+        public event EventHandler<string> AmountErrorEvent;
+        public event EventHandler<string> ProductIDErrorEvent;
+        public event EventHandler<string> SellInfoErrorEvent;
         public IDictionary<int, IProductsCollectionItem> ProductsRefund { get { return _productsRefund; } }
         public RefundPresenter(IRefundFormView view, IEmployee employee)
         {
+            _haveError = false;
             _employee = employee;
             _refundInfoData = new RefundInfoDataBase();
             _sellInfoData = new SellInfoDataBase();
             _productsRefund = new Dictionary<int, IProductsCollectionItem>();
             _salesInfo = _sellInfoData.Load();
             _view = view;
+            _receiptSellNumber = 0;
         }
 
         public ISellInfo? FineReceiptByNumber()
@@ -37,7 +44,8 @@ namespace CourseWorkWF.Presenters
             if (_salesInfo.ContainsKey(_view.ReceiptNumber))
             {
                 _receiptSellNumber = _view.ReceiptNumber;
-                return _salesInfo[_view.ReceiptNumber];
+                _sellInfo = _salesInfo[_receiptSellNumber];
+                return _sellInfo;
             }
             return null;
         }
@@ -46,7 +54,8 @@ namespace CourseWorkWF.Presenters
             if (_salesInfo.ContainsKey(_view.SelectedReceiptNumber))
             {
                 _receiptSellNumber = _view.SelectedReceiptNumber;
-                return _salesInfo[_view.SelectedReceiptNumber];
+                _sellInfo = _salesInfo[_view.SelectedReceiptNumber];
+                return _sellInfo;
             }
             return null;
         }
@@ -62,17 +71,48 @@ namespace CourseWorkWF.Presenters
         }
         public void AddRefundList()
         {
-            if (_productsRefund.ContainsKey(_view.ProductID))
+            if(_sellInfo == null)
             {
-                _productsRefund[_view.ProductID].Amount += _view.Amount;
+                SellInfoErrorEvent.Invoke(this, "Получите информацию о продаже");
                 return;
             }
-            IProductsCollectionItem productRefund = new ProductsCollectionItem(_salesInfo[_receiptSellNumber].Sell.Products[_view.ProductID].Product, _view.Amount);
-            _productsRefund[_view.ProductID] = productRefund;
+            _haveError = false;
+            if (!_sellInfo.Sell.Products.ContainsKey(_view.ProductID))
+            {
+                ProductIDErrorEvent?.Invoke(this,"В чеке нет продукта с таким ID");
+                _haveError = true;
+            }
+            else
+            {
+                if (_sellInfo.Sell.Products[_view.ProductID].Amount < _view.Amount)
+                {
+                    AmountErrorEvent?.Invoke(this, "В чеке нет столько продуктов");
+                    _haveError = true;
+                }
+            }
+            if (ProductsRefund.ContainsKey(_view.ProductID))
+            {
+                if (_sellInfo.Sell.Products[_view.ProductID].Amount - ProductsRefund[_view.ProductID].Amount - _view.Amount < 0)
+                {
+                    AmountErrorEvent?.Invoke(this, "В чеке нет столько продуктов");
+                    return;
+                }
+                ProductsRefund[_view.ProductID].Amount += _view.Amount;
+                return;
+            }
+            if(_haveError == false)
+            {
+                IProductsCollectionItem productRefund = new ProductsCollectionItem(_salesInfo[_receiptSellNumber].Sell.Products[_view.ProductID].Product, _view.Amount);
+                ProductsRefund[_view.ProductID] = productRefund;
+            }
             return;
         }
         public void ReturnMoney()
         {
+            if(ProductsRefund.Count == 0)
+            {
+                return;
+            }
             decimal moneyAmount = 0;
             foreach (var item in ProductsRefund) 
             {
@@ -82,6 +122,15 @@ namespace CourseWorkWF.Presenters
             IRefund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _employee, DateTime.Now);
             _refundInfoData.Add(refundInfo);
+            _productsRefund.Clear();
+        }
+        public void Cancel()
+        {
+            ProductsRefund.Clear();
+            _sellInfo = null;
+            _receiptSellNumber = 0;
+            _haveError = false;
+
         }
     }
 }
