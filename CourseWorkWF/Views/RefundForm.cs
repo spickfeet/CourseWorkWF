@@ -223,10 +223,6 @@ namespace CourseWorkWF.Views
             errorProviderSellInfo.Clear();
             errorProviderProductID.Clear();
             errorProviderAmount.Clear();
-            if (numericUpDownAmount.Value == 0)
-            {
-                errorProviderAmount.SetError(numericUpDownAmount, "Введите количество");
-            }
             if (string.IsNullOrEmpty(textBoxProductID.Text))
             {
                 errorProviderProductID.SetError(textBoxProductID, "Введите ID");
