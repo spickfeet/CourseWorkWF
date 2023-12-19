@@ -9,8 +9,8 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IRefund
     {
-        IMoneyOperation MoneyOperation { get; set; }
-        IDictionary<int, IProductsCollectionItem> Products { get; set; }
-        string Reason { get; set; } 
+        public IMoneyOperation MoneyOperation { get; set; }
+        public IDictionary<int, IProductsCollectionItem> Products { get; set; }
+        public string Reason { get; set; } 
     }
 }

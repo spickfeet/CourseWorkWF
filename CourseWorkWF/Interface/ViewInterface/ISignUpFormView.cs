@@ -9,11 +9,11 @@ namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface ISignUpFormView
     {
-        string Name { get;}
-        string Surname { get;}
-        string? Patronymic { get;}
-        string Login { get; }
-        string Password { get; }
-        JobTitle Post { get; }
+        public string Name { get;}
+        public string Surname { get;}
+        public string? Patronymic { get;}
+        public string Login { get; }
+        public string Password { get; }
+        public JobTitle Post { get; }
     }
 }

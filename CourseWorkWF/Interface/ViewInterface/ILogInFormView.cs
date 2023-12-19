@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface ILogInFormView
     {
-        string Login { get; }
-        string Password { get; }
+        public string Login { get; }
+        public string Password { get; }
     }
 }

@@ -2,11 +2,11 @@
 {
     public interface IAddAssortmentFormView
     {
-        int ProductID { get; set; }
-        decimal Price { get; set; }
-        int Amount { get; set; }
-        string ProductName { get; set; }
-        event EventHandler? AddProductEvent;
-        event EventHandler? AutocompleteEvent;
+        public int ProductID { get; set; }
+        public decimal Price { get; set; }
+        public int Amount { get; set; }
+        public string ProductName { get; set; }
+        public event EventHandler? AddProductEvent;
+        public event EventHandler? AutocompleteEvent;
     }
 }

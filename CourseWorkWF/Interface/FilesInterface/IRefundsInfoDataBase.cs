@@ -9,7 +9,7 @@ namespace CourseWorkWF.Interface.FilesInterface
 {
     internal interface IRefundInfoDataBase
     {
-        void Add(IRefundInfo sell);
-        IDictionary<int, IRefundInfo> Load();
+        public void Add(IRefundInfo sell);
+        public IDictionary<int, IRefundInfo> Load();
     }
 }

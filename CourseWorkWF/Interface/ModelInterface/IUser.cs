@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IUser : IEmployee
     {
-        string Login { get; set; }
-        string Password { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

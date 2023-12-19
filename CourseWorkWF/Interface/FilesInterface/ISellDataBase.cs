@@ -9,7 +9,7 @@ namespace CourseWorkWF.Interface.FilesInterface
 {
     public interface ISellDataBase
     {
-        void Add(ISellInfo sell);
-        IDictionary<int,ISellInfo> Load();
+        public void Add(ISellInfo sell);
+        public IDictionary<int,ISellInfo> Load();
     }
 }

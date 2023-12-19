@@ -11,8 +11,8 @@ namespace CourseWorkWF.Interface.FilesInterface
 {
     public interface IAssortmentDataBase
     {
-        void Add(IProductsCollectionItem productsCollectionItem);
-        void Delete(int productID, decimal amount);
-        IDictionary<int, IProductsCollectionItem> Load();
+        public void Add(IProductsCollectionItem productsCollectionItem);
+        public void Delete(int productID, decimal amount);
+        public IDictionary<int, IProductsCollectionItem> Load();
     }
 }

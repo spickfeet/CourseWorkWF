@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IRevenue
     {
-        decimal Proceeds { get; set; }
-        void ChangeRevenue(IRevenueChanger revenueChenger);
+        public decimal Proceeds { get; set; }
+        public void ChangeRevenue(IRevenueChanger revenueChenger);
     }
 }

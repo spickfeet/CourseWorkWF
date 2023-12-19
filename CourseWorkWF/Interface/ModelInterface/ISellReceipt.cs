@@ -8,9 +8,9 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface ISellReceipt
     {
-        int SellReceiptID { get; set; }
-        IDiscount discount { get; set; }
-        IFullName fullName { get; set; }
-        DateTime SellTime { get; set; }
+        public int SellReceiptID { get; set; }
+        public IDiscount discount { get; set; }
+        public IFullName fullName { get; set; }
+        public DateTime SellTime { get; set; }
     }
 }

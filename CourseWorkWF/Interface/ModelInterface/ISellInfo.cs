@@ -8,6 +8,6 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface ISellInfo : IOperationInfo
     {
-        ISell Sell { get; set; }
+        public ISell Sell { get; set; }
     }
 }
