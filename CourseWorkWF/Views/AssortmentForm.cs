@@ -54,5 +54,11 @@ namespace CourseWorkWF.Views
                 column++;
             }
         }
+
+        private void ButtonChangePrice_Click(object sender, EventArgs e)
+        {
+            ChangePriceForm changePriceForm = new ChangePriceForm();
+            changePriceForm.ShowDialog();
+        }
     }
 }

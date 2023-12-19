@@ -37,6 +37,7 @@
             ColumnHeaderProductID = new ColumnHeader();
             ColumnHeaderPrice = new ColumnHeader();
             ColumnHeaderAmount = new ColumnHeader();
+            buttonChangePrice = new Button();
             SuspendLayout();
             // 
             // buttonAddProductInAssortment
@@ -109,18 +110,29 @@
             ColumnHeaderAmount.Text = "Количество";
             ColumnHeaderAmount.Width = 120;
             // 
-            // Assortment
+            // buttonChangePrice
+            // 
+            buttonChangePrice.Location = new Point(12, 113);
+            buttonChangePrice.Name = "buttonChangePrice";
+            buttonChangePrice.Size = new Size(172, 68);
+            buttonChangePrice.TabIndex = 6;
+            buttonChangePrice.Text = "Изменить цену";
+            buttonChangePrice.UseVisualStyleBackColor = true;
+            buttonChangePrice.Click += ButtonChangePrice_Click;
+            // 
+            // AssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(709, 484);
+            Controls.Add(buttonChangePrice);
             Controls.Add(listViewAssortment);
             Controls.Add(buttonLoadAssortment);
             Controls.Add(labelAssortment);
             Controls.Add(buttonRemoveProductInAssortment);
             Controls.Add(buttonAddProductInAssortment);
-            Name = "Assortment";
+            Name = "AssortmentForm";
             Text = "Assortment";
             ResumeLayout(false);
             PerformLayout();
@@ -137,5 +149,6 @@
         private ColumnHeader ColumnHeaderProductID;
         private ColumnHeader ColumnHeaderAmount;
         private ColumnHeader ColumnHeaderPrice;
+        private Button buttonChangePrice;
     }
 }
