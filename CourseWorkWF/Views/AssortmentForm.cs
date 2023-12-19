@@ -41,6 +41,13 @@ namespace CourseWorkWF.Views
             UpdateList();
         }
 
+        private void ButtonChangePrice_Click(object sender, EventArgs e)
+        {
+            ChangePriceForm changePriceForm = new ChangePriceForm();
+            changePriceForm.ShowDialog();
+            UpdateList();
+        }
+
         private void UpdateList()
         {
             listViewAssortment.Items.Clear();
@@ -53,12 +60,6 @@ namespace CourseWorkWF.Views
                 listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Value.Amount.ToString());
                 line++;
             }
-        }
-
-        private void ButtonChangePrice_Click(object sender, EventArgs e)
-        {
-            ChangePriceForm changePriceForm = new ChangePriceForm();
-            changePriceForm.ShowDialog();
         }
     }
 }
