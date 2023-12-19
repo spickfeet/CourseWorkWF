@@ -20,7 +20,7 @@ namespace CourseWorkWF.Views
             {
                 if (comboBoxOperationMethod.Text == "Карта") return OperationMethod.Card;
                 if (comboBoxOperationMethod.Text == "Наличные") return OperationMethod.Cash;
-                throw new Exception("Не выбран способ оплаты");
+                throw new ArgumentException("Не выбран способ оплаты");
             }
         }
         decimal ISellFormView.Cash
@@ -145,7 +145,7 @@ namespace CourseWorkWF.Views
                 comboBoxDiscount.Enabled = true;
                 buttonCancelDiscount.Enabled = false;
 
-                comboBoxOperationMethod.SelectedIndex = 0;
+                comboBoxOperationMethod.SelectedIndex = -1;
                 numericUpDownCash.Value = 0;
                 textBoxMoneyChangeBuyer.Text = "0";
             }
@@ -153,7 +153,7 @@ namespace CourseWorkWF.Views
 
         private void ComboBoxTransactionMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxOperationMethod.SelectedIndex == 1)
+            if (comboBoxOperationMethod.SelectedIndex == 0)
             {
                 labelCash.Visible = true;
                 numericUpDownCash.Visible = true;
@@ -161,7 +161,7 @@ namespace CourseWorkWF.Views
                 textBoxMoneyChangeBuyer.Visible = true;
                 buttonSell.Enabled = true;
             }
-            if (comboBoxOperationMethod.SelectedIndex == 2)
+            if (comboBoxOperationMethod.SelectedIndex == 1)
             {
                 labelCash.Visible = false;
                 numericUpDownCash.Visible = false;
@@ -169,7 +169,7 @@ namespace CourseWorkWF.Views
                 textBoxMoneyChangeBuyer.Visible = false;
                 buttonSell.Enabled = true;
             }
-            if (comboBoxOperationMethod.SelectedIndex == 0)
+            if (comboBoxOperationMethod.SelectedIndex == -1)
             {
                 labelCash.Visible = false;
                 numericUpDownCash.Visible = false;
@@ -192,7 +192,7 @@ namespace CourseWorkWF.Views
             textBoxPrice.Text = "0";
             comboBoxDiscount.SelectedIndex = 0;
             comboBoxDiscount.Enabled = false;
-            comboBoxOperationMethod.SelectedIndex = 0;
+            comboBoxOperationMethod.SelectedIndex = -1;
             comboBoxOperationMethod.Enabled = false;
             buttonSell.Enabled = false;
             buttonCancel.Enabled = false;

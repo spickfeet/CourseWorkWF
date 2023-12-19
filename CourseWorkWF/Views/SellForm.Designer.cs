@@ -109,7 +109,7 @@
             comboBoxOperationMethod.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxOperationMethod.Enabled = false;
             comboBoxOperationMethod.FormattingEnabled = true;
-            comboBoxOperationMethod.Items.AddRange(new object[] { "", "Наличные", "Карта" });
+            comboBoxOperationMethod.Items.AddRange(new object[] { "Наличные", "Карта" });
             comboBoxOperationMethod.Location = new Point(139, 196);
             comboBoxOperationMethod.Name = "comboBoxOperationMethod";
             comboBoxOperationMethod.Size = new Size(121, 23);
