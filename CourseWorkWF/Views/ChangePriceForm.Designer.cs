@@ -99,6 +99,8 @@
             Controls.Add(labelPrice);
             Controls.Add(labelProductID);
             Controls.Add(textBoxProductID);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ChangePriceForm";
             Text = "ChangePriceForm";
             ((System.ComponentModel.ISupportInitialize)numericUpDownPrice).EndInit();

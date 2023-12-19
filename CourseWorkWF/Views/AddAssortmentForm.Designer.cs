@@ -137,6 +137,8 @@
             Controls.Add(textBoxProductName);
             Controls.Add(labelProductID);
             Controls.Add(buttonAddProductInAssortment);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddAssortmentForm";
             Text = "AddAssortment";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();

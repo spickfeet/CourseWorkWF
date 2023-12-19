@@ -90,7 +90,7 @@
             labelAmount.TabIndex = 4;
             labelAmount.Text = "Количество";
             // 
-            // RemoveAssortment
+            // RemoveAssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -101,7 +101,9 @@
             Controls.Add(labelProductID);
             Controls.Add(buttonRemoveProduct);
             Controls.Add(numericUpDownProductID);
-            Name = "RemoveAssortment";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "RemoveAssortmentForm";
             Text = "RemoveAssortment";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();

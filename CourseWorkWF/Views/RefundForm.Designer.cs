@@ -465,6 +465,8 @@
             Controls.Add(richTextBoxSellInfo);
             Controls.Add(listViewSeles);
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "RefundForm";
             Text = "RefundForm";
             ((System.ComponentModel.ISupportInitialize)errorProviderNumber).EndInit();

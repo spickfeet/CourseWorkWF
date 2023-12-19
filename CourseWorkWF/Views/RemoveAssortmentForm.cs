@@ -9,7 +9,7 @@ namespace CourseWorkWF.Views
         public RemoveAssortmentForm()
         {
             InitializeComponent();
-             _presenter = new RemoveAssortmentPresenter(this);
+            _presenter = new RemoveAssortmentPresenter(this);
         }
 
         int IRemoveAssortmentFormView.Amount
@@ -25,7 +25,7 @@ namespace CourseWorkWF.Views
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
-            if(_presenter.RemoveProduct() == true)
+            if (_presenter.RemoveProduct() == true)
                 Close();
             else errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
         }

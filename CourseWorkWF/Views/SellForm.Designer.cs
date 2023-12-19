@@ -345,6 +345,8 @@
             Controls.Add(labelDiscount);
             Controls.Add(comboBoxDiscount);
             Controls.Add(textBoxPrice);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SellForm";
             Text = "CashierARM";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();

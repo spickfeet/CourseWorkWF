@@ -37,7 +37,7 @@ namespace CourseWorkWF.Views
                 errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
                 return;
             }
-            if(_presenter.ChangePrice() == false)
+            if (_presenter.ChangePrice() == false)
             {
                 errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
             }

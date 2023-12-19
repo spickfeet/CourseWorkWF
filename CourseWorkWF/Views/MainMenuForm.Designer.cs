@@ -115,6 +115,8 @@
             Controls.Add(buttonSell);
             Controls.Add(buttonAssortment);
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "MainMenuForm";
             Text = "User";
             ResumeLayout(false);

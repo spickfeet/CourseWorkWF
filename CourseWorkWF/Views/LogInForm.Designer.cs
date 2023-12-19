@@ -71,7 +71,7 @@
             // labelError
             // 
             labelError.AutoSize = true;
-            labelError.BackColor = SystemColors.ScrollBar;
+            labelError.BackColor = SystemColors.ActiveCaption;
             labelError.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             labelError.ForeColor = Color.FromArgb(192, 0, 0);
             labelError.Location = new Point(125, 404);
@@ -104,7 +104,7 @@
             // labelSignUp
             // 
             labelSignUp.AutoSize = true;
-            labelSignUp.ForeColor = SystemColors.MenuHighlight;
+            labelSignUp.ForeColor = Color.Navy;
             labelSignUp.Location = new Point(228, 337);
             labelSignUp.Name = "labelSignUp";
             labelSignUp.Size = new Size(117, 15);
@@ -118,9 +118,9 @@
             labelPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             labelPassword.Location = new Point(125, 243);
             labelPassword.Name = "labelPassword";
-            labelPassword.Size = new Size(57, 15);
+            labelPassword.Size = new Size(49, 15);
             labelPassword.TabIndex = 11;
-            labelPassword.Text = "Password";
+            labelPassword.Text = "Пароль";
             // 
             // labelLogin
             // 
@@ -128,15 +128,15 @@
             labelLogin.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             labelLogin.Location = new Point(125, 173);
             labelLogin.Name = "labelLogin";
-            labelLogin.Size = new Size(37, 15);
+            labelLogin.Size = new Size(41, 15);
             labelLogin.TabIndex = 10;
-            labelLogin.Text = "Login";
+            labelLogin.Text = "Логин";
             // 
             // LogInForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ScrollBar;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(474, 501);
             Controls.Add(labelPassword);
             Controls.Add(labelLogin);
@@ -149,6 +149,8 @@
             Controls.Add(textBoxLogin);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LogInForm";
             Text = "Form1";
             ResumeLayout(false);

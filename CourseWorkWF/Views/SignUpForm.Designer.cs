@@ -116,9 +116,9 @@
             labelLogin.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             labelLogin.Location = new Point(227, 71);
             labelLogin.Name = "labelLogin";
-            labelLogin.Size = new Size(37, 15);
+            labelLogin.Size = new Size(41, 15);
             labelLogin.TabIndex = 7;
-            labelLogin.Text = "Login";
+            labelLogin.Text = "Логин";
             // 
             // labelPassword
             // 
@@ -126,9 +126,9 @@
             labelPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             labelPassword.Location = new Point(227, 120);
             labelPassword.Name = "labelPassword";
-            labelPassword.Size = new Size(57, 15);
+            labelPassword.Size = new Size(49, 15);
             labelPassword.TabIndex = 8;
-            labelPassword.Text = "Password";
+            labelPassword.Text = "Пароль";
             // 
             // labelJobTitle
             // 
@@ -262,6 +262,8 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = SystemColors.ControlText;
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SignUpForm";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).EndInit();

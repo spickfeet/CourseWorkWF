@@ -132,6 +132,8 @@
             Controls.Add(labelAssortment);
             Controls.Add(buttonRemoveProductInAssortment);
             Controls.Add(buttonAddProductInAssortment);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AssortmentForm";
             Text = "Assortment";
             ResumeLayout(false);
