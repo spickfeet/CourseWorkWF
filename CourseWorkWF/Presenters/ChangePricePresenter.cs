@@ -21,7 +21,7 @@ namespace CourseWorkWF.Presenters
             _view = view;
         }
         public event EventHandler<string> IDNotFoundErrorEvent;
-        public void ChangePrice()
+        public bool ChangePrice()
         {
             IDictionary<int, IProductsCollectionItem> assortment = _assortmentData.Load();
             if (assortment.ContainsKey(_view.ProductID))
@@ -29,8 +29,9 @@ namespace CourseWorkWF.Presenters
                 assortment[_view.ProductID].Product.Price = _view.Price;
                 _assortmentData.Delete(_view.ProductID, assortment[_view.ProductID].Amount);
                 _assortmentData.Add(assortment[_view.ProductID]);
+                return true;
             }
-            IDNotFoundErrorEvent?.Invoke(this, "Нет продукта с таким ID");
+            return false;
         }
     }
 }

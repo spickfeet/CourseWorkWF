@@ -21,15 +21,8 @@ namespace CourseWorkWF.Views
         public ChangePriceForm()
         {
             _presenter = new ChangePricePresenter(this);
-            _presenter.IDNotFoundErrorEvent += SetProductIDError;
             InitializeComponent();
         }
-
-        private void SetProductIDError(object? sender, string error)
-        {
-            errorProviderProductID.SetError(textBoxProductID, error);
-        }
-
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
@@ -37,7 +30,6 @@ namespace CourseWorkWF.Views
                 e.KeyChar = '\0';
             }
         }
-
         private void ButtonChangePrice_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxProductID.Text))
@@ -45,7 +37,10 @@ namespace CourseWorkWF.Views
                 errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
                 return;
             }
-            _presenter.ChangePrice();
+            if(_presenter.ChangePrice() == false)
+            {
+                errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
+            }
             Close();
         }
     }

@@ -55,6 +55,10 @@ namespace CourseWorkWF.Views
 
         public string Reason => richTextBoxReason.Text;
 
+        string IRefundFormView.SellInfo { set { richTextBoxSellInfo.Text = value; } }
+
+        string IRefundFormView.Reason => richTextBoxReason.Text;
+
         public RefundForm(IEmployee employee)
         {
             _presenter = new RefundPresenter(this, employee);
@@ -105,6 +109,7 @@ namespace CourseWorkWF.Views
             if (_haveError == false)
             {
                 _presenter.ReturnMoney();
+
                 comboBoxOperationMethod.SelectedIndex = -1;
                 listViewBuyList.Items.Clear();
                 listViewRefundList.Items.Clear();
@@ -164,29 +169,28 @@ namespace CourseWorkWF.Views
                     listViewSeles.Items[0].SubItems.Add(_presenter.FineReceiptByNumber().Sell.MoneyOperation.MoneyAmount.ToString());
                     listViewSeles.Items[0].SubItems.Add(_presenter.FineReceiptByNumber().OperationTime.ToString());
 
-                    SellInfo(_presenter.FineReceiptByNumber());
 
                     listViewBuyList.Items.Clear();
-                    int column = 0;
-                    foreach (var item in _presenter.FineReceiptByNumber().Sell.Products)
+                    int lineIndex = 0;
+                    foreach (var product in _presenter.FineReceiptByNumber().Sell.Products)
                     {
-                        listViewBuyList.Items.Add(item.Value.Product.ProductID.ToString());
-                        listViewBuyList.Items[column].SubItems.Add(item.Value.Product.ProductName.ToString());
-                        listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Price.ToString());
-                        listViewBuyList.Items[column].SubItems.Add(item.Value.Amount.ToString());
-                        column++;
+                        listViewBuyList.Items.Add(product.Value.Product.ProductID.ToString());
+                        listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Product.ProductName.ToString());
+                        listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Product.Price.ToString());
+                        listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Amount.ToString());
+                        lineIndex++;
                     }
                 }
             }
             else
             {
-                int column = 0;
-                foreach (var item in _presenter.FineReceiptByDates())
+                int lineIndex = 0;
+                foreach (var sellInfo in _presenter.FineReceiptByDates())
                 {
-                    listViewSeles.Items.Add(item.OperationNumber.ToString());
-                    listViewSeles.Items[column].SubItems.Add(item.Sell.MoneyOperation.MoneyAmount.ToString());
-                    listViewSeles.Items[column].SubItems.Add(item.OperationTime.ToString());
-                    column++;
+                    listViewSeles.Items.Add(sellInfo.OperationNumber.ToString());
+                    listViewSeles.Items[lineIndex].SubItems.Add(sellInfo.Sell.MoneyOperation.MoneyAmount.ToString());
+                    listViewSeles.Items[lineIndex].SubItems.Add(sellInfo.OperationTime.ToString());
+                    lineIndex++;
                 }
             }
         }
@@ -195,27 +199,18 @@ namespace CourseWorkWF.Views
         {
             if (_presenter.FineReceiptBySelectedReceiptNumber() != null)
             {
-                SellInfo(_presenter.FineReceiptBySelectedReceiptNumber());
                 listViewBuyList.Items.Clear();
-                int column = 0;
-                foreach (var item in _presenter.FineReceiptBySelectedReceiptNumber().Sell.Products)
+                int lineIndex = 0;
+                foreach (var product in _presenter.FineReceiptBySelectedReceiptNumber().Sell.Products)
                 {
-                    listViewBuyList.Items.Add(item.Value.Product.ProductID.ToString());
-                    listViewBuyList.Items[column].SubItems.Add(item.Value.Product.ProductName.ToString());
-                    listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Price.ToString());
-                    listViewBuyList.Items[column].SubItems.Add(item.Value.Amount.ToString());
-                    column++;
+                    listViewBuyList.Items.Add(product.Value.Product.ProductID.ToString());
+                    listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Product.ProductName.ToString());
+                    listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Product.Price.ToString());
+                    listViewBuyList.Items[lineIndex].SubItems.Add(product.Value.Amount.ToString());
+                    lineIndex++;
                 }
             }
 
-        }
-        private void SellInfo(ISellInfo sellInfo)
-        {
-            richTextBoxSellInfo.Text = "Номер чека: " + sellInfo.OperationNumber +
-                "\nВремя продажи: " + sellInfo.OperationTime +
-                "\nФИО продавца: " + sellInfo.Employee.FullName.Surname + " " + sellInfo.Employee.FullName.Name + " " + sellInfo.Employee.FullName.Patronymic +
-                "\nСпособ оплаты: " + sellInfo.Sell.MoneyOperation.Method.ToString() +
-                "\nСтоимость: " + sellInfo.Sell.MoneyOperation.MoneyAmount;
         }
 
         private void ButtonAddProductRefundList_Click(object sender, EventArgs e)
@@ -241,7 +236,7 @@ namespace CourseWorkWF.Views
             }
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             _presenter.Cancel();
             errorProviderAmount.Clear();

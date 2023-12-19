@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Inf_Bez
 {
-    public partial class LogInForm : Form , ILogInFormView
+    public partial class LogInForm : Form, ILogInFormView
     {
         private LogInPresenter _presenter;
         public LogInForm()
@@ -37,7 +37,7 @@ namespace Inf_Bez
                 mainMenu.ShowDialog();
             }
             labelError.Visible = true;
-            
+
         }
 
         private void CheckBoxPasswordView_CheckedChanged(object sender, EventArgs e)

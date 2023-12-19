@@ -428,7 +428,7 @@
             buttonCancel.TabIndex = 32;
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = true;
-            buttonCancel.Click += buttonCancel_Click;
+            buttonCancel.Click += ButtonCancel_Click;
             // 
             // RefundForm
             // 

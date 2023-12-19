@@ -104,7 +104,7 @@
             // 
             labelTitleSignUp.AutoSize = true;
             labelTitleSignUp.Font = new Font("Segoe UI", 21F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTitleSignUp.Location = new Point(151, 9);
+            labelTitleSignUp.Location = new Point(150, 9);
             labelTitleSignUp.Name = "labelTitleSignUp";
             labelTitleSignUp.Size = new Size(176, 38);
             labelTitleSignUp.TabIndex = 2;
@@ -242,6 +242,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(474, 319);
             Controls.Add(labelPatronymic);
             Controls.Add(textBoxPatronymic);
@@ -259,6 +260,7 @@
             Controls.Add(textBoxPassword);
             Controls.Add(textBoxLogin);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ForeColor = SystemColors.ControlText;
             Margin = new Padding(3, 2, 3, 2);
             Name = "SignUpForm";
             Text = "Form1";

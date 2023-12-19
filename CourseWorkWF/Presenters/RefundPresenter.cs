@@ -45,6 +45,7 @@ namespace CourseWorkWF.Presenters
             {
                 _receiptSellNumber = _view.ReceiptNumber;
                 _sellInfo = _salesInfo[_receiptSellNumber];
+                SellInfo();
                 return _sellInfo;
             }
             return null;
@@ -55,6 +56,7 @@ namespace CourseWorkWF.Presenters
             {
                 _receiptSellNumber = _view.SelectedReceiptNumber;
                 _sellInfo = _salesInfo[_view.SelectedReceiptNumber];
+                SellInfo();
                 return _sellInfo;
             }
             return null;
@@ -118,7 +120,7 @@ namespace CourseWorkWF.Presenters
             {
                 moneyAmount += item.Value.Product.Price;
             }
-            int number = _sellInfoData.Load().Count + _sellInfoData.Load().Count + 1;
+            int number = _salesInfo.Count + _sellInfoData.Load().Count + 1;
             IRefund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _employee, DateTime.Now);
             _refundInfoData.Add(refundInfo);
@@ -131,6 +133,14 @@ namespace CourseWorkWF.Presenters
             _receiptSellNumber = 0;
             _haveError = false;
 
+        }
+        private void SellInfo()
+        {
+            _view.SellInfo = "Номер чека: " + _sellInfo.OperationNumber +
+                "\nВремя продажи: " + _sellInfo.OperationTime +
+                "\nФИО продавца: " + _sellInfo.Employee.FullName.Surname + " " + _sellInfo.Employee.FullName.Name + " " + _sellInfo.Employee.FullName.Patronymic +
+                "\nСпособ оплаты: " + _sellInfo.Sell.MoneyOperation.Method.ToString() +
+                "\nСтоимость: " + _sellInfo.Sell.MoneyOperation.MoneyAmount;
         }
     }
 }

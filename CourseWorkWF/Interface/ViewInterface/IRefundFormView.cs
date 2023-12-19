@@ -10,6 +10,7 @@ namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface IRefundFormView
     {
+        public string SellInfo { set; }
         public int ReceiptNumber { get; }
         public int SelectedReceiptNumber { get; }
         public DateTime DateFrom { get; }

@@ -105,7 +105,7 @@
             // 
             labelSignUp.AutoSize = true;
             labelSignUp.ForeColor = SystemColors.MenuHighlight;
-            labelSignUp.Location = new Point(226, 337);
+            labelSignUp.Location = new Point(228, 337);
             labelSignUp.Name = "labelSignUp";
             labelSignUp.Size = new Size(117, 15);
             labelSignUp.TabIndex = 6;
