@@ -22,7 +22,7 @@ namespace CourseWorkWF.Models
         public string Reason 
         {
             get { return _reason; }
-            set { if (value == null || value == "") throw new ArgumentException("Reason не может быть пустой"); _reason = value; }
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Reason не может быть пустой"); _reason = value; }
         }
 
         public Refund(IDictionary<int, IProductsCollectionItem> products, IMoneyOperation moneyOperation, string reason)

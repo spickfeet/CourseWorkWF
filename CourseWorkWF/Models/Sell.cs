@@ -7,14 +7,12 @@ namespace CourseWorkWF.Models
     public class Sell : ISell, IRevenueChanger
     {
         private IDictionary<int, IProductsCollectionItem> _products;
+        public IMoneyOperation MoneyOperation { get; set; }
         public IDictionary<int, IProductsCollectionItem> Products 
         { 
             get { return _products; }
-            set { if (value == null) throw new ArgumentNullException("Коллекция продуктов не может быть null"); _products = value; }
+            set { if (value == null) throw new ArgumentNullException("Products не может быть null"); _products = value; }
         }
-
-        public IMoneyOperation MoneyOperation { get; set; }
-
         public Sell(IDictionary<int, IProductsCollectionItem> products, IMoneyOperation moneyOperation)
         {
             Products = products;
@@ -24,6 +22,5 @@ namespace CourseWorkWF.Models
         {   
             return revenue + MoneyOperation.MoneyAmount;
         }
-
     }
 }

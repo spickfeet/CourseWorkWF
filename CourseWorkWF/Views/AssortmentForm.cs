@@ -54,7 +54,7 @@ namespace CourseWorkWF.Views
             int line = 0;
             foreach (var productCollectionItem in _presenter.Assortment)
             {
-                listViewAssortment.Items.Add(productCollectionItem.Value.Product.Name);
+                listViewAssortment.Items.Add(productCollectionItem.Value.Product.ProductName);
                 listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Key.ToString());
                 listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
                 listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Value.Amount.ToString());

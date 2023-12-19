@@ -103,7 +103,7 @@ namespace CourseWorkWF.Views
             int column = 0;
             foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
-                listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.Name.ToString());
+                listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.ProductName.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
                 listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Amount.ToString());

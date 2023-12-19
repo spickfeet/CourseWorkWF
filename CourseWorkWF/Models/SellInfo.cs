@@ -27,7 +27,6 @@ namespace CourseWorkWF.Models
             get { return _operationNumber; }
             set { if (value < 1) throw new ArgumentOutOfRangeException("OperationNumber не может быть меньше 1"); _operationNumber = value; }
         }
-
         public SellInfo(int operationNumber, ISell sell , IEmployee employee, DateTime operationTime )
         {
             OperationNumber = operationNumber;

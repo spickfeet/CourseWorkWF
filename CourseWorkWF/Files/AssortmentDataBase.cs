@@ -43,7 +43,7 @@ namespace CourseWorkWF.Files
                     assortment[productID].Amount -= amount;
             }
             else
-                throw new Exception("в ассортименте нет этого продукта");
+                throw new ArgumentException("В ассортименте нет этого продукта");
                 
             File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment, Formatting.Indented, settings));
         }

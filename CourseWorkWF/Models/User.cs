@@ -15,12 +15,12 @@ namespace CourseWorkWF.Models
         public string Login 
         { 
             get { return _login; } 
-            set { if (value == null || value == "") throw new ArgumentException("Логин не может быть пустым"); _login = value; } 
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Login не может быть пустым"); _login = value; } 
         }
         public string Password 
         {
             get { return _password; } 
-            set { if (value == null || value == "") throw new ArgumentException("Пароль не может быть пустым"); _password = value; } 
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Password не может быть пустым"); _password = value; } 
         }
         public IFullName FullName { get; set; }
         public JobTitle Post { get; set; }

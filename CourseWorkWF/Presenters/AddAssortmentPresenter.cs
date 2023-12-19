@@ -25,7 +25,7 @@ namespace CourseWorkWF.Presenters
         {
             if (_assortment.Load().ContainsKey(_view.ProductID) == true)
             {
-                _view.ProductName = _assortment.Load()[_view.ProductID].Product.Name;
+                _view.ProductName = _assortment.Load()[_view.ProductID].Product.ProductName;
                 _view.Price = _assortment.Load()[_view.ProductID].Product.Price;
             }
         }

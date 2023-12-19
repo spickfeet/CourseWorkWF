@@ -9,7 +9,7 @@ namespace CourseWorkWF.Interface.ModelInterface
     public interface IProduct
     {
         public int ProductID { get; set; }
-        public string Name { get; set; }
+        public string ProductName { get; set; }
         public decimal Price { get; set; }
     }
 }

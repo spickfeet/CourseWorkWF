@@ -7,24 +7,24 @@ namespace CourseWorkWF.Models
         private string _productName;
         private decimal _price;
         private int _productID;
-        public string Name 
+        public string ProductName
         {
             get { return _productName; } 
-            set { if (value == null || value == "") throw new ArgumentException("Имя продукта не может быть пустое"); _productName = value; } 
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("ProductName продукта не может быть пустое"); _productName = value; } 
         }
         public decimal Price 
         { 
             get { return _price; } 
-            set { if (value < 0) throw new AccessViolationException("Цена продукта не может быть отрицательна"); _price = value; } 
+            set { if (value < 0) throw new ArgumentOutOfRangeException("Price не может быть отрицательным"); _price = value; } 
         }
         public int ProductID
         {
             get { return _productID; }
-            set { if (value < 0) throw new AccessViolationException("ID продукта не может быть отрицательным"); _productID = value; }
+            set { if (value < 0) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
         }
         public Product( string name, decimal price, int productID )
         {
-            Name = name;
+            ProductName = name;
             Price = price;
             ProductID = productID;
         }

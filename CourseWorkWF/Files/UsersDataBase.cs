@@ -46,7 +46,7 @@ namespace CourseWorkWF.Files
                     return;
                 }
             }
-            throw new Exception("Пользователь с таким логином не существует");
+            throw new ArgumentException("Пользователь с таким логином не существует");
         }
 
         public IList<IUser> Load()

@@ -13,7 +13,7 @@ namespace CourseWorkWF.Models
         public decimal Discount 
         { 
             get { return _discount; } 
-            set { if (value < 0 || value > 100) throw new AccessViolationException("Скидка должна быть в диапазоне от 0 до 100"); _discount = value; } 
+            set { if (value < 0 || value > 100) throw new ArgumentOutOfRangeException("Discount должна быть в диапазоне от 0 до 100"); _discount = value; } 
         }
 
         public decimal UseDiscount(decimal price)

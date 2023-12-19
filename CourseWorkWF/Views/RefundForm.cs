@@ -171,7 +171,7 @@ namespace CourseWorkWF.Views
                     foreach (var item in _presenter.FineReceiptByNumber().Sell.Products)
                     {
                         listViewBuyList.Items.Add(item.Value.Product.ProductID.ToString());
-                        listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Name.ToString());
+                        listViewBuyList.Items[column].SubItems.Add(item.Value.Product.ProductName.ToString());
                         listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Price.ToString());
                         listViewBuyList.Items[column].SubItems.Add(item.Value.Amount.ToString());
                         column++;
@@ -201,7 +201,7 @@ namespace CourseWorkWF.Views
                 foreach (var item in _presenter.FineReceiptBySelectedReceiptNumber().Sell.Products)
                 {
                     listViewBuyList.Items.Add(item.Value.Product.ProductID.ToString());
-                    listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Name.ToString());
+                    listViewBuyList.Items[column].SubItems.Add(item.Value.Product.ProductName.ToString());
                     listViewBuyList.Items[column].SubItems.Add(item.Value.Product.Price.ToString());
                     listViewBuyList.Items[column].SubItems.Add(item.Value.Amount.ToString());
                     column++;
@@ -234,7 +234,7 @@ namespace CourseWorkWF.Views
             foreach (var item in _presenter.ProductsRefund)
             {
                 listViewRefundList.Items.Add(item.Value.Product.ProductID.ToString());
-                listViewRefundList.Items[column].SubItems.Add(item.Value.Product.Name.ToString());
+                listViewRefundList.Items[column].SubItems.Add(item.Value.Product.ProductName.ToString());
                 listViewRefundList.Items[column].SubItems.Add(item.Value.Product.Price.ToString());
                 listViewRefundList.Items[column].SubItems.Add(item.Value.Amount.ToString());
                 column++;

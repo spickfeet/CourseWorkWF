@@ -15,12 +15,12 @@ namespace CourseWorkWF.Models
         public string Name 
         {
             get { return _name; }
-            set { if (value == null || value == "") throw new Exception("Имя не может быть пустым"); _name = value; }
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Name не может быть пустым"); _name = value; }
         }
         public string Surname 
         {
             get { return _surname; }
-            set { if (value == null || value == "") throw new Exception("Фамилия не может быть пустой"); _surname = value; }
+            set { if (string.IsNullOrEmpty(value)) throw new Exception("Surname не может быть пустой"); _surname = value; }
         }
         public string? Patronymic { get; set; }
         public FullName(string name, string surname, string? patronymic) 
@@ -28,8 +28,6 @@ namespace CourseWorkWF.Models
             Name = name;
             Surname = surname;
             Patronymic = patronymic;
-
-
         }
     }
 }
