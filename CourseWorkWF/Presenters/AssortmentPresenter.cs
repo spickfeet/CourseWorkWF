@@ -12,14 +12,14 @@ namespace CourseWorkWF.Presenters
 {
     public class AssortmentPresenter
     {
-        private IAssortmentDataBase _assortment;
+        private IAssortmentDataBase _assortmentData;
+        public IDictionary<int, IProductsCollectionItem> Assortment 
+        {
+            get { return _assortmentData.Load();} 
+        }
         public AssortmentPresenter()
         {
-            _assortment = new AssortmentDataBase();
-        }
-        public IDictionary<int,IProductsCollectionItem> GetAssortment()
-        {
-            return _assortment.Load();
+            _assortmentData = new AssortmentDataBase();
         }
     }
 }

@@ -46,6 +46,7 @@ namespace CourseWorkWF.Views
                 return;
             }
             _presenter.ChangePrice();
+            Close();
         }
     }
 }
