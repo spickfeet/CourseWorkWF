@@ -14,9 +14,9 @@ namespace CourseWorkWF.Models
         {
             Proceeds = poceeds;
         }
-        public void ChangeRevenue(IRevenueChanger revenueChenger)
+        public void ChangeRevenue(IRevenueChanger revenueChanger)
         {
-            Proceeds = revenueChenger.ChangeRevenue(Proceeds);
+            Proceeds = revenueChanger.ChangeRevenue(Proceeds);
         }
     }
 }

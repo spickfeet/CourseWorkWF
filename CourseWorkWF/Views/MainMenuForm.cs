@@ -12,7 +12,7 @@ namespace CourseWorkWF.Views
         public MainMenuForm(Form prev, MainMenuPresenter mainMenuPresenter)
         {
             _presenter = mainMenuPresenter;
-            
+
             _prevForm = prev;
             _prevForm.Hide();
             FormClosed += OnClosed;
@@ -63,7 +63,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            SellForm sellForm = new SellForm(this,_presenter.User);
+            SellForm sellForm = new SellForm(this, _presenter.User);
             sellForm.ShowDialog();
         }
 

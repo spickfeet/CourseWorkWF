@@ -10,6 +10,6 @@ namespace CourseWorkWF.Interface.ModelInterface
     {
         string Name { get; set; }
         string Surname { get; set; }
-        string Patronymic { get; set; }
+        string? Patronymic { get; set; }
     }
 }

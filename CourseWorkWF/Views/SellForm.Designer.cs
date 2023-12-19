@@ -260,6 +260,7 @@
             // 
             // numericUpDownAmount
             // 
+            numericUpDownAmount.DecimalPlaces = 3;
             numericUpDownAmount.Location = new Point(695, 68);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });

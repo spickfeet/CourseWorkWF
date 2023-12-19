@@ -20,8 +20,8 @@ namespace CourseWorkWF.Views
             _ = new AddAssortmentPresenter(this);
         }
 
-        int IAddAssortmentFormView.ProductID 
-        { 
+        int IAddAssortmentFormView.ProductID
+        {
             get { return (int)numericUpDownProductID.Value; }
             set { numericUpDownProductID.Value = value; }
         }
@@ -46,13 +46,13 @@ namespace CourseWorkWF.Views
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            AddProductEvent?.Invoke(this, EventArgs.Empty );
+            AddProductEvent?.Invoke(this, EventArgs.Empty);
             Close();
         }
 
         private void NumericUpDownProductID_ValueChanged(object sender, EventArgs e)
         {
-            AutocompleteEvent?.Invoke(this, e );
+            AutocompleteEvent?.Invoke(this, e);
         }
     }
 }

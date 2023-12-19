@@ -146,7 +146,7 @@ namespace CourseWorkWF.Views
             richTextBoxReason.Clear();
             richTextBoxSellInfo.Clear();
             textBoxProductID.Clear();
-            numericUpDownAmount.Value = 0;
+            numericUpDownAmount.Value = 1;
             if (checkBoxFindByDate.Checked == false)
             {
                 if (string.IsNullOrEmpty(textBoxReceiptNumber.Text))
