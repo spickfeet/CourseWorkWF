@@ -34,6 +34,7 @@
             buttonRemoveEmployee = new Button();
             buttonRefund = new Button();
             buttonHistoryComingsAndGoings = new Button();
+            buttonRevenue = new Button();
             SuspendLayout();
             // 
             // buttonAssortment
@@ -103,11 +104,22 @@
             buttonHistoryComingsAndGoings.Visible = false;
             buttonHistoryComingsAndGoings.Click += ButtonHistoryComingsAndGoings_Click;
             // 
+            // buttonRevenue
+            // 
+            buttonRevenue.Location = new Point(12, 234);
+            buttonRevenue.Name = "buttonRevenue";
+            buttonRevenue.Size = new Size(137, 92);
+            buttonRevenue.TabIndex = 7;
+            buttonRevenue.Text = "Закрыть смену";
+            buttonRevenue.UseVisualStyleBackColor = true;
+            buttonRevenue.Click += ButtonRevenue_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
+            Controls.Add(buttonRevenue);
             Controls.Add(buttonHistoryComingsAndGoings);
             Controls.Add(buttonRefund);
             Controls.Add(buttonRemoveEmployee);
@@ -130,5 +142,6 @@
         private Button buttonRemoveEmployee;
         private Button buttonRefund;
         private Button buttonHistoryComingsAndGoings;
+        private Button buttonRevenue;
     }
 }

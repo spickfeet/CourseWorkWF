@@ -49,13 +49,12 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
-        public SellForm(Form prev, IEmployee user)
+        public SellForm(Form prev, IEmployee user, IRevenue revenue)
         {
             _prevForm = prev;
             _prevForm.Hide();
             InitializeComponent();
-            _presenter = new(this, user);
-            textBoxRevenue.Text = Convert.ToString(Program.revenue.Proceeds);
+            _presenter = new(this, user, revenue);
 
             FormClosed += OnClosed;
 
@@ -136,7 +135,6 @@ namespace CourseWorkWF.Views
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
             SellEvent?.Invoke(this, EventArgs.Empty);
-            textBoxRevenue.Text = Convert.ToString(Program.revenue.Proceeds);
 
             comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
             comboBoxDiscount.SelectedIndex = 0; // Сброс скидки
@@ -152,7 +150,6 @@ namespace CourseWorkWF.Views
             DiscountEvent?.Invoke(this, EventArgs.Empty);
             if (comboBoxDiscount.SelectedIndex != 0)
             {
-                buttonCancelDiscount.Enabled = true;
                 comboBoxDiscount.Enabled = false;
             }
             UpdateBuyList();
@@ -166,7 +163,6 @@ namespace CourseWorkWF.Views
 
                 comboBoxDiscount.SelectedIndex = 0;
                 comboBoxDiscount.Enabled = true;
-                buttonCancelDiscount.Enabled = false;
 
                 comboBoxOperationMethod.SelectedIndex = -1;
                 numericUpDownCash.Value = 0;

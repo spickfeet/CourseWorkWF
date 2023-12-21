@@ -9,10 +9,12 @@ namespace CourseWorkWF.Models
 {
     public class Revenue : IRevenue
     {
-        public decimal Proceeds { get; set; }
-        public Revenue(decimal poceeds)
+        public decimal Proceeds { get; private set; }
+        public DateTime Date { get; private set; }
+        public Revenue(decimal proceeds, DateTime date)
         {
-            Proceeds = poceeds;
+            Proceeds = proceeds;
+            Date = date;
         }
         public void ChangeRevenue(IRevenueChanger revenueChanger)
         {

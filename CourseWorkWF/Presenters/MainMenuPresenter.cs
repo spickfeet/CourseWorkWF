@@ -1,5 +1,8 @@
-﻿using CourseWorkWF.Interface.ModelInterface;
+﻿using CourseWorkWF.Files;
+using CourseWorkWF.Interface.FilesInterface;
+using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Models;
 using CourseWorkWF.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,6 +15,9 @@ namespace CourseWorkWF.Presenters
     public class MainMenuPresenter
     {
         private readonly IUser _user;
+        private IRevenue _revenue;
+        private IRevenueDataBase _revenueData;
+        public IRevenue Revenue { get { return _revenue; } }
         public IUser User { get { return _user; } }
 
         public event EventHandler? OwnerUserEvent;
@@ -20,6 +26,8 @@ namespace CourseWorkWF.Presenters
         public MainMenuPresenter(IUser user)
         {
             _user = user;
+            _revenueData = new RevenueDataBase();
+            _revenue = new Revenue(0, DateTime.Today);
         }
         public void GiveOpportunities()
         {
@@ -39,6 +47,11 @@ namespace CourseWorkWF.Presenters
                     CashierUserEvent?.Invoke(this, EventArgs.Empty);
                     break;
             }
+        }
+        public void CloseShift()
+        {
+            _revenueData.Add(_revenue);
+            _revenue = new Revenue(0, DateTime.Today);
         }
     }
 }

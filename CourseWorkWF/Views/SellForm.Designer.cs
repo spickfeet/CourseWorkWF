@@ -41,7 +41,6 @@
             buttonSell = new Button();
             textBoxRevenue = new TextBox();
             labelRevenue = new Label();
-            buttonCancelDiscount = new Button();
             textBoxMoneyChangeBuyer = new TextBox();
             labelCash = new Label();
             labelMoneyChangeBuyer = new Label();
@@ -184,17 +183,6 @@
             labelRevenue.TabIndex = 14;
             labelRevenue.Text = "Выручка за день";
             // 
-            // buttonCancelDiscount
-            // 
-            buttonCancelDiscount.Enabled = false;
-            buttonCancelDiscount.Location = new Point(12, 225);
-            buttonCancelDiscount.Name = "buttonCancelDiscount";
-            buttonCancelDiscount.Size = new Size(121, 46);
-            buttonCancelDiscount.TabIndex = 15;
-            buttonCancelDiscount.Text = "Отменить скидку";
-            buttonCancelDiscount.UseVisualStyleBackColor = true;
-            buttonCancelDiscount.Click += ButtonCancelDiscount_Click;
-            // 
             // textBoxMoneyChangeBuyer
             // 
             textBoxMoneyChangeBuyer.Location = new Point(139, 292);
@@ -330,7 +318,6 @@
             Controls.Add(labelMoneyChangeBuyer);
             Controls.Add(labelCash);
             Controls.Add(textBoxMoneyChangeBuyer);
-            Controls.Add(buttonCancelDiscount);
             Controls.Add(labelRevenue);
             Controls.Add(textBoxRevenue);
             Controls.Add(buttonSell);
@@ -369,7 +356,6 @@
         private Button buttonSell;
         private TextBox textBoxRevenue;
         private Label labelRevenue;
-        private Button buttonCancelDiscount;
         private TextBox textBoxMoneyChangeBuyer;
         private Label labelCash;
         private Label labelMoneyChangeBuyer;

@@ -7,7 +7,6 @@ namespace CourseWorkWF.Views
 {
     internal static class Program
     {
-        public static IRevenue revenue = new Revenue(0);
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

@@ -18,7 +18,8 @@ namespace CourseWorkWF.Presenters
         private IAssortmentDataBase _assortmentDataBase;
         private IEmployee _employee;
         private IDictionary<int, IProductsCollectionItem> _buyProducts;
-        public SellPresenter(ISellFormView view,IEmployee employee)
+        private IRevenue _revenue;
+        public SellPresenter(ISellFormView view,IEmployee employee, IRevenue revenue)
         {
             _buyProducts = new Dictionary<int,IProductsCollectionItem>();
             _refundInfo = new RefundInfoDataBase();
@@ -26,12 +27,12 @@ namespace CourseWorkWF.Presenters
             _assortmentDataBase = new AssortmentDataBase();
             _discount = new DiscountPercent(0);
             _assortment = _assortmentDataBase.Load();
+            _revenue = revenue;
             _employee = employee;
             _view = view;
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
             _view.DiscountEvent += DiscountUse;
-            _view.CancelDiscountEvent += CancelDiscount;
             _view.CashEvent += GetMoneyChangeBuyer;
             _view.CancelBuyProductsEvent += CancelBuyProducts;
         }
@@ -42,6 +43,7 @@ namespace CourseWorkWF.Presenters
 
         private void CancelBuyProducts(object? sender, EventArgs e)
         {
+            _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear();
             _discount.Discount = 0;
         }
@@ -53,11 +55,6 @@ namespace CourseWorkWF.Presenters
         private void GetMoneyChangeBuyer(object? sender, EventArgs e)
         {
             _view.MoneyChangeBuyer = Math.Round(_view.Cash - _view.Price, 2);
-        }
-
-        private void CancelDiscount(object? sender, EventArgs e)
-        {
-            _view.Price = Math.Round(_view.Price / (100 - _view.Discount) * 100, 2); // Отмена скидки
         }
 
         private void DiscountUse(object? sender, EventArgs e)
@@ -111,7 +108,7 @@ namespace CourseWorkWF.Presenters
 
             _sellInfoData.Add(sellInfo);
 
-            Program.revenue.ChangeRevenue(sell); // Увеличение выручки
+            _revenue.ChangeRevenue(sell); // Увеличение выручки
            
             foreach(var item in _buyProducts)
             {

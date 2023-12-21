@@ -53,6 +53,7 @@ namespace CourseWorkWF.Views
 
         private void OnClosed(object? sender, FormClosedEventArgs e)
         {
+            _presenter.CloseShift();
             Application.Exit();
         }
         private void ButtonAdmin_Click(object sender, EventArgs e)
@@ -63,13 +64,13 @@ namespace CourseWorkWF.Views
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            SellForm sellForm = new SellForm(this, _presenter.User);
+            SellForm sellForm = new SellForm(this, _presenter.User,_presenter.Revenue);
             sellForm.ShowDialog();
         }
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
-            RefundForm refundForm = new RefundForm(_presenter.User);
+            RefundForm refundForm = new RefundForm(_presenter.User, _presenter.Revenue);
             refundForm.ShowDialog();
         }
 
@@ -86,6 +87,11 @@ namespace CourseWorkWF.Views
         private void ButtonChangeJobTitle_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButtonRevenue_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -21,14 +21,16 @@ namespace CourseWorkWF.Presenters
         private ISellDataBase _sellInfoData;
         private ISellInfo? _sellInfo;
         private IEmployee _employee;
+        private IRevenue _revenue;
         private int _receiptSellNumber;
         private bool _haveError;
         public event EventHandler<string> AmountErrorEvent;
         public event EventHandler<string> ProductIDErrorEvent;
         public event EventHandler<string> SellInfoErrorEvent;
         public IDictionary<int, IProductsCollectionItem> ProductsRefund { get { return _productsRefund; } }
-        public RefundPresenter(IRefundFormView view, IEmployee employee)
+        public RefundPresenter(IRefundFormView view, IEmployee employee, IRevenue revenue)
         {
+            _revenue = revenue;
             _haveError = false;
             _employee = employee;
             _refundInfoData = new RefundInfoDataBase();
@@ -118,10 +120,11 @@ namespace CourseWorkWF.Presenters
             decimal moneyAmount = 0;
             foreach (var item in ProductsRefund) 
             {
-                moneyAmount += item.Value.Product.Price;
+                moneyAmount += item.Value.Product.Price * item.Value.Amount;
             }
             int number = _salesInfo.Count + _sellInfoData.Load().Count + 1;
-            IRefund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
+            Refund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
+            _revenue.ChangeRevenue(refund);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _employee, DateTime.Now);
             _refundInfoData.Add(refundInfo);
             _productsRefund.Clear();
