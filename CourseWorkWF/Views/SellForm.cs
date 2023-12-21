@@ -38,7 +38,7 @@ namespace CourseWorkWF.Views
         }
         int ISellFormView.ProductID
         {
-            get { return (int)numericUpDownProductID.Value; }
+            get { return int.Parse(textBoxProductID.Text); }
         }
         decimal ISellFormView.Amount
         {
@@ -71,13 +71,25 @@ namespace CourseWorkWF.Views
         public event EventHandler? CancelDiscountEvent;
         public event EventHandler? CancelBuyProductsEvent;
 
+        private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.KeyChar = '\0';
+            }
+            if (textBoxProductID.Text.Length > 9)
+            {
+                errorProviderProductID.SetError(textBoxProductID, "ID не может быть такой длинны");
+            }
+        }
+
         private void OnClosed(object? sender, FormClosedEventArgs e)
         {
             _prevForm.Visible = true;
         }
         private void ProductIDErrorSet(object? sender, EventArgs e)
         {
-            errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
+            errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
         }
 
         private void AmountErrorSet(object? sender, EventArgs e)
@@ -87,10 +99,18 @@ namespace CourseWorkWF.Views
 
         private void ButtonAddProduct_Click(object sender, EventArgs e) // Нажатие кнопки добавить
         {
+            if (string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+                return;
+            }
+            if (textBoxProductID.Text.Length > 9)
+            {
+                return;
+            }
             errorProviderProductID.Clear();
             errorProviderAmount.Clear();
             AddProductEvent?.Invoke(this, EventArgs.Empty);
-            numericUpDownProductID.Value = 1;
+            textBoxProductID.Clear();
 
             if (_presenter.GetBuyProductsList().Count != 0) // проверяем пустой ли список продуктов
             {

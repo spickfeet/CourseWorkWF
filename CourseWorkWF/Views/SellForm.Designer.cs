@@ -45,7 +45,6 @@
             textBoxMoneyChangeBuyer = new TextBox();
             labelCash = new Label();
             labelMoneyChangeBuyer = new Label();
-            numericUpDownProductID = new NumericUpDown();
             numericUpDownCash = new NumericUpDown();
             errorProviderProductID = new ErrorProvider(components);
             labelAmount = new Label();
@@ -57,7 +56,7 @@
             ColumnHeaderAmount = new ColumnHeader();
             errorProviderAmount = new ErrorProvider(components);
             buttonCancel = new Button();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
+            textBoxProductID = new TextBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
@@ -225,15 +224,6 @@
             labelMoneyChangeBuyer.Text = "Сдача";
             labelMoneyChangeBuyer.Visible = false;
             // 
-            // numericUpDownProductID
-            // 
-            numericUpDownProductID.Location = new Point(695, 27);
-            numericUpDownProductID.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
-            numericUpDownProductID.Name = "numericUpDownProductID";
-            numericUpDownProductID.Size = new Size(100, 23);
-            numericUpDownProductID.TabIndex = 20;
-            numericUpDownProductID.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
             // numericUpDownCash
             // 
             numericUpDownCash.Location = new Point(140, 248);
@@ -317,18 +307,26 @@
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += ButtonCancel_Click;
             // 
+            // textBoxProductID
+            // 
+            textBoxProductID.Location = new Point(695, 27);
+            textBoxProductID.Name = "textBoxProductID";
+            textBoxProductID.Size = new Size(100, 23);
+            textBoxProductID.TabIndex = 26;
+            textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
+            // 
             // SellForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(898, 450);
+            Controls.Add(textBoxProductID);
             Controls.Add(buttonCancel);
             Controls.Add(listViewBuyProducts);
             Controls.Add(numericUpDownAmount);
             Controls.Add(labelAmount);
             Controls.Add(numericUpDownCash);
-            Controls.Add(numericUpDownProductID);
             Controls.Add(labelMoneyChangeBuyer);
             Controls.Add(labelCash);
             Controls.Add(textBoxMoneyChangeBuyer);
@@ -349,7 +347,6 @@
             MinimizeBox = false;
             Name = "SellForm";
             Text = "CashierARM";
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
@@ -376,7 +373,6 @@
         private TextBox textBoxMoneyChangeBuyer;
         private Label labelCash;
         private Label labelMoneyChangeBuyer;
-        private NumericUpDown numericUpDownProductID;
         private NumericUpDown numericUpDownCash;
         private ErrorProvider errorProviderProductID;
         private Label labelAmount;
@@ -388,5 +384,6 @@
         private ErrorProvider errorProviderAmount;
         private Button buttonCancel;
         private ColumnHeader ColumnHeaderPrice;
+        private TextBox textBoxProductID;
     }
 }

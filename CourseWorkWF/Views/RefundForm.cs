@@ -118,7 +118,7 @@ namespace CourseWorkWF.Views
                 richTextBoxSellInfo.Clear();
                 textBoxProductID.Clear();
                 textBoxReceiptNumber.Clear();
-                numericUpDownAmount.Value = 0;
+                numericUpDownAmount.Value = 1;
             }
         }
         private void CheckBoxFindByDate_CheckedChanged(object sender, EventArgs e)
