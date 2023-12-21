@@ -15,10 +15,13 @@ namespace CourseWorkWF.Models
             get { return _discount; } 
             set { if (value < 0 || value > 100) throw new ArgumentOutOfRangeException("Discount должна быть в диапазоне от 0 до 100"); _discount = value; } 
         }
-
+        public DiscountPercent(decimal discount)
+        {
+            Discount = discount;
+        }
         public decimal UseDiscount(decimal price)
         {
-           return price - (_discount / 100 * price);
+           return price - (Discount / 100 * price);
         }
     }
 }

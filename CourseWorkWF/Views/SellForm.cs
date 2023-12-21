@@ -97,17 +97,19 @@ namespace CourseWorkWF.Views
                 comboBoxDiscount.Enabled = true;
                 buttonCancel.Enabled = true;
             }
-
-            // Вывод в listViewBuyProducts
+            UpdateBuyList();
+        }
+        private void UpdateBuyList()
+        {
             listViewBuyProducts.Items.Clear();
-            int column = 0;
+            int lineIndex = 0;
             foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.ProductName.ToString());
-                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Key.ToString());
-                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
-                listViewBuyProducts.Items[column].SubItems.Add(productCollectionItem.Value.Amount.ToString());
-                column++;
+                listViewBuyProducts.Items[lineIndex].SubItems.Add(productCollectionItem.Key.ToString());
+                listViewBuyProducts.Items[lineIndex].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
+                listViewBuyProducts.Items[lineIndex].SubItems.Add(productCollectionItem.Value.Amount.ToString());
+                lineIndex++;
             }
         }
 
@@ -133,6 +135,7 @@ namespace CourseWorkWF.Views
                 buttonCancelDiscount.Enabled = true;
                 comboBoxDiscount.Enabled = false;
             }
+            UpdateBuyList();
         }
 
         private void ButtonCancelDiscount_Click(object sender, EventArgs e)

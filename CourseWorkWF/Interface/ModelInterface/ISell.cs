@@ -7,5 +7,6 @@ namespace CourseWorkWF.Interface.ModelInterface
     {
         public IDictionary<int, IProductsCollectionItem> Products { get; set; }
         public IMoneyOperation MoneyOperation { get; set; }
+        public IDiscount Discount { get; set; }
     }
 }
