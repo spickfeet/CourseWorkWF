@@ -14,16 +14,16 @@ namespace CourseWorkWF.Views
 {
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
+        private AddAssortmentPresenter _presenter;
         public AddAssortmentForm()
         {
             InitializeComponent();
-            _ = new AddAssortmentPresenter(this);
+            _presenter = new AddAssortmentPresenter(this);
         }
 
         int IAddAssortmentFormView.ProductID
         {
-            get { return (int)numericUpDownProductID.Value; }
-            set { numericUpDownProductID.Value = value; }
+            get { return int.Parse(textBoxProductID.Text); }
         }
         decimal IAddAssortmentFormView.Price
         {
@@ -33,7 +33,6 @@ namespace CourseWorkWF.Views
         int IAddAssortmentFormView.Amount
         {
             get { return (int)numericUpDownAmount.Value; }
-            set { numericUpDownAmount.Value = value; }
         }
         string IAddAssortmentFormView.ProductName
         {
@@ -44,15 +43,59 @@ namespace CourseWorkWF.Views
         public event EventHandler? AddProductEvent; // событие добавление продукта
         public event EventHandler? AutocompleteEvent; // событие автозаполнение
 
+        private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.KeyChar = '\0';
+            }
+        }
+
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
+            if (SetErrorLength())
+            {
+                textBoxProductName.Clear();
+                numericUpDownAmount.Value = 0;
+                numericUpDownProductPrice.Value = 0;
+                return;
+            }
             AddProductEvent?.Invoke(this, EventArgs.Empty);
             Close();
         }
 
-        private void NumericUpDownProductID_ValueChanged(object sender, EventArgs e)
+        private void TextBoxProductID_TextChanged(object sender, EventArgs e)
         {
-            AutocompleteEvent?.Invoke(this, e);
+            if (SetErrorLength())
+            {
+                return;
+            }
+            if (!string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+
+                if (_presenter.Autocomplete() == true)
+                {
+                    textBoxProductName.Enabled = false;
+                    numericUpDownProductPrice.Enabled = false;
+                }
+                else
+                {
+                    textBoxProductName.Clear();
+                    numericUpDownProductPrice.Value = 0;
+                    textBoxProductName.Enabled = true;
+                    numericUpDownProductPrice.Enabled = true;
+                }
+            }
+        }
+        private bool SetErrorLength()
+        {
+            errorProviderProductIDLength.Clear();
+            if (textBoxProductID.Text.Length > 9)
+            {
+                errorProviderProductIDLength.SetError(textBoxProductID, "ID продукта не может быть такой длинны");
+                return true;
+            }
+            return false;
         }
     }
 }

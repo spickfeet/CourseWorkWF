@@ -22,9 +22,9 @@ namespace CourseWorkWF.Models
             get { return _productID; }
             set { if (value < 0) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
         }
-        public Product( string name, decimal price, int productID )
+        public Product( string productName, decimal price, int productID )
         {
-            ProductName = name;
+            ProductName = productName;
             Price = price;
             ProductID = productID;
         }

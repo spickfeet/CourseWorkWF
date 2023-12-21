@@ -17,20 +17,21 @@ namespace CourseWorkWF.Presenters
             _assortmentData = new AssortmentDataBase();
             _assortment = _assortmentData.Load();
             _view.AddProductEvent += AddProductInAssortment;
-            _view.AutocompleteEvent += Autocomplete;
         }
         public void AddProductInAssortment(object sender, EventArgs e)
         {
             _assortmentData.Add(new ProductsCollectionItem(new Product(_view.ProductName,_view.Price,_view.ProductID), _view.Amount));
             _assortment = _assortmentData.Load();
         }
-        public void Autocomplete(object sender, EventArgs e)
+        public bool Autocomplete()
         {
             if (_assortment.ContainsKey(_view.ProductID) == true)
             {
                 _view.ProductName = _assortment[_view.ProductID].Product.ProductName;
                 _view.Price = _assortment[_view.ProductID].Product.Price;
+                return true;
             }
+            return false;
         }
     }
 }

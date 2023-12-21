@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             buttonAddProductInAssortment = new Button();
             labelProductID = new Label();
             labelProductName = new Label();
             textBoxProductName = new TextBox();
             lableProductPrice = new Label();
             labelAmount = new Label();
-            numericUpDownProductID = new NumericUpDown();
             numericUpDownProductPrice = new NumericUpDown();
             numericUpDownAmount = new NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
+            textBoxProductID = new TextBox();
+            errorProviderProductIDLength = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductIDLength).BeginInit();
             SuspendLayout();
             // 
             // buttonAddProductInAssortment
@@ -95,15 +97,6 @@
             labelAmount.TabIndex = 8;
             labelAmount.Text = "Количество";
             // 
-            // numericUpDownProductID
-            // 
-            numericUpDownProductID.Location = new Point(12, 24);
-            numericUpDownProductID.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
-            numericUpDownProductID.Name = "numericUpDownProductID";
-            numericUpDownProductID.Size = new Size(145, 23);
-            numericUpDownProductID.TabIndex = 10;
-            numericUpDownProductID.ValueChanged += NumericUpDownProductID_ValueChanged;
-            // 
             // numericUpDownProductPrice
             // 
             numericUpDownProductPrice.DecimalPlaces = 2;
@@ -122,15 +115,28 @@
             numericUpDownAmount.Size = new Size(145, 23);
             numericUpDownAmount.TabIndex = 12;
             // 
+            // textBoxProductID
+            // 
+            textBoxProductID.Location = new Point(12, 24);
+            textBoxProductID.Name = "textBoxProductID";
+            textBoxProductID.Size = new Size(145, 23);
+            textBoxProductID.TabIndex = 13;
+            textBoxProductID.TextChanged += TextBoxProductID_TextChanged;
+            textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
+            // 
+            // errorProviderProductIDLength
+            // 
+            errorProviderProductIDLength.ContainerControl = this;
+            // 
             // AddAssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(304, 209);
+            Controls.Add(textBoxProductID);
             Controls.Add(numericUpDownAmount);
             Controls.Add(numericUpDownProductPrice);
-            Controls.Add(numericUpDownProductID);
             Controls.Add(labelAmount);
             Controls.Add(lableProductPrice);
             Controls.Add(labelProductName);
@@ -141,9 +147,9 @@
             MinimizeBox = false;
             Name = "AddAssortmentForm";
             Text = "AddAssortment";
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductIDLength).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -156,8 +162,9 @@
         private TextBox textBoxProductName;
         private Label lableProductPrice;
         private Label labelAmount;
-        private NumericUpDown numericUpDownProductID;
         private NumericUpDown numericUpDownProductPrice;
         private NumericUpDown numericUpDownAmount;
+        private TextBox textBoxProductID;
+        private ErrorProvider errorProviderProductIDLength;
     }
 }
