@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace CourseWorkWF.Presenters
 
             foreach (var user in users)
             {
-                if (user.Login == _view.Login && user.Password == _view.Password)
+                if (user.Login == _view.Login && user.Password == HashCodeConvertor.ConvertToHashCode(_view.Password + user.Salt))
                 {
                     return user;
                 }

@@ -25,26 +25,28 @@ namespace CourseWorkWF.Presenters
             _userData = new UsersDataBase();
         }
         public bool SignUp()
-            {
-                IList<IUser> users = _userData.Load();
+        {
+            IList<IUser> users = _userData.Load();
 
-                foreach(var item in users) 
-                { 
-                    if(item.Login == _view.Login)
+            foreach(var item in users) 
+            { 
+                if(item.Login == _view.Login)
+                {
+
+                    LoginBusyErrorEvent?.Invoke(this,EventArgs.Empty); 
+                    return false;
+                }
+                if (_view.Post == JobTitle.Owner)
+                {
+                    if(item.Post == _view.Post)
                     {
-                        LoginBusyErrorEvent?.Invoke(this,EventArgs.Empty); 
+                        OnlyOneOwnerErrorEvent?.Invoke(this, EventArgs.Empty);
                         return false;
                     }
-                    if (_view.Post == JobTitle.Owner)
-                    {
-                        if(item.Post == _view.Post)
-                        {
-                            OnlyOneOwnerErrorEvent?.Invoke(this, EventArgs.Empty);
-                            return false;
-                        }
-                    }
                 }
-            IUser user = new User(_view.Login, _view.Password, new FullName(_view.Name, _view.Surname, _view.Patronymic), _view.Post);
+            }
+            string salt = Guid.NewGuid().ToString();
+            IUser user = new User(_view.Login, HashCodeConvertor.ConvertToHashCode(_view.Password + salt), new FullName(_view.Name, _view.Surname, _view.Patronymic), _view.Post, salt);
             _userData.Add(user);
             return true;
         }
