@@ -119,6 +119,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonGetRefundProducts_Click(object sender, EventArgs e)
         {
+            errorProviderSelectRefundNumber.Clear();
             listViewRefundProducts.Items.Clear();
             int lineIndex = 0;
             foreach (IProductsCollectionItem product in _presenter.FineProductsBySelectedRefundNumber())
