@@ -12,7 +12,12 @@ namespace CourseWorkWF.Views
         private SellPresenter _presenter;
         int ISellFormView.Discount
         {
-            get { return int.Parse(comboBoxDiscount.Text); }
+            get 
+            { 
+                if (comboBoxDiscount.SelectedIndex == -1)
+                    return 0;
+                return int.Parse(comboBoxDiscount.Text); 
+            }
         }
         OperationMethod ISellFormView.OperationMethod
         {
@@ -137,7 +142,7 @@ namespace CourseWorkWF.Views
             SellEvent?.Invoke(this, EventArgs.Empty);
 
             comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
-            comboBoxDiscount.SelectedIndex = 0; // Сброс скидки
+            comboBoxDiscount.SelectedIndex = -1; // Сброс скидки
             textBoxPrice.Text = "0"; // зануление цены стоимости продуктов
             listViewBuyProducts.Items.Clear(); // Отчистка ListView
             comboBoxDiscount.Enabled = false;
@@ -209,7 +214,7 @@ namespace CourseWorkWF.Views
             listViewBuyProducts.Items.Clear();
 
             textBoxPrice.Text = "0";
-            comboBoxDiscount.SelectedIndex = 0;
+            comboBoxDiscount.SelectedIndex = -1;
             comboBoxDiscount.Enabled = false;
             comboBoxOperationMethod.SelectedIndex = -1;
             comboBoxOperationMethod.Enabled = false;

@@ -253,7 +253,7 @@ namespace CourseWorkWF.Views
             richTextBoxSellInfo.Clear();
             textBoxProductID.Clear();
             textBoxReceiptNumber.Clear();
-            numericUpDownAmount.Value = 0;
+            numericUpDownAmount.Value = 1;
         }
     }
 }

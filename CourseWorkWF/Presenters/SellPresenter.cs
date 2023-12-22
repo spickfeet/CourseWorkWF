@@ -12,7 +12,7 @@ namespace CourseWorkWF.Presenters
     {
         private ISellFormView _view;
         private IDictionary<int,IProductsCollectionItem> _assortment;
-        private ISellDataBase _sellInfoData;
+        private ISellInfoDataBase _sellInfoData;
         private IDiscount _discount;
         private IRefundInfoDataBase _refundInfo;
         private IAssortmentDataBase _assortmentDataBase;
@@ -59,10 +59,11 @@ namespace CourseWorkWF.Presenters
         private void DiscountUse(object? sender, EventArgs e)
         {
             _discount.Discount = _view.Discount;
-            foreach(var item in _buyProducts.Values)
+            foreach(var productsCollectionItem in _buyProducts.Values)
             {
-                item.Product.Price = _discount.UseDiscount(item.Product.Price);
+                productsCollectionItem.Product.Price = _discount.UseDiscount(productsCollectionItem.Product.Price);
             }
+            UpdatePrice();
         }
 
         private void AddProduct(object? sender, EventArgs e)
@@ -87,12 +88,7 @@ namespace CourseWorkWF.Presenters
                 }
 
                 _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment[_view.ProductID].Product.Clone(), _view.Amount); // Добавляем продукты в список покупок
-                decimal priceBuf = 0;
-                foreach (var item in _buyProducts)
-                {
-                    _view.Price = priceBuf + item.Value.Product.Price * item.Value.Amount;
-                    priceBuf = item.Value.Product.Price * item.Value.Amount;
-                }
+                UpdatePrice();
                 return;
             }
             ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
@@ -115,7 +111,16 @@ namespace CourseWorkWF.Presenters
             }
             _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
-            _discount.Discount = 0;
+        }
+        private void UpdatePrice()
+        {
+            decimal priceBuf = 0;
+            foreach (var item in _buyProducts)
+            {
+                _view.Price = priceBuf + item.Value.Product.Price * item.Value.Amount;
+                priceBuf = item.Value.Product.Price * item.Value.Amount;
+            }
+            return;
         }
     }
 }

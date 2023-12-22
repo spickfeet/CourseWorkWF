@@ -33,7 +33,7 @@ namespace CourseWorkWF.Views
             buttonSell.Visible = true;
             buttonRefund.Visible = true;
             buttonAssortment.Visible = true;
-            buttonHistoryComingsAndGoings.Visible = true;
+            buttonHistory.Visible = true;
             buttonChangeJobTitle.Visible = true;
             buttonRemoveEmployee.Visible = true;
         }
@@ -43,7 +43,7 @@ namespace CourseWorkWF.Views
             buttonSell.Visible = true;
             buttonRefund.Visible = true;
             buttonAssortment.Visible = true;
-            buttonHistoryComingsAndGoings.Visible = true;
+            buttonHistory.Visible = true;
         }
 
         private void ApplyOpportunitiesCashier(object? sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            SellForm sellForm = new SellForm(this, _presenter.User,_presenter.Revenue);
+            SellForm sellForm = new SellForm(this, _presenter.User, _presenter.Revenue);
             sellForm.ShowDialog();
         }
 
@@ -74,9 +74,10 @@ namespace CourseWorkWF.Views
             refundForm.ShowDialog();
         }
 
-        private void ButtonHistoryComingsAndGoings_Click(object sender, EventArgs e)
+        private void ButtonHistory_Click(object sender, EventArgs e)
         {
-
+            HistoryForm historyForm = new HistoryForm();
+            historyForm.ShowDialog();
         }
 
         private void ButtonRemoveEmployee_Click(object sender, EventArgs e)

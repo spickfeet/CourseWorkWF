@@ -18,7 +18,7 @@ namespace CourseWorkWF.Presenters
         private IDictionary<int,ISellInfo> _salesInfo;
         private IDictionary<int, IProductsCollectionItem> _productsRefund;
         private IRefundInfoDataBase _refundInfoData;
-        private ISellDataBase _sellInfoData;
+        private ISellInfoDataBase _sellInfoData;
         private ISellInfo? _sellInfo;
         private IEmployee _employee;
         private IRevenue _revenue;
@@ -68,7 +68,7 @@ namespace CourseWorkWF.Presenters
             IList<ISellInfo> receipts = new List<ISellInfo>();
             foreach (var item in _salesInfo)
             {
-                if (_view.DateFrom < item.Value.OperationTime && _view.DateTo > item.Value.OperationTime)
+                if (_view.DateFrom.Date <= item.Value.OperationTime.Date && _view.DateTo.Date >= item.Value.OperationTime.Date)
                     receipts.Add(item.Value);
             }
             return receipts;

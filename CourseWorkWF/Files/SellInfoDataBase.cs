@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class SellInfoDataBase : ISellDataBase
+    public class SellInfoDataBase : ISellInfoDataBase
     {
         public void Add(ISellInfo sellInfo)
         {

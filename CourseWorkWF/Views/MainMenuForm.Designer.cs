@@ -33,7 +33,7 @@
             buttonChangeJobTitle = new Button();
             buttonRemoveEmployee = new Button();
             buttonRefund = new Button();
-            buttonHistoryComingsAndGoings = new Button();
+            buttonHistory = new Button();
             buttonRevenue = new Button();
             SuspendLayout();
             // 
@@ -93,16 +93,16 @@
             buttonRefund.Visible = false;
             buttonRefund.Click += ButtonRefund_Click;
             // 
-            // buttonHistoryComingsAndGoings
+            // buttonHistory
             // 
-            buttonHistoryComingsAndGoings.Location = new Point(408, 11);
-            buttonHistoryComingsAndGoings.Name = "buttonHistoryComingsAndGoings";
-            buttonHistoryComingsAndGoings.Size = new Size(137, 92);
-            buttonHistoryComingsAndGoings.TabIndex = 6;
-            buttonHistoryComingsAndGoings.Text = "История прихода и ухода";
-            buttonHistoryComingsAndGoings.UseVisualStyleBackColor = true;
-            buttonHistoryComingsAndGoings.Visible = false;
-            buttonHistoryComingsAndGoings.Click += ButtonHistoryComingsAndGoings_Click;
+            buttonHistory.Location = new Point(408, 11);
+            buttonHistory.Name = "buttonHistory";
+            buttonHistory.Size = new Size(137, 92);
+            buttonHistory.TabIndex = 6;
+            buttonHistory.Text = "История";
+            buttonHistory.UseVisualStyleBackColor = true;
+            buttonHistory.Visible = false;
+            buttonHistory.Click += ButtonHistory_Click;
             // 
             // buttonRevenue
             // 
@@ -120,7 +120,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
             Controls.Add(buttonRevenue);
-            Controls.Add(buttonHistoryComingsAndGoings);
+            Controls.Add(buttonHistory);
             Controls.Add(buttonRefund);
             Controls.Add(buttonRemoveEmployee);
             Controls.Add(buttonChangeJobTitle);
@@ -141,7 +141,7 @@
         private Button buttonChangeJobTitle;
         private Button buttonRemoveEmployee;
         private Button buttonRefund;
-        private Button buttonHistoryComingsAndGoings;
+        private Button buttonHistory;
         private Button buttonRevenue;
     }
 }
