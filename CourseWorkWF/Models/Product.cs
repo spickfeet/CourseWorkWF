@@ -28,5 +28,10 @@ namespace CourseWorkWF.Models
             Price = price;
             ProductID = productID;
         }
+
+        public IProduct Clone()
+        {
+            return new Product(ProductName, Price, ProductID);
+        }
     }
 }

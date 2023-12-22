@@ -43,7 +43,6 @@ namespace CourseWorkWF.Presenters
 
         private void CancelBuyProducts(object? sender, EventArgs e)
         {
-            _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear();
             _discount.Discount = 0;
         }
@@ -86,8 +85,8 @@ namespace CourseWorkWF.Presenters
                     _view.Price += _buyProducts[_view.ProductID].Product.Price * _view.Amount;
                     return;
                 }
-                
-                _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment[_view.ProductID].Product, _view.Amount); // Добавляем продукты в список покупок
+
+                _buyProducts[_view.ProductID] = new ProductsCollectionItem(_assortment[_view.ProductID].Product.Clone(), _view.Amount); // Добавляем продукты в список покупок
                 decimal priceBuf = 0;
                 foreach (var item in _buyProducts)
                 {
