@@ -95,7 +95,7 @@ namespace CourseWorkWF.Views
             {
                 listViewSellProducts.Items.Add(product.Product.ProductID.ToString());
                 listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.ProductName);
-                listViewSellProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
+                listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.Price.ToString());
                 listViewSellProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
                 lineIndex++;
             }

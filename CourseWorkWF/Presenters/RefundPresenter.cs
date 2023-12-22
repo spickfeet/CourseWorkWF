@@ -122,7 +122,7 @@ namespace CourseWorkWF.Presenters
             {
                 moneyAmount += item.Value.Product.Price * item.Value.Amount;
             }
-            int number = _salesInfo.Count + _sellInfoData.Load().Count + 1;
+            int number = _salesInfo.Count + _refundInfoData.Load().Count + 1;
             Refund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
             _revenue.ChangeRevenue(refund);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _employee, DateTime.Now);
