@@ -145,7 +145,7 @@
             comboBoxJobTitle.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxJobTitle.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxJobTitle.FormattingEnabled = true;
-            comboBoxJobTitle.Items.AddRange(new object[] { "Владелец", "Админ", "Кассир" });
+            comboBoxJobTitle.Items.AddRange(new object[] { "Владелец", "Кассир" });
             comboBoxJobTitle.Location = new Point(227, 187);
             comboBoxJobTitle.Name = "comboBoxJobTitle";
             comboBoxJobTitle.Size = new Size(218, 25);

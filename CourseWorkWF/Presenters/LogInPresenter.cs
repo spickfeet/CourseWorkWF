@@ -24,13 +24,13 @@ namespace CourseWorkWF.Presenters
 
         public IUser? LogIn()
         {
-            IList<IUser> users = _userData.Load();
+            IDictionary<string, IUser> users = _userData.Load();
 
             foreach (var user in users)
             {
-                if (user.Login == _view.Login && user.Password == HashCodeConvertor.ConvertToHashCode(_view.Password + user.Salt))
+                if (user.Key == _view.Login && user.Value.Password == HashCodeConvertor.ConvertToHashCode(_view.Password + user.Value.Salt))
                 {
-                    return user;
+                    return user.Value;
                 }
             }
             return null;

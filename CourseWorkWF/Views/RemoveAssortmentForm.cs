@@ -15,19 +15,31 @@ namespace CourseWorkWF.Views
         int IRemoveAssortmentFormView.Amount
         {
             get { return (int)numericUpDownAmount.Value; }
-            set { numericUpDownAmount.Value = value; }
         }
         int IRemoveAssortmentFormView.ProductID
         {
-            get { return (int)numericUpDownProductID.Value; }
-            set { numericUpDownProductID.Value = value; }
+            get { return int.Parse(textBoxProductID.Text); }
+        }
+        private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
+        {
+            if (string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+                if (e.KeyChar == 48)
+                {
+                    e.KeyChar = '\0';
+                }
+            }
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.KeyChar = '\0';
+            }
         }
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
             if (_presenter.RemoveProduct() == true)
                 Close();
-            else errorProviderProductID.SetError(numericUpDownProductID, "Нет продукта с таким ID");
+            else errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
         }
     }
 }

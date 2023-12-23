@@ -26,11 +26,11 @@ namespace CourseWorkWF.Presenters
         }
         public bool SignUp()
         {
-            IList<IUser> users = _userData.Load();
+            IDictionary<string, IUser> users = _userData.Load();
 
             foreach(var item in users) 
             { 
-                if(item.Login == _view.Login)
+                if(item.Key == _view.Login)
                 {
 
                     LoginBusyErrorEvent?.Invoke(this,EventArgs.Empty); 
@@ -38,7 +38,7 @@ namespace CourseWorkWF.Presenters
                 }
                 if (_view.Post == JobTitle.Owner)
                 {
-                    if(item.Post == _view.Post)
+                    if(item.Value.Post == _view.Post)
                     {
                         OnlyOneOwnerErrorEvent?.Invoke(this, EventArgs.Empty);
                         return false;

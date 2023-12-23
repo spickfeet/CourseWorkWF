@@ -34,8 +34,7 @@ namespace CourseWorkWF.Views
             buttonRefund.Visible = true;
             buttonAssortment.Visible = true;
             buttonHistory.Visible = true;
-            buttonChangeJobTitle.Visible = true;
-            buttonRemoveEmployee.Visible = true;
+            buttonUserController.Visible = true;
         }
 
         private void ApplyOpportunitiesAdmin(object? sender, EventArgs e)
@@ -82,12 +81,8 @@ namespace CourseWorkWF.Views
 
         private void ButtonRemoveEmployee_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void ButtonChangeJobTitle_Click(object sender, EventArgs e)
-        {
-
+            UsersController usersManager = new UsersController();
+            usersManager.ShowDialog();
         }
 
         private void ButtonRevenue_Click(object sender, EventArgs e)

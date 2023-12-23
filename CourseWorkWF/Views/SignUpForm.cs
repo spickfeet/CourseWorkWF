@@ -26,8 +26,6 @@ namespace Inf_Bez
             {
                 if (comboBoxJobTitle.Text == "Владелец")
                     return JobTitle.Owner;
-                if (comboBoxJobTitle.Text == "Админ")
-                    return JobTitle.Admin;
                 if (comboBoxJobTitle.Text == "Кассир")
                     return JobTitle.Cashier;
                 throw new ArgumentException("Нет такой должности");

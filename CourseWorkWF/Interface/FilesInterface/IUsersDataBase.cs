@@ -11,6 +11,6 @@ namespace CourseWorkWF.Interface.FilesInterface
     {
         public void Add(IUser user);
         public void Delete(string login);
-        public IList<IUser> Load();
+        public IDictionary<string, IUser> Load();
     }
 }

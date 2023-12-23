@@ -29,24 +29,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            numericUpDownProductID = new NumericUpDown();
             buttonRemoveProduct = new Button();
             labelProductID = new Label();
             errorProviderProductID = new ErrorProvider(components);
             numericUpDownAmount = new NumericUpDown();
             labelAmount = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).BeginInit();
+            textBoxProductID = new TextBox();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             SuspendLayout();
-            // 
-            // numericUpDownProductID
-            // 
-            numericUpDownProductID.Location = new Point(10, 30);
-            numericUpDownProductID.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
-            numericUpDownProductID.Name = "numericUpDownProductID";
-            numericUpDownProductID.Size = new Size(120, 23);
-            numericUpDownProductID.TabIndex = 0;
             // 
             // buttonRemoveProduct
             // 
@@ -74,6 +65,7 @@
             // 
             // numericUpDownAmount
             // 
+            numericUpDownAmount.DecimalPlaces = 3;
             numericUpDownAmount.Location = new Point(12, 70);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
@@ -90,22 +82,28 @@
             labelAmount.TabIndex = 4;
             labelAmount.Text = "Количество";
             // 
+            // textBoxProductID
+            // 
+            textBoxProductID.Location = new Point(10, 30);
+            textBoxProductID.Name = "textBoxProductID";
+            textBoxProductID.Size = new Size(122, 23);
+            textBoxProductID.TabIndex = 5;
+            // 
             // RemoveAssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(276, 140);
+            Controls.Add(textBoxProductID);
             Controls.Add(labelAmount);
             Controls.Add(numericUpDownAmount);
             Controls.Add(labelProductID);
             Controls.Add(buttonRemoveProduct);
-            Controls.Add(numericUpDownProductID);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "RemoveAssortmentForm";
             Text = "RemoveAssortment";
-            ((System.ComponentModel.ISupportInitialize)numericUpDownProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ResumeLayout(false);
@@ -113,12 +111,11 @@
         }
 
         #endregion
-
-        private NumericUpDown numericUpDownProductID;
         private Button buttonRemoveProduct;
         private Label labelProductID;
         private ErrorProvider errorProviderProductID;
         private NumericUpDown numericUpDownAmount;
         private Label labelAmount;
+        private TextBox textBoxProductID;
     }
 }

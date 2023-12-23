@@ -45,6 +45,13 @@ namespace CourseWorkWF.Views
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
+            if(string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+                if(e.KeyChar == 48)
+                {
+                    e.KeyChar = '\0';
+                }
+            }
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
                 e.KeyChar = '\0';

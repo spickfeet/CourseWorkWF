@@ -30,8 +30,7 @@
         {
             buttonAssortment = new Button();
             buttonSell = new Button();
-            buttonChangeJobTitle = new Button();
-            buttonRemoveEmployee = new Button();
+            buttonUserController = new Button();
             buttonRefund = new Button();
             buttonHistory = new Button();
             buttonRevenue = new Button();
@@ -60,27 +59,16 @@
             buttonSell.Visible = false;
             buttonSell.Click += ButtonSell_Click;
             // 
-            // buttonChangeJobTitle
+            // buttonUserController
             // 
-            buttonChangeJobTitle.Location = new Point(408, 234);
-            buttonChangeJobTitle.Name = "buttonChangeJobTitle";
-            buttonChangeJobTitle.Size = new Size(137, 92);
-            buttonChangeJobTitle.TabIndex = 2;
-            buttonChangeJobTitle.Text = "Изменить должность";
-            buttonChangeJobTitle.UseVisualStyleBackColor = true;
-            buttonChangeJobTitle.Visible = false;
-            buttonChangeJobTitle.Click += ButtonChangeJobTitle_Click;
-            // 
-            // buttonRemoveEmployee
-            // 
-            buttonRemoveEmployee.Location = new Point(551, 234);
-            buttonRemoveEmployee.Name = "buttonRemoveEmployee";
-            buttonRemoveEmployee.Size = new Size(137, 92);
-            buttonRemoveEmployee.TabIndex = 3;
-            buttonRemoveEmployee.Text = "Удалить сотрудника";
-            buttonRemoveEmployee.UseVisualStyleBackColor = true;
-            buttonRemoveEmployee.Visible = false;
-            buttonRemoveEmployee.Click += ButtonRemoveEmployee_Click;
+            buttonUserController.Location = new Point(551, 234);
+            buttonUserController.Name = "buttonUserController";
+            buttonUserController.Size = new Size(137, 92);
+            buttonUserController.TabIndex = 3;
+            buttonUserController.Text = "Управление сотрудниками";
+            buttonUserController.UseVisualStyleBackColor = true;
+            buttonUserController.Visible = false;
+            buttonUserController.Click += ButtonRemoveEmployee_Click;
             // 
             // buttonRefund
             // 
@@ -123,8 +111,7 @@
             Controls.Add(buttonRevenue);
             Controls.Add(buttonHistory);
             Controls.Add(buttonRefund);
-            Controls.Add(buttonRemoveEmployee);
-            Controls.Add(buttonChangeJobTitle);
+            Controls.Add(buttonUserController);
             Controls.Add(buttonSell);
             Controls.Add(buttonAssortment);
             Margin = new Padding(3, 2, 3, 2);
@@ -140,7 +127,7 @@
         private Button buttonAssortment;
         private Button buttonSell;
         private Button buttonChangeJobTitle;
-        private Button buttonRemoveEmployee;
+        private Button buttonUserController;
         private Button buttonRefund;
         private Button buttonHistory;
         private Button buttonRevenue;

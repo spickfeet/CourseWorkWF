@@ -18,16 +18,11 @@ namespace CourseWorkWF.Files
             if (user == null) throw new ArgumentException("Передан пустой объект");
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var users = File.Exists("Users.json") ?
-                JsonConvert.DeserializeObject<IList<IUser>>(File.ReadAllText("Users.json"), settings) :
-                new List<IUser>();
-            foreach (var item in users)
-            {
-                if(item.Login == user.Login)
-                {
-                    throw new Exception("Пользователь с таким логином существует");
-                }
-            }
-            users.Add(user);
+                JsonConvert.DeserializeObject<IDictionary<string, IUser>>(File.ReadAllText("Users.json"), settings) :
+                new Dictionary<string, IUser>();
+            if(users.ContainsKey(user.Login))
+                throw new Exception("Пользователь с таким логином существует");
+            users.Add(user.Login, user);
             File.WriteAllText("Users.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
         }
 
@@ -35,31 +30,28 @@ namespace CourseWorkWF.Files
         {
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var users = File.Exists("Users.json") ?
-                JsonConvert.DeserializeObject<IList<IUser>>(File.ReadAllText("Users.json"), settings) :
+                JsonConvert.DeserializeObject<IDictionary<string, IUser>>(File.ReadAllText("Users.json"), settings) :
                 throw new Exception("Файл не существует");
-            foreach (var item in users)
+            if (users.ContainsKey(login))
             {
-                if (item.Login == login)
-                {
-                    users.Remove(item);
-                    File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
-                    return;
-                }
+                users.Remove(login);
+                File.WriteAllText("Users.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
+                return;
             }
             throw new ArgumentException("Пользователь с таким логином не существует");
         }
 
-        public IList<IUser> Load()
+        public IDictionary<string, IUser> Load()
         {
             if (File.Exists("Users.json"))
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-                var users = JsonConvert.DeserializeObject<IList<IUser>>(File.ReadAllText("Users.json"), settings);
+                var users = JsonConvert.DeserializeObject<IDictionary<string, IUser>>(File.ReadAllText("Users.json"), settings);
                 return users;
             }
             else
             {
-                return new List<IUser>();
+                return new Dictionary<string, IUser>();
             }
         }
     }
