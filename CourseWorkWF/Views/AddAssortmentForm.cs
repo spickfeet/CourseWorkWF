@@ -45,9 +45,9 @@ namespace CourseWorkWF.Views
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
-            if(string.IsNullOrEmpty(textBoxProductID.Text))
+            if (string.IsNullOrEmpty(textBoxProductID.Text))
             {
-                if(e.KeyChar == 48)
+                if (e.KeyChar == 48)
                 {
                     e.KeyChar = '\0';
                 }
@@ -103,6 +103,18 @@ namespace CourseWorkWF.Views
                 return true;
             }
             return false;
+        }
+
+        private void CheckBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxWeightProduct.Checked == true)
+            {
+                numericUpDownAmount.DecimalPlaces = 3;
+            }
+            else
+            {
+                numericUpDownAmount.DecimalPlaces = 0;
+            }
         }
     }
 }

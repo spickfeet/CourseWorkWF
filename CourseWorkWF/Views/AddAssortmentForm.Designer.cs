@@ -39,6 +39,7 @@
             numericUpDownAmount = new NumericUpDown();
             textBoxProductID = new TextBox();
             errorProviderProductIDLength = new ErrorProvider(components);
+            checkBoxWeightProduct = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductIDLength).BeginInit();
@@ -108,7 +109,6 @@
             // 
             // numericUpDownAmount
             // 
-            numericUpDownAmount.DecimalPlaces = 3;
             numericUpDownAmount.Location = new Point(12, 162);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
@@ -128,12 +128,24 @@
             // 
             errorProviderProductIDLength.ContainerControl = this;
             // 
+            // checkBoxWeightProduct
+            // 
+            checkBoxWeightProduct.AutoSize = true;
+            checkBoxWeightProduct.Location = new Point(161, 167);
+            checkBoxWeightProduct.Name = "checkBoxWeightProduct";
+            checkBoxWeightProduct.Size = new Size(119, 19);
+            checkBoxWeightProduct.TabIndex = 14;
+            checkBoxWeightProduct.Text = "Весовой продукт";
+            checkBoxWeightProduct.UseVisualStyleBackColor = true;
+            checkBoxWeightProduct.CheckedChanged += CheckBoxWeightProduct_CheckedChanged;
+            // 
             // AddAssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(304, 209);
+            Controls.Add(checkBoxWeightProduct);
             Controls.Add(textBoxProductID);
             Controls.Add(numericUpDownAmount);
             Controls.Add(numericUpDownProductPrice);
@@ -166,5 +178,6 @@
         private NumericUpDown numericUpDownAmount;
         private TextBox textBoxProductID;
         private ErrorProvider errorProviderProductIDLength;
+        private CheckBox checkBoxWeightProduct;
     }
 }

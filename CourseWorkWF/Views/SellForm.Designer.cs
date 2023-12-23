@@ -56,6 +56,7 @@
             errorProviderAmount = new ErrorProvider(components);
             buttonCancel = new Button();
             textBoxProductID = new TextBox();
+            checkBoxWeightProduct = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
@@ -238,7 +239,6 @@
             // 
             // numericUpDownAmount
             // 
-            numericUpDownAmount.DecimalPlaces = 3;
             numericUpDownAmount.Location = new Point(695, 68);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
@@ -303,12 +303,25 @@
             textBoxProductID.TabIndex = 26;
             textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
             // 
+            // checkBoxWeightProduct
+            // 
+            checkBoxWeightProduct.AutoSize = true;
+            checkBoxWeightProduct.Location = new Point(553, 70);
+            checkBoxWeightProduct.Name = "checkBoxWeightProduct";
+            checkBoxWeightProduct.RightToLeft = RightToLeft.Yes;
+            checkBoxWeightProduct.Size = new Size(119, 19);
+            checkBoxWeightProduct.TabIndex = 27;
+            checkBoxWeightProduct.Text = "Весовой продукт";
+            checkBoxWeightProduct.UseVisualStyleBackColor = true;
+            checkBoxWeightProduct.CheckedChanged += checkBoxWeightProduct_CheckedChanged;
+            // 
             // SellForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(898, 450);
+            Controls.Add(checkBoxWeightProduct);
             Controls.Add(textBoxProductID);
             Controls.Add(buttonCancel);
             Controls.Add(listViewBuyProducts);
@@ -371,5 +384,6 @@
         private Button buttonCancel;
         private ColumnHeader ColumnHeaderPrice;
         private TextBox textBoxProductID;
+        private CheckBox checkBoxWeightProduct;
     }
 }

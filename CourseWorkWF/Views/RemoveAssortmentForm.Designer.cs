@@ -35,6 +35,7 @@
             numericUpDownAmount = new NumericUpDown();
             labelAmount = new Label();
             textBoxProductID = new TextBox();
+            checkBoxWeightProduct = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
             SuspendLayout();
@@ -65,7 +66,6 @@
             // 
             // numericUpDownAmount
             // 
-            numericUpDownAmount.DecimalPlaces = 3;
             numericUpDownAmount.Location = new Point(12, 70);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
             numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
@@ -89,12 +89,24 @@
             textBoxProductID.Size = new Size(122, 23);
             textBoxProductID.TabIndex = 5;
             // 
+            // checkBoxWeightProduct
+            // 
+            checkBoxWeightProduct.AutoSize = true;
+            checkBoxWeightProduct.Location = new Point(138, 74);
+            checkBoxWeightProduct.Name = "checkBoxWeightProduct";
+            checkBoxWeightProduct.Size = new Size(119, 19);
+            checkBoxWeightProduct.TabIndex = 15;
+            checkBoxWeightProduct.Text = "Весовой продукт";
+            checkBoxWeightProduct.UseVisualStyleBackColor = true;
+            checkBoxWeightProduct.CheckedChanged += CheckBoxWeightProduct_CheckedChanged;
+            // 
             // RemoveAssortmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(276, 140);
+            Controls.Add(checkBoxWeightProduct);
             Controls.Add(textBoxProductID);
             Controls.Add(labelAmount);
             Controls.Add(numericUpDownAmount);
@@ -117,5 +129,6 @@
         private NumericUpDown numericUpDownAmount;
         private Label labelAmount;
         private TextBox textBoxProductID;
+        private CheckBox checkBoxWeightProduct;
     }
 }

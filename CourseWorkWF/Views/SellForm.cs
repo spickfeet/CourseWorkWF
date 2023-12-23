@@ -12,11 +12,11 @@ namespace CourseWorkWF.Views
         private SellPresenter _presenter;
         int ISellFormView.Discount
         {
-            get 
-            { 
+            get
+            {
                 if (comboBoxDiscount.SelectedIndex == -1)
                     return 0;
-                return int.Parse(comboBoxDiscount.Text); 
+                return int.Parse(comboBoxDiscount.Text);
             }
         }
         OperationMethod ISellFormView.OperationMethod
@@ -234,6 +234,18 @@ namespace CourseWorkWF.Views
             labelMoneyChangeBuyer.Visible = false;
             textBoxMoneyChangeBuyer.Text = "0";
             textBoxMoneyChangeBuyer.Visible = false;
+        }
+
+        private void checkBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxWeightProduct.Checked == true)
+            {
+                numericUpDownAmount.DecimalPlaces = 3;
+            }
+            else
+            {
+                numericUpDownAmount.DecimalPlaces = 0;
+            }
         }
     }
 }

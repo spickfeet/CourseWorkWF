@@ -41,5 +41,17 @@ namespace CourseWorkWF.Views
                 Close();
             else errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
         }
+
+        private void CheckBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxWeightProduct.Checked == true)
+            {
+                numericUpDownAmount.DecimalPlaces = 3;
+            }
+            else
+            {
+                numericUpDownAmount.DecimalPlaces = 0;
+            }
+        }
     }
 }
