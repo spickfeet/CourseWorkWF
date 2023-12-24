@@ -96,6 +96,7 @@ namespace CourseWorkWF.Views
             {
                 e.KeyChar = '\0';
             }
+            SetErrorLength();
         }
 
         private void ButtonRefund_Click(object sender, EventArgs e)
@@ -222,6 +223,10 @@ namespace CourseWorkWF.Views
 
         private void ButtonAddProductRefundList_Click(object sender, EventArgs e)
         {
+            if (SetErrorLength())
+            {
+                return;
+            }
             errorProviderSellInfo.Clear();
             errorProviderProductID.Clear();
             errorProviderAmount.Clear();
@@ -261,6 +266,16 @@ namespace CourseWorkWF.Views
             textBoxProductID.Clear();
             textBoxReceiptNumber.Clear();
             numericUpDownAmount.Value = 1;
+        }
+        private bool SetErrorLength()
+        {
+            errorProviderProductID.Clear();
+            if (textBoxProductID.Text.Length > 14)
+            {
+                errorProviderProductID.SetError(textBoxProductID, "ID продукта не может быть такой длинны");
+                return true;
+            }
+            return false;
         }
     }
 }
