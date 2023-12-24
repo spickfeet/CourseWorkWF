@@ -8,6 +8,7 @@ namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface IHistoryFormView
     {
+        public string Reason { set; }
         public DateTime SellInfoDateFrom { get; }
         public DateTime SellInfoDateTo { get; }
         public int SelectSellNumber { get; }

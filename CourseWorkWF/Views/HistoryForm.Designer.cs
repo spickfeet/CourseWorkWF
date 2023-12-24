@@ -64,7 +64,7 @@
             labelSell = new Label();
             labelRefund = new Label();
             labelRevenue = new Label();
-            buttonGetSellProducts = new Button();
+            buttonGetSellInfo = new Button();
             listViewSellProducts = new ListView();
             columnHeaderSellProductID = new ColumnHeader();
             columnHeaderSellProductName = new ColumnHeader();
@@ -75,9 +75,11 @@
             columnHeaderRefundproductName = new ColumnHeader();
             columnHeaderRefundProductPrice = new ColumnHeader();
             columnHeaderRefundProductAmount = new ColumnHeader();
-            buttonGetRefundProducts = new Button();
+            buttonGetRefundInfo = new Button();
             errorProviderSelectSellNumber = new ErrorProvider(components);
             errorProviderSelectRefundNumber = new ErrorProvider(components);
+            richTextBoxReason = new RichTextBox();
+            labelReason = new Label();
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectSellNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectRefundNumber).BeginInit();
             SuspendLayout();
@@ -338,15 +340,15 @@
             labelRevenue.TabIndex = 24;
             labelRevenue.Text = "Выручка";
             // 
-            // buttonGetSellProducts
+            // buttonGetSellInfo
             // 
-            buttonGetSellProducts.Location = new Point(544, 46);
-            buttonGetSellProducts.Name = "buttonGetSellProducts";
-            buttonGetSellProducts.Size = new Size(422, 41);
-            buttonGetSellProducts.TabIndex = 25;
-            buttonGetSellProducts.Text = "Получить список купленных товаров";
-            buttonGetSellProducts.UseVisualStyleBackColor = true;
-            buttonGetSellProducts.Click += ButtonGetSellProducts_Click;
+            buttonGetSellInfo.Location = new Point(544, 46);
+            buttonGetSellInfo.Name = "buttonGetSellInfo";
+            buttonGetSellInfo.Size = new Size(422, 41);
+            buttonGetSellInfo.TabIndex = 25;
+            buttonGetSellInfo.Text = "Получить дополнительную информацию";
+            buttonGetSellInfo.UseVisualStyleBackColor = true;
+            buttonGetSellInfo.Click += ButtonGetSellProducts_Click;
             // 
             // listViewSellProducts
             // 
@@ -408,15 +410,15 @@
             columnHeaderRefundProductAmount.Text = "Колличество";
             columnHeaderRefundProductAmount.Width = 90;
             // 
-            // buttonGetRefundProducts
+            // buttonGetRefundInfo
             // 
-            buttonGetRefundProducts.Location = new Point(544, 320);
-            buttonGetRefundProducts.Name = "buttonGetRefundProducts";
-            buttonGetRefundProducts.Size = new Size(422, 41);
-            buttonGetRefundProducts.TabIndex = 27;
-            buttonGetRefundProducts.Text = "Получить список возвращенных товаров";
-            buttonGetRefundProducts.UseVisualStyleBackColor = true;
-            buttonGetRefundProducts.Click += ButtonGetRefundProducts_Click;
+            buttonGetRefundInfo.Location = new Point(544, 320);
+            buttonGetRefundInfo.Name = "buttonGetRefundInfo";
+            buttonGetRefundInfo.Size = new Size(422, 41);
+            buttonGetRefundInfo.TabIndex = 27;
+            buttonGetRefundInfo.Text = "Получить дополнительную информацию";
+            buttonGetRefundInfo.UseVisualStyleBackColor = true;
+            buttonGetRefundInfo.Click += ButtonGetRefundProducts_Click;
             // 
             // errorProviderSelectSellNumber
             // 
@@ -426,16 +428,37 @@
             // 
             errorProviderSelectRefundNumber.ContainerControl = this;
             // 
+            // richTextBoxReason
+            // 
+            richTextBoxReason.Location = new Point(972, 369);
+            richTextBoxReason.Name = "richTextBoxReason";
+            richTextBoxReason.ReadOnly = true;
+            richTextBoxReason.Size = new Size(196, 187);
+            richTextBoxReason.TabIndex = 29;
+            richTextBoxReason.Text = "";
+            // 
+            // labelReason
+            // 
+            labelReason.AutoSize = true;
+            labelReason.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelReason.Location = new Point(972, 338);
+            labelReason.Name = "labelReason";
+            labelReason.Size = new Size(91, 25);
+            labelReason.TabIndex = 30;
+            labelReason.Text = "Причина";
+            // 
             // HistoryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(982, 847);
+            ClientSize = new Size(1176, 847);
+            Controls.Add(labelReason);
+            Controls.Add(richTextBoxReason);
             Controls.Add(listViewRefundProducts);
-            Controls.Add(buttonGetRefundProducts);
+            Controls.Add(buttonGetRefundInfo);
             Controls.Add(listViewSellProducts);
-            Controls.Add(buttonGetSellProducts);
+            Controls.Add(buttonGetSellInfo);
             Controls.Add(labelRevenue);
             Controls.Add(labelRefund);
             Controls.Add(labelSell);
@@ -488,10 +511,10 @@
         private Label labelSell;
         private Label labelRefund;
         private Label labelRevenue;
-        private Button buttonGetSellProducts;
+        private Button buttonGetSellInfo;
         private ListView listViewSellProducts;
         private ListView listViewRefundProducts;
-        private Button buttonGetRefundProducts;
+        private Button buttonGetRefundInfo;
         private ColumnHeader columnHeaderSellOperationNumber;
         private ColumnHeader columnHeaderSellAmountMoney;
         private ColumnHeader columnHeaderSellName;
@@ -516,5 +539,7 @@
         private ColumnHeader columnHeaderRefundProductAmount;
         private ErrorProvider errorProviderSelectSellNumber;
         private ErrorProvider errorProviderSelectRefundNumber;
+        private Label labelReason;
+        private RichTextBox richTextBoxReason;
     }
 }

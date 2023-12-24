@@ -37,6 +37,11 @@ namespace CourseWorkWF.Views
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
+            if (string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+                errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
+                return;
+            }
             if (_presenter.RemoveProduct() == true)
                 Close();
             else errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");

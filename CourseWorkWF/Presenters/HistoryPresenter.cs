@@ -90,6 +90,7 @@ namespace CourseWorkWF.Presenters
             {
                 products.Add(productsCollection);
             }
+            _view.Reason = _refundsInfo[_view.SelectRefundNumber].Refund.Reason;
             return products;
         }
 

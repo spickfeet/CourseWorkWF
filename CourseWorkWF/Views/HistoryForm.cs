@@ -52,6 +52,9 @@ namespace CourseWorkWF.Views
         DateTime IHistoryFormView.RevenueInfoDateFrom => dateTimePickerRevenueDateFrom.Value;
 
         DateTime IHistoryFormView.RevenueInfoDateTo => dateTimePickerRefundInfoDateTo.Value;
+
+        string IHistoryFormView.Reason { set { richTextBoxReason.Text = value; } }
+
         public HistoryForm()
         {
             _presenter = new(this);
@@ -119,6 +122,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonGetRefundProducts_Click(object sender, EventArgs e)
         {
+            richTextBoxReason.Clear();
             errorProviderSelectRefundNumber.Clear();
             listViewRefundProducts.Items.Clear();
             int lineIndex = 0;
