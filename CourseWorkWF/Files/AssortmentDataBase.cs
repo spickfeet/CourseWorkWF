@@ -14,51 +14,69 @@ namespace CourseWorkWF.Files
 {
     public class AssortmentDataBase : IAssortmentDataBase
     {
-
-        public void Add(IProductsCollectionItem productsCollectionItem)
+        private Dictionary<long, IProductsCollectionItem> _assortment;
+        private string _pathName;
+        public AssortmentDataBase(string pathName)
         {
-            if (productsCollectionItem == null) throw new ArgumentException("Передан пустой объект");
-            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-            var assortment = File.Exists("Assortment.json") ? 
-                JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) : 
-                new Dictionary<long, IProductsCollectionItem>();
-            if (assortment.ContainsKey(productsCollectionItem.Product.ProductID))
-                assortment[productsCollectionItem.Product.ProductID].Amount += productsCollectionItem.Amount;
-            else
-                assortment[productsCollectionItem.Product.ProductID] = productsCollectionItem;
-            File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment,Formatting.Indented, settings));            
+            _assortment = Load();
+            _pathName = pathName;
         }
-
-        public void Delete(IProductsCollectionItem productsCollectionItem)
+        public bool Create(IProductsCollectionItem productsCollectionItem)
         {
+            if (productsCollectionItem == null) return false;
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-            var assortment = File.Exists("Assortment.json") ?
-                JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) :
-                throw new Exception("Файл не существует");
-            if (assortment.ContainsKey(productsCollectionItem.Product.ProductID))
-            {
-                if (assortment[productsCollectionItem.Product.ProductID].Amount - productsCollectionItem.Amount < 1)
-                    assortment.Remove(productsCollectionItem.Product.ProductID);
-                else
-                    assortment[productsCollectionItem.Product.ProductID].Amount -= productsCollectionItem.Product.ProductID;
-            }
+            if (_assortment.ContainsKey(productsCollectionItem.Product.ProductID))
+                _assortment[productsCollectionItem.Product.ProductID].Amount += productsCollectionItem.Amount;
             else
-                throw new ArgumentException("В ассортименте нет этого продукта");
-                
-            File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment, Formatting.Indented, settings));
+                _assortment[productsCollectionItem.Product.ProductID] = productsCollectionItem;
+            File.WriteAllText(_pathName, JsonConvert.SerializeObject(_assortment, Formatting.Indented, settings));
+            return true;
+
         }
-        public IDictionary<long, IProductsCollectionItem> Load()
+        public bool Update(IProductsCollectionItem productsCollectionItem)
         {
-            if (File.Exists("Assortment.json"))
+            if (productsCollectionItem == null) return false;
+            if (_assortment.ContainsKey(productsCollectionItem.Product.ProductID))
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-                var assortment = JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings);
+                _assortment[productsCollectionItem.Product.ProductID] = productsCollectionItem;
+                File.WriteAllText(_pathName, JsonConvert.SerializeObject(_assortment, Formatting.Indented, settings));
+                return true;
+            }
+            else
+                return false;
+        }
+        public bool Delete(IProductsCollectionItem productsCollectionItem)
+        {
+            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+            if (_assortment.ContainsKey(productsCollectionItem.Product.ProductID))
+            {
+                if (_assortment[productsCollectionItem.Product.ProductID].Amount - productsCollectionItem.Amount < 1)
+                    _assortment.Remove(productsCollectionItem.Product.ProductID);
+                else
+                    _assortment[productsCollectionItem.Product.ProductID].Amount -= productsCollectionItem.Product.ProductID;
+            }
+            else 
+                return false;              
+            File.WriteAllText(_pathName, JsonConvert.SerializeObject(_assortment, Formatting.Indented, settings));
+            return true;
+        }
+        public Dictionary<long, IProductsCollectionItem> Load()
+        {
+            if (File.Exists(_pathName))
+            {
+                var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+                var assortment = JsonConvert.DeserializeObject<Dictionary<long, IProductsCollectionItem>>(File.ReadAllText(_pathName), settings);
                 return assortment;
             }
             else
             {
                 return new Dictionary<long, IProductsCollectionItem>();
             }
+        }
+        public IReadOnlyDictionary<long, IProductsCollectionItem> ReadAll()
+        {
+            return _assortment;
         }
     }
 }
