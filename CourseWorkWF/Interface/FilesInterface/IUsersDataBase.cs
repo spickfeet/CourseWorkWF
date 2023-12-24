@@ -10,7 +10,7 @@ namespace CourseWorkWF.Interface.FilesInterface
     internal interface IUsersDataBase
     {
         public void Add(IUser user);
-        public void Delete(string login);
+        public void Delete(IUser user);
         public IDictionary<string, IUser> Load();
     }
 }

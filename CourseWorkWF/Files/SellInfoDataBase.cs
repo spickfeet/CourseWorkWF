@@ -22,7 +22,20 @@ namespace CourseWorkWF.Files
             salesInfo[sellInfo.OperationNumber] = sellInfo;
             File.WriteAllText("SelesInfo.json", JsonConvert.SerializeObject(salesInfo, Formatting.Indented, settings));
         }
-
+        public void Delete(IRefundInfo refundInfo)
+        {
+            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+            var refundsInfo = File.Exists("RefundsInfo.json") ?
+                JsonConvert.DeserializeObject<IDictionary<int, IRefundInfo>>(File.ReadAllText("RefundsInfo.json"), settings) :
+                throw new Exception("Файл не существует");
+            if (refundsInfo.ContainsKey(refundInfo.OperationNumber))
+            {
+                refundsInfo.Remove(refundInfo.OperationNumber);
+                File.WriteAllText("RefundsInfo.json", JsonConvert.SerializeObject(refundsInfo, Formatting.Indented, settings));
+                return;
+            }
+            throw new ArgumentException("Возврата с таким номером чека не существует");
+        }
         public IDictionary<int, ISellInfo> Load()
         {
             if (File.Exists("SelesInfo.json"))

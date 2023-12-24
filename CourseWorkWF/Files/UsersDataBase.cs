@@ -26,15 +26,15 @@ namespace CourseWorkWF.Files
             File.WriteAllText("Users.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
         }
 
-        public void Delete(string login)
+        public void Delete(IUser user)
         {
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var users = File.Exists("Users.json") ?
                 JsonConvert.DeserializeObject<IDictionary<string, IUser>>(File.ReadAllText("Users.json"), settings) :
                 throw new Exception("Файл не существует");
-            if (users.ContainsKey(login))
+            if (users.ContainsKey(user.Login))
             {
-                users.Remove(login);
+                users.Remove(user.Login);
                 File.WriteAllText("Users.json", JsonConvert.SerializeObject(users, Formatting.Indented, settings));
                 return;
             }

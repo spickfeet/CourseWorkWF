@@ -20,7 +20,7 @@ namespace CourseWorkWF.Models
         public long ProductID
         {
             get { return _productID; }
-            set { if (value < 0 ) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
+            private set { if (value < 0 ) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
         }
         public Product( string productName, decimal price, long productID )
         {

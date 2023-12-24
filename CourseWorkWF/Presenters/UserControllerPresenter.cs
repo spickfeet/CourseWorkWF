@@ -29,7 +29,7 @@ namespace CourseWorkWF.Presenters
                 SelectUserErrorEvent.Invoke(this, "Выберите пользователя из списка");
                 return;
             }
-            _usersData.Delete(_view.SelectLogin);
+            _usersData.Delete(Users[_view.SelectLogin]);
             Users = _usersData.Load();
         }
         public void ChangeJobTitle()
@@ -42,7 +42,7 @@ namespace CourseWorkWF.Presenters
             } 
             users = _usersData.Load();
             users[_view.SelectLogin].Post = _view.Post;
-            _usersData.Delete(_view.SelectLogin);
+            _usersData.Delete(Users[_view.SelectLogin]);
             _usersData.Add(users[_view.SelectLogin]);
             Users = users;
         }
