@@ -37,13 +37,9 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxMoneyChangeBuyer.Text); }
             set { textBoxMoneyChangeBuyer.Text = value.ToString(); }
         }
-        string ISellFormView.CashierName
+        long ISellFormView.ProductID
         {
-            get { return textBoxCashierName.Text; }
-        }
-        int ISellFormView.ProductID
-        {
-            get { return int.Parse(textBoxProductID.Text); }
+            get { return long.Parse(textBoxProductID.Text); }
         }
         decimal ISellFormView.Amount
         {
@@ -54,6 +50,9 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
+
+        string ISellFormView.EmployeeFullName { set { labelChashierFullName.Text = value; } }
+
         public SellForm(Form prev, IEmployee user, IRevenue revenue)
         {
             _prevForm = prev;
@@ -88,7 +87,7 @@ namespace CourseWorkWF.Views
             {
                 e.KeyChar = '\0';
             }
-            if (textBoxProductID.Text.Length > 9)
+            if (textBoxProductID.Text.Length > 14)
             {
                 errorProviderProductID.SetError(textBoxProductID, "ID не может быть такой длинны");
             }
@@ -114,7 +113,7 @@ namespace CourseWorkWF.Views
             {
                 return;
             }
-            if (textBoxProductID.Text.Length > 9)
+            if (textBoxProductID.Text.Length > 14)
             {
                 return;
             }
@@ -122,6 +121,7 @@ namespace CourseWorkWF.Views
             errorProviderAmount.Clear();
             AddProductEvent?.Invoke(this, EventArgs.Empty);
             textBoxProductID.Clear();
+            checkBoxWeightProduct.Checked = false;
 
             if (_presenter.GetBuyProductsList().Count != 0) // проверяем пустой ли список продуктов
             {
@@ -134,7 +134,7 @@ namespace CourseWorkWF.Views
         {
             listViewBuyProducts.Items.Clear();
             int lineIndex = 0;
-            foreach (KeyValuePair<int, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
+            foreach (KeyValuePair<long, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.ProductName.ToString());
                 listViewBuyProducts.Items[lineIndex].SubItems.Add(productCollectionItem.Key.ToString());
@@ -154,10 +154,12 @@ namespace CourseWorkWF.Views
             listViewBuyProducts.Items.Clear(); // Отчистка ListView
             comboBoxDiscount.Enabled = false;
             comboBoxOperationMethod.Enabled = false;
+            buttonAddProduct.Enabled = true;
         }
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
         {
+            buttonAddProduct.Enabled = false;
             comboBoxOperationMethod.Enabled = true;
             DiscountEvent?.Invoke(this, EventArgs.Empty);
             if (comboBoxDiscount.SelectedIndex != 0)
@@ -234,6 +236,7 @@ namespace CourseWorkWF.Views
             labelMoneyChangeBuyer.Visible = false;
             textBoxMoneyChangeBuyer.Text = "0";
             textBoxMoneyChangeBuyer.Visible = false;
+            buttonAddProduct.Enabled = true;
         }
 
         private void checkBoxWeightProduct_CheckedChanged(object sender, EventArgs e)

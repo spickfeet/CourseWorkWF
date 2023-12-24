@@ -35,8 +35,7 @@
             labelPayMethod = new Label();
             comboBoxOperationMethod = new ComboBox();
             labelProductID = new Label();
-            textBoxCashierName = new TextBox();
-            labelCashierName = new Label();
+            labelCashier = new Label();
             buttonAddProduct = new Button();
             buttonSell = new Button();
             textBoxRevenue = new TextBox();
@@ -57,6 +56,7 @@
             buttonCancel = new Button();
             textBoxProductID = new TextBox();
             checkBoxWeightProduct = new CheckBox();
+            labelChashierFullName = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
@@ -125,23 +125,14 @@
             labelProductID.TabIndex = 6;
             labelProductID.Text = "ID товара";
             // 
-            // textBoxCashierName
+            // labelCashier
             // 
-            textBoxCashierName.Location = new Point(12, 415);
-            textBoxCashierName.Name = "textBoxCashierName";
-            textBoxCashierName.ReadOnly = true;
-            textBoxCashierName.Size = new Size(220, 23);
-            textBoxCashierName.TabIndex = 8;
-            textBoxCashierName.Text = "Елена Васильевна";
-            // 
-            // labelCashierName
-            // 
-            labelCashierName.AutoSize = true;
-            labelCashierName.Location = new Point(12, 397);
-            labelCashierName.Name = "labelCashierName";
-            labelCashierName.Size = new Size(46, 15);
-            labelCashierName.TabIndex = 9;
-            labelCashierName.Text = "Кассир";
+            labelCashier.AutoSize = true;
+            labelCashier.Location = new Point(12, 397);
+            labelCashier.Name = "labelCashier";
+            labelCashier.Size = new Size(46, 15);
+            labelCashier.TabIndex = 9;
+            labelCashier.Text = "Кассир";
             // 
             // buttonAddProduct
             // 
@@ -315,12 +306,23 @@
             checkBoxWeightProduct.UseVisualStyleBackColor = true;
             checkBoxWeightProduct.CheckedChanged += checkBoxWeightProduct_CheckedChanged;
             // 
+            // labelChashierFullName
+            // 
+            labelChashierFullName.AutoSize = true;
+            labelChashierFullName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelChashierFullName.Location = new Point(12, 413);
+            labelChashierFullName.Name = "labelChashierFullName";
+            labelChashierFullName.Size = new Size(97, 25);
+            labelChashierFullName.TabIndex = 28;
+            labelChashierFullName.Text = "Full Name";
+            // 
             // SellForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(898, 450);
+            Controls.Add(labelChashierFullName);
             Controls.Add(checkBoxWeightProduct);
             Controls.Add(textBoxProductID);
             Controls.Add(buttonCancel);
@@ -335,8 +337,7 @@
             Controls.Add(textBoxRevenue);
             Controls.Add(buttonSell);
             Controls.Add(buttonAddProduct);
-            Controls.Add(labelCashierName);
-            Controls.Add(textBoxCashierName);
+            Controls.Add(labelCashier);
             Controls.Add(labelProductID);
             Controls.Add(labelPayMethod);
             Controls.Add(comboBoxOperationMethod);
@@ -363,8 +364,7 @@
         private Label labelPayMethod;
         private ComboBox comboBoxOperationMethod;
         private Label labelProductID;
-        private TextBox textBoxCashierName;
-        private Label labelCashierName;
+        private Label labelCashier;
         private Button buttonAddProduct;
         private Button buttonSell;
         private TextBox textBoxRevenue;
@@ -385,5 +385,6 @@
         private ColumnHeader ColumnHeaderPrice;
         private TextBox textBoxProductID;
         private CheckBox checkBoxWeightProduct;
+        private Label labelChashierFullName;
     }
 }

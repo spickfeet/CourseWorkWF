@@ -10,7 +10,7 @@ namespace CourseWorkWF.Presenters
     {
         private IAddAssortmentFormView _view;
         private IAssortmentDataBase _assortmentData;
-        private IDictionary<int, IProductsCollectionItem> _assortment;
+        private IDictionary<long, IProductsCollectionItem> _assortment;
         public AddAssortmentPresenter(IAddAssortmentFormView view)
         {
             _view = view;

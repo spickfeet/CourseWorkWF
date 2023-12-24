@@ -38,11 +38,13 @@
             numericUpDownProductPrice = new NumericUpDown();
             numericUpDownAmount = new NumericUpDown();
             textBoxProductID = new TextBox();
-            errorProviderProductIDLength = new ErrorProvider(components);
+            errorProviderProductID = new ErrorProvider(components);
             checkBoxWeightProduct = new CheckBox();
+            errorProviderPrductName = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)errorProviderProductIDLength).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderPrductName).BeginInit();
             SuspendLayout();
             // 
             // buttonAddProductInAssortment
@@ -124,9 +126,9 @@
             textBoxProductID.TextChanged += TextBoxProductID_TextChanged;
             textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
             // 
-            // errorProviderProductIDLength
+            // errorProviderProductID
             // 
-            errorProviderProductIDLength.ContainerControl = this;
+            errorProviderProductID.ContainerControl = this;
             // 
             // checkBoxWeightProduct
             // 
@@ -138,6 +140,10 @@
             checkBoxWeightProduct.Text = "Весовой продукт";
             checkBoxWeightProduct.UseVisualStyleBackColor = true;
             checkBoxWeightProduct.CheckedChanged += CheckBoxWeightProduct_CheckedChanged;
+            // 
+            // errorProviderPrductName
+            // 
+            errorProviderPrductName.ContainerControl = this;
             // 
             // AddAssortmentForm
             // 
@@ -161,7 +167,8 @@
             Text = "AddAssortment";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
-            ((System.ComponentModel.ISupportInitialize)errorProviderProductIDLength).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderPrductName).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,7 +184,8 @@
         private NumericUpDown numericUpDownProductPrice;
         private NumericUpDown numericUpDownAmount;
         private TextBox textBoxProductID;
-        private ErrorProvider errorProviderProductIDLength;
+        private ErrorProvider errorProviderProductID;
         private CheckBox checkBoxWeightProduct;
+        private ErrorProvider errorProviderPrductName;
     }
 }

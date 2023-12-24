@@ -88,6 +88,7 @@
             textBoxProductID.Name = "textBoxProductID";
             textBoxProductID.Size = new Size(122, 23);
             textBoxProductID.TabIndex = 5;
+            textBoxProductID.KeyPress += TextBoxNumerical_KeyPressNotNumber;
             // 
             // checkBoxWeightProduct
             // 

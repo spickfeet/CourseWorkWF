@@ -2,7 +2,7 @@
 {
     public interface IAddAssortmentFormView
     {
-        public int ProductID { get; }
+        public long ProductID { get; }
         public decimal Price { get; set; }
         public int Amount { get; }
         public string ProductName { get; set; }

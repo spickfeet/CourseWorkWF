@@ -16,9 +16,9 @@ namespace CourseWorkWF.Views
         {
             get { return (int)numericUpDownAmount.Value; }
         }
-        int IRemoveAssortmentFormView.ProductID
+        long IRemoveAssortmentFormView.ProductID
         {
-            get { return int.Parse(textBoxProductID.Text); }
+            get { return long.Parse(textBoxProductID.Text); }
         }
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
@@ -33,10 +33,15 @@ namespace CourseWorkWF.Views
             {
                 e.KeyChar = '\0';
             }
+            SetErrorLength();
         }
         private void ButtonRemoveProduct_Click(object sender, EventArgs e)
         {
             errorProviderProductID.Clear();
+            if (SetErrorLength())
+            {
+                return;
+            }
             if (string.IsNullOrEmpty(textBoxProductID.Text))
             {
                 errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
@@ -57,6 +62,16 @@ namespace CourseWorkWF.Views
             {
                 numericUpDownAmount.DecimalPlaces = 0;
             }
+        }
+        private bool SetErrorLength()
+        {
+            errorProviderProductID.Clear();
+            if (textBoxProductID.Text.Length > 14)
+            {
+                errorProviderProductID.SetError(textBoxProductID, "ID продукта не может быть такой длинны");
+                return true;
+            }
+            return false;
         }
     }
 }

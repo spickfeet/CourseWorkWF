@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ViewInterface
 {
     public interface IChangePriceFormView
     {
-        public int ProductID { get; }
+        public long ProductID { get; }
         public decimal Price { get; }
     }
 }

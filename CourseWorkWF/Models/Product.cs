@@ -6,7 +6,7 @@ namespace CourseWorkWF.Models
     {
         private string _productName;
         private decimal _price;
-        private int _productID;
+        private long _productID;
         public string ProductName
         {
             get { return _productName; } 
@@ -17,12 +17,12 @@ namespace CourseWorkWF.Models
             get { return _price; } 
             set { if (value < 0) throw new ArgumentOutOfRangeException("Price не может быть отрицательным"); _price = value; } 
         }
-        public int ProductID
+        public long ProductID
         {
             get { return _productID; }
-            set { if (value < 0) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
+            set { if (value < 0 ) throw new ArgumentOutOfRangeException("ProductID не может быть отрицательным"); _productID = value; }
         }
-        public Product( string productName, decimal price, int productID )
+        public Product( string productName, decimal price, long productID )
         {
             ProductName = productName;
             Price = price;

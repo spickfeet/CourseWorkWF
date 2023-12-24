@@ -23,7 +23,7 @@ namespace CourseWorkWF.Presenters
         public event EventHandler<string> IDNotFoundErrorEvent;
         public bool ChangePrice()
         {
-            IDictionary<int, IProductsCollectionItem> assortment = _assortmentData.Load();
+            IDictionary<long, IProductsCollectionItem> assortment = _assortmentData.Load();
             if (assortment.ContainsKey(_view.ProductID))
             {
                 assortment[_view.ProductID].Product.Price = _view.Price;

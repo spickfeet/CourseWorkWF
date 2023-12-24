@@ -21,9 +21,9 @@ namespace CourseWorkWF.Views
             _presenter = new AddAssortmentPresenter(this);
         }
 
-        int IAddAssortmentFormView.ProductID
+        long IAddAssortmentFormView.ProductID
         {
-            get { return int.Parse(textBoxProductID.Text); }
+            get { return long.Parse(textBoxProductID.Text); }
         }
         decimal IAddAssortmentFormView.Price
         {
@@ -60,6 +60,21 @@ namespace CourseWorkWF.Views
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
+            bool haveError = false;
+            if (string.IsNullOrEmpty(textBoxProductID.Text))
+            {
+                errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
+                haveError = true;
+            }
+            if (string.IsNullOrEmpty(textBoxProductName.Text))
+            {
+                errorProviderPrductName.SetError(textBoxProductName, "Введите название продукта");
+                haveError = true;
+            }
+            if (haveError == true)
+            {
+                return;
+            }
             if (SetErrorLength())
             {
                 textBoxProductName.Clear();
@@ -96,10 +111,10 @@ namespace CourseWorkWF.Views
         }
         private bool SetErrorLength()
         {
-            errorProviderProductIDLength.Clear();
-            if (textBoxProductID.Text.Length > 9)
+            errorProviderProductID.Clear();
+            if (textBoxProductID.Text.Length > 14)
             {
-                errorProviderProductIDLength.SetError(textBoxProductID, "ID продукта не может быть такой длинны");
+                errorProviderProductID.SetError(textBoxProductID, "ID продукта не может быть такой длинны");
                 return true;
             }
             return false;
@@ -107,7 +122,7 @@ namespace CourseWorkWF.Views
 
         private void CheckBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxWeightProduct.Checked == true)
+            if (checkBoxWeightProduct.Checked == true)
             {
                 numericUpDownAmount.DecimalPlaces = 3;
             }

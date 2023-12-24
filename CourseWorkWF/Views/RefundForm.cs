@@ -39,7 +39,7 @@ namespace CourseWorkWF.Views
 
         DateTime IRefundFormView.DateTo => dateTimePickerToDate.Value;
 
-        int IRefundFormView.ProductID => int.Parse(textBoxProductID.Text);
+        long IRefundFormView.ProductID => long.Parse(textBoxProductID.Text);
 
         OperationMethod IRefundFormView.OperationType
         {

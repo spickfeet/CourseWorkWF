@@ -11,7 +11,7 @@ namespace CourseWorkWF.Interface.ModelInterface
     public interface IAssortment
     {
         public IAssortmentDataBase AssortmentDataBase { get; }
-        public IDictionary<int, IProductsCollectionItem> ProductsAssortment { get; set; }
+        public IDictionary<long, IProductsCollectionItem> ProductsAssortment { get; set; }
         public void AddProducts(int productID, string name, decimal price, int amount);
         public void RemoveProducts(int productID, decimal amount);
         public void UpdateAssortment();

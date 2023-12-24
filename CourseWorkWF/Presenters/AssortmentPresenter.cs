@@ -13,7 +13,7 @@ namespace CourseWorkWF.Presenters
     public class AssortmentPresenter
     {
         private IAssortmentDataBase _assortmentData;
-        public IDictionary<int, IProductsCollectionItem> Assortment 
+        public IDictionary<long, IProductsCollectionItem> Assortment 
         {
             get { return _assortmentData.Load();} 
         }

@@ -11,17 +11,17 @@ namespace CourseWorkWF.Presenters
     public class SellPresenter
     {
         private ISellFormView _view;
-        private IDictionary<int,IProductsCollectionItem> _assortment;
+        private IDictionary<long, IProductsCollectionItem> _assortment;
         private ISellInfoDataBase _sellInfoData;
         private IDiscount _discount;
         private IRefundInfoDataBase _refundInfo;
         private IAssortmentDataBase _assortmentDataBase;
         private IEmployee _employee;
-        private IDictionary<int, IProductsCollectionItem> _buyProducts;
+        private IDictionary<long, IProductsCollectionItem> _buyProducts;
         private IRevenue _revenue;
-        public SellPresenter(ISellFormView view,IEmployee employee, IRevenue revenue)
+        public SellPresenter(ISellFormView view, IEmployee employee, IRevenue revenue)
         {
-            _buyProducts = new Dictionary<int,IProductsCollectionItem>();
+            _buyProducts = new Dictionary<long, IProductsCollectionItem>();
             _refundInfo = new RefundInfoDataBase();
             _sellInfoData = new SellInfoDataBase();
             _assortmentDataBase = new AssortmentDataBase();
@@ -30,6 +30,7 @@ namespace CourseWorkWF.Presenters
             _revenue = revenue;
             _employee = employee;
             _view = view;
+            _view.EmployeeFullName = employee.FullName.Name + " " + employee.FullName.Surname + " " + employee.FullName.Patronymic;
             _view.AddProductEvent += AddProduct;
             _view.SellEvent += SellOut;
             _view.DiscountEvent += DiscountUse;
@@ -47,7 +48,7 @@ namespace CourseWorkWF.Presenters
             _discount.Discount = 0;
         }
 
-        public IDictionary<int, IProductsCollectionItem> GetBuyProductsList()
+        public IDictionary<long, IProductsCollectionItem> GetBuyProductsList()
         {
             return _buyProducts;
         }

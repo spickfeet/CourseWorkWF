@@ -3,6 +3,6 @@
     public interface IRemoveAssortmentFormView
     {
         public int Amount { get; }
-        public int ProductID { get; }
+        public long ProductID { get; }
     }
 }

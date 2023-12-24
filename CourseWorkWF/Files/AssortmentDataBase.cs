@@ -20,8 +20,8 @@ namespace CourseWorkWF.Files
             if (productsCollectionItem == null) throw new ArgumentException("Передан пустой объект");
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var assortment = File.Exists("Assortment.json") ? 
-                JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) : 
-                new Dictionary<int, IProductsCollectionItem>();
+                JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) : 
+                new Dictionary<long, IProductsCollectionItem>();
             if (assortment.ContainsKey(productsCollectionItem.Product.ProductID))
                 assortment[productsCollectionItem.Product.ProductID].Amount += productsCollectionItem.Amount;
             else
@@ -29,11 +29,11 @@ namespace CourseWorkWF.Files
             File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment,Formatting.Indented, settings));            
         }
 
-        public void Delete(int productID, decimal amount)
+        public void Delete(long productID, decimal amount)
         {
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var assortment = File.Exists("Assortment.json") ?
-                JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) :
+                JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) :
                 throw new Exception("Файл не существует");
             if (assortment.ContainsKey(productID))
             {
@@ -47,17 +47,17 @@ namespace CourseWorkWF.Files
                 
             File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment, Formatting.Indented, settings));
         }
-        public IDictionary<int, IProductsCollectionItem> Load()
+        public IDictionary<long, IProductsCollectionItem> Load()
         {
             if (File.Exists("Assortment.json"))
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-                var assortment = JsonConvert.DeserializeObject<IDictionary<int, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings);
+                var assortment = JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings);
                 return assortment;
             }
             else
             {
-                return new Dictionary<int, IProductsCollectionItem>();
+                return new Dictionary<long, IProductsCollectionItem>();
             }
         }
     }
