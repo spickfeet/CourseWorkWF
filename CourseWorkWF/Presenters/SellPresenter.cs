@@ -106,9 +106,9 @@ namespace CourseWorkWF.Presenters
 
             _revenue.ChangeRevenue(sell); // Увеличение выручки
            
-            foreach(var item in _buyProducts)
+            foreach(IProductsCollectionItem productsCollectionItem in _buyProducts.Values)
             {
-                _assortmentDataBase.Delete(item.Value.Product.ProductID, item.Value.Amount);
+                _assortmentDataBase.Delete(productsCollectionItem);
             }
             _assortment = _assortmentDataBase.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов

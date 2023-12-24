@@ -261,11 +261,12 @@
             Controls.Add(textBoxLogin);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = SystemColors.ControlText;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SignUpForm";
-            Text = "Form1";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderPassword).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderName).EndInit();

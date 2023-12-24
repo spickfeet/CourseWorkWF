@@ -29,18 +29,18 @@ namespace CourseWorkWF.Files
             File.WriteAllText("Assortment.json", JsonConvert.SerializeObject(assortment,Formatting.Indented, settings));            
         }
 
-        public void Delete(long productID, decimal amount)
+        public void Delete(IProductsCollectionItem productsCollectionItem)
         {
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             var assortment = File.Exists("Assortment.json") ?
                 JsonConvert.DeserializeObject<IDictionary<long, IProductsCollectionItem>>(File.ReadAllText("Assortment.json"), settings) :
                 throw new Exception("Файл не существует");
-            if (assortment.ContainsKey(productID))
+            if (assortment.ContainsKey(productsCollectionItem.Product.ProductID))
             {
-                if (assortment[productID].Amount - amount < 1)
-                    assortment.Remove(productID);
+                if (assortment[productsCollectionItem.Product.ProductID].Amount - productsCollectionItem.Amount < 1)
+                    assortment.Remove(productsCollectionItem.Product.ProductID);
                 else
-                    assortment[productID].Amount -= amount;
+                    assortment[productsCollectionItem.Product.ProductID].Amount -= productsCollectionItem.Product.ProductID;
             }
             else
                 throw new ArgumentException("В ассортименте нет этого продукта");

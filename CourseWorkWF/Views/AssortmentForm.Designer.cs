@@ -132,10 +132,11 @@
             Controls.Add(labelAssortment);
             Controls.Add(buttonRemoveProductInAssortment);
             Controls.Add(buttonAddProductInAssortment);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AssortmentForm";
-            Text = "Assortment";
+            Text = "MyARM";
             ResumeLayout(false);
             PerformLayout();
         }

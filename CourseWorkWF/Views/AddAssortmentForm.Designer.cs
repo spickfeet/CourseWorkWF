@@ -161,10 +161,11 @@
             Controls.Add(textBoxProductName);
             Controls.Add(labelProductID);
             Controls.Add(buttonAddProductInAssortment);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AddAssortmentForm";
-            Text = "AddAssortment";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)numericUpDownProductPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();

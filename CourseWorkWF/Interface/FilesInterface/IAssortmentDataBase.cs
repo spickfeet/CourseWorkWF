@@ -12,7 +12,7 @@ namespace CourseWorkWF.Interface.FilesInterface
     public interface IAssortmentDataBase
     {
         public void Add(IProductsCollectionItem productsCollectionItem);
-        public void Delete(long productID, decimal amount);
+        public void Delete(IProductsCollectionItem productsCollectionItem);
         public IDictionary<long, IProductsCollectionItem> Load();
     }
 }

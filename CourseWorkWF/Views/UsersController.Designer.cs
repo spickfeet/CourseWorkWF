@@ -120,7 +120,7 @@
             // 
             errorProviderUsersList.ContainerControl = this;
             // 
-            // UsersManager
+            // UsersController
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -130,8 +130,9 @@
             Controls.Add(buttonDelete);
             Controls.Add(buttonChangeJobTitle);
             Controls.Add(listViewUsers);
-            Name = "UsersManager";
-            Text = "UsersManager";
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Name = "UsersController";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)errorProviderJobTitle).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderUsersList).EndInit();
             ResumeLayout(false);

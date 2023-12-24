@@ -344,10 +344,11 @@
             Controls.Add(labelDiscount);
             Controls.Add(comboBoxDiscount);
             Controls.Add(textBoxPrice);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SellForm";
-            Text = "CashierARM";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)numericUpDownCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();

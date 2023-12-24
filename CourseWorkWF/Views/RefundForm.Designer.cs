@@ -464,11 +464,12 @@
             Controls.Add(dateTimePickerToDate);
             Controls.Add(richTextBoxSellInfo);
             Controls.Add(listViewSeles);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "RefundForm";
-            Text = "RefundForm";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)errorProviderNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderAmount).EndInit();

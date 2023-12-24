@@ -99,10 +99,11 @@
             Controls.Add(labelPrice);
             Controls.Add(labelProductID);
             Controls.Add(textBoxProductID);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ChangePriceForm";
-            Text = "ChangePriceForm";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)numericUpDownPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ResumeLayout(false);

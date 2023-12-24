@@ -113,10 +113,11 @@
             Controls.Add(numericUpDownAmount);
             Controls.Add(labelProductID);
             Controls.Add(buttonRemoveProduct);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "RemoveAssortmentForm";
-            Text = "RemoveAssortment";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)errorProviderProductID).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAmount).EndInit();
             ResumeLayout(false);

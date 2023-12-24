@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace CourseWorkWF.Presenters
             if (assortment.ContainsKey(_view.ProductID))
             {
                 assortment[_view.ProductID].Product.Price = _view.Price;
-                _assortmentData.Delete(_view.ProductID, assortment[_view.ProductID].Amount);
+                _assortmentData.Delete(assortment[_view.ProductID]);
                 _assortmentData.Add(assortment[_view.ProductID]);
                 return true;
             }

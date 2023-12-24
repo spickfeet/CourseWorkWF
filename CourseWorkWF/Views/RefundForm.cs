@@ -59,7 +59,7 @@ namespace CourseWorkWF.Views
 
         string IRefundFormView.Reason => richTextBoxReason.Text;
 
-        public RefundForm(IEmployee employee,IRevenue revenue)
+        public RefundForm(IEmployee employee, IRevenue revenue)
         {
             _presenter = new RefundPresenter(this, employee, revenue);
             InitializeComponent();

@@ -480,8 +480,9 @@
             Controls.Add(listViewRefundsInfo);
             Controls.Add(listViewRevenues);
             Controls.Add(listViewSelesInfo);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "HistoryForm";
-            Text = "HistoryForm";
+            Text = "MyARM";
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectSellNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectRefundNumber).EndInit();
             ResumeLayout(false);

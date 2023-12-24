@@ -94,6 +94,7 @@
             // 
             // buttonRevenue
             // 
+            buttonRevenue.FlatStyle = FlatStyle.System;
             buttonRevenue.Location = new Point(12, 234);
             buttonRevenue.Name = "buttonRevenue";
             buttonRevenue.Size = new Size(137, 92);
@@ -114,11 +115,12 @@
             Controls.Add(buttonUserController);
             Controls.Add(buttonSell);
             Controls.Add(buttonAssortment);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainMenuForm";
-            Text = "User";
+            Text = "MyARM";
             ResumeLayout(false);
         }
 
