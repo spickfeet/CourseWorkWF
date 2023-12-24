@@ -10,9 +10,9 @@ namespace CourseWorkWF.Models
         public decimal MoneyAmount 
         {
             get { return _moneyAmount; }
-            set { if (value < 0) throw new ArgumentOutOfRangeException("MoneyAmount не может быть отрицательным"); _moneyAmount = value; }
+            private set { if (value < 0) throw new ArgumentOutOfRangeException("MoneyAmount не может быть отрицательным"); _moneyAmount = value; }
         }
-        public OperationMethod Method { get; set; }
+        public OperationMethod Method { get; private set; }
         public MoneyOperation(decimal moneyAmount, OperationMethod method)
         {
             MoneyAmount = moneyAmount;

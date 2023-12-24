@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IProduct
     {
-        public long ProductID { get; set;}
+        public long ProductID { get; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public IProduct Clone();

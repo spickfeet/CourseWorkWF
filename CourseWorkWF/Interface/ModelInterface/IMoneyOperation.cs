@@ -5,8 +5,8 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IMoneyOperation
     {
-        public decimal MoneyAmount { get; set; }
-        public OperationMethod Method { get; set; }
+        public decimal MoneyAmount { get; }
+        public OperationMethod Method { get; }
         
     }
 }
