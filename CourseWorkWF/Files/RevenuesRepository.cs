@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class RevenueRepository : IRepository<DateTime, IRevenue>
+    public class RevenuesRepository : IRepository<DateTime, IRevenue>
     {
         private string _pathName;
         private Dictionary<DateTime, IRevenue> _revenues;
 
-        public RevenueRepository(string pathName) 
+        public RevenuesRepository(string pathName) 
         {
             _pathName = pathName;
             _revenues = Load();

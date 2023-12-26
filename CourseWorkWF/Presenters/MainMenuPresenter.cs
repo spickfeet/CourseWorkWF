@@ -26,7 +26,7 @@ namespace CourseWorkWF.Presenters
         public MainMenuPresenter(IUser user)
         {
             _user = user;
-            _revenueData = new RevenueRepository("Revenues.json");
+            _revenueData = new RevenuesRepository("Revenues.json");
             _revenue = new Revenue(0, DateTime.Now);
         }
         public void GiveOpportunities()

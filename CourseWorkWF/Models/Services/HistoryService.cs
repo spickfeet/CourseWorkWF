@@ -21,7 +21,7 @@ namespace CourseWorkWF.Models.Services
         {
             _sellInfoData = new SalesInfoRepository("SalesInfo.json");
             _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
-            _revenueData = new RevenueRepository("Revenues.json");
+            _revenueData = new RevenuesRepository("Revenues.json");
         }
         public IEnumerable<ISellInfo> FindSalesByDates(DateTime dateTimeFrom, DateTime dateTimeTo)
         {
