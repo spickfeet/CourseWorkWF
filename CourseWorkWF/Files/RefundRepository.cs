@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class RefundInfoRepository : IRepository<int, IRefundInfo>
+    public class RefundsInfoRepository : IRepository<int, IRefundInfo>
     {
         private Dictionary<int, IRefundInfo> _refundInfo;
         private string _pathName;
-        public RefundInfoRepository(string pathName)
+        public RefundsInfoRepository(string pathName)
         {
             _pathName = pathName;
             _refundInfo = Load();

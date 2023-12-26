@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class SellInfoRepository : IRepository<int, ISellInfo>
+    public class SalesInfoRepository : IRepository<int, ISellInfo>
     {
         private Dictionary<int, ISellInfo> _salesInfo;
         private string _pathName;
-        public SellInfoRepository(string pathName)
+        public SalesInfoRepository(string pathName)
         {
-            _salesInfo = Load();
             _pathName = pathName;
+            _salesInfo = Load();
         }
         public bool Create(ISellInfo sellInfo)
         {

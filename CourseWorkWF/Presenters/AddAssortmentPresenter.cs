@@ -9,18 +9,18 @@ namespace CourseWorkWF.Presenters
     public class AddAssortmentPresenter
     {
         private IAddAssortmentFormView _view;
-        private IAssortmentDataBase _assortmentData;
+        private IRepository<long, IProductsCollectionItem> _assortmentData;
         private IDictionary<long, IProductsCollectionItem> _assortment;
         public AddAssortmentPresenter(IAddAssortmentFormView view)
         {
             _view = view;
-            _assortmentData = new AssortmentDataBase();
+            _assortmentData = new AssortmentRepository("Assortment.json");
             _assortment = _assortmentData.Load();
             _view.AddProductEvent += AddProductInAssortment;
         }
         public void AddProductInAssortment(object sender, EventArgs e)
         {
-            _assortmentData.Add(new ProductsCollectionItem(new Product(_view.ProductName,_view.Price,_view.ProductID), _view.Amount));
+            _assortmentData.Create(new ProductsCollectionItem(new Product(_view.ProductName,_view.Price,_view.ProductID), _view.Amount));
             _assortment = _assortmentData.Load();
         }
         public bool Autocomplete()

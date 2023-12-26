@@ -15,10 +15,10 @@ namespace CourseWorkWF.Presenters
     public class ChangePricePresenter
     {
         IChangePriceFormView _view;
-        IAssortmentDataBase _assortmentData;
+        IRepository<long, IProductsCollectionItem> _assortmentData;
         public ChangePricePresenter(IChangePriceFormView view) 
         {
-            _assortmentData = new AssortmentDataBase();
+            _assortmentData = new AssortmentRepository("Assortment.json");
             _view = view;
         }
         public event EventHandler<string> IDNotFoundErrorEvent;
@@ -29,7 +29,7 @@ namespace CourseWorkWF.Presenters
             {
                 assortment[_view.ProductID].Product.Price = _view.Price;
                 _assortmentData.Delete(assortment[_view.ProductID]);
-                _assortmentData.Add(assortment[_view.ProductID]);
+                _assortmentData.Create(assortment[_view.ProductID]);
                 return true;
             }
             return false;

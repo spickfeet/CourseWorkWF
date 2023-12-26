@@ -49,9 +49,9 @@ namespace CourseWorkWF.Views
             }
         }
 
-        DateTime IHistoryFormView.RevenueInfoDateFrom => dateTimePickerRevenueDateFrom.Value;
+        DateTime IHistoryFormView.RevenueDateFrom => dateTimePickerRevenueDateFrom.Value;
 
-        DateTime IHistoryFormView.RevenueInfoDateTo => dateTimePickerRefundInfoDateTo.Value;
+        DateTime IHistoryFormView.RevenueDateTo => dateTimePickerRefundInfoDateTo.Value;
 
         string IHistoryFormView.Reason { set { richTextBoxReason.Text = value; } }
 
@@ -59,15 +59,15 @@ namespace CourseWorkWF.Views
         {
             _presenter = new(this);
             InitializeComponent();
-            _presenter.SelectSellNumberErrorEvent += SetSellNumberError;
-            _presenter.SelectRefundNumberErrorEvent += SetRefundNumberError;
+            _presenter.OnSelectSellNumberError += SetSellNumberError;
+            _presenter.OnSelectRefundNumberError += SetRefundNumberError;
         }
 
-        private void SetSellNumberError(object? sender, string error)
+        private void SetSellNumberError(string error)
         {
             errorProviderSelectSellNumber.SetError(listViewSelesInfo, error);
         }
-        private void SetRefundNumberError(object? sender, string error)
+        private void SetRefundNumberError(string error)
         {
             errorProviderSelectRefundNumber.SetError(listViewRefundsInfo, error);
         }
@@ -93,14 +93,18 @@ namespace CourseWorkWF.Views
         {
             errorProviderSelectSellNumber.Clear();
             listViewSellProducts.Items.Clear();
-            int lineIndex = 0;
-            foreach (IProductsCollectionItem product in _presenter.FineProductsBySelectedSellNumber())
+            IEnumerable<IProductsCollectionItem>? soldProducts = _presenter.FindProductsBySelectedSellNumber();
+            if (soldProducts != null)
             {
-                listViewSellProducts.Items.Add(product.Product.ProductID.ToString());
-                listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.ProductName);
-                listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.Price.ToString());
-                listViewSellProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
-                lineIndex++;
+                int lineIndex = 0;
+                foreach (IProductsCollectionItem product in soldProducts)
+                {
+                    listViewSellProducts.Items.Add(product.Product.ProductID.ToString());
+                    listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.ProductName);
+                    listViewSellProducts.Items[lineIndex].SubItems.Add(product.Product.Price.ToString());
+                    listViewSellProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
+                    lineIndex++;
+                }
             }
         }
 
@@ -125,14 +129,18 @@ namespace CourseWorkWF.Views
             richTextBoxReason.Clear();
             errorProviderSelectRefundNumber.Clear();
             listViewRefundProducts.Items.Clear();
-            int lineIndex = 0;
-            foreach (IProductsCollectionItem product in _presenter.FineProductsBySelectedRefundNumber())
+            IEnumerable<IProductsCollectionItem>? returnedProducts = _presenter.FindProductsBySelectedRefundNumber();
+            if (returnedProducts != null)
             {
-                listViewRefundProducts.Items.Add(product.Product.ProductID.ToString());
-                listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Product.ProductName);
-                listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
-                listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
-                lineIndex++;
+                int lineIndex = 0;
+                foreach (IProductsCollectionItem product in returnedProducts)
+                {
+                    listViewRefundProducts.Items.Add(product.Product.ProductID.ToString());
+                    listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Product.ProductName);
+                    listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
+                    listViewRefundProducts.Items[lineIndex].SubItems.Add(product.Amount.ToString());
+                    lineIndex++;
+                }
             }
         }
 

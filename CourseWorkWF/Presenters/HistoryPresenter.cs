@@ -1,12 +1,15 @@
 ﻿using CourseWorkWF.Files;
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ServiceInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Models.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,84 +18,53 @@ namespace CourseWorkWF.Presenters
     public class HistoryPresenter
     {
         private IHistoryFormView _view;
-        private IRefundInfoDataBase _refundInfoData;
-        private ISellInfoDataBase _sellInfoData;
-        private IRevenueDataBase _revenueData;
-        private IDictionary<int, IRefundInfo> _refundsInfo;
-        private IDictionary<int, ISellInfo> _salesInfo;
-        private IList<IRevenue> _revenues;
+        private IHistoryService _model;
 
         public HistoryPresenter (IHistoryFormView view) 
         {
             _view = view;
-            _refundInfoData = new RefundInfoDataBase();
-            _sellInfoData = new SellInfoDataBase();
-            _revenueData = new RevenueRepository();
-            _refundsInfo = _refundInfoData.Load();
-            _salesInfo = _sellInfoData.Load();
-            _revenues = _revenueData.Load();
+            _model = new HistoryService();
         }
-        public event EventHandler<string> SelectSellNumberErrorEvent;
-        public event EventHandler<string> SelectRefundNumberErrorEvent;
-        public IList<ISellInfo> FindSalesByDates()
+        public event Action<string> OnSelectSellNumberError;
+        public event Action<string> OnSelectRefundNumberError;
+        public IEnumerable<ISellInfo> FindSalesByDates()
         {
-            IList<ISellInfo> salesInfoFind = new List<ISellInfo>();
-            foreach (var sellInfo in _salesInfo)
-            {
-                if (_view.SellInfoDateFrom.Date <= sellInfo.Value.OperationTime.Date && _view.SellInfoDateTo.Date >= sellInfo.Value.OperationTime.Date)
-                    salesInfoFind.Add(sellInfo.Value);
-            }
-            return salesInfoFind;
+            return _model.FindSalesByDates(_view.SellInfoDateFrom.Date, _view.SellInfoDateTo.Date);
         }
-        public IList<IRefundInfo> FindRefundsByDates()
+        public IEnumerable<IRefundInfo> FindRefundsByDates()
         {
-            IList<IRefundInfo> refundsInfo = new List<IRefundInfo>();
-            foreach (var refundInfo in _refundsInfo)
-            {
-                if (_view.RefundInfoDateFrom.Date <= refundInfo.Value.OperationTime.Date && _view.RefundInfoDateTo.Date >= refundInfo.Value.OperationTime.Date)
-                    refundsInfo.Add(refundInfo.Value);
-            }
-            return refundsInfo;
+            return _model.FindRefundsByDates(_view.RefundInfoDateFrom.Date, _view.RefundInfoDateTo.Date);
         }
-        public IList<IRevenue> FindRevenuesByDates()
+        public IEnumerable<IRevenue> FindRevenuesByDates()
         {
-            IList<IRevenue> revenuesFind = new List<IRevenue>();
-            foreach (var revenue in _revenues)
-            {
-                if (_view.SellInfoDateFrom.Date <= revenue.Date.Date && _view.SellInfoDateFrom.Date >= revenue.Date.Date)
-                    revenuesFind.Add(revenue);
-            }
-            return revenuesFind;
+            return _model.FindRevenuesByDates(_view.RevenueDateFrom.Date, _view.RevenueDateTo.Date);
         }
-        public IList<IProductsCollectionItem>? FineProductsBySelectedSellNumber()
+        public IEnumerable<IProductsCollectionItem>? FindProductsBySelectedSellNumber()
         {
-            IList<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
-            if(_view.SelectSellNumber == 0)
+            try
             {
-                SelectSellNumberErrorEvent.Invoke(this, "Выберите чек прихода");
-                return products;
+                return _model.FindProductsBySelectedSellNumber(_view.SelectSellNumber);
             }
-            foreach(IProductsCollectionItem productsCollection in _salesInfo[_view.SelectSellNumber].Sell.Products.Values)
+            catch (ArgumentException ex)
             {
-                products.Add(productsCollection);
+                OnSelectSellNumberError.Invoke(ex.Message);
+                return null;
             }
-            return products;
         }
-        public IList<IProductsCollectionItem>? FineProductsBySelectedRefundNumber()
+        public IEnumerable<IProductsCollectionItem>? FindProductsBySelectedRefundNumber()
         {
-            IList<IProductsCollectionItem> products = new List<IProductsCollectionItem>();
-            if (_view.SelectRefundNumber == 0)
+            try
             {
-                SelectRefundNumberErrorEvent.Invoke(this, "Выберите чек ухода");
-                return products;
+                _view.Reason = _model.GetReason(_view.SelectRefundNumber);
+                return _model.FindProductsBySelectedRefundNumber(_view.SelectRefundNumber);
             }
-            foreach (IProductsCollectionItem productsCollection in _refundsInfo[_view.SelectRefundNumber].Refund.Products.Values)
+            catch (ArgumentException ex)
             {
-                products.Add(productsCollection);
+                OnSelectRefundNumberError.Invoke(ex.Message);
+                return null;
             }
-            _view.Reason = _refundsInfo[_view.SelectRefundNumber].Refund.Reason;
-            return products;
-        }
+
+}
 
     }
 }

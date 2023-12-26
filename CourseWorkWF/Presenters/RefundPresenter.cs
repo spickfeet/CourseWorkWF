@@ -15,10 +15,10 @@ namespace CourseWorkWF.Presenters
     public class RefundPresenter
     {
         private IRefundFormView _view;
-        private IDictionary<int,ISellInfo> _salesInfo;
+        private IDictionary<int, ISellInfo> _salesInfo;
         private IDictionary<long, IProductsCollectionItem> _productsRefund;
-        private IRefundInfoDataBase _refundInfoData;
-        private ISellInfoDataBase _sellInfoData;
+        private IRepository<int, IRefundInfo> _refundInfoData;
+        private IRepository<int, ISellInfo> _sellInfoData;
         private ISellInfo? _sellInfo;
         private IEmployee _employee;
         private IRevenue _revenue;
@@ -33,8 +33,8 @@ namespace CourseWorkWF.Presenters
             _revenue = revenue;
             _haveError = false;
             _employee = employee;
-            _refundInfoData = new RefundInfoDataBase();
-            _sellInfoData = new SellInfoDataBase();
+            _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
+            _sellInfoData = new SalesInfoRepository("SalesInfo.json");
             _productsRefund = new Dictionary<long, IProductsCollectionItem>();
             _salesInfo = _sellInfoData.Load();
             _view = view;
@@ -126,7 +126,7 @@ namespace CourseWorkWF.Presenters
             Refund refund = new Refund(_productsRefund, new MoneyOperation(moneyAmount, _view.OperationType), _view.Reason);
             _revenue.ChangeRevenue(refund);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _employee, DateTime.Now);
-            _refundInfoData.Add(refundInfo);
+            _refundInfoData.Create(refundInfo);
             _productsRefund.Clear();
         }
         public void Cancel()

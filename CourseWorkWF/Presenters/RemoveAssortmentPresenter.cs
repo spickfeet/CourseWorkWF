@@ -9,11 +9,11 @@ namespace CourseWorkWF.Presenters
     public class RemoveAssortmentPresenter
     {
         private IDictionary<long, IProductsCollectionItem> _assortment;
-        private IAssortmentDataBase _assortmentData;
+        private IRepository<long, IProductsCollectionItem> _assortmentData;
         private IRemoveAssortmentFormView _view;
         public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
         {
-            _assortmentData = new AssortmentDataBase();
+            _assortmentData = new AssortmentRepository("Assortment.json");
             _assortment = _assortmentData.Load();
             _view = view;
         }

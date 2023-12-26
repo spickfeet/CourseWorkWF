@@ -19,8 +19,8 @@ namespace CourseWorkWF.Files
         private string _pathName;
         public AssortmentRepository(string pathName)
         {
-            _assortment = Load();
             _pathName = pathName;
+            _assortment = Load();
         }
         public bool Create(IProductsCollectionItem productsCollectionItem)
         {

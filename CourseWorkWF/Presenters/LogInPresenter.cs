@@ -15,10 +15,10 @@ namespace CourseWorkWF.Presenters
     public class LogInPresenter
     {
         private ILogInFormView _view;
-        private IUsersDataBase _userData;
+        private IRepository<string, IUser> _userData;
         public LogInPresenter(ILogInFormView view) 
         {
-            _userData = new UsersDataBase();
+            _userData = new UsersRepository("Users.json");
             _view = view;
         }
 

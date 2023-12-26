@@ -12,21 +12,21 @@ namespace CourseWorkWF.Presenters
     {
         private ISellFormView _view;
         private IDictionary<long, IProductsCollectionItem> _assortment;
-        private ISellInfoDataBase _sellInfoData;
         private IDiscount _discount;
-        private IRefundInfoDataBase _refundInfo;
-        private IAssortmentDataBase _assortmentDataBase;
+        private IRepository<int, IRefundInfo> _refundInfoData;
+        private IRepository<int, ISellInfo> _sellInfoData;
+        private IRepository<long, IProductsCollectionItem> _assortmentData;
         private IEmployee _employee;
         private IDictionary<long, IProductsCollectionItem> _buyProducts;
         private IRevenue _revenue;
         public SellPresenter(ISellFormView view, IEmployee employee, IRevenue revenue)
         {
             _buyProducts = new Dictionary<long, IProductsCollectionItem>();
-            _refundInfo = new RefundInfoDataBase();
-            _sellInfoData = new SellInfoDataBase();
-            _assortmentDataBase = new AssortmentDataBase();
+            _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
+            _sellInfoData = new SalesInfoRepository("SalesInfo.json");
+            _assortmentData = new AssortmentRepository("Assortment.json");
             _discount = new DiscountPercent(0);
-            _assortment = _assortmentDataBase.Load();
+            _assortment = _assortmentData.Load();
             _revenue = revenue;
             _employee = employee;
             _view = view;
@@ -98,19 +98,19 @@ namespace CourseWorkWF.Presenters
         {
             Sell sell = new Sell(_buyProducts, new MoneyOperation(_view.Price, _view.OperationMethod),_discount);
 
-            int number = _sellInfoData.Load().Count + _refundInfo.Load().Count + 1;
+            int number = _sellInfoData.Load().Count + _refundInfoData.Load().Count + 1;
 
             ISellInfo sellInfo = new SellInfo(number, sell, _employee, DateTime.Now);
 
-            _sellInfoData.Add(sellInfo);
+            _sellInfoData.Create(sellInfo);
 
             _revenue.ChangeRevenue(sell); // Увеличение выручки
            
             foreach(IProductsCollectionItem productsCollectionItem in _buyProducts.Values)
             {
-                _assortmentDataBase.Delete(productsCollectionItem);
+                _assortmentData.Delete(productsCollectionItem);
             }
-            _assortment = _assortmentDataBase.Load();
+            _assortment = _assortmentData.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }
         private void UpdatePrice()

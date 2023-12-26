@@ -13,12 +13,12 @@ namespace CourseWorkWF.Presenters
     public class UserControllerPresenter
     {
         private IUserControllerFormView _view;
-        private IUsersDataBase _usersData;
+        private IRepository<string, IUser> _usersData;
         public IDictionary<string, IUser> Users { get; private set; }
         public UserControllerPresenter(IUserControllerFormView view) 
         {
             _view = view;
-            _usersData = new UsersDataBase();
+            _usersData = new UsersRepository("Users.json");
             Users = _usersData.Load();
         }
         public event EventHandler<string> SelectUserErrorEvent;
@@ -43,7 +43,7 @@ namespace CourseWorkWF.Presenters
             users = _usersData.Load();
             users[_view.SelectLogin].Post = _view.Post;
             _usersData.Delete(Users[_view.SelectLogin]);
-            _usersData.Add(users[_view.SelectLogin]);
+            _usersData.Create(users[_view.SelectLogin]);
             Users = users;
         }
     }

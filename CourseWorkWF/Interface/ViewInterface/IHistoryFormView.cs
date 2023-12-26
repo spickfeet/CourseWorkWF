@@ -15,7 +15,7 @@ namespace CourseWorkWF.Interface.ViewInterface
         public DateTime RefundInfoDateFrom { get; }
         public DateTime RefundInfoDateTo { get; }
         public int SelectRefundNumber { get; }
-        public DateTime RevenueInfoDateFrom { get; }
-        public DateTime RevenueInfoDateTo { get; }
+        public DateTime RevenueDateFrom { get; }
+        public DateTime RevenueDateTo { get; }
     }
 }

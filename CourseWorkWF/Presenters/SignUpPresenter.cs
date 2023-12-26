@@ -15,14 +15,14 @@ namespace CourseWorkWF.Presenters
 {
     public class SignUpPresenter
     {
-        private IUsersDataBase _userData;
+        private IRepository<string, IUser> _userData;
         private ISignUpFormView _view;
         public event EventHandler? LoginBusyErrorEvent;
         public event EventHandler? OnlyOneOwnerErrorEvent;
         public SignUpPresenter(ISignUpFormView view ) 
         { 
             _view = view;
-            _userData = new UsersDataBase();
+            _userData = new UsersRepository("Users.json");
         }
         public bool SignUp()
         {
@@ -47,7 +47,7 @@ namespace CourseWorkWF.Presenters
             }
             string salt = Guid.NewGuid().ToString();
             IUser user = new User(_view.Login, HashCodeConvertor.ConvertToHashCode(_view.Password + salt), new FullName(_view.Name, _view.Surname, _view.Patronymic), _view.Post, salt);
-            _userData.Add(user);
+            _userData.Create(user);
             return true;
         }
     }
