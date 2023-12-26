@@ -27,7 +27,7 @@ namespace CourseWorkWF.Presenters
             _view = view;
             _refundInfoData = new RefundInfoDataBase();
             _sellInfoData = new SellInfoDataBase();
-            _revenueData = new RevenueDataBase();
+            _revenueData = new RevenueRepository();
             _refundsInfo = _refundInfoData.Load();
             _salesInfo = _sellInfoData.Load();
             _revenues = _revenueData.Load();

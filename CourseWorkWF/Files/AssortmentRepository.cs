@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -12,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class AssortmentDataBase : IAssortmentDataBase
+    public class AssortmentRepository : IRepository<long, IProductsCollectionItem>
     {
         private Dictionary<long, IProductsCollectionItem> _assortment;
         private string _pathName;
-        public AssortmentDataBase(string pathName)
+        public AssortmentRepository(string pathName)
         {
             _assortment = Load();
             _pathName = pathName;
@@ -48,6 +49,7 @@ namespace CourseWorkWF.Files
         }
         public bool Delete(IProductsCollectionItem productsCollectionItem)
         {
+            if (productsCollectionItem == null) return false;
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             if (_assortment.ContainsKey(productsCollectionItem.Product.ProductID))
             {
@@ -67,12 +69,12 @@ namespace CourseWorkWF.Files
             {
                 var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
                 var assortment = JsonConvert.DeserializeObject<Dictionary<long, IProductsCollectionItem>>(File.ReadAllText(_pathName), settings);
-                return assortment;
+                if(assortment != null)
+                {
+                    return assortment;
+                }
             }
-            else
-            {
-                return new Dictionary<long, IProductsCollectionItem>();
-            }
+            return new Dictionary<long, IProductsCollectionItem>();
         }
         public IReadOnlyDictionary<long, IProductsCollectionItem> ReadAll()
         {
