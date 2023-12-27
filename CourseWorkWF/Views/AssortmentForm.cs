@@ -8,10 +8,9 @@ namespace CourseWorkWF.Views
 {
     public partial class AssortmentForm : Form, IView
     {
-        private Form _prevForm;
         private AssortmentPresenter _presenter;
-        private ViewsController _viewsController;
-        public AssortmentForm(ViewsController viewsController, AssortmentPresenter presenter)
+        private IViewsController _viewsController;
+        public AssortmentForm(IViewsController viewsController, AssortmentPresenter presenter)
         {
             _viewsController = viewsController;
             InitializeComponent();

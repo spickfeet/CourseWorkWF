@@ -10,7 +10,7 @@ namespace CourseWorkWF.Views
     public partial class SellForm : Form, ISellFormView
     {
         private SellPresenter _presenter;
-        private ViewsController _viewsController;
+        private IViewsController _viewsController;
         int ISellFormView.Discount
         {
             get
@@ -51,7 +51,7 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
-        public SellForm(ViewsController viewsController, SellPresenter presenter)
+        public SellForm(IViewsController viewsController, SellPresenter presenter)
         {
             InitializeComponent();
             _presenter = presenter;

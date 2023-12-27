@@ -11,8 +11,8 @@ namespace CourseWorkWF.Views
     public partial class LogInForm : Form, ILogInFormView
     {
         private LogInPresenter _presenter;
-        private ViewsController _viewsController;
-        public LogInForm(ViewsController viewsController, LogInPresenter presenter)
+        private IViewsController _viewsController;
+        public LogInForm(IViewsController viewsController, LogInPresenter presenter)
         {
             _presenter = presenter;
             _viewsController = viewsController;

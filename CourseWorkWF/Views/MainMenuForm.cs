@@ -9,8 +9,8 @@ namespace CourseWorkWF.Views
     public partial class MainMenuForm : Form, IView
     {
         private MainMenuPresenter _presenter;
-        private ViewsController _viewsController;
-        public MainMenuForm(ViewsController viewsController, MainMenuPresenter mainMenuPresenter)
+        private IViewsController _viewsController;
+        public MainMenuForm(IViewsController viewsController, MainMenuPresenter mainMenuPresenter)
         {
             _presenter = mainMenuPresenter;
             _viewsController = viewsController;

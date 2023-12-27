@@ -16,7 +16,7 @@ namespace CourseWorkWF.Views
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
         private AddAssortmentPresenter _presenter;
-        public AddAssortmentForm(ViewsController viewsController, AddAssortmentPresenter presenter)
+        public AddAssortmentForm(AddAssortmentPresenter presenter)
         {
             InitializeComponent();
             _presenter = presenter;

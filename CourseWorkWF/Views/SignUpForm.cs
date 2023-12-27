@@ -11,7 +11,7 @@ namespace CourseWorkWF.Views
     {
         private SignUpPresenter _presenter;
         private bool _haveError;
-        private ViewsController _viewsController;
+        private IViewsController _viewsController;
 
         string ISignUpFormView.Login
         {
@@ -45,7 +45,7 @@ namespace CourseWorkWF.Views
             get { return textBoxPatronymic.Text; }
         }
 
-        public SignUpForm(ViewsController viewsController, SignUpPresenter presenter)
+        public SignUpForm(IViewsController viewsController, SignUpPresenter presenter)
         {
             _viewsController = viewsController;
             _presenter = presenter;

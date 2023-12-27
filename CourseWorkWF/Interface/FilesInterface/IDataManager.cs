@@ -10,7 +10,7 @@ namespace CourseWorkWF.Interface.FilesInterface
     public interface IDataManager
     {
         public IUser CurrentUser { get; set; }
-        public IRevenue CurrentRevenue { get; set; }
+        public IRevenue CurrentRevenue { get; }
         public IRepository<long, IProductsCollectionItem> AssortmentRepository { get; }
         public IRepository<int, ISellInfo> SalesRepository { get; }
         public IRepository<int, IRefundInfo> RefundsRepository { get; }

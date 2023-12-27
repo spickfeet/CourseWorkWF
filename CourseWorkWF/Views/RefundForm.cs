@@ -20,7 +20,7 @@ namespace CourseWorkWF.Views
     public partial class RefundForm : Form, IRefundFormView
     {
         private RefundPresenter _presenter;
-        private ViewsController _viewsController;
+        private IViewsController _viewsController;
 
         int IRefundFormView.ReceiptNumber => int.Parse(textBoxReceiptNumber.Text);
 
@@ -60,7 +60,7 @@ namespace CourseWorkWF.Views
 
         string IRefundFormView.Reason => richTextBoxReason.Text;
 
-        public RefundForm(ViewsController viewsController, RefundPresenter presenter)
+        public RefundForm(IViewsController viewsController, RefundPresenter presenter)
         {
             _presenter = presenter;
             _viewsController = viewsController;

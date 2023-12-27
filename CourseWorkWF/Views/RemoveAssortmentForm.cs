@@ -7,7 +7,7 @@ namespace CourseWorkWF.Views
     public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {
         private RemoveAssortmentPresenter _presenter;
-        public RemoveAssortmentForm(ViewsController viewsController, RemoveAssortmentPresenter presenter)
+        public RemoveAssortmentForm(RemoveAssortmentPresenter presenter)
         {
             InitializeComponent();
             _presenter = presenter;

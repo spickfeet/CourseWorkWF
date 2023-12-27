@@ -19,14 +19,9 @@ namespace CourseWorkWF.Views
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            IRepository<long, IProductsCollectionItem> assortmentRepository = new AssortmentRepository("Assortment.json");
-            IRepository<int, ISellInfo> salesInfoRepository = new SalesInfoRepository("SalesInfo.json");
-            IRepository<int, IRefundInfo> RefundsInfoRepository = new RefundsInfoRepository("RefundsInfo.json");
-            IRepository<DateTime, IRevenue> RevenuesRepository = new RevenuesRepository("Revenues.json");
-            IRepository<string, IUser> UsersRepository = new UsersRepository("Users.json");
-            IDataManager dataManager = new DataManager(assortmentRepository, salesInfoRepository, RefundsInfoRepository, RevenuesRepository, UsersRepository);
-
-            dataManager.CurrentRevenue = new Revenue(0, DateTime.Now);
+            IDataManager dataManager = new DataManager(new AssortmentRepository("Assortment.json"), 
+                new SalesInfoRepository("SalesInfo.json"), new RefundsInfoRepository("RefundsInfo.json"), 
+                new RevenuesRepository("Revenues.json"), new UsersRepository("Users.json"), new Revenue(0, DateTime.Now));
 
             ViewsController viewsController = new();
 
@@ -43,14 +38,14 @@ namespace CourseWorkWF.Views
             UserControllerPresenter userControllerPresenter = new(dataManager);
 
 
-            IAddAssortmentFormView addAssortmentView = new AddAssortmentForm(viewsController, addAssortmentPresenter);
+            IAddAssortmentFormView addAssortmentView = new AddAssortmentForm(addAssortmentPresenter);
             addAssortmentPresenter.View = addAssortmentView;
             viewsController.Register(ViewKey.AddAssortment, addAssortmentView);
 
             IView assortmentView = new AssortmentForm(viewsController, assortmentPresenter);
             viewsController.Register(ViewKey.Assortment, assortmentView);
 
-            IChangePriceFormView changePriceView = new ChangePriceForm(viewsController, changePricePresenter);
+            IChangePriceFormView changePriceView = new ChangePriceForm(changePricePresenter);
             changePricePresenter.View = changePriceView;
             viewsController.Register(ViewKey.ChangePrice, changePriceView);
 
@@ -69,7 +64,7 @@ namespace CourseWorkWF.Views
             refundPresenter.View = refundView;
             viewsController.Register(ViewKey.Refund, refundView);
 
-            IRemoveAssortmentFormView removeAssortmentView = new RemoveAssortmentForm(viewsController, removeAssortmentPresenter);
+            IRemoveAssortmentFormView removeAssortmentView = new RemoveAssortmentForm(removeAssortmentPresenter);
             removeAssortmentPresenter.View = removeAssortmentView;
             viewsController.Register(ViewKey.RemoveAssortment, removeAssortmentView);
 

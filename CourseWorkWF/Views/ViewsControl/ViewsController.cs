@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Views.ViewsControl
 {
-    public class ViewsController
+    public class ViewsController : IViewsController
     {
         private Dictionary<ViewKey, IView> _views;
 

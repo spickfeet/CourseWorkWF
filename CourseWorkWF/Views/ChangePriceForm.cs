@@ -19,7 +19,7 @@ namespace CourseWorkWF.Views
         long IChangePriceFormView.ProductID => long.Parse(textBoxProductID.Text);
 
         decimal IChangePriceFormView.Price => numericUpDownPrice.Value;
-        public ChangePriceForm(ViewsController viewsController, ChangePricePresenter presenter)
+        public ChangePriceForm(ChangePricePresenter presenter)
         {
             _presenter = presenter;
             InitializeComponent();

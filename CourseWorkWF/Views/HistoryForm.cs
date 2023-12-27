@@ -18,7 +18,7 @@ namespace CourseWorkWF.Views
     public partial class HistoryForm : Form, IHistoryFormView
     {
         private HistoryPresenter _presenter;
-        private ViewsController _viewsController;
+        private IViewsController _viewsController;
         DateTime IHistoryFormView.SellInfoDateFrom => dateTimePickerSellInfoDateFrom.Value;
 
         DateTime IHistoryFormView.SellInfoDateTo => dateTimePickerSellInfoDateTo.Value;
@@ -57,7 +57,7 @@ namespace CourseWorkWF.Views
 
         string IHistoryFormView.Reason { set { richTextBoxReason.Text = value; } }
 
-        public HistoryForm(ViewsController viewsController, HistoryPresenter presenter)
+        public HistoryForm(IViewsController viewsController, HistoryPresenter presenter)
         {
             _presenter = presenter;
             _viewsController = viewsController;
