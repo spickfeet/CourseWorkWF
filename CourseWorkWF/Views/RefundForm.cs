@@ -64,24 +64,12 @@ namespace CourseWorkWF.Views
         {
             _presenter = presenter;
             InitializeComponent();
-            _presenter.AmountErrorEvent += AmountErrorSet;
-            _presenter.ProductIDErrorEvent += ProductIDErrorSet;
-            _presenter.SellInfoErrorEvent += SellInfoErrorSet;
+            _presenter.AddError += OnAddError;
         }
 
-        private void SellInfoErrorSet(object? sender, string error)
+        private void OnAddError(string error)
         {
-            errorProviderSellInfo.SetError(richTextBoxSellInfo, error);
-        }
-
-        private void ProductIDErrorSet(object? sender, string error)
-        {
-            errorProviderProductID.SetError(textBoxProductID, error);
-        }
-
-        private void AmountErrorSet(object? sender, string error)
-        {
-            errorProviderAmount.SetError(numericUpDownAmount, error);
+            errorProviderSellInfo.SetError(buttonAddProductRefundList, error);
         }
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр

@@ -21,7 +21,7 @@ namespace CourseWorkWF.Models.Services
         {
             if (login == null)
             {
-                throw new ArgumentNullException("Не выбран пользователь");
+                throw new ArgumentException("Не выбран пользователь");
             }
             _dataManager.UserRepository.Delete(_dataManager.UserRepository.ReadAll()[login]);
         }
@@ -29,13 +29,13 @@ namespace CourseWorkWF.Models.Services
         {
             if (login == null)
             {
-                throw new ArgumentNullException("Не выбран пользователь");
+                throw new ArgumentException("Не выбран пользователь");
             }
             if (_dataManager.UserRepository.ReadAll().ContainsKey(login))
             {
                 _dataManager.UserRepository.ReadAll()[login].Post = jobTitle;
             }
-            throw new ArgumentNullException("Не выбран пользователь");
+            throw new ArgumentException("Не выбран пользователь");
         }
     }
 }
