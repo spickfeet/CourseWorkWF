@@ -3,12 +3,12 @@ using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Models.Enums;
+using CourseWorkWF.Views.ViewsControl;
 
 namespace CourseWorkWF.Views
 {
     public partial class SellForm : Form, ISellFormView
     {
-        private Form _prevForm;
         private SellPresenter _presenter;
         int ISellFormView.Discount
         {
@@ -50,29 +50,14 @@ namespace CourseWorkWF.Views
             get { return decimal.Parse(textBoxPrice.Text); }
             set { textBoxPrice.Text = value.ToString(); }
         }
-
-        string ISellFormView.EmployeeFullName { set { labelChashierFullName.Text = value; } }
-
-        public SellForm(Form prev, IEmployee user, IRevenue revenue)
+        public SellForm(ViewsController viewsController, SellPresenter presenter)
         {
-            _prevForm = prev;
-            _prevForm.Hide();
             InitializeComponent();
-            _presenter = new(this, user, revenue);
-
-            FormClosed += OnClosed;
+            _presenter = presenter;
 
             _presenter.AmountErrorEvent += AmountErrorSet;
             _presenter.ProductIDErrorEvent += ProductIDErrorSet;
         }
-
-
-        public event EventHandler? AddProductEvent;
-        public event EventHandler? SellEvent;
-        public event EventHandler? DiscountEvent;
-        public event EventHandler? CashEvent;
-        public event EventHandler? CancelDiscountEvent;
-        public event EventHandler? CancelBuyProductsEvent;
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
@@ -93,10 +78,6 @@ namespace CourseWorkWF.Views
             }
         }
 
-        private void OnClosed(object? sender, FormClosedEventArgs e)
-        {
-            _prevForm.Visible = true;
-        }
         private void ProductIDErrorSet(object? sender, EventArgs e)
         {
             errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
@@ -119,7 +100,7 @@ namespace CourseWorkWF.Views
             }
             errorProviderProductID.Clear();
             errorProviderAmount.Clear();
-            AddProductEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.AddProduct();
             textBoxProductID.Clear();
             checkBoxWeightProduct.Checked = false;
 
@@ -146,7 +127,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonSell_Click(object sender, EventArgs e) // Продать
         {
-            SellEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.SellOut();
 
             comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
             comboBoxDiscount.SelectedIndex = -1; // Сброс скидки
@@ -161,27 +142,12 @@ namespace CourseWorkWF.Views
         {
             buttonAddProduct.Enabled = false;
             comboBoxOperationMethod.Enabled = true;
-            DiscountEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.DiscountUse();
             if (comboBoxDiscount.SelectedIndex != 0)
             {
                 comboBoxDiscount.Enabled = false;
             }
             UpdateBuyList();
-        }
-
-        private void ButtonCancelDiscount_Click(object sender, EventArgs e)
-        {
-            if (comboBoxDiscount.Text != "0")
-            {
-                CancelDiscountEvent?.Invoke(this, EventArgs.Empty);
-
-                comboBoxDiscount.SelectedIndex = 0;
-                comboBoxDiscount.Enabled = true;
-
-                comboBoxOperationMethod.SelectedIndex = -1;
-                numericUpDownCash.Value = 0;
-                textBoxMoneyChangeBuyer.Text = "0";
-            }
         }
 
         private void ComboBoxTransactionMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,12 +180,12 @@ namespace CourseWorkWF.Views
 
         private void NumericUpDownCash_ValueChanged(object sender, EventArgs e)
         {
-            CashEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.GetMoneyChangeBuyer();
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            CancelBuyProductsEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.CancelBuyProducts();
             listViewBuyProducts.Items.Clear();
 
             textBoxPrice.Text = "0";

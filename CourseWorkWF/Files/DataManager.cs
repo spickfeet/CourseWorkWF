@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Files
 {
-    public class DataManager
+    public class DataManager : IDataManager
     {
-        public IUser CurrentUser { get; private set; }
+        public IUser CurrentUser { get; set; }
+        public IRevenue CurrentRevenue { get; set; }
         public IRepository<long, IProductsCollectionItem> AssortmentRepository { get; private set; }
         public IRepository<int, ISellInfo> SalesRepository { get; private set; }
         public IRepository<int, IRefundInfo> RefundsRepository { get; private set; }
@@ -26,18 +27,6 @@ namespace CourseWorkWF.Files
             RefundsRepository = refundsRepository;
             RevenueRepository = revenueRepository;
             UserRepository = userRepository;
-        }
-        public bool LogIn(string login, string password)
-        {
-            foreach (var user in UserRepository.ReadAll())
-            {
-                if (user.Key == login && user.Value.Password == HashCodeConvertor.ConvertToHashCode(password + user.Value.Salt))
-                {
-                    CurrentUser = user.Value;
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

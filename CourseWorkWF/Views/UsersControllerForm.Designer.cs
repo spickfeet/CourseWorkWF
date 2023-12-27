@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF.Views
 {
-    partial class UsersController
+    partial class UsersControllerForm
     {
         /// <summary>
         /// Required designer variable.

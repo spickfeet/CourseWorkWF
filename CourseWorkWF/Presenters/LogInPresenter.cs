@@ -16,13 +16,15 @@ namespace CourseWorkWF.Presenters
     {
         private ILogInFormView _view;
         private IRepository<string, IUser> _userData;
-        public LogInPresenter(ILogInFormView view) 
+        private IDataManager _dataManager;
+        public ILogInFormView View { get { return _view; } set { _view = value; } }
+        public LogInPresenter(IDataManager dataManager) 
         {
+            _dataManager = dataManager;
             _userData = new UsersRepository("Users.json");
-            _view = view;
         }
 
-        public IUser? LogIn()
+        public bool LogIn()
         {
             IDictionary<string, IUser> users = _userData.Load();
 
@@ -30,10 +32,11 @@ namespace CourseWorkWF.Presenters
             {
                 if (user.Key == _view.Login && user.Value.Password == HashCodeConvertor.ConvertToHashCode(_view.Password + user.Value.Salt))
                 {
-                    return user.Value;
+                    _dataManager.CurrentUser = user.Value;
+                    return true;
                 }
             }
-            return null;
+            return false;
         }
     }
 }

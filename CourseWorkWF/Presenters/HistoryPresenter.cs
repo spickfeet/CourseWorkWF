@@ -19,10 +19,9 @@ namespace CourseWorkWF.Presenters
     {
         private IHistoryFormView _view;
         private IHistoryService _model;
-
-        public HistoryPresenter (IHistoryFormView view) 
+        public IHistoryFormView View { get { return _view; } set { _view = value; } }
+        public HistoryPresenter (IDataManager dataManager) 
         {
-            _view = view;
             _model = new HistoryService();
         }
         public event Action<string> OnSelectSellNumberError;

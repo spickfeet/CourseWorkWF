@@ -17,11 +17,11 @@ namespace CourseWorkWF.Presenters
     {
         private IRepository<string, IUser> _userData;
         private ISignUpFormView _view;
+        public ISignUpFormView View { get { return _view; } set { _view = value; } }
         public event EventHandler? LoginBusyErrorEvent;
         public event EventHandler? OnlyOneOwnerErrorEvent;
-        public SignUpPresenter(ISignUpFormView view ) 
+        public SignUpPresenter(IDataManager dataManager) 
         { 
-            _view = view;
             _userData = new UsersRepository("Users.json");
         }
         public bool SignUp()

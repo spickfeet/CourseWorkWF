@@ -1,6 +1,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
 using CourseWorkWF.Views;
+using CourseWorkWF.Views.ViewsControl;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
@@ -11,9 +12,11 @@ namespace Inf_Bez
     public partial class LogInForm : Form, ILogInFormView
     {
         private LogInPresenter _presenter;
-        public LogInForm()
+        private ViewsController _viewsController;
+        public LogInForm(ViewsController viewsController, LogInPresenter presenter)
         {
-            _presenter = new(this);
+            _presenter = presenter;
+            _viewsController = viewsController;
             InitializeComponent();
             labelError.Visible = false;
             textBoxPassword.UseSystemPasswordChar = true;
@@ -30,11 +33,12 @@ namespace Inf_Bez
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            if (_presenter.LogIn() != null)
+            if (_presenter.LogIn() != false)
             {
                 labelError.Visible = false;
-                MainMenuForm mainMenu = new MainMenuForm(this, new MainMenuPresenter(_presenter.LogIn()));
-                mainMenu.ShowDialog();
+                _viewsController.CurrentView.Visible = false;
+                _viewsController.ShowDialog(ViewKey.MainMenu);
+
             }
             labelError.Visible = true;
 
@@ -54,8 +58,7 @@ namespace Inf_Bez
 
         private void LabelSignUp_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new(this);
-            signUpForm.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.SingUp);
         }
     }
 }

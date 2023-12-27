@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface IUserControllerFormView
+    public interface IUserControllerFormView : IView
     {
         string? SelectLogin { get; }
         JobTitle Post { get; }

@@ -46,7 +46,7 @@
             buttonAssortment.Text = "Асортимент";
             buttonAssortment.UseVisualStyleBackColor = true;
             buttonAssortment.Visible = false;
-            buttonAssortment.Click += ButtonAdmin_Click;
+            buttonAssortment.Click += ButtonAssortment_Click;
             // 
             // buttonSell
             // 

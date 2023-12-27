@@ -1,6 +1,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models.Enums;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
 
@@ -9,8 +10,8 @@ namespace Inf_Bez
     public partial class SignUpForm : Form, ISignUpFormView
     {
         private SignUpPresenter _presenter;
-        private Form _prevForm;
         private bool _haveError;
+        private ViewsController _viewsController;
 
         string ISignUpFormView.Login
         {
@@ -44,18 +45,20 @@ namespace Inf_Bez
             get { return textBoxPatronymic.Text; }
         }
 
-        public SignUpForm(Form prev)
+        public SignUpForm(ViewsController viewsController, SignUpPresenter presenter)
         {
-            _presenter = new(this);
-            _prevForm = prev;
-            _prevForm.Hide();
-            FormClosed += OnClosed;
+            _viewsController = viewsController;
+            _presenter = presenter;
             _presenter.LoginBusyErrorEvent += LoginBusy;
-            _presenter.OnlyOneOwnerErrorEvent += OnlyOneOwner;
+            _presenter.OnlyOneOwnerErrorEvent += OnlyOneOwner;           
             InitializeComponent();
+            FormClosed += OnClosed;
             textBoxPassword.UseSystemPasswordChar = true;
         }
-
+        private void OnClosed(object? sender, EventArgs e)
+        {
+            _viewsController.PrevView.Visible = true;
+        }
         private void OnlyOneOwner(object? sender, EventArgs e)
         {
             errorProviderJobTitle.SetError(comboBoxJobTitle, "Владелец может быть только 1");
@@ -72,10 +75,6 @@ namespace Inf_Bez
             errorProviderLogin.SetError(textBoxLogin, "Логин занят");
         }
 
-        private void OnClosed(object? sender, FormClosedEventArgs e)
-        {
-            _prevForm.Visible = true;
-        }
 
         private void ButtonSignUp_Click(object sender, EventArgs e)
         {
@@ -114,7 +113,11 @@ namespace Inf_Bez
             if (_haveError == false)
             {
                 if (_presenter.SignUp())
+                {
+                    _viewsController.PrevView.Visible = true;
                     Close();
+                }
+
             }
         }
 

@@ -11,6 +11,7 @@ namespace CourseWorkWF.Presenters
     public class SellPresenter
     {
         private ISellFormView _view;
+        public ISellFormView View { get { return _view; } set { _view = value; } }
         private IDictionary<long, IProductsCollectionItem> _assortment;
         private IDiscount _discount;
         private IRepository<int, IRefundInfo> _refundInfoData;
@@ -19,7 +20,7 @@ namespace CourseWorkWF.Presenters
         private IEmployee _employee;
         private IDictionary<long, IProductsCollectionItem> _buyProducts;
         private IRevenue _revenue;
-        public SellPresenter(ISellFormView view, IEmployee employee, IRevenue revenue)
+        public SellPresenter(IDataManager dataManager)
         {
             _buyProducts = new Dictionary<long, IProductsCollectionItem>();
             _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
@@ -27,22 +28,15 @@ namespace CourseWorkWF.Presenters
             _assortmentData = new AssortmentRepository("Assortment.json");
             _discount = new DiscountPercent(0);
             _assortment = _assortmentData.Load();
-            _revenue = revenue;
-            _employee = employee;
-            _view = view;
-            _view.EmployeeFullName = employee.FullName.Name + " " + employee.FullName.Surname + " " + employee.FullName.Patronymic;
-            _view.AddProductEvent += AddProduct;
-            _view.SellEvent += SellOut;
-            _view.DiscountEvent += DiscountUse;
-            _view.CashEvent += GetMoneyChangeBuyer;
-            _view.CancelBuyProductsEvent += CancelBuyProducts;
+            _revenue = dataManager.CurrentRevenue;
+            _employee = dataManager.CurrentUser;
         }
 
 
         public event EventHandler? AmountErrorEvent;
         public event EventHandler? ProductIDErrorEvent;
 
-        private void CancelBuyProducts(object? sender, EventArgs e)
+        public void CancelBuyProducts()
         {
             _buyProducts.Clear();
             _discount.Discount = 0;
@@ -52,12 +46,12 @@ namespace CourseWorkWF.Presenters
         {
             return _buyProducts;
         }
-        private void GetMoneyChangeBuyer(object? sender, EventArgs e)
+        public void GetMoneyChangeBuyer()
         {
             _view.MoneyChangeBuyer = Math.Round(_view.Cash - _view.Price, 2);
         }
 
-        private void DiscountUse(object? sender, EventArgs e)
+        public void DiscountUse()
         {
             _discount.Discount = _view.Discount;
             foreach(var productsCollectionItem in _buyProducts.Values)
@@ -67,7 +61,7 @@ namespace CourseWorkWF.Presenters
             UpdatePrice();
         }
 
-        private void AddProduct(object? sender, EventArgs e)
+        public void AddProduct()
         {
             if (_assortment.ContainsKey(_view.ProductID) == true)
             {
@@ -94,7 +88,7 @@ namespace CourseWorkWF.Presenters
             }
             ProductIDErrorEvent?.Invoke(this, EventArgs.Empty);
         }
-        private void SellOut(object? sender, EventArgs e)
+        public void SellOut()
         {
             Sell sell = new Sell(_buyProducts, new MoneyOperation(_view.Price, _view.OperationMethod),_discount);
 
@@ -113,7 +107,7 @@ namespace CourseWorkWF.Presenters
             _assortment = _assortmentData.Load();
             _buyProducts.Clear(); // Отчистка списка купленных продуктов
         }
-        private void UpdatePrice()
+        public void UpdatePrice()
         {
             decimal priceBuf = 0;
             foreach (var item in _buyProducts)

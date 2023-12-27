@@ -1,15 +1,16 @@
 ﻿using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 
 namespace CourseWorkWF.Views
 {
     public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {
         private RemoveAssortmentPresenter _presenter;
-        public RemoveAssortmentForm()
+        public RemoveAssortmentForm(ViewsController viewsController, RemoveAssortmentPresenter presenter)
         {
             InitializeComponent();
-            _presenter = new RemoveAssortmentPresenter(this);
+            _presenter = presenter;
         }
 
         int IRemoveAssortmentFormView.Amount

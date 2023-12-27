@@ -1,31 +1,26 @@
 ﻿using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 
 namespace CourseWorkWF.Views
 {
-    public partial class AssortmentForm : Form
+    public partial class AssortmentForm : Form, IView
     {
         private Form _prevForm;
         private AssortmentPresenter _presenter;
-        public AssortmentForm(Form prev)
+        private ViewsController _viewsController;
+        public AssortmentForm(ViewsController viewsController, AssortmentPresenter presenter)
         {
-            _prevForm = prev;
-            _prevForm.Hide();
+            _viewsController = viewsController;
             InitializeComponent();
-            _presenter = new AssortmentPresenter();
-            FormClosed += OnClosed;
-        }
-
-        private void OnClosed(object? sender, FormClosedEventArgs e)
-        {
-            _prevForm.Visible = true;
+            _presenter = presenter;
         }
 
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
-            AddAssortmentForm addAssortment = new AddAssortmentForm();
-            addAssortment.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.AddAssortment);
             UpdateList();
         }
 
@@ -36,15 +31,13 @@ namespace CourseWorkWF.Views
 
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
-            RemoveAssortmentForm removeAssortment = new RemoveAssortmentForm();
-            removeAssortment.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.RemoveAssortment);
             UpdateList();
         }
 
         private void ButtonChangePrice_Click(object sender, EventArgs e)
         {
-            ChangePriceForm changePriceForm = new ChangePriceForm();
-            changePriceForm.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.ChangePrice);
             UpdateList();
         }
 

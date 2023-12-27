@@ -1,6 +1,6 @@
 ﻿namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface IAddAssortmentFormView
+    public interface IAddAssortmentFormView : IView
     {
         public long ProductID { get; }
         public decimal Price { get; set; }

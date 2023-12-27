@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models.Enums;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace CourseWorkWF.Views
 {
-    public partial class UsersController : Form, IUserControllerFormView
+    public partial class UsersControllerForm : Form, IUserControllerFormView
     {
         string? IUserControllerFormView.SelectLogin
         {
@@ -39,10 +40,10 @@ namespace CourseWorkWF.Views
                 throw new ArgumentException("Нет такой должности");
             }
         }
-        UserControllerPresenter _presenter;
-        public UsersController()
+        private UserControllerPresenter _presenter;
+        public UsersControllerForm(ViewsController viewsController, UserControllerPresenter presenter)
         {
-            _presenter = new(this);
+            _presenter = presenter;
             _presenter.SelectUserErrorEvent += SetSelectError;
             Load += FormStarted;
             InitializeComponent();

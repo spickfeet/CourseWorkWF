@@ -1,5 +1,6 @@
 ﻿using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,9 @@ namespace CourseWorkWF.Views
         long IChangePriceFormView.ProductID => long.Parse(textBoxProductID.Text);
 
         decimal IChangePriceFormView.Price => numericUpDownPrice.Value;
-        public ChangePriceForm()
+        public ChangePriceForm(ViewsController viewsController, ChangePricePresenter presenter)
         {
-            _presenter = new ChangePricePresenter(this);
+            _presenter = presenter;
             InitializeComponent();
         }
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр

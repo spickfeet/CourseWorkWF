@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models.Enums;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,9 +60,9 @@ namespace CourseWorkWF.Views
 
         string IRefundFormView.Reason => richTextBoxReason.Text;
 
-        public RefundForm(IEmployee employee, IRevenue revenue)
+        public RefundForm(ViewsController viewsController, RefundPresenter presenter)
         {
-            _presenter = new RefundPresenter(this, employee, revenue);
+            _presenter = presenter;
             InitializeComponent();
             _presenter.AmountErrorEvent += AmountErrorSet;
             _presenter.ProductIDErrorEvent += ProductIDErrorSet;

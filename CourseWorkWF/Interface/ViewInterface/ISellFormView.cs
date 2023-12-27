@@ -3,7 +3,7 @@ using CourseWorkWF.Views;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface ISellFormView
+    public interface ISellFormView : IView
     {
         public int Discount { get; }
         public OperationMethod OperationMethod { get; }
@@ -12,12 +12,5 @@ namespace CourseWorkWF.Interface.ViewInterface
         public long ProductID { get; }
         public decimal Amount { get; }
         public decimal Price { get; set; }
-        public string EmployeeFullName { set; }
-        public event EventHandler? AddProductEvent;
-        public event EventHandler? SellEvent;
-        public event EventHandler? DiscountEvent;
-        public event EventHandler? CancelDiscountEvent;
-        public event EventHandler? CancelBuyProductsEvent;
-        public event EventHandler? CashEvent;
     }
 }

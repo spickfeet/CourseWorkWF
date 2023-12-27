@@ -15,6 +15,7 @@ namespace CourseWorkWF.Presenters
     public class RefundPresenter
     {
         private IRefundFormView _view;
+        public IRefundFormView View { get { return _view; } set { _view = value; } }
         private IDictionary<int, ISellInfo> _salesInfo;
         private IDictionary<long, IProductsCollectionItem> _productsRefund;
         private IRepository<int, IRefundInfo> _refundInfoData;
@@ -28,16 +29,15 @@ namespace CourseWorkWF.Presenters
         public event EventHandler<string> ProductIDErrorEvent;
         public event EventHandler<string> SellInfoErrorEvent;
         public IDictionary<long, IProductsCollectionItem> ProductsRefund { get { return _productsRefund; } }
-        public RefundPresenter(IRefundFormView view, IEmployee employee, IRevenue revenue)
+        public RefundPresenter(IDataManager dataManager)
         {
-            _revenue = revenue;
+            _revenue = dataManager.CurrentRevenue;
             _haveError = false;
-            _employee = employee;
+            _employee = dataManager.CurrentUser;
             _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
             _sellInfoData = new SalesInfoRepository("SalesInfo.json");
             _productsRefund = new Dictionary<long, IProductsCollectionItem>();
             _salesInfo = _sellInfoData.Load();
-            _view = view;
             _receiptSellNumber = 0;
         }
 

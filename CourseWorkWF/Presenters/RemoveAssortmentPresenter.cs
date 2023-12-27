@@ -10,12 +10,12 @@ namespace CourseWorkWF.Presenters
     {
         private IDictionary<long, IProductsCollectionItem> _assortment;
         private IRepository<long, IProductsCollectionItem> _assortmentData;
-        private IRemoveAssortmentFormView _view;
-        public RemoveAssortmentPresenter(IRemoveAssortmentFormView view)
+        private IRemoveAssortmentFormView _view { get { return _view; } set { _view = value; } }
+        public IRemoveAssortmentFormView View { get; set; }
+        public RemoveAssortmentPresenter(IDataManager dataManager)
         {
             _assortmentData = new AssortmentRepository("Assortment.json");
             _assortment = _assortmentData.Load();
-            _view = view;
         }
         public bool RemoveProduct() 
         {

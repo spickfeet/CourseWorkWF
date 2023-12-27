@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface IChangePriceFormView
+    public interface IChangePriceFormView : IView
     {
         public long ProductID { get; }
         public decimal Price { get; }

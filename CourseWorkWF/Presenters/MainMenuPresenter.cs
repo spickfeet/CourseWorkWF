@@ -14,25 +14,23 @@ namespace CourseWorkWF.Presenters
 {
     public class MainMenuPresenter
     {
-        private readonly IUser _user;
         private IRevenue _revenue;
         private IRepository<DateTime, IRevenue> _revenueData;
+        private IDataManager _dataManager;
         public IRevenue Revenue { get { return _revenue; } }
-        public IUser User { get { return _user; } }
 
         public event EventHandler? OwnerUserEvent;
         public event EventHandler? AdminUserEvent;
         public event EventHandler? CashierUserEvent;
-        public MainMenuPresenter(IUser user)
+        public MainMenuPresenter(IDataManager dataManager)
         {
-            _user = user;
+            _dataManager = dataManager;
             _revenueData = new RevenuesRepository("Revenues.json");
-            _revenue = new Revenue(0, DateTime.Now);
         }
         public void GiveOpportunities()
         {
-            if (_user == null) throw new ArgumentException("Пользователь не может быть null");
-            switch (_user.Post)
+            if (_dataManager.CurrentUser == null) throw new ArgumentException("Пользователь не может быть null");
+            switch (_dataManager.CurrentUser.Post)
             {
                 case (JobTitle.Owner):
                     OwnerUserEvent?.Invoke(this, EventArgs.Empty);

@@ -11,14 +11,13 @@ namespace CourseWorkWF.Presenters
         private IAddAssortmentFormView _view;
         private IRepository<long, IProductsCollectionItem> _assortmentData;
         private IDictionary<long, IProductsCollectionItem> _assortment;
-        public AddAssortmentPresenter(IAddAssortmentFormView view)
+        public IAddAssortmentFormView View { get { return _view; } set { _view = value; } }
+        public AddAssortmentPresenter(IDataManager dataManager)
         {
-            _view = view;
             _assortmentData = new AssortmentRepository("Assortment.json");
             _assortment = _assortmentData.Load();
-            _view.AddProductEvent += AddProductInAssortment;
         }
-        public void AddProductInAssortment(object sender, EventArgs e)
+        public void AddProductInAssortment()
         {
             _assortmentData.Create(new ProductsCollectionItem(new Product(_view.ProductName,_view.Price,_view.ProductID), _view.Amount));
             _assortment = _assortmentData.Load();

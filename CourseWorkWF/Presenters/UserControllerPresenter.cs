@@ -14,10 +14,10 @@ namespace CourseWorkWF.Presenters
     {
         private IUserControllerFormView _view;
         private IRepository<string, IUser> _usersData;
+        public IUserControllerFormView View { get { return _view; } set { _view = value; } }
         public IDictionary<string, IUser> Users { get; private set; }
-        public UserControllerPresenter(IUserControllerFormView view) 
+        public UserControllerPresenter(IDataManager dataManager) 
         {
-            _view = view;
             _usersData = new UsersRepository("Users.json");
             Users = _usersData.Load();
         }

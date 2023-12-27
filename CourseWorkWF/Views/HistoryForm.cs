@@ -2,6 +2,7 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,9 +56,9 @@ namespace CourseWorkWF.Views
 
         string IHistoryFormView.Reason { set { richTextBoxReason.Text = value; } }
 
-        public HistoryForm()
+        public HistoryForm(ViewsController viewsController, HistoryPresenter presenter)
         {
-            _presenter = new(this);
+            _presenter = presenter;
             InitializeComponent();
             _presenter.OnSelectSellNumberError += SetSellNumberError;
             _presenter.OnSelectRefundNumberError += SetRefundNumberError;

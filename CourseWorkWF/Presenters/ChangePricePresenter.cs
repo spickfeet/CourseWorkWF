@@ -14,12 +14,12 @@ namespace CourseWorkWF.Presenters
 {
     public class ChangePricePresenter
     {
-        IChangePriceFormView _view;
-        IRepository<long, IProductsCollectionItem> _assortmentData;
-        public ChangePricePresenter(IChangePriceFormView view) 
+        private IChangePriceFormView _view;
+        private IRepository<long, IProductsCollectionItem> _assortmentData;
+        public IChangePriceFormView View { get { return _view; } set { _view = value; } }
+        public ChangePricePresenter(IDataManager dataManager) 
         {
             _assortmentData = new AssortmentRepository("Assortment.json");
-            _view = view;
         }
         public event EventHandler<string> IDNotFoundErrorEvent;
         public bool ChangePrice()

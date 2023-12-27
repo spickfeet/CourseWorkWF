@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface ISignUpFormView
+    public interface ISignUpFormView : IView
     {
         public string Name { get;}
         public string Surname { get;}

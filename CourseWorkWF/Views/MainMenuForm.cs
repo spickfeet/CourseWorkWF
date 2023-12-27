@@ -2,19 +2,18 @@ using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 
 namespace CourseWorkWF.Views
 {
-    public partial class MainMenuForm : Form
+    public partial class MainMenuForm : Form, IView
     {
-        private Form _prevForm;
         private MainMenuPresenter _presenter;
-        public MainMenuForm(Form prev, MainMenuPresenter mainMenuPresenter)
+        private ViewsController _viewsController;
+        public MainMenuForm(ViewsController viewsController, MainMenuPresenter mainMenuPresenter)
         {
             _presenter = mainMenuPresenter;
-
-            _prevForm = prev;
-            _prevForm.Hide();
+            _viewsController = viewsController;
             FormClosed += OnClosed;
             Load += FormStarted;
             InitializeComponent();
@@ -55,34 +54,29 @@ namespace CourseWorkWF.Views
             _presenter.CloseShift();
             Application.Exit();
         }
-        private void ButtonAdmin_Click(object sender, EventArgs e)
+        private void ButtonAssortment_Click(object sender, EventArgs e)
         {
-            AssortmentForm assortment = new AssortmentForm(this);
-            assortment.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.Assortment);
         }
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            SellForm sellForm = new SellForm(this, _presenter.User, _presenter.Revenue);
-            sellForm.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.Sell);
         }
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
-            RefundForm refundForm = new RefundForm(_presenter.User, _presenter.Revenue);
-            refundForm.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.Refund);
         }
 
         private void ButtonHistory_Click(object sender, EventArgs e)
         {
-            HistoryForm historyForm = new HistoryForm();
-            historyForm.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.History);
         }
 
         private void ButtonRemoveEmployee_Click(object sender, EventArgs e)
         {
-            UsersController usersManager = new UsersController();
-            usersManager.ShowDialog();
+            _viewsController.ShowDialog(ViewKey.UserController);
         }
 
         private void ButtonRevenue_Click(object sender, EventArgs e)

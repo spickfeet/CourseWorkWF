@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface IRefundFormView
+    public interface IRefundFormView : IView
     {
         public string SellInfo { set; }
         public int ReceiptNumber { get; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseWorkWF.Interface.ViewInterface
 {
-    public interface IHistoryFormView
+    public interface IHistoryFormView : IView
     {
         public string Reason { set; }
         public DateTime SellInfoDateFrom { get; }

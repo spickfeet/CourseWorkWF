@@ -1,5 +1,6 @@
 ﻿using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
+using CourseWorkWF.Views.ViewsControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +16,10 @@ namespace CourseWorkWF.Views
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
         private AddAssortmentPresenter _presenter;
-        public AddAssortmentForm()
+        public AddAssortmentForm(ViewsController viewsController, AddAssortmentPresenter presenter)
         {
             InitializeComponent();
-            _presenter = new AddAssortmentPresenter(this);
+            _presenter = presenter;
         }
 
         long IAddAssortmentFormView.ProductID
@@ -82,7 +83,7 @@ namespace CourseWorkWF.Views
                 numericUpDownProductPrice.Value = 0;
                 return;
             }
-            AddProductEvent?.Invoke(this, EventArgs.Empty);
+            _presenter.AddProductInAssortment();
             Close();
         }
 
