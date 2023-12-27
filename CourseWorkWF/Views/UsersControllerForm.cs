@@ -17,6 +17,8 @@ namespace CourseWorkWF.Views
 {
     public partial class UsersControllerForm : Form, IUserControllerFormView
     {
+        private UserControllerPresenter _presenter;
+        private ViewsController _viewsController;
         string? IUserControllerFormView.SelectLogin
         {
             get
@@ -40,13 +42,19 @@ namespace CourseWorkWF.Views
                 throw new ArgumentException("Нет такой должности");
             }
         }
-        private UserControllerPresenter _presenter;
         public UsersControllerForm(ViewsController viewsController, UserControllerPresenter presenter)
         {
             _presenter = presenter;
+            _viewsController = viewsController;
             _presenter.SelectUserError += OnSelectUserError;
             Load += FormStarted;
             InitializeComponent();
+            FormClosed += OnClosed;
+        }
+        private void OnClosed(object sender, EventArgs e)
+        {
+            _viewsController.Closed();
+            _viewsController.PrevView.Visible = true;
         }
         private void FormStarted(object? sender, EventArgs e)
         {

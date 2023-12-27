@@ -20,7 +20,7 @@ namespace CourseWorkWF.Views
     public partial class RefundForm : Form, IRefundFormView
     {
         private RefundPresenter _presenter;
-        private bool _haveError;
+        private ViewsController _viewsController;
 
         int IRefundFormView.ReceiptNumber => int.Parse(textBoxReceiptNumber.Text);
 
@@ -63,8 +63,15 @@ namespace CourseWorkWF.Views
         public RefundForm(ViewsController viewsController, RefundPresenter presenter)
         {
             _presenter = presenter;
+            _viewsController = viewsController;
             InitializeComponent();
             _presenter.AddError += OnAddError;
+            FormClosed += OnClosed;
+        }
+        private void OnClosed(object sender, EventArgs e)
+        {
+            _viewsController.Closed();
+            _viewsController.PrevView.Visible = true;
         }
 
         private void OnAddError(string error)
@@ -90,7 +97,7 @@ namespace CourseWorkWF.Views
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
-            _haveError = false;
+            bool _haveError = false;
             errorProviderReason.Clear();
             errorProviderOperationMethod.Clear();
             if (string.IsNullOrEmpty(richTextBoxReason.Text))

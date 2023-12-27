@@ -51,30 +51,43 @@ namespace CourseWorkWF.Views
         private void ButtonAssortment_Click(object sender, EventArgs e)
         {
             if (_presenter.TryOpenAssortment())
+            {
+                Hide();
                 _viewsController.ShowDialog(ViewKey.Assortment);
+            }
         }
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
+            Hide();
             _viewsController.ShowDialog(ViewKey.Sell);
         }
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
             if (_presenter.TryOpenRefund())
+            {
+                Hide();
                 _viewsController.ShowDialog(ViewKey.Refund);
+            }
         }
 
         private void ButtonHistory_Click(object sender, EventArgs e)
         {
             if (_presenter.TryOpenHistory())
+            {
+                Hide();
                 _viewsController.ShowDialog(ViewKey.History);
+            }
         }
 
         private void ButtonUserController_Click(object sender, EventArgs e)
         {
             if (_presenter.TryOpenUserController())
+            {
+                Hide();
                 _viewsController.ShowDialog(ViewKey.UserController);
+            }
         }
 
         private void ButtonRevenue_Click(object sender, EventArgs e)

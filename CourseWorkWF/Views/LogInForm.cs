@@ -56,6 +56,7 @@ namespace CourseWorkWF.Views
 
         private void LabelSignUp_Click(object sender, EventArgs e)
         {
+            _viewsController.CurrentView.Visible = false;
             _viewsController.ShowDialog(ViewKey.SingUp);
         }
     }

@@ -64,6 +64,7 @@ namespace CourseWorkWF.Views
             textBoxSurname.Clear();
             comboBoxJobTitle.SelectedIndex = -1;
             _viewsController.PrevView.Visible = true;
+            _viewsController.Closed();
         }
         private void OnOnlyOneOwner()
         {

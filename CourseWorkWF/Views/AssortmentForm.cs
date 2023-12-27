@@ -16,8 +16,13 @@ namespace CourseWorkWF.Views
             _viewsController = viewsController;
             InitializeComponent();
             _presenter = presenter;
+            FormClosed += OnClosed;
         }
-
+        private void OnClosed(object sender, EventArgs e)
+        {
+            _viewsController.Closed();
+            _viewsController.PrevView.Visible = true;
+        }
         private void AddProductInAssortmentButton_Click(object sender, EventArgs e)
         {
             _viewsController.ShowDialog(ViewKey.AddAssortment);

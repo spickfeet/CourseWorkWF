@@ -10,6 +10,7 @@ namespace CourseWorkWF.Views
     public partial class SellForm : Form, ISellFormView
     {
         private SellPresenter _presenter;
+        private ViewsController _viewsController;
         int ISellFormView.Discount
         {
             get
@@ -54,9 +55,16 @@ namespace CourseWorkWF.Views
         {
             InitializeComponent();
             _presenter = presenter;
+            _viewsController = viewsController;
 
             _presenter.AmountErrorEvent += AmountErrorSet;
             _presenter.ProductIDErrorEvent += ProductIDErrorSet;
+            FormClosed += OnClosed;
+        }
+        private void OnClosed(object sender, EventArgs e)
+        {
+            _viewsController.Closed();
+            _viewsController.PrevView.Visible = true;
         }
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр

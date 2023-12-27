@@ -18,6 +18,7 @@ namespace CourseWorkWF.Views
     public partial class HistoryForm : Form, IHistoryFormView
     {
         private HistoryPresenter _presenter;
+        private ViewsController _viewsController;
         DateTime IHistoryFormView.SellInfoDateFrom => dateTimePickerSellInfoDateFrom.Value;
 
         DateTime IHistoryFormView.SellInfoDateTo => dateTimePickerSellInfoDateTo.Value;
@@ -59,9 +60,16 @@ namespace CourseWorkWF.Views
         public HistoryForm(ViewsController viewsController, HistoryPresenter presenter)
         {
             _presenter = presenter;
+            _viewsController = viewsController;
             InitializeComponent();
             _presenter.SelectSellNumberError += OnSetSellNumberError;
             _presenter.SelectRefundNumberError += OnSetRefundNumberError;
+            FormClosed += OnClosed;
+        }
+        private void OnClosed(object sender, EventArgs e)
+        {
+            _viewsController.Closed();
+            _viewsController.PrevView.Visible = true;
         }
 
         private void OnSetSellNumberError(string error)

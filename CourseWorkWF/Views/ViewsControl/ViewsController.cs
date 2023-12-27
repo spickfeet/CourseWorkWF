@@ -11,6 +11,7 @@ namespace CourseWorkWF.Views.ViewsControl
     {
         private Dictionary<ViewKey, IView> _views;
 
+        private IView? _mainView;
         private IView _currentView;
         private IView _prevView;
 
@@ -19,6 +20,7 @@ namespace CourseWorkWF.Views.ViewsControl
 
         public ViewsController()
         {
+            _mainView = null;
             _views = new();
         }
         public void Register(ViewKey key, IView view)
@@ -38,6 +40,10 @@ namespace CourseWorkWF.Views.ViewsControl
             if (_currentView != null)
             {
                 _prevView = _currentView;
+                if(_prevView == _views[ViewKey.MainMenu])
+                {
+                    _mainView = _prevView;
+                }
             }
             _currentView = _views[key];
 
@@ -49,5 +55,16 @@ namespace CourseWorkWF.Views.ViewsControl
             _views.Clear();
         }
 
+        public void Closed()
+        {
+            if(_mainView != null)
+            {
+                _prevView = _currentView;
+                _currentView = _mainView;
+            }
+            IView buf = _currentView;
+            _currentView = _prevView;
+            _prevView = buf;
+        }
     }
 }
