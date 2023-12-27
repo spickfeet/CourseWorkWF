@@ -17,9 +17,8 @@ namespace CourseWorkWF.Views
             FormClosed += OnClosed;
             Load += FormStarted;
             InitializeComponent();
-            _presenter.CashierUserEvent += ApplyOpportunitiesCashier;
-            _presenter.AdminUserEvent += ApplyOpportunitiesAdmin;
-            _presenter.OwnerUserEvent += ApplyOpportunitiesOwner;
+            _presenter.AdminUserEnter += OnAdminEnter;
+            _presenter.OwnerUserEnter += OnOwnerUserEnter;
         }
 
         private void FormStarted(object? sender, EventArgs e)
@@ -27,7 +26,7 @@ namespace CourseWorkWF.Views
             _presenter.GiveOpportunities();
         }
 
-        private void ApplyOpportunitiesOwner(object? sender, EventArgs e)
+        private void OnOwnerUserEnter(object? sender, EventArgs e)
         {
             buttonSell.Visible = true;
             buttonRefund.Visible = true;
@@ -36,17 +35,12 @@ namespace CourseWorkWF.Views
             buttonUserController.Visible = true;
         }
 
-        private void ApplyOpportunitiesAdmin(object? sender, EventArgs e)
+        private void OnAdminEnter(object? sender, EventArgs e)
         {
             buttonSell.Visible = true;
             buttonRefund.Visible = true;
             buttonAssortment.Visible = true;
             buttonHistory.Visible = true;
-        }
-
-        private void ApplyOpportunitiesCashier(object? sender, EventArgs e)
-        {
-            buttonSell.Visible = true;
         }
 
         private void OnClosed(object? sender, FormClosedEventArgs e)
@@ -56,7 +50,8 @@ namespace CourseWorkWF.Views
         }
         private void ButtonAssortment_Click(object sender, EventArgs e)
         {
-            _viewsController.ShowDialog(ViewKey.Assortment);
+            if (_presenter.TryOpenAssortment())
+                _viewsController.ShowDialog(ViewKey.Assortment);
         }
 
         private void ButtonSell_Click(object sender, EventArgs e)
@@ -66,17 +61,20 @@ namespace CourseWorkWF.Views
 
         private void ButtonRefund_Click(object sender, EventArgs e)
         {
-            _viewsController.ShowDialog(ViewKey.Refund);
+            if (_presenter.TryOpenRefund())
+                _viewsController.ShowDialog(ViewKey.Refund);
         }
 
         private void ButtonHistory_Click(object sender, EventArgs e)
         {
-            _viewsController.ShowDialog(ViewKey.History);
+            if (_presenter.TryOpenHistory())
+                _viewsController.ShowDialog(ViewKey.History);
         }
 
-        private void ButtonRemoveEmployee_Click(object sender, EventArgs e)
+        private void ButtonUserController_Click(object sender, EventArgs e)
         {
-            _viewsController.ShowDialog(ViewKey.UserController);
+            if (_presenter.TryOpenUserController())
+                _viewsController.ShowDialog(ViewKey.UserController);
         }
 
         private void ButtonRevenue_Click(object sender, EventArgs e)

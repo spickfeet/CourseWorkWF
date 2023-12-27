@@ -56,7 +56,6 @@
             buttonSell.TabIndex = 1;
             buttonSell.Text = "Продать";
             buttonSell.UseVisualStyleBackColor = true;
-            buttonSell.Visible = false;
             buttonSell.Click += ButtonSell_Click;
             // 
             // buttonUserController
@@ -68,7 +67,7 @@
             buttonUserController.Text = "Управление сотрудниками";
             buttonUserController.UseVisualStyleBackColor = true;
             buttonUserController.Visible = false;
-            buttonUserController.Click += ButtonRemoveEmployee_Click;
+            buttonUserController.Click += ButtonUserController_Click;
             // 
             // buttonRefund
             // 
