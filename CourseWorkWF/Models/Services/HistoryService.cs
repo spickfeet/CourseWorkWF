@@ -17,11 +17,10 @@ namespace CourseWorkWF.Models.Services
         private IRepository<int, IRefundInfo> _refundInfoData;
         private IRepository<int, ISellInfo> _sellInfoData;
         private IRepository<DateTime, IRevenue> _revenueData;
-        public HistoryService()
+        private IDataManager _dataManager;
+        public HistoryService(IDataManager dataManager)
         {
-            _sellInfoData = new SalesInfoRepository("SalesInfo.json");
-            _refundInfoData = new RefundsInfoRepository("RefundsInfo.json");
-            _revenueData = new RevenuesRepository("Revenues.json");
+            _dataManager = dataManager;
         }
         public IEnumerable<ISellInfo> FindSalesByDates(DateTime dateTimeFrom, DateTime dateTimeTo)
         {

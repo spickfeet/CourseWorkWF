@@ -22,7 +22,7 @@ namespace CourseWorkWF.Presenters
         public IHistoryFormView View { get { return _view; } set { _view = value; } }
         public HistoryPresenter (IDataManager dataManager) 
         {
-            _model = new HistoryService();
+            _model = new HistoryService(dataManager);
         }
         public event Action<string> OnSelectSellNumberError;
         public event Action<string> OnSelectRefundNumberError;

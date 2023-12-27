@@ -12,15 +12,15 @@ namespace CourseWorkWF.Presenters
 {
     public class AssortmentPresenter
     {
-        private IRepository<long, IProductsCollectionItem> _assortmentData;
-        public IDictionary<long, IProductsCollectionItem> Assortment
+        private IDataManager _dataManager;
+        public IReadOnlyDictionary<long, IProductsCollectionItem> Assortment
         {
-            get { return _assortmentData.Load();} 
-        }
+            get { return _dataManager.AssortmentRepository.ReadAll(); }
+        } 
 
         public AssortmentPresenter(IDataManager dataManager)
         {
-            _assortmentData = new AssortmentRepository("Assortment.json");
+            _dataManager = dataManager;
         }
     }
 }
