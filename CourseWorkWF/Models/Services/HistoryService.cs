@@ -14,9 +14,6 @@ namespace CourseWorkWF.Models.Services
 {
     public class HistoryService: IHistoryService
     {
-        private IRepository<int, IRefundInfo> _refundInfoData;
-        private IRepository<int, ISellInfo> _sellInfoData;
-        private IRepository<DateTime, IRevenue> _revenueData;
         private IDataManager _dataManager;
         public HistoryService(IDataManager dataManager)
         {
@@ -25,7 +22,7 @@ namespace CourseWorkWF.Models.Services
         public IEnumerable<ISellInfo> FindSalesByDates(DateTime dateTimeFrom, DateTime dateTimeTo)
         {
             List<ISellInfo> salesInfoFind = new();
-            foreach (var sellInfo in _sellInfoData.ReadAll().Values)
+            foreach (var sellInfo in _dataManager.SalesRepository.ReadAll().Values)
             {
                 if (dateTimeFrom.Date <= sellInfo.OperationTime.Date && dateTimeTo.Date >= sellInfo.OperationTime.Date)
                     salesInfoFind.Add(sellInfo);
@@ -35,7 +32,7 @@ namespace CourseWorkWF.Models.Services
         public IEnumerable<IRefundInfo> FindRefundsByDates(DateTime dateTimeFrom, DateTime dateTimeTo)
         {
             List<IRefundInfo> refundsInfo = new();
-            foreach (var refundInfo in _refundInfoData.ReadAll().Values)
+            foreach (var refundInfo in _dataManager.RefundsRepository.ReadAll().Values)
             {
                 if (dateTimeFrom.Date <= refundInfo.OperationTime.Date && dateTimeTo.Date >= refundInfo.OperationTime.Date)
                     refundsInfo.Add(refundInfo);
@@ -45,7 +42,7 @@ namespace CourseWorkWF.Models.Services
         public IEnumerable<IRevenue> FindRevenuesByDates(DateTime dateTimeFrom, DateTime dateTimeTo)
         {
             List<IRevenue> revenuesFind = new();
-            foreach (var revenue in _revenueData.ReadAll().Values)
+            foreach (var revenue in _dataManager.RevenueRepository.ReadAll().Values)
             {
                 if (dateTimeFrom.Date <= revenue.Date.Date && dateTimeTo.Date >= revenue.Date.Date)
                     revenuesFind.Add(revenue);
@@ -59,7 +56,7 @@ namespace CourseWorkWF.Models.Services
             {
                 throw new ArgumentException("Некорректный номер чека прихода");
             }
-            foreach (IProductsCollectionItem productsCollection in _sellInfoData.ReadAll()[receiptNumber].Sell.Products.Values)
+            foreach (IProductsCollectionItem productsCollection in _dataManager.SalesRepository.ReadAll()[receiptNumber].Sell.Products.Values)
             {
                 products.Add(productsCollection);
             }
@@ -72,7 +69,7 @@ namespace CourseWorkWF.Models.Services
             {
                 throw new ArgumentException("Некорректный номер чека ухода");
             }
-            foreach (IProductsCollectionItem productsCollection in _refundInfoData.ReadAll()[receiptNumber].Refund.Products.Values)
+            foreach (IProductsCollectionItem productsCollection in _dataManager.RefundsRepository.ReadAll()[receiptNumber].Refund.Products.Values)
             {
                 products.Add(productsCollection);
             }
@@ -84,7 +81,7 @@ namespace CourseWorkWF.Models.Services
             {
                 throw new ArgumentException("Некорректный номер чека ухода");
             }
-            return _refundInfoData.ReadAll()[receiptNumber].Refund.Reason;
+            return _dataManager.RefundsRepository.ReadAll()[receiptNumber].Refund.Reason;
         }
     }
 }
