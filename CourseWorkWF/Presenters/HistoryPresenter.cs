@@ -44,7 +44,7 @@ namespace CourseWorkWF.Presenters
             {
                 return _model.FindProductsBySelectedSellNumber(_view.SelectSellNumber);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 SelectSellNumberError?.Invoke(ex.Message);
                 return null;
@@ -57,7 +57,7 @@ namespace CourseWorkWF.Presenters
                 _view.Reason = _model.GetReason(_view.SelectRefundNumber);
                 return _model.FindProductsBySelectedRefundNumber(_view.SelectRefundNumber);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 SelectRefundNumberError?.Invoke(ex.Message);
                 return null;

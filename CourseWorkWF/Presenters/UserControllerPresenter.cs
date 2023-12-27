@@ -1,7 +1,10 @@
 ﻿using CourseWorkWF.Files;
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ServiceInterface;
 using CourseWorkWF.Interface.ViewInterface;
+using CourseWorkWF.Models.Managers;
+using CourseWorkWF.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,39 +15,37 @@ namespace CourseWorkWF.Presenters
 {
     public class UserControllerPresenter
     {
-        private IUserControllerFormView _view;
-        private IRepository<string, IUser> _usersData;
-        public IUserControllerFormView View { get { return _view; } set { _view = value; } }
-        public IDictionary<string, IUser> Users { get; private set; }
+        private IDataManager _dataManager;
+        private IUserControllerService _model;
+        public IReadOnlyDictionary<string, IUser> Users { get { return _dataManager.UserRepository.ReadAll(); } }
+        public IUserControllerFormView View { get; set; }
+        public event Action<string>? SelectUserError;
         public UserControllerPresenter(IDataManager dataManager) 
         {
-            _usersData = new UsersRepository("Users.json");
-            Users = _usersData.Load();
+            _dataManager = dataManager;
+            _model = new UserControllerService(dataManager);
         }
-        public event EventHandler<string> SelectUserErrorEvent;
-        public void DeleteUser() 
+        public void DeleteUser()
         {
-            if(_view.SelectLogin == null)
+            try
             {
-                SelectUserErrorEvent.Invoke(this, "Выберите пользователя из списка");
-                return;
+                _model.DeleteUser(View.SelectLogin);
             }
-            _usersData.Delete(Users[_view.SelectLogin]);
-            Users = _usersData.Load();
+            catch (Exception ex) 
+            {
+                SelectUserError?.Invoke(ex.Message);
+            }
         }
         public void ChangeJobTitle()
         {
-            IDictionary<string, IUser> users = new Dictionary<string, IUser>();
-            if (_view.SelectLogin == null)
+            try
             {
-                SelectUserErrorEvent.Invoke(this, "Выберите пользователя из списка");
-                return;
-            } 
-            users = _usersData.Load();
-            users[_view.SelectLogin].Post = _view.Post;
-            _usersData.Delete(Users[_view.SelectLogin]);
-            _usersData.Create(users[_view.SelectLogin]);
-            Users = users;
+                _model.ChangeJobTitle(View.SelectLogin, View.Post);
+            }
+            catch (Exception ex)
+            {
+                SelectUserError?.Invoke(ex.Message);
+            }
         }
     }
 }

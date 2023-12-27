@@ -37,7 +37,6 @@ namespace CourseWorkWF.Views
                 labelError.Visible = false;
                 _viewsController.CurrentView.Visible = false;
                 _viewsController.ShowDialog(ViewKey.MainMenu);
-
             }
             labelError.Visible = true;
 

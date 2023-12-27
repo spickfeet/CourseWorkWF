@@ -44,7 +44,7 @@ namespace CourseWorkWF.Views
         public UsersControllerForm(ViewsController viewsController, UserControllerPresenter presenter)
         {
             _presenter = presenter;
-            _presenter.SelectUserErrorEvent += SetSelectError;
+            _presenter.SelectUserError += OnSelectUserError;
             Load += FormStarted;
             InitializeComponent();
         }
@@ -52,7 +52,7 @@ namespace CourseWorkWF.Views
         {
             UpdateUsersList();
         }
-        private void SetSelectError(object? sender, string error)
+        private void OnSelectUserError(string error)
         {
             errorProviderUsersList.SetError(listViewUsers, error);
         }
