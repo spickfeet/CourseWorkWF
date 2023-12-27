@@ -84,6 +84,11 @@ namespace CourseWorkWF.Views
                 return;
             }
             _presenter.AddProductInAssortment();
+            textBoxProductID.Clear();
+            textBoxProductName.Clear();
+            numericUpDownAmount.Value = 0;
+            numericUpDownProductPrice.Value = 0;
+            checkBoxWeightProduct.Checked = false;
             Close();
         }
 

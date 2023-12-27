@@ -56,6 +56,8 @@ namespace CourseWorkWF.Views
                 errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
                 return;
             }
+            textBoxProductID.Clear();
+            numericUpDownPrice.Value = 0;
             Close();
         }
         private bool SetErrorLength()

@@ -48,9 +48,14 @@ namespace CourseWorkWF.Views
                 errorProviderProductID.SetError(textBoxProductID, "Введите ID продукта");
                 return;
             }
-            if (_presenter.RemoveProduct() == true)
-                Close();
-            else errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
+            if (_presenter.RemoveProduct() == false)
+            {
+                errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
+                return;
+            }
+            textBoxProductID.Clear();
+            numericUpDownAmount.Value = 0;
+            Close();
         }
 
         private void CheckBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
