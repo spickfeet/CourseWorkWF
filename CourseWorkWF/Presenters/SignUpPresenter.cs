@@ -1,9 +1,11 @@
 ﻿using CourseWorkWF.Files;
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ServiceInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
 using CourseWorkWF.Models.Enums;
+using CourseWorkWF.Models.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,40 +17,30 @@ namespace CourseWorkWF.Presenters
 {
     public class SignUpPresenter
     {
-        private IRepository<string, IUser> _userData;
-        private ISignUpFormView _view;
-        public ISignUpFormView View { get { return _view; } set { _view = value; } }
-        public event EventHandler? LoginBusyErrorEvent;
-        public event EventHandler? OnlyOneOwnerErrorEvent;
+        private ISignUpService _model;
+        public ISignUpFormView View { get; set; }
+        public event Action? LoginTakenErrorEvent;
+        public event Action? OnlyOneOwnerErrorEvent;
         public SignUpPresenter(IDataManager dataManager) 
         { 
-            _userData = new UsersRepository("Users.json");
+            _model = new SignUpService(dataManager);
         }
         public bool SignUp()
         {
-            IDictionary<string, IUser> users = _userData.Load();
-
-            foreach(var item in users) 
-            { 
-                if(item.Key == _view.Login)
+            try
+            {
+                if(_model.SignUp(View.Login, View.Password, View.Post, new FullName(View.Name, View.Surname, View.Patronymic)) == true)
                 {
-
-                    LoginBusyErrorEvent?.Invoke(this,EventArgs.Empty); 
-                    return false;
+                    return true;
                 }
-                if (_view.Post == JobTitle.Owner)
-                {
-                    if(item.Value.Post == _view.Post)
-                    {
-                        OnlyOneOwnerErrorEvent?.Invoke(this, EventArgs.Empty);
-                        return false;
-                    }
-                }
+                LoginTakenErrorEvent?.Invoke();
+                return false;
             }
-            string salt = Guid.NewGuid().ToString();
-            IUser user = new User(_view.Login, HashCodeConvertor.ConvertToHashCode(_view.Password + salt), new FullName(_view.Name, _view.Surname, _view.Patronymic), _view.Post, salt);
-            _userData.Create(user);
-            return true;
+            catch (ArgumentException)
+            {
+                OnlyOneOwnerErrorEvent?.Invoke();
+                return false;
+            }
         }
     }
 }

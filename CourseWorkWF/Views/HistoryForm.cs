@@ -60,15 +60,15 @@ namespace CourseWorkWF.Views
         {
             _presenter = presenter;
             InitializeComponent();
-            _presenter.OnSelectSellNumberError += SetSellNumberError;
-            _presenter.OnSelectRefundNumberError += SetRefundNumberError;
+            _presenter.SelectSellNumberError += OnSetSellNumberError;
+            _presenter.SelectRefundNumberError += OnSetRefundNumberError;
         }
 
-        private void SetSellNumberError(string error)
+        private void OnSetSellNumberError(string error)
         {
             errorProviderSelectSellNumber.SetError(listViewSelesInfo, error);
         }
-        private void SetRefundNumberError(string error)
+        private void OnSetRefundNumberError(string error)
         {
             errorProviderSelectRefundNumber.SetError(listViewRefundsInfo, error);
         }

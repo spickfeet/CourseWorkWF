@@ -6,7 +6,6 @@ using CourseWorkWF.Models;
 using CourseWorkWF.Models.Managers;
 using CourseWorkWF.Presenters;
 using CourseWorkWF.Views.ViewsControl;
-using Inf_Bez;
 using System.Security.Policy;
 
 namespace CourseWorkWF.Views

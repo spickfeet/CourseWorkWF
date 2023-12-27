@@ -40,10 +40,6 @@ namespace CourseWorkWF.Views
             get { return textBoxProductName.Text; }
             set { textBoxProductName.Text = value; }
         }
-
-        public event EventHandler? AddProductEvent; // событие добавление продукта
-        public event EventHandler? AutocompleteEvent; // событие автозаполнение
-
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
             if (string.IsNullOrEmpty(textBoxProductID.Text))

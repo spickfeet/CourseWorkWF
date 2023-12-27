@@ -5,7 +5,7 @@ using CourseWorkWF.Views.ViewsControl;
 using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
 
-namespace Inf_Bez
+namespace CourseWorkWF.Views
 {
     public partial class SignUpForm : Form, ISignUpFormView
     {
@@ -49,17 +49,23 @@ namespace Inf_Bez
         {
             _viewsController = viewsController;
             _presenter = presenter;
-            _presenter.LoginBusyErrorEvent += LoginBusy;
-            _presenter.OnlyOneOwnerErrorEvent += OnlyOneOwner;           
+            _presenter.LoginTakenErrorEvent += OnLoginTaken;
+            _presenter.OnlyOneOwnerErrorEvent += OnOnlyOneOwner;           
             InitializeComponent();
             FormClosed += OnClosed;
             textBoxPassword.UseSystemPasswordChar = true;
         }
         private void OnClosed(object? sender, EventArgs e)
         {
+            textBoxLogin.Clear();
+            textBoxName.Clear();
+            textBoxPassword.Clear();
+            textBoxPatronymic.Clear();
+            textBoxSurname.Clear();
+            comboBoxJobTitle.SelectedIndex = -1;
             _viewsController.PrevView.Visible = true;
         }
-        private void OnlyOneOwner(object? sender, EventArgs e)
+        private void OnOnlyOneOwner()
         {
             errorProviderJobTitle.SetError(comboBoxJobTitle, "Владелец может быть только 1");
         }
@@ -70,7 +76,7 @@ namespace Inf_Bez
                 e.KeyChar = '\0';
         }
 
-        private void LoginBusy(object? sender, EventArgs e)
+        private void OnLoginTaken()
         {
             errorProviderLogin.SetError(textBoxLogin, "Логин занят");
         }

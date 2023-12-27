@@ -1,13 +1,12 @@
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Presenters;
-using CourseWorkWF.Views;
 using CourseWorkWF.Views.ViewsControl;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Inf_Bez
+namespace CourseWorkWF.Views
 {
     public partial class LogInForm : Form, ILogInFormView
     {

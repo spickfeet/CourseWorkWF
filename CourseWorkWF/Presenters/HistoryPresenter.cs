@@ -24,8 +24,8 @@ namespace CourseWorkWF.Presenters
         {
             _model = new HistoryService(dataManager);
         }
-        public event Action<string> OnSelectSellNumberError;
-        public event Action<string> OnSelectRefundNumberError;
+        public event Action<string>? SelectSellNumberError;
+        public event Action<string>? SelectRefundNumberError;
         public IEnumerable<ISellInfo> FindSalesByDates()
         {
             return _model.FindSalesByDates(_view.SellInfoDateFrom.Date, _view.SellInfoDateTo.Date);
@@ -46,7 +46,7 @@ namespace CourseWorkWF.Presenters
             }
             catch (ArgumentException ex)
             {
-                OnSelectSellNumberError.Invoke(ex.Message);
+                SelectSellNumberError?.Invoke(ex.Message);
                 return null;
             }
         }
@@ -59,7 +59,7 @@ namespace CourseWorkWF.Presenters
             }
             catch (ArgumentException ex)
             {
-                OnSelectRefundNumberError.Invoke(ex.Message);
+                SelectRefundNumberError?.Invoke(ex.Message);
                 return null;
             }
 

@@ -1,4 +1,4 @@
-﻿namespace Inf_Bez
+﻿namespace CourseWorkWF.Views
 {
     partial class LogInForm
     {
