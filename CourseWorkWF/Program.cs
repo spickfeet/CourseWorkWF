@@ -3,6 +3,7 @@ using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Models.Managers;
 using CourseWorkWF.Presenters;
 using CourseWorkWF.Views.ViewsControl;
 using Inf_Bez;
