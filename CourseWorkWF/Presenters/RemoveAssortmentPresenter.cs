@@ -1,30 +1,25 @@
 ﻿using CourseWorkWF.Files;
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ServiceInterface.AssortmentServiceInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Models.Services;
 
 namespace CourseWorkWF.Presenters
 {
     public class RemoveAssortmentPresenter
     {
-        private IDictionary<long, IProductsCollectionItem> _assortment;
-        private IRepository<long, IProductsCollectionItem> _assortmentData;
-        private IRemoveAssortmentFormView _view { get { return _view; } set { _view = value; } }
-        public IRemoveAssortmentFormView View { get; set; }
+        private IAssortmentRemoverService _model;
+        private IRemoveAssortmentFormView _view;
+        public IRemoveAssortmentFormView View { get { return _view; } set { _view = value; } }
         public RemoveAssortmentPresenter(IDataManager dataManager)
         {
-            _assortmentData = new AssortmentRepository("Assortment.json");
-            _assortment = _assortmentData.Load();
+            _model = new AssortmentService(dataManager);
         }
         public bool RemoveProduct() 
         {
-            if(_assortment.ContainsKey(_view.ProductID) == true)
-            {
-                _assortmentData.Delete(new ProductsCollectionItem(_assortment[_view.ProductID].Product, _view.Amount));
-                return true;
-            }
-            return false;
+            return _model.RemoveProduct(_view.ProductID, _view.Amount);
         }
     }
 }

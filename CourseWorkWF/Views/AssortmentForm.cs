@@ -44,14 +44,14 @@ namespace CourseWorkWF.Views
         private void UpdateList()
         {
             listViewAssortment.Items.Clear();
-            int line = 0;
+            int lineIndex = 0;
             foreach (var productCollectionItem in _presenter.Assortment)
             {
                 listViewAssortment.Items.Add(productCollectionItem.Value.Product.ProductName);
-                listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Key.ToString());
-                listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
-                listViewAssortment.Items[line].SubItems.Add(productCollectionItem.Value.Amount.ToString());
-                line++;
+                listViewAssortment.Items[lineIndex].SubItems.Add(productCollectionItem.Key.ToString());
+                listViewAssortment.Items[lineIndex].SubItems.Add(productCollectionItem.Value.Product.Price.ToString());
+                listViewAssortment.Items[lineIndex].SubItems.Add(productCollectionItem.Value.Amount.ToString());
+                lineIndex++;
             }
         }
     }

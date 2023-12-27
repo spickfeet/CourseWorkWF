@@ -54,6 +54,7 @@ namespace CourseWorkWF.Views
             if (_presenter.ChangePrice() == false)
             {
                 errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
+                return;
             }
             Close();
         }

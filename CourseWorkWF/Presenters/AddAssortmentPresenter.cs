@@ -1,8 +1,10 @@
 ﻿using CourseWorkWF.Files;
 using CourseWorkWF.Interface.FilesInterface;
 using CourseWorkWF.Interface.ModelInterface;
+using CourseWorkWF.Interface.ServiceInterface.AssortmentServiceInterface;
 using CourseWorkWF.Interface.ViewInterface;
 using CourseWorkWF.Models;
+using CourseWorkWF.Models.Services;
 
 namespace CourseWorkWF.Presenters
 {
@@ -10,15 +12,17 @@ namespace CourseWorkWF.Presenters
     {
         private IAddAssortmentFormView _view;
         private IDataManager _dataManager;
+        private IAssortmentAdderService _model;
         public IAddAssortmentFormView View { get { return _view; } set { _view = value; } }
         public AddAssortmentPresenter(IDataManager dataManager)
         {
+            _model = new AssortmentService(dataManager);
             _dataManager = dataManager;
         }
 
-        public void AddProductInAssortment()
+        public bool AddProductInAssortment()
         {
-            _dataManager.AssortmentRepository.Create(new ProductsCollectionItem(new Product(_view.ProductName,_view.Price,_view.ProductID), _view.Amount));
+            return _model.Add(_view.ProductName, _view.Price, _view.ProductID, _view.Amount);
         }
 
         public bool Autocomplete()
