@@ -76,12 +76,13 @@
             // 
             // buttonChangePrice
             // 
-            buttonChangePrice.Location = new Point(177, 27);
+            buttonChangePrice.BackColor = Color.Turquoise;
+            buttonChangePrice.Location = new Point(153, 27);
             buttonChangePrice.Name = "buttonChangePrice";
-            buttonChangePrice.Size = new Size(88, 66);
+            buttonChangePrice.Size = new Size(118, 66);
             buttonChangePrice.TabIndex = 5;
             buttonChangePrice.Text = "Изменить цену";
-            buttonChangePrice.UseVisualStyleBackColor = true;
+            buttonChangePrice.UseVisualStyleBackColor = false;
             buttonChangePrice.Click += ButtonChangePrice_Click;
             // 
             // errorProviderProductID

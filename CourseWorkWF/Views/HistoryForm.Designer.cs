@@ -193,32 +193,35 @@
             // 
             // buttonFindSelesInfoByDate
             // 
+            buttonFindSelesInfoByDate.BackColor = Color.OliveDrab;
             buttonFindSelesInfoByDate.Location = new Point(426, 46);
             buttonFindSelesInfoByDate.Name = "buttonFindSelesInfoByDate";
             buttonFindSelesInfoByDate.Size = new Size(112, 43);
             buttonFindSelesInfoByDate.TabIndex = 8;
             buttonFindSelesInfoByDate.Text = "Найти";
-            buttonFindSelesInfoByDate.UseVisualStyleBackColor = true;
+            buttonFindSelesInfoByDate.UseVisualStyleBackColor = false;
             buttonFindSelesInfoByDate.Click += ButtonFindSelesInfoByDate_Click;
             // 
             // buttonRefundsInfoDate
             // 
+            buttonRefundsInfoDate.BackColor = Color.OliveDrab;
             buttonRefundsInfoDate.Location = new Point(425, 322);
             buttonRefundsInfoDate.Name = "buttonRefundsInfoDate";
             buttonRefundsInfoDate.Size = new Size(112, 41);
             buttonRefundsInfoDate.TabIndex = 9;
             buttonRefundsInfoDate.Text = "Найти";
-            buttonRefundsInfoDate.UseVisualStyleBackColor = true;
+            buttonRefundsInfoDate.UseVisualStyleBackColor = false;
             buttonRefundsInfoDate.Click += ButtonRefundsInfoDate_Click;
             // 
             // buttonRevenueInfoDate
             // 
+            buttonRevenueInfoDate.BackColor = Color.OliveDrab;
             buttonRevenueInfoDate.Location = new Point(327, 643);
             buttonRevenueInfoDate.Name = "buttonRevenueInfoDate";
             buttonRevenueInfoDate.Size = new Size(87, 41);
             buttonRevenueInfoDate.TabIndex = 10;
             buttonRevenueInfoDate.Text = "Найти";
-            buttonRevenueInfoDate.UseVisualStyleBackColor = true;
+            buttonRevenueInfoDate.UseVisualStyleBackColor = false;
             buttonRevenueInfoDate.Click += ButtonRevenueInfoDate_Click;
             // 
             // dateTimePickerRefundInfoDateFrom
@@ -314,7 +317,7 @@
             // 
             labelSell.AutoSize = true;
             labelSell.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSell.Location = new Point(11, 9);
+            labelSell.Location = new Point(10, 9);
             labelSell.Name = "labelSell";
             labelSell.Size = new Size(133, 37);
             labelSell.TabIndex = 22;
@@ -342,12 +345,13 @@
             // 
             // buttonGetSellInfo
             // 
+            buttonGetSellInfo.BackColor = Color.Gold;
             buttonGetSellInfo.Location = new Point(544, 46);
             buttonGetSellInfo.Name = "buttonGetSellInfo";
             buttonGetSellInfo.Size = new Size(422, 41);
             buttonGetSellInfo.TabIndex = 25;
             buttonGetSellInfo.Text = "Получить дополнительную информацию";
-            buttonGetSellInfo.UseVisualStyleBackColor = true;
+            buttonGetSellInfo.UseVisualStyleBackColor = false;
             buttonGetSellInfo.Click += ButtonGetSellProducts_Click;
             // 
             // listViewSellProducts
@@ -412,12 +416,13 @@
             // 
             // buttonGetRefundInfo
             // 
+            buttonGetRefundInfo.BackColor = Color.Gold;
             buttonGetRefundInfo.Location = new Point(544, 320);
             buttonGetRefundInfo.Name = "buttonGetRefundInfo";
             buttonGetRefundInfo.Size = new Size(422, 41);
             buttonGetRefundInfo.TabIndex = 27;
             buttonGetRefundInfo.Text = "Получить дополнительную информацию";
-            buttonGetRefundInfo.UseVisualStyleBackColor = true;
+            buttonGetRefundInfo.UseVisualStyleBackColor = false;
             buttonGetRefundInfo.Click += ButtonGetRefundProducts_Click;
             // 
             // errorProviderSelectSellNumber

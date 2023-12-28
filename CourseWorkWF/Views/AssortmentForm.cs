@@ -16,6 +16,11 @@ namespace CourseWorkWF.Views
             InitializeComponent();
             _presenter = presenter;
             FormClosed += OnClosed;
+            Load += OnFormStarted;
+        }
+        private void OnFormStarted(object sender, EventArgs e)
+        {
+            UpdateList();
         }
         private void OnClosed(object sender, EventArgs e)
         {
@@ -28,12 +33,6 @@ namespace CourseWorkWF.Views
             _viewsController.ShowDialog(ViewKey.AddAssortment);
             UpdateList();
         }
-
-        private void ButtonLoadAssortment_Click(object sender, EventArgs e)
-        {
-            UpdateList();
-        }
-
         private void ButtonRemoveProductInAssortment_Click(object sender, EventArgs e)
         {
             _viewsController.ShowDialog(ViewKey.RemoveAssortment);

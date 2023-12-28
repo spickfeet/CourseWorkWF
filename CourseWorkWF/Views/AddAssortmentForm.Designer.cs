@@ -49,12 +49,13 @@
             // 
             // buttonAddProductInAssortment
             // 
-            buttonAddProductInAssortment.Location = new Point(188, 24);
+            buttonAddProductInAssortment.BackColor = Color.OliveDrab;
+            buttonAddProductInAssortment.Location = new Point(163, 24);
             buttonAddProductInAssortment.Name = "buttonAddProductInAssortment";
-            buttonAddProductInAssortment.Size = new Size(104, 70);
+            buttonAddProductInAssortment.Size = new Size(129, 70);
             buttonAddProductInAssortment.TabIndex = 0;
             buttonAddProductInAssortment.Text = "Добавить";
-            buttonAddProductInAssortment.UseVisualStyleBackColor = true;
+            buttonAddProductInAssortment.UseVisualStyleBackColor = false;
             buttonAddProductInAssortment.Click += AddProductInAssortmentButton_Click;
             // 
             // labelProductID

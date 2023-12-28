@@ -130,24 +130,26 @@
             // 
             // buttonFind
             // 
+            buttonFind.BackColor = Color.OliveDrab;
             buttonFind.Location = new Point(10, 74);
             buttonFind.Margin = new Padding(3, 2, 3, 2);
             buttonFind.Name = "buttonFind";
             buttonFind.Size = new Size(156, 22);
             buttonFind.TabIndex = 4;
             buttonFind.Text = "Найти чек";
-            buttonFind.UseVisualStyleBackColor = true;
+            buttonFind.UseVisualStyleBackColor = false;
             buttonFind.Click += ButtonFind_Click;
             // 
             // buttonInfo
             // 
+            buttonInfo.BackColor = Color.OliveDrab;
             buttonInfo.Location = new Point(173, 204);
             buttonInfo.Margin = new Padding(3, 2, 3, 2);
             buttonInfo.Name = "buttonInfo";
             buttonInfo.Size = new Size(245, 47);
             buttonInfo.TabIndex = 5;
             buttonInfo.Text = "Получить информацию о чеке";
-            buttonInfo.UseVisualStyleBackColor = true;
+            buttonInfo.UseVisualStyleBackColor = false;
             buttonInfo.Click += ButtonInfo_Click;
             // 
             // richTextBoxReason
@@ -224,13 +226,14 @@
             // 
             // buttonRefund
             // 
+            buttonRefund.BackColor = Color.OliveDrab;
             buttonRefund.Location = new Point(1254, 247);
             buttonRefund.Margin = new Padding(3, 2, 3, 2);
             buttonRefund.Name = "buttonRefund";
             buttonRefund.Size = new Size(167, 47);
             buttonRefund.TabIndex = 14;
             buttonRefund.Text = "Вернуть деньги";
-            buttonRefund.UseVisualStyleBackColor = true;
+            buttonRefund.UseVisualStyleBackColor = false;
             buttonRefund.Click += ButtonRefund_Click;
             // 
             // labelReceiptNumber
@@ -244,13 +247,14 @@
             // 
             // buttonAddProductRefundList
             // 
+            buttonAddProductRefundList.BackColor = Color.OliveDrab;
             buttonAddProductRefundList.Location = new Point(636, 289);
             buttonAddProductRefundList.Margin = new Padding(3, 2, 3, 2);
             buttonAddProductRefundList.Name = "buttonAddProductRefundList";
             buttonAddProductRefundList.Size = new Size(188, 47);
             buttonAddProductRefundList.TabIndex = 18;
             buttonAddProductRefundList.Text = "Добавить продукт в список для возврата";
-            buttonAddProductRefundList.UseVisualStyleBackColor = true;
+            buttonAddProductRefundList.UseVisualStyleBackColor = false;
             buttonAddProductRefundList.Click += ButtonAddProductRefundList_Click;
             // 
             // comboBoxOperationMethod
@@ -422,12 +426,13 @@
             // 
             // buttonCancel
             // 
+            buttonCancel.BackColor = Color.IndianRed;
             buttonCancel.Location = new Point(12, 328);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(165, 71);
             buttonCancel.TabIndex = 32;
             buttonCancel.Text = "Отмена";
-            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.UseVisualStyleBackColor = false;
             buttonCancel.Click += ButtonCancel_Click;
             // 
             // RefundForm

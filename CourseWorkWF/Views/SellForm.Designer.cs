@@ -169,7 +169,7 @@
             textBoxMoneyChangeBuyer.Location = new Point(139, 292);
             textBoxMoneyChangeBuyer.Name = "textBoxMoneyChangeBuyer";
             textBoxMoneyChangeBuyer.ReadOnly = true;
-            textBoxMoneyChangeBuyer.Size = new Size(100, 23);
+            textBoxMoneyChangeBuyer.Size = new Size(121, 23);
             textBoxMoneyChangeBuyer.TabIndex = 17;
             textBoxMoneyChangeBuyer.Visible = false;
             // 
@@ -198,7 +198,7 @@
             numericUpDownCash.Location = new Point(140, 248);
             numericUpDownCash.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
             numericUpDownCash.Name = "numericUpDownCash";
-            numericUpDownCash.Size = new Size(99, 23);
+            numericUpDownCash.Size = new Size(120, 23);
             numericUpDownCash.TabIndex = 21;
             numericUpDownCash.Visible = false;
             numericUpDownCash.ValueChanged += NumericUpDownCash_ValueChanged;

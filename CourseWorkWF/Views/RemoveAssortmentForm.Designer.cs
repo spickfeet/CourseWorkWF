@@ -42,12 +42,13 @@
             // 
             // buttonRemoveProduct
             // 
-            buttonRemoveProduct.Location = new Point(168, 12);
+            buttonRemoveProduct.BackColor = Color.IndianRed;
+            buttonRemoveProduct.Location = new Point(138, 30);
             buttonRemoveProduct.Name = "buttonRemoveProduct";
-            buttonRemoveProduct.Size = new Size(96, 53);
+            buttonRemoveProduct.Size = new Size(126, 63);
             buttonRemoveProduct.TabIndex = 1;
             buttonRemoveProduct.Text = "Удалить";
-            buttonRemoveProduct.UseVisualStyleBackColor = true;
+            buttonRemoveProduct.UseVisualStyleBackColor = false;
             buttonRemoveProduct.Click += ButtonRemoveProduct_Click;
             // 
             // labelProductID
@@ -93,7 +94,7 @@
             // checkBoxWeightProduct
             // 
             checkBoxWeightProduct.AutoSize = true;
-            checkBoxWeightProduct.Location = new Point(138, 74);
+            checkBoxWeightProduct.Location = new Point(10, 98);
             checkBoxWeightProduct.Name = "checkBoxWeightProduct";
             checkBoxWeightProduct.Size = new Size(119, 19);
             checkBoxWeightProduct.TabIndex = 15;
@@ -106,7 +107,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(276, 140);
+            ClientSize = new Size(276, 126);
             Controls.Add(checkBoxWeightProduct);
             Controls.Add(textBoxProductID);
             Controls.Add(labelAmount);
