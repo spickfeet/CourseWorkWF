@@ -37,8 +37,6 @@
             labelProductID = new Label();
             buttonAddProduct = new Button();
             buttonSell = new Button();
-            textBoxRevenue = new TextBox();
-            labelRevenue = new Label();
             textBoxMoneyChangeBuyer = new TextBox();
             labelCash = new Label();
             labelMoneyChangeBuyer = new Label();
@@ -76,7 +74,7 @@
             comboBoxDiscount.Enabled = false;
             comboBoxDiscount.FormattingEnabled = true;
             comboBoxDiscount.Items.AddRange(new object[] { "0", "5 ", "10 ", "15 ", "20 ", "25 " });
-            comboBoxDiscount.Location = new Point(12, 196);
+            comboBoxDiscount.Location = new Point(12, 151);
             comboBoxDiscount.Name = "comboBoxDiscount";
             comboBoxDiscount.Size = new Size(121, 23);
             comboBoxDiscount.TabIndex = 1;
@@ -86,7 +84,7 @@
             // labelDiscount
             // 
             labelDiscount.AutoSize = true;
-            labelDiscount.Location = new Point(12, 178);
+            labelDiscount.Location = new Point(12, 133);
             labelDiscount.Name = "labelDiscount";
             labelDiscount.Size = new Size(46, 15);
             labelDiscount.TabIndex = 2;
@@ -95,7 +93,7 @@
             // labelPayMethod
             // 
             labelPayMethod.AutoSize = true;
-            labelPayMethod.Location = new Point(139, 178);
+            labelPayMethod.Location = new Point(139, 133);
             labelPayMethod.Name = "labelPayMethod";
             labelPayMethod.Size = new Size(93, 15);
             labelPayMethod.TabIndex = 4;
@@ -107,7 +105,7 @@
             comboBoxOperationMethod.Enabled = false;
             comboBoxOperationMethod.FormattingEnabled = true;
             comboBoxOperationMethod.Items.AddRange(new object[] { "Наличные", "Карта" });
-            comboBoxOperationMethod.Location = new Point(139, 196);
+            comboBoxOperationMethod.Location = new Point(139, 151);
             comboBoxOperationMethod.Name = "comboBoxOperationMethod";
             comboBoxOperationMethod.Size = new Size(121, 23);
             comboBoxOperationMethod.TabIndex = 3;
@@ -125,17 +123,18 @@
             // 
             // buttonAddProduct
             // 
+            buttonAddProduct.BackColor = Color.OliveDrab;
             buttonAddProduct.Location = new Point(801, 27);
             buttonAddProduct.Name = "buttonAddProduct";
             buttonAddProduct.Size = new Size(85, 62);
             buttonAddProduct.TabIndex = 10;
             buttonAddProduct.Text = "Добавить";
-            buttonAddProduct.UseVisualStyleBackColor = true;
+            buttonAddProduct.UseVisualStyleBackColor = false;
             buttonAddProduct.Click += ButtonAddProduct_Click;
             // 
             // buttonSell
             // 
-            buttonSell.BackColor = SystemColors.ControlLight;
+            buttonSell.BackColor = Color.OliveDrab;
             buttonSell.Enabled = false;
             buttonSell.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             buttonSell.Location = new Point(482, 389);
@@ -146,27 +145,9 @@
             buttonSell.UseVisualStyleBackColor = false;
             buttonSell.Click += ButtonSell_Click;
             // 
-            // textBoxRevenue
-            // 
-            textBoxRevenue.Location = new Point(126, 10);
-            textBoxRevenue.Name = "textBoxRevenue";
-            textBoxRevenue.ReadOnly = true;
-            textBoxRevenue.Size = new Size(100, 23);
-            textBoxRevenue.TabIndex = 13;
-            textBoxRevenue.Text = "0";
-            // 
-            // labelRevenue
-            // 
-            labelRevenue.AutoSize = true;
-            labelRevenue.Location = new Point(12, 12);
-            labelRevenue.Name = "labelRevenue";
-            labelRevenue.Size = new Size(97, 15);
-            labelRevenue.TabIndex = 14;
-            labelRevenue.Text = "Выручка за день";
-            // 
             // textBoxMoneyChangeBuyer
             // 
-            textBoxMoneyChangeBuyer.Location = new Point(139, 292);
+            textBoxMoneyChangeBuyer.Location = new Point(139, 247);
             textBoxMoneyChangeBuyer.Name = "textBoxMoneyChangeBuyer";
             textBoxMoneyChangeBuyer.ReadOnly = true;
             textBoxMoneyChangeBuyer.Size = new Size(121, 23);
@@ -176,7 +157,7 @@
             // labelCash
             // 
             labelCash.AutoSize = true;
-            labelCash.Location = new Point(139, 230);
+            labelCash.Location = new Point(139, 185);
             labelCash.Name = "labelCash";
             labelCash.Size = new Size(65, 15);
             labelCash.TabIndex = 18;
@@ -186,7 +167,7 @@
             // labelMoneyChangeBuyer
             // 
             labelMoneyChangeBuyer.AutoSize = true;
-            labelMoneyChangeBuyer.Location = new Point(139, 274);
+            labelMoneyChangeBuyer.Location = new Point(139, 229);
             labelMoneyChangeBuyer.Name = "labelMoneyChangeBuyer";
             labelMoneyChangeBuyer.Size = new Size(40, 15);
             labelMoneyChangeBuyer.TabIndex = 19;
@@ -195,8 +176,8 @@
             // 
             // numericUpDownCash
             // 
-            numericUpDownCash.Location = new Point(140, 248);
-            numericUpDownCash.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownCash.Location = new Point(140, 203);
+            numericUpDownCash.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownCash.Name = "numericUpDownCash";
             numericUpDownCash.Size = new Size(120, 23);
             numericUpDownCash.TabIndex = 21;
@@ -221,7 +202,7 @@
             // 
             numericUpDownAmount.Location = new Point(695, 68);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
-            numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownAmount.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
             numericUpDownAmount.Size = new Size(101, 23);
@@ -266,13 +247,14 @@
             // 
             // buttonCancel
             // 
+            buttonCancel.BackColor = Color.IndianRed;
             buttonCancel.Enabled = false;
-            buttonCancel.Location = new Point(12, 51);
+            buttonCancel.Location = new Point(12, 12);
             buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(97, 53);
+            buttonCancel.Size = new Size(109, 65);
             buttonCancel.TabIndex = 25;
             buttonCancel.Text = "Отмена";
-            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.UseVisualStyleBackColor = false;
             buttonCancel.Click += ButtonCancel_Click;
             // 
             // textBoxProductID
@@ -286,7 +268,7 @@
             // checkBoxWeightProduct
             // 
             checkBoxWeightProduct.AutoSize = true;
-            checkBoxWeightProduct.Location = new Point(553, 70);
+            checkBoxWeightProduct.Location = new Point(570, 69);
             checkBoxWeightProduct.Name = "checkBoxWeightProduct";
             checkBoxWeightProduct.RightToLeft = RightToLeft.Yes;
             checkBoxWeightProduct.Size = new Size(119, 19);
@@ -311,8 +293,6 @@
             Controls.Add(labelMoneyChangeBuyer);
             Controls.Add(labelCash);
             Controls.Add(textBoxMoneyChangeBuyer);
-            Controls.Add(labelRevenue);
-            Controls.Add(textBoxRevenue);
             Controls.Add(buttonSell);
             Controls.Add(buttonAddProduct);
             Controls.Add(labelProductID);
@@ -344,8 +324,6 @@
         private Label labelProductID;
         private Button buttonAddProduct;
         private Button buttonSell;
-        private TextBox textBoxRevenue;
-        private Label labelRevenue;
         private TextBox textBoxMoneyChangeBuyer;
         private Label labelCash;
         private Label labelMoneyChangeBuyer;

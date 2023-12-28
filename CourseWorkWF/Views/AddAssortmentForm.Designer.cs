@@ -105,7 +105,7 @@
             // 
             numericUpDownProductPrice.DecimalPlaces = 2;
             numericUpDownProductPrice.Location = new Point(12, 118);
-            numericUpDownProductPrice.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownProductPrice.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownProductPrice.Name = "numericUpDownProductPrice";
             numericUpDownProductPrice.Size = new Size(145, 23);
             numericUpDownProductPrice.TabIndex = 11;
@@ -113,7 +113,7 @@
             // numericUpDownAmount
             // 
             numericUpDownAmount.Location = new Point(12, 162);
-            numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownAmount.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
             numericUpDownAmount.Size = new Size(145, 23);
             numericUpDownAmount.TabIndex = 12;

@@ -86,7 +86,7 @@ namespace CourseWorkWF.Models.Services
             {
                 _dataManager.AssortmentRepository.Delete(productsCollectionItem);
             }
-            BuyProducts.Clear(); // Отчистка списка купленных продуктов
+            BuyProducts = new Dictionary<long, IProductsCollectionItem>();
         }
         public void UpdatePrice()
         {

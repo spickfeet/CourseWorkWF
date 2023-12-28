@@ -53,10 +53,10 @@ namespace CourseWorkWF.Files
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             if (_assortment.ContainsKey(productsCollectionItem.Product.ProductID))
             {
-                if (_assortment[productsCollectionItem.Product.ProductID].Amount - productsCollectionItem.Amount < 1)
+                if (_assortment[productsCollectionItem.Product.ProductID].Amount - productsCollectionItem.Amount <= 0)
                     _assortment.Remove(productsCollectionItem.Product.ProductID);
                 else
-                    _assortment[productsCollectionItem.Product.ProductID].Amount -= productsCollectionItem.Product.ProductID;
+                    _assortment[productsCollectionItem.Product.ProductID].Amount -= productsCollectionItem.Amount;
             }
             else 
                 return false;              

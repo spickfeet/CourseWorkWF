@@ -86,7 +86,7 @@ namespace CourseWorkWF.Models.Services
             _dataManager.CurrentRevenue.ChangeRevenue(refund);
             IRefundInfo refundInfo = new RefundInfo(number, refund, _dataManager.CurrentUser, DateTime.Now);
             _dataManager.RefundsRepository.Create(refundInfo);
-            ProductsRefund.Clear();
+            ProductsRefund = new Dictionary<long, IProductsCollectionItem>();
         }
         public void Cancel()
         {

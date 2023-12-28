@@ -69,7 +69,7 @@
             // 
             numericUpDownPrice.DecimalPlaces = 2;
             numericUpDownPrice.Location = new Point(12, 70);
-            numericUpDownPrice.Maximum = new decimal(new int[] { 500000000, 0, 0, 0 });
+            numericUpDownPrice.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownPrice.Name = "numericUpDownPrice";
             numericUpDownPrice.Size = new Size(135, 23);
             numericUpDownPrice.TabIndex = 4;

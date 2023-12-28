@@ -386,7 +386,7 @@
             // numericUpDownAmount
             // 
             numericUpDownAmount.Location = new Point(636, 261);
-            numericUpDownAmount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            numericUpDownAmount.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownAmount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
             numericUpDownAmount.Size = new Size(188, 23);

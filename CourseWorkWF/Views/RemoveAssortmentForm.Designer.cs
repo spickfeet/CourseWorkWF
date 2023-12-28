@@ -69,7 +69,7 @@
             // 
             numericUpDownAmount.Location = new Point(12, 70);
             numericUpDownAmount.Margin = new Padding(3, 2, 3, 2);
-            numericUpDownAmount.Maximum = new decimal(new int[] { 2000000, 0, 0, 0 });
+            numericUpDownAmount.Maximum = new decimal(new int[] { 200000000, 0, 0, 0 });
             numericUpDownAmount.Name = "numericUpDownAmount";
             numericUpDownAmount.Size = new Size(120, 23);
             numericUpDownAmount.TabIndex = 3;

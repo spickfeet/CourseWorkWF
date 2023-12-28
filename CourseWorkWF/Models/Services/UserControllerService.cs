@@ -34,6 +34,7 @@ namespace CourseWorkWF.Models.Services
             if (_dataManager.UserRepository.ReadAll().ContainsKey(login))
             {
                 _dataManager.UserRepository.ReadAll()[login].Post = jobTitle;
+                return;
             }
             throw new ArgumentException("Не выбран пользователь");
         }

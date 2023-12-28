@@ -115,6 +115,8 @@ namespace CourseWorkWF.Views
             {
                 _presenter.ReturnMoney();
 
+                buttonFind.Enabled = true;
+                buttonInfo.Enabled = true;
                 comboBoxOperationMethod.SelectedIndex = -1;
                 listViewBuyList.Items.Clear();
                 listViewRefundList.Items.Clear();
@@ -233,6 +235,8 @@ namespace CourseWorkWF.Views
                 return;
             }
             _presenter.AddRefundList();
+            buttonFind.Enabled = false;
+            buttonInfo.Enabled = false;
             listViewRefundList.Items.Clear();
             int column = 0;
             foreach (var item in _presenter.ProductsRefund)
@@ -251,6 +255,8 @@ namespace CourseWorkWF.Views
         }
         private void Cancel()
         {
+            buttonFind.Enabled = true;
+            buttonInfo.Enabled = true;
             _presenter.Cancel();
             errorProviderAmount.Clear();
             errorProviderNumber.Clear();

@@ -166,7 +166,7 @@ namespace CourseWorkWF.Views
             foreach (IRevenue revenue in _presenter.FindRevenuesByDates())
             {
                 listViewRevenues.Items.Add(revenue.Proceeds.ToString());
-                listViewRevenues.Items[lineIndex].SubItems.Add(revenue.Date.Date.ToString());
+                listViewRevenues.Items[lineIndex].SubItems.Add(revenue.Date.ToString());
                 lineIndex++;
             }
         }

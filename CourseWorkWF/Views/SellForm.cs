@@ -133,13 +133,7 @@ namespace CourseWorkWF.Views
         {
             _presenter.SellOut();
 
-            comboBoxOperationMethod.SelectedIndex = -1; // Сброс метода транзакции
-            comboBoxDiscount.SelectedIndex = -1; // Сброс скидки
-            textBoxPrice.Text = "0"; // зануление цены стоимости продуктов
-            listViewBuyProducts.Items.Clear(); // Отчистка ListView
-            comboBoxDiscount.Enabled = false;
-            comboBoxOperationMethod.Enabled = false;
-            buttonAddProduct.Enabled = true;
+            Cancel();
         }
 
         private void ComboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
