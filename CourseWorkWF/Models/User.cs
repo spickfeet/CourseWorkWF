@@ -13,6 +13,7 @@ namespace CourseWorkWF.Models
         private string _login;
         private string _password;
         private string _salt;
+        private IFullName _fullName;
         public string Login 
         { 
             get { return _login; } 
@@ -28,7 +29,11 @@ namespace CourseWorkWF.Models
             get { return _salt; }
             private set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Salt не может быть пустым"); _salt = value; }
         }
-        public IFullName FullName { get; set; }
+        public IFullName FullName 
+        {
+            get { return _fullName; }
+            private set { if (value == null) throw new ArgumentException("FullName не может быть null"); _fullName = value; }
+        }
         public JobTitle Post { get; set; }
         public User(string login, string password, IFullName fullName, JobTitle post, string salt)
         {

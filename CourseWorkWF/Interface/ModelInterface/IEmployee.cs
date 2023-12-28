@@ -9,7 +9,7 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IEmployee
     {
-        public IFullName FullName { get; set; }
+        public IFullName FullName { get;}
         public JobTitle Post { get; set; }
 
     }

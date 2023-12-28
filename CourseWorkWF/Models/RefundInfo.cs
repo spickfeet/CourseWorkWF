@@ -10,8 +10,8 @@ namespace CourseWorkWF.Models
     public class RefundInfo : IRefundInfo
     {
         private int _operationNumber;
-        private IRefund _refund;
         private IEmployee _employee;
+        private IRefund _refund;
         public DateTime OperationTime { get; set; }
         public IRefund Refund 
         {
