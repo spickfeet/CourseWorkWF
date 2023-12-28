@@ -293,7 +293,7 @@
             checkBoxWeightProduct.TabIndex = 27;
             checkBoxWeightProduct.Text = "Весовой продукт";
             checkBoxWeightProduct.UseVisualStyleBackColor = true;
-            checkBoxWeightProduct.CheckedChanged += checkBoxWeightProduct_CheckedChanged;
+            checkBoxWeightProduct.CheckedChanged += CheckBoxWeightProduct_CheckedChanged;
             // 
             // SellForm
             // 

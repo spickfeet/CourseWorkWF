@@ -56,19 +56,37 @@ namespace CourseWorkWF.Views
             InitializeComponent();
             _presenter = presenter;
             _viewsController = viewsController;
-
-            _presenter.AmountErrorEvent += AmountErrorSet;
-            _presenter.ProductIDErrorEvent += ProductIDErrorSet;
+            _presenter.AddError += OnAddError;
             FormClosed += OnClosed;
         }
         private void OnClosed(object sender, EventArgs e)
         {
+            _presenter.CancelBuyProducts();
+            listViewBuyProducts.Items.Clear();
+
+            textBoxPrice.Text = "0";
+            comboBoxDiscount.SelectedIndex = -1;
+            comboBoxDiscount.Enabled = false;
+            comboBoxOperationMethod.SelectedIndex = -1;
+            comboBoxOperationMethod.Enabled = false;
+            buttonSell.Enabled = false;
+            buttonCancel.Enabled = false;
+
+            labelCash.Visible = false;
+            numericUpDownCash.Value = 0;
+            numericUpDownCash.Visible = false;
+            labelMoneyChangeBuyer.Visible = false;
+            textBoxMoneyChangeBuyer.Text = "0";
+            textBoxMoneyChangeBuyer.Visible = false;
+            buttonAddProduct.Enabled = true;
+
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
         }
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
+            errorProviderProductID.Clear();
             if (string.IsNullOrEmpty(textBoxProductID.Text))
             {
                 if (e.KeyChar == 48)
@@ -86,14 +104,9 @@ namespace CourseWorkWF.Views
             }
         }
 
-        private void ProductIDErrorSet(object? sender, EventArgs e)
+        private void OnAddError(string error)
         {
-            errorProviderProductID.SetError(textBoxProductID, "Нет продукта с таким ID");
-        }
-
-        private void AmountErrorSet(object? sender, EventArgs e)
-        {
-            errorProviderAmount.SetError(numericUpDownAmount, "В ассортименте нет столько продуктов");
+            errorProviderProductID.SetError(buttonAddProduct, error);
         }
 
         private void ButtonAddProduct_Click(object sender, EventArgs e) // Нажатие кнопки добавить
@@ -112,7 +125,7 @@ namespace CourseWorkWF.Views
             textBoxProductID.Clear();
             checkBoxWeightProduct.Checked = false;
 
-            if (_presenter.GetBuyProductsList().Count != 0) // проверяем пустой ли список продуктов
+            if (_presenter.BuyProducts.Count != 0) // проверяем пустой ли список продуктов
             {
                 comboBoxDiscount.Enabled = true;
                 buttonCancel.Enabled = true;
@@ -123,7 +136,7 @@ namespace CourseWorkWF.Views
         {
             listViewBuyProducts.Items.Clear();
             int lineIndex = 0;
-            foreach (KeyValuePair<long, IProductsCollectionItem> productCollectionItem in _presenter.GetBuyProductsList())
+            foreach (KeyValuePair<long, IProductsCollectionItem> productCollectionItem in _presenter.BuyProducts)
             {
                 listViewBuyProducts.Items.Add(productCollectionItem.Value.Product.ProductName.ToString());
                 listViewBuyProducts.Items[lineIndex].SubItems.Add(productCollectionItem.Key.ToString());
@@ -213,7 +226,7 @@ namespace CourseWorkWF.Views
             buttonAddProduct.Enabled = true;
         }
 
-        private void checkBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxWeightProduct_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxWeightProduct.Checked == true)
             {
