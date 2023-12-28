@@ -26,7 +26,7 @@ namespace CourseWorkWF.Models
         public string Salt
         {
             get { return _salt; }
-            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Salt не может быть пустым"); _salt = value; }
+            private set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Salt не может быть пустым"); _salt = value; }
         }
         public IFullName FullName { get; set; }
         public JobTitle Post { get; set; }

@@ -16,17 +16,17 @@ namespace CourseWorkWF.Models
         public IRefund Refund 
         {
             get { return _refund; }
-            set { if (value == null) throw new ArgumentNullException("Refund не может быть null"); _refund = value; }
+            private set { if (value == null) throw new ArgumentNullException("Refund не может быть null"); _refund = value; }
         }
         public IEmployee Employee
         {
             get { return _employee; }
-            set { if (value == null) throw new ArgumentNullException("Employee не может быть null"); _employee = value; }
+            private set { if (value == null) throw new ArgumentNullException("Employee не может быть null"); _employee = value; }
         }
         public int OperationNumber
         {
             get { return _operationNumber; }
-            set { if (value < 1) throw new ArgumentOutOfRangeException("OperationNumber не может быть меньше 1"); _operationNumber = value; }
+            private set { if (value < 1) throw new ArgumentOutOfRangeException("OperationNumber не может быть меньше 1"); _operationNumber = value; }
         }
         public RefundInfo(int operationNumber, IRefund refund, IEmployee employee, DateTime operationTime)
         {

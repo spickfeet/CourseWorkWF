@@ -8,7 +8,7 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IProductsCollectionItem
     {
-        public IProduct Product { get; set; }
+        public IProduct Product { get; }
         public decimal Amount { get; set; }
     }
 }

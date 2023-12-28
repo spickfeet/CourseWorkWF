@@ -12,17 +12,17 @@ namespace CourseWorkWF.Models
         public IMoneyOperation MoneyOperation 
         {
             get { return _moneyOperation; }
-            set { if (value == null) throw new ArgumentNullException("MoneyOperation не может быть null"); _moneyOperation = value; }
+            private set { if (value == null) throw new ArgumentNullException("MoneyOperation не может быть null"); _moneyOperation = value; }
         }
         public IDictionary<long, IProductsCollectionItem> Products
         {
             get { return _products; }
-            set { if (value == null) throw new ArgumentNullException("Products не может быть null"); _products = value; }
+            private set { if (value == null) throw new ArgumentNullException("Products не может быть null"); _products = value; }
         }
         public string Reason 
         {
             get { return _reason; }
-            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Reason не может быть пустой"); _reason = value; }
+            private set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Reason не может быть пустой"); _reason = value; }
         }
 
         public Refund(IDictionary<long, IProductsCollectionItem> products, IMoneyOperation moneyOperation, string reason)

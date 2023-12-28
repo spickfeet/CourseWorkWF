@@ -9,7 +9,7 @@ namespace CourseWorkWF.Models
         public IProduct Product
         {
             get { return _product; }
-            set { if (value == null) throw new ArgumentNullException("Product не может быть null"); _product = value; }
+            private set { if (value == null) throw new ArgumentNullException("Product не может быть null"); _product = value; }
         }
         public decimal Amount
         {

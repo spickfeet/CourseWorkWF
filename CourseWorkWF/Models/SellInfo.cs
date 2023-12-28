@@ -15,17 +15,17 @@ namespace CourseWorkWF.Models
         private IEmployee _employee;
         public ISell Sell { 
             get { return _sell; }
-            set { if (value == null) throw new ArgumentNullException("Sell не может быть null"); _sell = value; }
+            private set { if (value == null) throw new ArgumentNullException("Sell не может быть null"); _sell = value; }
         }
-        public DateTime OperationTime { get; set; }
+        public DateTime OperationTime { get; private set; }
         public IEmployee Employee
         {
             get { return _employee; }
-            set { if (value == null) throw new ArgumentNullException("Employee не может быть null"); _employee = value; }
+            private set { if (value == null) throw new ArgumentNullException("Employee не может быть null"); _employee = value; }
         }
         public int OperationNumber {
             get { return _operationNumber; }
-            set { if (value < 1) throw new ArgumentOutOfRangeException("OperationNumber не может быть меньше 1"); _operationNumber = value; }
+            private set { if (value < 1) throw new ArgumentOutOfRangeException("OperationNumber не может быть меньше 1"); _operationNumber = value; }
         }
         public SellInfo(int operationNumber, ISell sell , IEmployee employee, DateTime operationTime )
         {
