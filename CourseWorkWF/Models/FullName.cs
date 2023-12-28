@@ -20,7 +20,7 @@ namespace CourseWorkWF.Models
         public string Surname 
         {
             get { return _surname; }
-            set { if (string.IsNullOrEmpty(value)) throw new Exception("Surname не может быть пустой"); _surname = value; }
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Surname не может быть пустой"); _surname = value; }
         }
         public string? Patronymic { get; set; }
         public FullName(string name, string surname, string? patronymic) 
