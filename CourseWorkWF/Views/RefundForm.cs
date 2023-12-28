@@ -82,13 +82,6 @@ namespace CourseWorkWF.Views
 
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
-            if (string.IsNullOrEmpty(textBoxProductID.Text) || string.IsNullOrEmpty(textBoxReceiptNumber.Text))
-            {
-                if (e.KeyChar == 48)
-                {
-                    e.KeyChar = '\0';
-                }
-            }
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
                 e.KeyChar = '\0';
@@ -114,7 +107,7 @@ namespace CourseWorkWF.Views
             if (_haveError == false)
             {
                 _presenter.ReturnMoney();
-
+                checkBoxFindByDate.Checked = false;
                 buttonFind.Enabled = true;
                 buttonInfo.Enabled = true;
                 comboBoxOperationMethod.SelectedIndex = -1;
@@ -255,6 +248,7 @@ namespace CourseWorkWF.Views
         }
         private void Cancel()
         {
+            checkBoxFindByDate.Checked = false;
             buttonFind.Enabled = true;
             buttonInfo.Enabled = true;
             _presenter.Cancel();
