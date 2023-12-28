@@ -10,8 +10,7 @@ namespace CourseWorkWF.Presenters
 {
     public class SellPresenter
     {
-        private ISellFormView _view;
-        public ISellFormView View { get { return _view; } set { _view = value; } }
+        public ISellFormView View { get; set; }
         private IDictionary<long, IProductsCollectionItem> _assortment;
         private IDiscount _discount;
         private IRepository<int, IRefundInfo> _refundInfoData;

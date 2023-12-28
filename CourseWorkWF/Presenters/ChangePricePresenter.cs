@@ -16,16 +16,15 @@ namespace CourseWorkWF.Presenters
 {
     public class ChangePricePresenter
     {
-        private IChangePriceFormView _view;
         private IAssortmentChangerPriceService _model;
-        public IChangePriceFormView View { get { return _view; } set { _view = value; } }
+        public IChangePriceFormView View { get; set; }
         public ChangePricePresenter(IDataManager dataManager) 
         {
             _model = new AssortmentService(dataManager);
         }
         public bool ChangePrice()
         {
-            return _model.ChangePrice(_view.ProductID, _view.Price);
+            return _model.ChangePrice(View.ProductID, View.Price);
         }
     }
 }

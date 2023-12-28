@@ -17,9 +17,8 @@ namespace CourseWorkWF.Presenters
 {
     public class HistoryPresenter
     {
-        private IHistoryFormView _view;
         private IHistoryService _model;
-        public IHistoryFormView View { get { return _view; } set { _view = value; } }
+        public IHistoryFormView View { get; set; }
         public HistoryPresenter (IDataManager dataManager) 
         {
             _model = new HistoryService(dataManager);
@@ -28,21 +27,21 @@ namespace CourseWorkWF.Presenters
         public event Action<string>? SelectRefundNumberError;
         public IEnumerable<ISellInfo> FindSalesByDates()
         {
-            return _model.FindSalesByDates(_view.SellInfoDateFrom.Date, _view.SellInfoDateTo.Date);
+            return _model.FindSalesByDates(View.SellInfoDateFrom.Date, View.SellInfoDateTo.Date);
         }
         public IEnumerable<IRefundInfo> FindRefundsByDates()
         {
-            return _model.FindRefundsByDates(_view.RefundInfoDateFrom.Date, _view.RefundInfoDateTo.Date);
+            return _model.FindRefundsByDates(View.RefundInfoDateFrom.Date, View.RefundInfoDateTo.Date);
         }
         public IEnumerable<IRevenue> FindRevenuesByDates()
         {
-            return _model.FindRevenuesByDates(_view.RevenueDateFrom.Date, _view.RevenueDateTo.Date);
+            return _model.FindRevenuesByDates(View.RevenueDateFrom.Date, View.RevenueDateTo.Date);
         }
         public IEnumerable<IProductsCollectionItem>? FindProductsBySelectedSellNumber()
         {
             try
             {
-                return _model.FindProductsBySelectedSellNumber(_view.SelectSellNumber);
+                return _model.FindProductsBySelectedSellNumber(View.SelectSellNumber);
             }
             catch (Exception ex)
             {
@@ -54,8 +53,8 @@ namespace CourseWorkWF.Presenters
         {
             try
             {
-                _view.Reason = _model.GetReason(_view.SelectRefundNumber);
-                return _model.FindProductsBySelectedRefundNumber(_view.SelectRefundNumber);
+                View.Reason = _model.GetReason(View.SelectRefundNumber);
+                return _model.FindProductsBySelectedRefundNumber(View.SelectRefundNumber);
             }
             catch (Exception ex)
             {
