@@ -36,6 +36,8 @@ namespace CourseWorkWF.Views
             {
                 labelError.Visible = false;
                 _viewsController.CurrentView.Visible = false;
+                textBoxLogin.Clear();
+                textBoxPassword.Clear();
                 _viewsController.ShowDialog(ViewKey.MainMenu);
             }
             labelError.Visible = true;

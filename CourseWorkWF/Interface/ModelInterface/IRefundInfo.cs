@@ -8,6 +8,6 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IRefundInfo : IOperationInfo
     {
-        public IRefund Refund { get; set; }
+        public IRefund Refund { get;}
     }
 }

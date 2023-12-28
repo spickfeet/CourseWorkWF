@@ -8,8 +8,8 @@ namespace CourseWorkWF.Interface.ModelInterface
 {
     public interface IOperationInfo
     {
-        public int OperationNumber { get; set; }
-        public DateTime OperationTime { get; set; }
-        public IEmployee Employee { get; set; }
+        public int OperationNumber { get; }
+        public DateTime OperationTime { get; }
+        public IEmployee Employee { get; }
     }
 }

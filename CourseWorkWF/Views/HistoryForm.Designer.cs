@@ -482,7 +482,7 @@
             Controls.Add(listViewSelesInfo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "HistoryForm";
-            Text = "MyARM";
+            Text = "7";
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectSellNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderSelectRefundNumber).EndInit();
             ResumeLayout(false);

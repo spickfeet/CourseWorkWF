@@ -7,12 +7,6 @@ namespace CourseWorkWF.Views
     public partial class RemoveAssortmentForm : Form, IRemoveAssortmentFormView
     {
         private RemoveAssortmentPresenter _presenter;
-        public RemoveAssortmentForm(RemoveAssortmentPresenter presenter)
-        {
-            InitializeComponent();
-            _presenter = presenter;
-        }
-
         int IRemoveAssortmentFormView.Amount
         {
             get { return (int)numericUpDownAmount.Value; }
@@ -21,6 +15,20 @@ namespace CourseWorkWF.Views
         {
             get { return long.Parse(textBoxProductID.Text); }
         }
+        public RemoveAssortmentForm(RemoveAssortmentPresenter presenter)
+        {
+            InitializeComponent();
+            _presenter = presenter;
+            FormClosed += OnClosed;
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            checkBoxWeightProduct.Enabled = false;
+            textBoxProductID.Clear();
+            numericUpDownAmount.Value = 0;
+        }
+
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
             if (string.IsNullOrEmpty(textBoxProductID.Text))

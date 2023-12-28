@@ -70,6 +70,7 @@ namespace CourseWorkWF.Views
         }
         private void OnClosed(object sender, EventArgs e)
         {
+            Cancel();
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
         }
@@ -245,6 +246,10 @@ namespace CourseWorkWF.Views
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Cancel();
+        }
+        private void Cancel()
         {
             _presenter.Cancel();
             errorProviderAmount.Clear();

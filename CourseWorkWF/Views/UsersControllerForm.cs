@@ -53,6 +53,7 @@ namespace CourseWorkWF.Views
         }
         private void OnClosed(object sender, EventArgs e)
         {
+            comboBoxJobTitle.SelectedIndex = -1;
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
         }

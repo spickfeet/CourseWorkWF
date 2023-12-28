@@ -19,6 +19,7 @@ namespace CourseWorkWF.Views
         }
         private void OnClosed(object sender, EventArgs e)
         {
+            listViewAssortment.Items.Clear();
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
         }

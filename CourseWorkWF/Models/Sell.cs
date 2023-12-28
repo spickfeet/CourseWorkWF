@@ -12,7 +12,7 @@ namespace CourseWorkWF.Models
         public IMoneyOperation MoneyOperation 
         {
             get { return _moneyOperation; }
-            private set { if (value == null) throw new ArgumentNullException("MoneyOperation не может быть null"); _moneyOperation = value}
+            private set { if (value == null) throw new ArgumentNullException("MoneyOperation не может быть null"); _moneyOperation = value; }
         }
         public IDictionary<long, IProductsCollectionItem> Products 
         { 

@@ -68,6 +68,12 @@ namespace CourseWorkWF.Views
         }
         private void OnClosed(object sender, EventArgs e)
         {
+            richTextBoxReason.Clear();
+            listViewRefundProducts.Items.Clear();
+            listViewRefundsInfo.Items.Clear();
+            listViewRevenues.Items.Clear();
+            listViewSelesInfo.Items.Clear();
+            listViewSellProducts.Items.Clear();
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
         }

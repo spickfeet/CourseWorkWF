@@ -61,24 +61,7 @@ namespace CourseWorkWF.Views
         }
         private void OnClosed(object sender, EventArgs e)
         {
-            _presenter.CancelBuyProducts();
-            listViewBuyProducts.Items.Clear();
-
-            textBoxPrice.Text = "0";
-            comboBoxDiscount.SelectedIndex = -1;
-            comboBoxDiscount.Enabled = false;
-            comboBoxOperationMethod.SelectedIndex = -1;
-            comboBoxOperationMethod.Enabled = false;
-            buttonSell.Enabled = false;
-            buttonCancel.Enabled = false;
-
-            labelCash.Visible = false;
-            numericUpDownCash.Value = 0;
-            numericUpDownCash.Visible = false;
-            labelMoneyChangeBuyer.Visible = false;
-            textBoxMoneyChangeBuyer.Text = "0";
-            textBoxMoneyChangeBuyer.Visible = false;
-            buttonAddProduct.Enabled = true;
+            Cancel();
 
             _viewsController.Closed();
             _viewsController.PrevView.Visible = true;
@@ -205,6 +188,10 @@ namespace CourseWorkWF.Views
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Cancel();
+        }
+        private void Cancel()
         {
             _presenter.CancelBuyProducts();
             listViewBuyProducts.Items.Clear();

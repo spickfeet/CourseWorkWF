@@ -23,6 +23,13 @@ namespace CourseWorkWF.Views
         {
             _presenter = presenter;
             InitializeComponent();
+            FormClosed += OnClosed;
+        }
+        private void OnClosed(object sender, EventArgs e)
+        {
+            errorProviderProductID.Clear();
+            textBoxProductID.Clear();
+            numericUpDownPrice.Value = 0;
         }
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {

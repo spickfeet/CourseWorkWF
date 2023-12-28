@@ -16,12 +16,6 @@ namespace CourseWorkWF.Views
     public partial class AddAssortmentForm : Form, IAddAssortmentFormView
     {
         private AddAssortmentPresenter _presenter;
-        public AddAssortmentForm(AddAssortmentPresenter presenter)
-        {
-            InitializeComponent();
-            _presenter = presenter;
-        }
-
         long IAddAssortmentFormView.ProductID
         {
             get { return long.Parse(textBoxProductID.Text); }
@@ -39,6 +33,23 @@ namespace CourseWorkWF.Views
         {
             get { return textBoxProductName.Text; }
             set { textBoxProductName.Text = value; }
+        }
+        public AddAssortmentForm(AddAssortmentPresenter presenter)
+        {
+            InitializeComponent();
+            _presenter = presenter;
+            FormClosed += OnClosed;
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            checkBoxWeightProduct.Checked = false;
+            errorProviderPrductName.Clear();
+            errorProviderProductID.Clear();
+            textBoxProductID.Clear();
+            textBoxProductName.Clear();
+            numericUpDownAmount.Value = 0;
+            numericUpDownProductPrice.Value = 0;
         }
         private void TextBoxNumerical_KeyPressNotNumber(object sender, KeyPressEventArgs e) // Запрет на все кроме цифр
         {
